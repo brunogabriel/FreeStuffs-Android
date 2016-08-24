@@ -13,10 +13,15 @@ Simples, basta clonar o código fonte e abrir a aplicação no Android Studio. C
 ## Estrutura do Projeto
 
 O projeto está estruturado por pacotes Java, onde temos:
+
 1. **`managers`** : pacotes com esturturas básicas a serem inseridas, até o momento a aplicação base e uma activity padrão a ser utilizada no decorrer da aplicação
+
 2. **`models`**: POJOS e objetos responsáveis pela modelagem estrutural dos elementos básicos de CRUD e/ou retorno de APIs Restful
+
 3. **`network`**: estrutura de comunicação com a web
+
 4.  **`utils`**: classes utilizadas com frequência na aplicação, p.e: SharedPreferences
+
 5. **`views`**: estrutura padrão de activities, fragments, adapters, widgets e notificadores de push
 
 ## LICENSE
