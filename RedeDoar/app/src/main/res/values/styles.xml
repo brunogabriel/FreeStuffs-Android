@@ -1,0 +1,21 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="DoarTheme" parent="DoarTheme.Base">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <!-- Default application theme -->
+    <style name="DoarTheme.Base" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <!-- <item name="android:typeface">serif</item> -->
+
+        <!-- EditText Style -->
+        <item name="colorControlNormal">@color/colorPrimary</item>
+        <item name="colorControlActivated">@color/colorAccent</item>
+        <item name="colorControlHighlight">@color/colorAccent</item>
+    </style>
+
+
+</resources>

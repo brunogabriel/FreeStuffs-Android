@@ -1,0 +1,56 @@
+apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
+
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "24.0.0"
+
+    defaultConfig {
+        applicationId "br.com.rededoar"
+        minSdkVersion 15
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            applicationIdSuffix '.debug'
+            versionNameSuffix '-DEBUG'
+        }
+
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+
+    // Android and Google Dependencies
+    compile 'com.android.support:appcompat-v7:24.2.0'
+
+    // Http Connection: Retrofit + OkHttp
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+
+    // Butterknife dependencies
+    compile 'com.jakewharton:butterknife:8.3.0'
+    apt 'com.jakewharton:butterknife-compiler:8.3.0'
+
+    // Saripaar Forms
+    compile 'com.mobsandgeeks:android-saripaar:2.0.3'
+
+    // Image Picasso
+    compile 'com.squareup.picasso:picasso:2.5.2'
+
+    // Dynamic Box
+    compile 'com.github.medyo:dynamicbox:1.2@aar'
+
+
+}
