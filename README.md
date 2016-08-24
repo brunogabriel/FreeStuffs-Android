@@ -8,21 +8,21 @@ O projeto é estruturado utilizando Android Studio, versão 2.0+ e funciona sobr
 
 ## Instalação
 
-Simples, basta clonar o código fonte e abrir a aplicação no Android Studio. Caso não como configurar o SDK Android, visite a página oficial da aplicação (será bem simples).
+Simples, basta clonar o código fonte e abrir a aplicação no Android Studio. Caso não saiba como configurar o SDK Android, visite a página oficial da aplicação (será bem simples).
 
 ## Estrutura do Projeto
 
 O projeto está estruturado por pacotes Java, onde temos:
 
-1. **`managers`** : pacotes com esturturas básicas a serem inseridas, até o momento a aplicação base e uma activity padrão a ser utilizada no decorrer da aplicação
+1. **`managers`** : pacotes com estruturas básicas a serem inseridas, até o momento a aplicação base e uma activity padrão a ser utilizada no decorrer da aplicação
 
 2. **`models`**: POJOS e objetos responsáveis pela modelagem estrutural dos elementos básicos de CRUD e/ou retorno de APIs Restful
 
 3. **`network`**: estrutura de comunicação com a web
 
-4.  **`utils`**: classes utilizadas com frequência na aplicação, p.e: SharedPreferences
+4.  **`utils`**: classes utilizadas com frequência na aplicação, p.e: Shared Preferences
 
-5. **`views`**: estrutura padrão de activities, fragments, adapters, widgets e notificadores de push
+5. **`views`**: estrutura padrão de activities, fragments, adapters, widgets e notificadores de push, ou seja, elementos básicos de UI.
 
 ## LICENSE
 MIT © [MIT](LICENSE)
