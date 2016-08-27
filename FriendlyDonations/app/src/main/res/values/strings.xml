@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FriendlyDonations</string>
+
+    <array name="array_tab_main">
+        <item>Home</item>
+        <item>Maps</item>
+        <item>Profile</item>
+        <item>Notifications</item>
+
+    </array>
+</resources>

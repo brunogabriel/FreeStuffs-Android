@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "78492120062",
+    "firebase_url": "https://friendly-donations.firebaseio.com",
+    "project_id": "friendly-donations",
+    "storage_bucket": "friendly-donations.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:78492120062:android:ac55d531febb66b2",
+        "android_client_info": {
+          "package_name": "br.com.friendlydonations"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "78492120062-615vi6jkjo90qi38njva35eujmt71td7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvX-PX_gVjYPHwjnG25f1zM4inoGQAsEg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

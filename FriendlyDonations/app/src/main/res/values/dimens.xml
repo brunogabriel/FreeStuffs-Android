@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dimen_horizontal_view_semi_space">8dp</dimen>
+    <dimen name="dimen_horizontal_view_space">16dp</dimen>
+    <dimen name="dimen_horizontal_view_double_space">32dp</dimen>
+    <dimen name="dimen_button_height">32dp</dimen>
+    <dimen name="dimen_button_space">4dp</dimen>
+</resources>
