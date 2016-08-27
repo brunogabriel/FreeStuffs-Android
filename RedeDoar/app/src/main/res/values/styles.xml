@@ -6,7 +6,7 @@
     </style>
 
     <!-- Default application theme -->
-    <style name="DoarTheme.Base" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <style name="DoarTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <!-- <item name="android:typeface">serif</item> -->

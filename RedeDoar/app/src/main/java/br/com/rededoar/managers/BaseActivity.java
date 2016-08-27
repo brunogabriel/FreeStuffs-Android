@@ -26,8 +26,8 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         if (ApplicationManager.DEVELOPER_MODE) {
             Log.d(TAG, "Starting development mode: StrictMode");
-            StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().
-                    detectAll().penaltyLog().build());
+            /* StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().
+                    detectAll().penaltyLog().build()); */
             ButterKnife.setDebug(true);
         }
     }

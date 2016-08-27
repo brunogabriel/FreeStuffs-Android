@@ -1,3 +1,11 @@
 <resources>
+    <!-- Keys -->
+    <!-- <string name="facebook_app_id">1768102313474794</string>
+    <string name="fb_login_protocol_scheme">fb1768102313474794</string> -->
+    
+    <!-- Strings -->
     <string name="app_name">RedeDoar</string>
+    
+    <!-- LoginActivity -->
+    <string name="login_activity_cancelled">Login cancelado</string>
 </resources>
