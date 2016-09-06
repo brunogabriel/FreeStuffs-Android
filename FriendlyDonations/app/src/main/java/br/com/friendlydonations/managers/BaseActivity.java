@@ -61,6 +61,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         ConnectivityManager mConnectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
         return mNetworkInfo != null && mNetworkInfo.isConnected();
-
     }
+
+
 }

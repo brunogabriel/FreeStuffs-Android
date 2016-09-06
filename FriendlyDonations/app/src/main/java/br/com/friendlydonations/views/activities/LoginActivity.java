@@ -49,9 +49,6 @@ public class LoginActivity extends BaseActivity {
         ButterKnife.bind(this);
         initUI();
         setupFacebookSDK();
-
-        // Test
-        createFacebookUser(null, null);
     }
 
     @Override
@@ -91,15 +88,16 @@ public class LoginActivity extends BaseActivity {
 
         AccessToken currentAccessToken = AccessToken.getCurrentAccessToken();
         Profile currentProfile = Profile.getCurrentProfile();
+
         AccessToken.refreshCurrentAccessTokenAsync(new AccessToken.AccessTokenRefreshCallback() {
             @Override
             public void OnTokenRefreshed(AccessToken accessToken) {
-                // Log.d(TAG, "Hello");
+                 int x = 1 + 2;
             }
 
             @Override
             public void OnTokenRefreshFailed(FacebookException exception) {
-                // Log.d(TAG, "Hello");
+                int x = 1 + 2;
             }
         });
 
@@ -127,8 +125,8 @@ public class LoginActivity extends BaseActivity {
     public void createFacebookUser(Profile profile, JSONObject object) {
         Intent loginIntent = new Intent();
         loginIntent.setClass(this, MainActivity.class);
-        startActivity(loginIntent);
-        this.finish();
+        //startActivity(loginIntent);
+        //this.finish();
     }
 
     @Override

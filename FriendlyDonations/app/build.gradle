@@ -68,4 +68,7 @@ dependencies {
     // Facebook
     compile 'com.facebook.android:facebook-android-sdk:[4,5)'
 
+    // RxJava
+    compile 'io.reactivex:rxjava:1.1.10'
+
 }
