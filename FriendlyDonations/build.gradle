@@ -17,6 +17,8 @@ allprojects {
         maven {
             // Saripaar
             url "https://oss.sonatype.org/content/repositories/snapshots/"
+             // Magic View Pager
+            url "https://jitpack.io"
         }
     }
 }

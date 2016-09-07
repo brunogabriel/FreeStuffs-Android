@@ -37,18 +37,14 @@
                     android:id="@+id/viewPager">
                 </android.support.v4.view.ViewPager>
 
-                <com.viewpagerindicator.CirclePageIndicator
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                <net.lucode.hackware.magicindicator.MagicIndicator
                     android:id="@+id/circlePage"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
+                    android:minWidth="56dp"
                     android:layout_height="32dp"
-                    android:padding="6dp"
-                    app:fillColor="@color/colorWhite"
-                    app:strokeColor="@color/colorWhite"
-                    app:radius="6dp"
-                    app:snap="false"
+                    android:layout_gravity="bottom|center_horizontal"
                     android:layout_alignParentBottom="true"
-                    android:layout_gravity="bottom" />
+                    android:layout_centerHorizontal="true" />
             </RelativeLayout>
 
             <android.support.v7.widget.Toolbar

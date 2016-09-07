@@ -1,5 +1,6 @@
 package br.com.friendlydonations.views.activities;
 
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -13,12 +14,18 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import com.viewpagerindicator.CirclePageIndicator;
 
+import net.lucode.hackware.magicindicator.MagicIndicator;
+import net.lucode.hackware.magicindicator.ViewPagerHelper;
+import net.lucode.hackware.magicindicator.buildins.UIUtil;
+import net.lucode.hackware.magicindicator.buildins.circlenavigator.CircleNavigator;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.friendlydonations.R;
 import br.com.friendlydonations.managers.BaseActivity;
 import br.com.friendlydonations.utils.TypefaceMaker;
+import br.com.friendlydonations.views.widgets.ScaleCircleNavigator;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -40,7 +47,7 @@ public class DonationDetailActivity extends BaseActivity {
     protected TextView tvDonateSeeMore;
 
     @BindView(R.id.viewPager) protected ViewPager viewPager;
-    @BindView(R.id.circlePage) protected CirclePageIndicator circlePage;
+    @BindView(R.id.circlePage) protected MagicIndicator circlePage;
     protected DynamicPageAdapterImages dynamicPageAdapter;
     private List<View> mViews = new ArrayList<>();
 
@@ -64,8 +71,15 @@ public class DonationDetailActivity extends BaseActivity {
     public void initUI() {
         tvDonateLocation.setText(String.format(getResources().getString(R.string.donate_detail_location), "São José dos Campos, SP, Brazil"));
         dynamicPageAdapter = new DynamicPageAdapterImages(mViews);
+
+
+        ScaleCircleNavigator scaleCircleNavigator = new ScaleCircleNavigator(this);
+        circlePage.setNavigator(scaleCircleNavigator);
+
+
         viewPager.setAdapter(dynamicPageAdapter);
-        circlePage.setViewPager(viewPager);
+        ViewPagerHelper.bind(circlePage, viewPager);
+
 
         // Only to test
         mViews.clear();
@@ -73,6 +87,8 @@ public class DonationDetailActivity extends BaseActivity {
         mViews.add(LayoutInflater.from(this).inflate(R.layout.image_view_pager, null));
         mViews.add(LayoutInflater.from(this).inflate(R.layout.image_view_pager, null));
         mViews.add(LayoutInflater.from(this).inflate(R.layout.image_view_pager, null));
+
+        scaleCircleNavigator.setCircleCount(mViews.size());
 
         //mViews.add(mImageView);
 
