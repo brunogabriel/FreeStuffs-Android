@@ -13,7 +13,9 @@ public class TypefaceMaker {
         MontserratRegular("Montserrat/Montserrat-Regular.ttf"),
         MontserratBold("Montserrat/Montserrat-Bold.ttf"),
         // Roboto
-        RobotoRegular("Roboto/Roboto-Regular.ttf");
+        RobotoRegular("Roboto/Roboto-Regular.ttf"),
+        RobotoLight("Roboto/Roboto-Light.ttf"),
+        RobotoMedium("Roboto/Roboto-Medium.ttf");
 
         private String description;
 

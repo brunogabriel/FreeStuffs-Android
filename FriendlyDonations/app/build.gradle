@@ -71,4 +71,7 @@ dependencies {
     // RxJava
     compile 'io.reactivex:rxjava:1.1.10'
 
+    // View Pager Indicator
+    compile 'fr.avianey.com.viewpagerindicator:library:2.4.1@aar'
+
 }

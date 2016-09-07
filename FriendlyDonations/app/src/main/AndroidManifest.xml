@@ -60,6 +60,9 @@
         <activity android:name=".views.activities.MainActivity">
         </activity>
 
+        <activity android:name=".views.activities.DonationDetailActivity">
+        </activity>
+
     </application>
 
 </manifest>

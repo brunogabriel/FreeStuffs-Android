@@ -4,11 +4,6 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.facebook.AccessToken;
@@ -25,7 +20,6 @@ import com.facebook.login.LoginResult;
 
 import org.json.JSONObject;
 
-import java.util.Arrays;
 
 import br.com.friendlydonations.R;
 import br.com.friendlydonations.managers.BaseActivity;
@@ -43,7 +37,7 @@ public class LoginActivity extends BaseActivity {
     protected TextView tvAboutTerms;
 
     @BindView(R.id.tvFacebookLogin)
-    protected  TextView tvFacebookLogin;
+    protected TextView tvFacebookLogin;
 
     // Typefaces
     protected Typeface mRobotoRegular;
@@ -68,7 +62,7 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     public void initUI() {
-        // setupToolbar(mToolbar,  "Teste", null, false, false);
+        // @empty
     }
 
     @Override
@@ -137,10 +131,14 @@ public class LoginActivity extends BaseActivity {
 
     }
 
-    //@OnClick(R.id.button)
-    //protected void onClickFacebookButton() {
-    //    LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "email", "user_birthday"));
-   //}
+    @OnClick(R.id.viewFacebookLogin)
+    protected void onClickViewFaceBookLogin() {
+        //    LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "email", "user_birthday"));
+        Intent loginIntent = new Intent();
+        loginIntent.setClass(this, DonationDetailActivity.class);
+        startActivity(loginIntent);
+        this.finish();
+    }
 
     private void requestGraphAPI(LoginResult loginResult) {
         GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {

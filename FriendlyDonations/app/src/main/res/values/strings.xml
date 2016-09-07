@@ -9,6 +9,25 @@
     <string name="login_about_terms">About FriendlyDonation and terms</string>
     <string name="login_with_facebook">Login With Facebook</string>
 
+    <!-- Donate Detail Activity -->
+    <string name="donate_detail_location">Location: %1$s</string>
+    <string name="donate_detail_see_more">See More</string>
+    <string name="donate_detail_by_mail">By Mail</string>
+    <string name="donate_detail_by_phone">By Phone</string>
+
+
+    <!-- Lorem Strings -->
+    <string name="lorem_name">Lorem Ipsum Dolor</string>
+    <string name="lorem_simple">lorem ipsum dolor</string>
+    <string name="lorem_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string name="lorem_word">Lorem</string>
+
+
 
     <array name="array_tab_main">
         <item>Home</item>

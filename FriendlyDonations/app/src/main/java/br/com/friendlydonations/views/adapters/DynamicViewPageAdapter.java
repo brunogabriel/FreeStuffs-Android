@@ -15,7 +15,7 @@ public class DynamicViewPageAdapter extends PagerAdapter {
 
     protected List<View> views;
 
-    public DynamicViewPageAdapter() {
+    public DynamicViewPageAdapter(List<View> mViews) {
         this.views = new ArrayList<>();
     }
 
