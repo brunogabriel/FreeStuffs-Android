@@ -1,28 +1,28 @@
-# RedeDoar-Android
+# FriendlyDonations - Android App
 
-Rede Doar consiste em um projeto social para criação de um aplicativo Open Source que possibilita os usuários contribuírem com a sociedade compartilhando por meio de doação ou buscando doações de roupas, sobras de alimentos ou móveis. 
+FriendlyDonations is a simple project (Open Source) that allows users to contribute with society , but how? Users can make contributions by donate something or find something else when really need.
 
-## Requisitos
+## Requirements
 
-O projeto é estruturado utilizando Android Studio, versão 2.0+ e funciona sobre as plataformas Android com SDK 15+.
+This project is structured by using Android Studio, version 2.0+ and works in Android SDK 15+.
 
-## Instalação
+## Install
 
-Simples, basta clonar o código fonte e abrir a aplicação no Android Studio. Caso não saiba como configurar o SDK Android, visite a página oficial da aplicação (será bem simples).
+Very simple, clone the source, open the project in Android Studio and voilà.
 
-## Estrutura do Projeto
+## Structure
 
-O projeto está estruturado por pacotes Java, onde temos:
+This app is structure by using java packages, where:
 
-1. **`managers`** : pacotes com estruturas básicas a serem inseridas, até o momento a aplicação base e uma activity padrão a ser utilizada no decorrer da aplicação
+1. **`managers`** : packages with basic components
 
-2. **`models`**: POJOS e objetos responsáveis pela modelagem estrutural dos elementos básicos de CRUD e/ou retorno de APIs Restful
+2. **`models`**: POJOS e objects with responsability to model project structure like CRUD, API Response and others
 
-3. **`network`**: estrutura de comunicação com a web
+3. **`network`**: web communication
 
-4.  **`utils`**: classes utilizadas com frequência na aplicação, p.e: Shared Preferences
+4.  **`utils`**: classes called in all part of applications, example: Shared Preferences and typefaces from disk
 
-5. **`views`**: estrutura padrão de activities, fragments, adapters, widgets e notificadores de push, ou seja, elementos básicos de UI.
+5. **`views`**:  activity, fragments and widgets structure
 
 ## LICENSE
 MIT © [MIT](LICENSE)
