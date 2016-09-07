@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- General Strings -->
     <string name="app_name">FriendlyDonations</string>
+    <string name="content_description">Content Description</string>
+
+    <!-- Login Activity -->
+    <string name="login_about_terms">About FriendlyDonation and terms</string>
+    <string name="login_with_facebook">Login With Facebook</string>
+
 
     <array name="array_tab_main">
         <item>Home</item>
         <item>Maps</item>
         <item>Profile</item>
         <item>Notifications</item>
-
     </array>
 </resources>

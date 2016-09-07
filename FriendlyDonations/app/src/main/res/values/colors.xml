@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+
+    <!-- APK Colors -->
+    <color name="colorPrimary">#6E65E6</color>
+    <color name="colorPrimaryDark">#4d47a1</color>
+
+    <color name="colorAccent">#FF4844</color>
+    <color name="colorPallet1">#1BB7CD</color>
+    <color name="colorPallet2">#5D5352</color>
+
+    <!-- Simple Colors -->
     <color name="colorWhite">#fff</color>
+
+    <!-- Gray Colors -->
+    <color name="colorGray">#A4A3B1</color>
+    <color name="colorYellow">#FFD85C</color>
+
+    <!-- Facebook -->
+    <color name="colorFacebook">#3B5998</color>
+
+    <!-- #6E65E6, #1BB7CD, #5D5352, #FF4844, #A4A3B1, #FFD85C -->
 </resources>

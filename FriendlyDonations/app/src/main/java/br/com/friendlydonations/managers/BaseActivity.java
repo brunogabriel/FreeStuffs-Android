@@ -1,15 +1,22 @@
 package br.com.friendlydonations.managers;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import butterknife.ButterKnife;
 
@@ -33,6 +40,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public abstract void initUI();
+    public abstract void setupTypefaces();
 
     protected void setupToolbar(Toolbar mToolbar, String mTitle, String mSubtitle, boolean
             isDisplayHomeAsUpEnabled, boolean isDisplayShowHomeEnabled) {
@@ -63,5 +71,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         return mNetworkInfo != null && mNetworkInfo.isConnected();
     }
 
-
+    protected void setTypeface (Typeface mTypeface, TextView mTextView) {
+        if (mTypeface != null && mTextView != null) {
+            mTextView.setTypeface(mTypeface);
+        }
+    }
 }

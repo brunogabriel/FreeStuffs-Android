@@ -1,9 +1,15 @@
 package br.com.friendlydonations.views.activities;
 
 import android.content.Intent;
+import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -23,6 +29,7 @@ import java.util.Arrays;
 
 import br.com.friendlydonations.R;
 import br.com.friendlydonations.managers.BaseActivity;
+import br.com.friendlydonations.utils.TypefaceMaker;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -32,8 +39,15 @@ import butterknife.OnClick;
  */
 public class LoginActivity extends BaseActivity {
 
-    @BindView(R.id.toolbar) protected Toolbar mToolbar;
-    @BindView(R.id.button) protected Button loginButton;
+    @BindView(R.id.tvAboutTerms)
+    protected TextView tvAboutTerms;
+
+    @BindView(R.id.tvFacebookLogin)
+    protected  TextView tvFacebookLogin;
+
+    // Typefaces
+    protected Typeface mRobotoRegular;
+    protected Typeface mMonserratRegular;
 
     // Facebook
     protected CallbackManager callbackManager;
@@ -47,13 +61,33 @@ public class LoginActivity extends BaseActivity {
         callbackManager = CallbackManager.Factory.create();
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        setupTypefaces();
         initUI();
         setupFacebookSDK();
     }
 
     @Override
     public void initUI() {
-        setupToolbar(mToolbar,  "Teste", null, false, false);
+        // setupToolbar(mToolbar,  "Teste", null, false, false);
+    }
+
+    @Override
+    public void setupTypefaces() {
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                mMonserratRegular = TypefaceMaker.createTypeFace(LoginActivity.this, TypefaceMaker.FontFamily.MontserratRegular);
+                mRobotoRegular = TypefaceMaker.createTypeFace(LoginActivity.this, TypefaceMaker.FontFamily.RobotoRegular);
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                setTypeface(mRobotoRegular, tvAboutTerms);
+                setTypeface(mMonserratRegular, tvFacebookLogin);
+            }
+        }.execute();
     }
 
     private void setupFacebookSDK() {
@@ -103,10 +137,10 @@ public class LoginActivity extends BaseActivity {
 
     }
 
-    @OnClick(R.id.button)
-    protected void onClickFacebookButton() {
-        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "email", "user_birthday"));
-    }
+    //@OnClick(R.id.button)
+    //protected void onClickFacebookButton() {
+    //    LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "email", "user_birthday"));
+   //}
 
     private void requestGraphAPI(LoginResult loginResult) {
         GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {

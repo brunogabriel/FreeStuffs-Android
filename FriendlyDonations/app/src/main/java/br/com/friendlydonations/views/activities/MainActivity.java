@@ -55,6 +55,9 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
+    public void setupTypefaces() {}
+
+    @Override
     public void initUI() {
         setupToolbar(toolbar, "MAIN", null, false, false);
         setupTabs(viewPager);
