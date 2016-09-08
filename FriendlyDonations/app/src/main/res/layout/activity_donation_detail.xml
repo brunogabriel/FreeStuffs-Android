@@ -89,8 +89,8 @@
                 <TextView
                     android:id="@+id/tvDonateLocation"
                     android:text="@string/donate_detail_location"
-                    android:textSize="14sp"
-                    android:layout_marginTop="8dp"
+                    android:textSize="16sp"
+                    android:layout_marginTop="@dimen/dimen_horizontal_view_semi_space"
                     android:textColor="@color/colorPallet2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -99,19 +99,18 @@
                     android:id="@+id/tvDonateDescription"
                     android:text="@string/lorem_text"
                     android:textSize="16sp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="@dimen/dimen_horizontal_view_space"
                     android:textColor="@color/colorPallet2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
                 <View
-                    android:alpha=".1"
+                    android:alpha="0.1"
                     android:background="@color/colorGray"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="@dimen/dimen_horizontal_view_space"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"/>
+
 
                 <TextView
                     android:id="@+id/tvDonateSeeMore"

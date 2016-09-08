@@ -35,6 +35,7 @@ public class DynamicTabViewPageAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return titleList.get(position);
+        // return titleList.get(position);
+        return null; // Only show icons
     }
 }

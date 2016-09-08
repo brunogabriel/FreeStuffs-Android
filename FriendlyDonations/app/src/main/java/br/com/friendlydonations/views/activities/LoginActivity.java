@@ -135,7 +135,7 @@ public class LoginActivity extends BaseActivity {
     protected void onClickViewFaceBookLogin() {
         //    LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "email", "user_birthday"));
         Intent loginIntent = new Intent();
-        loginIntent.setClass(this, DonationDetailActivity.class);
+        loginIntent.setClass(this, MainActivity.class);
         startActivity(loginIntent);
         this.finish();
     }

@@ -1,5 +1,6 @@
 package br.com.friendlydonations.views.activities;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
@@ -7,8 +8,11 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import br.com.friendlydonations.R;
@@ -36,10 +40,10 @@ public class MainActivity extends BaseActivity {
     // Adapter
     private String []tabArrayNames;
     private int[]tabIcons = {
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
+            R.drawable.ic_home_tab,
+            R.drawable.ic_location_tab,
+            R.drawable.ic_profile_tab,
+            R.drawable.ic_notifications_tab
     };
 
     private DynamicTabViewPageAdapter viewPagerAdapter;
@@ -49,8 +53,6 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        // Apply FAB Color
-        fabDonation.setBackgroundTintList(getResources().getColorStateList(R.color.colorPrimaryDark));
         initUI();
     }
 
@@ -61,16 +63,16 @@ public class MainActivity extends BaseActivity {
     public void initUI() {
         setupToolbar(toolbar, "MAIN", null, false, false);
         setupTabs(viewPager);
-
+        
         //page change listener
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             @Override
             public void onPageSelected(int position) {
-                CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) appBar.getLayoutParams();
+                /* CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) appBar.getLayoutParams();
                 AppBarLayout.Behavior behavior = (AppBarLayout.Behavior) params.getBehavior();
                 behavior.onNestedFling(coordinatorLayout, appBar, null, 0, -1000, true);
-                fabDonation.setVisibility(position == 0 ? View.VISIBLE : View.INVISIBLE);
+                fabDonation.setVisibility(position == 0 ? View.VISIBLE : View.INVISIBLE); */
             }
 
             @Override
@@ -82,7 +84,7 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    private void setupTabs(ViewPager viewPager) {
+    private void setupTabs(final ViewPager viewPager) {
         viewPagerAdapter = new DynamicTabViewPageAdapter(getSupportFragmentManager());
         if(viewPager!=null) {
 
@@ -102,33 +104,41 @@ public class MainActivity extends BaseActivity {
                 tabs.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
                     @Override
                     public void onTabSelected(TabLayout.Tab tab) {
-                        // TODO: apply 100 % alpha in active
-                        // TODO: apply 50 % alpha in others
-                        // getSupportActionBar().setTitle(tabArrayNames[tab.getPosition()]);
+
+                        if (tab.getIcon()!=null) {
+                            tab.getIcon().setAlpha(255);
+                        }
+
+                        viewPager.setCurrentItem(tab.getPosition());
                     }
 
                     @Override
                     public void onTabUnselected(TabLayout.Tab tab) {
-
+                        if (tab.getIcon()!=null) {
+                            tab.getIcon().setAlpha(100);
+                        }
                     }
 
                     @Override
                     public void onTabReselected(TabLayout.Tab tab) {
-                        // TODO: apply 100 % alpha in active
-                        // TODO: apply 50 % alpha in others
-                        // getSupportActionBar().setTitle(tabArrayNames[tab.getPosition()]);
+                        if (tab.getIcon()!=null) {
+                            tab.getIcon().setAlpha(255);
+                        }
                     }
                 });
 
                 // Custom View
-                for (int i = 0; i < tabArrayNames.length; ++i) {
-                    TextView mCustomTab = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
-                    mCustomTab.setText(tabArrayNames[i]);
-                    mCustomTab.setCompoundDrawablesWithIntrinsicBounds(0, tabIcons[i], 0, 0);
-                    tabs.getTabAt(i).setCustomView(mCustomTab);
+                for (int i = 0; i < tabIcons.length; ++i) {
+                    tabs.getTabAt(i).setIcon(tabIcons[i]);
+
+                    if (i!=0) {
+                        tabs.getTabAt(i).getIcon().setAlpha(100);
+                    }
                 }
 
-            } catch (ArrayIndexOutOfBoundsException e) {}
+            } catch (Exception e) {
+                Log.e(TAG, e.getMessage());
+            }
 
             // viewPager.setOffscreenPageLimit(viewPagerAdapter.getCount());
         }

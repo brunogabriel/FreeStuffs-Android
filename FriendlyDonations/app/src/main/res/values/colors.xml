@@ -11,6 +11,7 @@
 
     <!-- Simple Colors -->
     <color name="colorWhite">#fff</color>
+    <color name="colorBlack">#000</color>
 
     <!-- Gray Colors -->
     <color name="colorGray">#A4A3B1</color>

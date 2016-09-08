@@ -76,4 +76,8 @@ public abstract class BaseActivity extends AppCompatActivity {
             mTextView.setTypeface(mTypeface);
         }
     }
+
+    protected boolean isLollipopSupport() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
+    }
 }
