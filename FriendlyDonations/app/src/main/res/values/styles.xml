@@ -18,5 +18,17 @@
         <item name="colorControlHighlight">@color/colorAccent</item>
     </style>
 
+    <!-- Default application theme -->
+    <style name="FriendlyDonations.BaseNotTranslucent" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <!-- <item name="android:typeface">serif</item> -->
+
+        <!-- EditText Style -->
+        <item name="colorControlNormal">@color/colorPrimary</item>
+        <item name="colorControlActivated">@color/colorAccent</item>
+        <item name="colorControlHighlight">@color/colorAccent</item>
+    </style>
+
 
 </resources>

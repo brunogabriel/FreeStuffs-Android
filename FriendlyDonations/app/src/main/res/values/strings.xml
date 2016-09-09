@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Keys -->
+    <string name="google_android_apikey" translatable="false">AIzaSyDu3zC4_c1LgXXvYG8x0SCcHYl_z32W3Nk</string>
+
     <!-- General Strings -->
     <string name="app_name">FriendlyDonations</string>
     <string name="content_description">Content Description</string>
@@ -15,7 +18,6 @@
     <string name="donate_detail_by_mail">By Mail</string>
     <string name="donate_detail_by_phone">By Phone</string>
 
-
     <!-- Lorem Strings -->
     <string name="lorem_name">Lorem Ipsum Dolor</string>
     <string name="lorem_simple">lorem ipsum dolor</string>
@@ -27,12 +29,10 @@
     proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
     <string name="lorem_word">Lorem</string>
 
-
-
     <array name="array_tab_main">
-        <item>Home</item>
-        <item>Maps</item>
-        <item>Profile</item>
+        <item>Sweet Home</item>
+        <item>Find a Donation</item>
+        <item>Your Profile</item>
         <item>Notifications</item>
     </array>
 </resources>

@@ -55,6 +55,25 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
+    protected void applyTypefaceToolbar(Toolbar mToolbar, Typeface typeface) {
+        if (mToolbar != null && typeface != null) {
+            try {
+                for(int i = 0; i < mToolbar.getChildCount(); i++){
+                    View view = mToolbar.getChildAt(i);
+                    if(view instanceof TextView){
+                        TextView tv = (TextView) view;
+                        if(tv.getText().equals(mToolbar.getTitle())){
+                            tv.setTypeface(typeface);
+                            break;
+                        }
+                    }
+                }
+            } catch (Exception ex) {
+                Log.e(TAG, "Fail to apply typeface on toolbar: " + ex.getMessage());
+            }
+        }
+    }
+
     protected void hideKeyboard() {
         View mView = getCurrentFocus();
         if (mView != null) {
