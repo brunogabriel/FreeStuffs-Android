@@ -8,6 +8,10 @@
     <string name="app_name">FriendlyDonations</string>
     <string name="content_description">Content Description</string>
 
+    <!-- Actions Menu -->
+    <string name="action_menu_search">Search</string>
+    <string name="action_menu_exit">Exit</string>
+
     <!-- Login Activity -->
     <string name="login_about_terms">About FriendlyDonation and terms</string>
     <string name="login_with_facebook">Login With Facebook</string>

@@ -1,5 +1,6 @@
 package br.com.friendlydonations.views.activities;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -10,6 +11,8 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 
 import br.com.friendlydonations.R;
 import br.com.friendlydonations.managers.BaseActivity;
@@ -22,6 +25,7 @@ import br.com.friendlydonations.views.fragments.ProfileFragment;
 import butterknife.BindArray;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by brunogabriel on 8/27/16.
@@ -135,5 +139,18 @@ public class MainActivity extends BaseActivity {
             viewPager.setCurrentItem(tab.getPosition());
             toolbar.setTitle(tabArrayNames[tab.getPosition()]);
         }
+    }
+
+    @OnClick(R.id.fabdonation)
+    protected void onClickFabDonation() {
+        Intent mIntent = new Intent(MainActivity.this, DonationDetailActivity.class);
+        startActivity(mIntent);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main_activity, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 }

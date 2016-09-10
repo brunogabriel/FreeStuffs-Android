@@ -1,29 +1,25 @@
 package br.com.friendlydonations.views.activities;
 
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
-
-import com.squareup.picasso.Picasso;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
 import net.lucode.hackware.magicindicator.ViewPagerHelper;
-import net.lucode.hackware.magicindicator.buildins.UIUtil;
-import net.lucode.hackware.magicindicator.buildins.circlenavigator.CircleNavigator;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.friendlydonations.R;
 import br.com.friendlydonations.managers.BaseActivity;
 import br.com.friendlydonations.utils.TypefaceMaker;
+import br.com.friendlydonations.views.adapters.DynamicPageAdapterImages;
 import br.com.friendlydonations.views.widgets.ScaleCircleNavigator;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -44,6 +40,9 @@ public class DonationDetailActivity extends BaseActivity {
 
     @BindView(R.id.tvDonateSeeMore)
     protected TextView tvDonateSeeMore;
+
+    @BindView(R.id.toolbar)
+    protected Toolbar toolbar;
 
     @BindView(R.id.viewPager) protected ViewPager viewPager;
     @BindView(R.id.circlePage) protected MagicIndicator circlePage;
@@ -68,6 +67,8 @@ public class DonationDetailActivity extends BaseActivity {
 
     @Override
     public void initUI() {
+        setupToolbar(toolbar, "", "", true, true );
+        applyCloseMenu();
         tvDonateLocation.setText(String.format(getResources().getString(R.string.donate_detail_location), "São José dos Campos, SP, Brazil"));
         dynamicPageAdapter = new DynamicPageAdapterImages(mViews);
 
@@ -94,6 +95,18 @@ public class DonationDetailActivity extends BaseActivity {
         dynamicPageAdapter.notifyDataSetChanged();
     }
 
+
+    protected void applyCloseMenu() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            try {
+                getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_menu_close_x));
+            } catch (Exception ex) {
+
+            }
+
+        }
+    }
+
     @Override
     public void setupTypefaces() {
         new AsyncTask<Void, Void, Void>() {
@@ -118,32 +131,12 @@ public class DonationDetailActivity extends BaseActivity {
         }.execute();
     }
 
-    class DynamicPageAdapterImages extends PagerAdapter {
-        private List<View> mViews;
 
-        public DynamicPageAdapterImages(List<View> mViews) {
-            this.mViews = mViews;
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        if (menuItem.getItemId() == android.R.id.home) {
+            onBackPressed();
         }
-
-        @Override
-        public int getCount() {
-            return this.mViews == null ? 0 : this.mViews.size();
-        }
-
-        @Override
-        public boolean isViewFromObject(View view, Object object) {
-            return view == ((View) object);
-        }
-
-        @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
-            ((ViewPager) container).removeView((View) object);
-        }
-
-        @Override
-        public Object instantiateItem(ViewGroup container, int position) {
-            ((ViewPager) container).addView(mViews.get(position), 0);
-            return mViews.get(position);
-        }
+        return super.onOptionsItemSelected(menuItem);
     }
 }
