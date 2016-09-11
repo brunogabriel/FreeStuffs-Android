@@ -4,8 +4,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.widget.TextView;
-
+import android.support.v7.widget.AppCompatTextView;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -34,10 +33,10 @@ import butterknife.OnClick;
 public class LoginActivity extends BaseActivity {
 
     @BindView(R.id.tvAboutTerms)
-    protected TextView tvAboutTerms;
+    protected AppCompatTextView tvAboutTerms;
 
     @BindView(R.id.tvFacebookLogin)
-    protected TextView tvFacebookLogin;
+    protected AppCompatTextView tvFacebookLogin;
 
     // Typefaces
     protected Typeface mRobotoRegular;

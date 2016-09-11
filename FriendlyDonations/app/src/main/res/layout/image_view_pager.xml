@@ -14,7 +14,7 @@
     
     <View
         android:alpha=".2"
-        android:background="@drawable/black_gradient_drawable"
+        android:background="@drawable/drawable_black_gradient_effect"
         android:layout_width="match_parent"
         android:layout_height="300dp"/>
 </FrameLayout>

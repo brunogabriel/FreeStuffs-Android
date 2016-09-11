@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    card_view:cardUseCompatPadding="true"
+    card_view:cardElevation="4dp"
+    card_view:cardCornerRadius="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/material_component_bottom_sheet_edge_top_bottom_margins">
+
+    <LinearLayout
+
+        android:id="@+id/contentView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/cardImage"
+            android:src="@drawable/ic_picture_bike"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_height_card_home"
+            android:contentDescription="@string/content_description"
+            android:scaleType="centerCrop"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/cardTitle"
+            style="@style/TextView.Typeface3"
+            android:layout_margin="@dimen/material_layout_vertical_spacing_between_content_areas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPallet2"
+            android:text="Brand new ladies bike 29 wheel"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/cardLocation"
+            style="@style/TextView.Typeface1"
+            android:layout_marginLeft="@dimen/material_layout_vertical_spacing_between_content_areas"
+            android:layout_marginRight="@dimen/material_layout_vertical_spacing_between_content_areas"
+            android:layout_marginBottom="@dimen/material_layout_vertical_spacing_between_content_areas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorGray"
+            android:text="Brand new ladies bike 29 wheel"/>
+
+        <LinearLayout
+            android:layout_marginLeft="@dimen/material_layout_vertical_spacing_between_content_areas"
+            android:layout_marginRight="@dimen/material_layout_vertical_spacing_between_content_areas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/cardGpsText"
+                android:layout_weight="1"
+                style="@style/TextView.Typeface1"
+                android:layout_gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:drawableLeft="@drawable/ic_location_tab"
+                android:drawablePadding="6dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorGray"
+                android:text="2.1 km"/>
+
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/cardMsgText"
+                android:layout_weight="1"
+                style="@style/TextView.Typeface1"
+                android:layout_gravity="right"
+                android:layout_width="match_parent"
+                android:drawableLeft="@drawable/ic_location_tab"
+                android:drawablePadding="6dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorGray"
+                android:text="999+"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</android.support.v7.widget.CardView>

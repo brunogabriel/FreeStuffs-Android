@@ -15,8 +15,7 @@
         android:layout_height="wrap_content"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <include layout="@layout/toolbar"
-            android:id="@+id/toolbar" />
+        <include layout="@layout/toolbar" android:id="@+id/toolbar" />
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tabs"
@@ -37,9 +36,9 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabdonation"
-        android:layout_margin="@dimen/dimen_horizontal_view_space"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/material_layout_keylines_screen_edge_margin"
+        android:layout_width="@dimen/material_component_floating_action_button_size"
+        android:layout_height="@dimen/material_component_floating_action_button_size"
         android:layout_gravity="end|bottom"
         android:src="@drawable/ic_donate_float" />
 

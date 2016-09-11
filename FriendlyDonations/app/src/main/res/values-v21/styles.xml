@@ -10,8 +10,6 @@
     <style name="FriendlyDonations.Base" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:colorPrimary">@color/colorPrimary</item>
         <item name="android:colorPrimaryDark">@color/colorPrimaryDark</item>
-        <!-- <item name="android:typeface">serif</item> -->
-
         <!-- EditText Style -->
         <item name="android:colorControlNormal">@color/colorPrimary</item>
         <item name="android:colorControlActivated">@color/colorAccent</item>
@@ -27,8 +25,6 @@
     <style name="FriendlyDonations.BaseNotTranslucent" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:colorPrimary">@color/colorPrimary</item>
         <item name="android:colorPrimaryDark">@color/colorPrimaryDark</item>
-        <!-- <item name="android:typeface">serif</item> -->
-
         <!-- EditText Style -->
         <item name="android:colorControlNormal">@color/colorPrimary</item>
         <item name="android:colorControlActivated">@color/colorAccent</item>

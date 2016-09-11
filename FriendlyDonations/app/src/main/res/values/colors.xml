@@ -19,6 +19,8 @@
 
     <!-- Facebook -->
     <color name="colorFacebook">#3B5998</color>
+    <color name="colorFacebookClickable">#4F6AA3</color>
 
-    <!-- #6E65E6, #1BB7CD, #5D5352, #FF4844, #A4A3B1, #FFD85C -->
+    <!-- About Background Color -->
+    <color name="colorAboutLogin">#1A1A1A64</color>
 </resources>

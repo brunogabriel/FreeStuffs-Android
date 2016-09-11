@@ -1,6 +1,8 @@
 package br.com.friendlydonations.views.fragments;
 
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -8,14 +10,27 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.friendlydonations.R;
+import br.com.friendlydonations.managers.BaseActivity;
 import br.com.friendlydonations.managers.BaseFragment;
+import br.com.friendlydonations.views.adapters.HomeCardAdapter;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
  * Created by brunogabriel on 8/27/16.
  */
 public class HomeFragment extends BaseFragment {
+
+    @BindView(R.id.recyclerView)
+    protected RecyclerView recyclerView;
+
+    protected StaggeredGridLayoutManager gridLayoutManager;
+    protected HomeCardAdapter adapter;
+
 
     // Views
     protected View rootView;
@@ -31,7 +46,19 @@ public class HomeFragment extends BaseFragment {
     }
 
     @Override
-    public void initUI() {}
+    public void initUI() {
+        gridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        adapter = new HomeCardAdapter((BaseActivity) getActivity());
+        recyclerView.setLayoutManager(gridLayoutManager);
+        recyclerView.setAdapter(adapter);
+
+        List<Object> mItens = new ArrayList<>();
+        for (int i = 0; i < 10; ++i) {
+            mItens.add(new String());
+        }
+
+        adapter.addAll(mItens);
+    }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
