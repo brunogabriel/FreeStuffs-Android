@@ -25,6 +25,9 @@ import butterknife.ButterKnife;
  */
 public class HomeFragment extends BaseFragment {
 
+    // TODO:
+    // Header http://stackoverflow.com/questions/26530685/is-there-an-addheaderview-equivalent-for-recyclerview/26573338#26573338
+
     @BindView(R.id.recyclerView)
     protected RecyclerView recyclerView;
 
