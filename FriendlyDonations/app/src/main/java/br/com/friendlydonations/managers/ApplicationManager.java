@@ -22,5 +22,4 @@ public class ApplicationManager extends Application {
         TypefaceMaker.getInstance();
         AppEventsLogger.activateApp(this);
     }
-
 }

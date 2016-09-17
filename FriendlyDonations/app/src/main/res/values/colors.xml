@@ -23,4 +23,7 @@
 
     <!-- About Background Color -->
     <color name="colorAboutLogin">#1A1A1A64</color>
+
+    <!-- Badge Colors -->
+    <color name="colorBadgeAlert">#F44336</color>
 </resources>

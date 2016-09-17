@@ -9,10 +9,16 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.View;
+import android.widget.RelativeLayout;
+
+import com.squareup.picasso.Picasso;
 
 import br.com.friendlydonations.R;
 import br.com.friendlydonations.managers.BaseActivity;
@@ -22,6 +28,7 @@ import br.com.friendlydonations.views.fragments.HomeFragment;
 import br.com.friendlydonations.views.fragments.MapLocationFragment;
 import br.com.friendlydonations.views.fragments.NotificationsFragment;
 import br.com.friendlydonations.views.fragments.ProfileFragment;
+import br.com.friendlydonations.views.widgets.BadgeViewLayout;
 import butterknife.BindArray;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,11 +49,11 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.appBar) protected AppBarLayout appBar;
     @BindArray(R.array.array_tab_main) protected String []tabArrayNames;
 
+    BadgeViewLayout notificationBadge;
+
     private int[]tabIcons = {
-            R.drawable.ic_home_tab,
-            R.drawable.ic_location_tab,
-            R.drawable.ic_profile_tab,
-            R.drawable.ic_notifications_tab
+            R.drawable.ic_home_tab, R.drawable.ic_location_tab,
+            R.drawable.ic_profile_tab, R.drawable.ic_notifications_tab
     };
 
     private DynamicTabViewPageAdapter viewPagerAdapter;
@@ -73,6 +80,7 @@ public class MainActivity extends BaseActivity {
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
                 applyTypefaceToolbar(toolbar, mMonserratRegular);
+                setupTabs(viewPager);
             }
         }.execute();
     }
@@ -80,7 +88,6 @@ public class MainActivity extends BaseActivity {
     @Override
     public void initUI() {
         setupToolbar(toolbar, "", null, false, false);
-        setupTabs(viewPager);
     }
 
     private void setupTabs(final ViewPager viewPager) {
@@ -98,33 +105,40 @@ public class MainActivity extends BaseActivity {
                 tabs.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
                     @Override
                     public void onTabSelected(TabLayout.Tab tab) {
-                        if (tab.getIcon()!=null) {
-                            tab.getIcon().setAlpha(255);
-                        }
+                        tab.getCustomView().setAlpha(1.0f);
                         changeTab(tab);
                     }
 
                     @Override
                     public void onTabUnselected(TabLayout.Tab tab) {
-                        if (tab.getIcon()!=null) {
-                            tab.getIcon().setAlpha(100);
-                        }
+                        tab.getCustomView().setAlpha(0.5f);
                     }
 
                     @Override
                     public void onTabReselected(TabLayout.Tab tab) {
-                        if (tab.getIcon()!=null) {
-                            tab.getIcon().setAlpha(255);
-                        }
+                        tab.getCustomView().setAlpha(1.0f);
                     }
                 });
 
                 // Custom View
                 for (int i = 0; i < tabIcons.length; ++i) {
-                    tabs.getTabAt(i).setIcon(tabIcons[i]);
 
-                    if (i != 0) {
-                        tabs.getTabAt(i).getIcon().setAlpha(100);
+                    RelativeLayout mTabLayout = (RelativeLayout) LayoutInflater.from(this).inflate(R.layout.tabbadge, null, false);
+                    BadgeViewLayout mBadge = new BadgeViewLayout(mTabLayout);
+                    mBadge.initUi(R.id.badgeImage, R.id.rlBadge, R.id.textBadge, mMonserratRegular);
+                    Picasso.with(this).load(tabIcons[i]).into(mBadge.getBadgeImage());
+
+                    // Save notification tab
+                    if (i == tabIcons.length-1) {
+                        notificationBadge = mBadge;
+                        mBadge.changeVisibility();
+                    }
+
+                    tabs.getTabAt(i).setCustomView(mTabLayout);
+
+                    // Apply alpha in inactive tabs
+                    if ( i != 0) {
+                        tabs.getTabAt(i).getCustomView().setAlpha(0.5f);
                     }
                 }
 

@@ -5,6 +5,9 @@ import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatTextView;
+import android.util.Log;
+import android.widget.Toast;
+
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -16,9 +19,13 @@ import com.facebook.Profile;
 import com.facebook.ProfileTracker;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
+import com.google.firebase.iid.FirebaseInstanceId;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
+
+import java.util.Locale;
 
 import br.com.friendlydonations.R;
 import br.com.friendlydonations.managers.BaseActivity;
@@ -31,6 +38,8 @@ import butterknife.OnClick;
  * Created by brunogabriel on 8/27/16.
  */
 public class LoginActivity extends BaseActivity {
+
+    public static final String TAG = "LOGINACTIVITY";
 
     @BindView(R.id.tvAboutTerms)
     protected AppCompatTextView tvAboutTerms;
@@ -96,6 +105,8 @@ public class LoginActivity extends BaseActivity {
                             mProfileTracker.stopTracking();
                         }
                     };
+
+                    mProfileTracker.startTracking();
                 } else {
                     mProfile = Profile.getCurrentProfile();
                     requestGraphAPI(loginResult);
@@ -104,19 +115,20 @@ public class LoginActivity extends BaseActivity {
 
             @Override
             public void onCancel() {
-                // Toast.makeText(LoginActivity.this, R.string.login_activity_cancelled, Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginActivity.this, R.string.login_with_facebook_error, Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onError(FacebookException error) {
-
+                Log.d("LOGINACTIVITY", "Facebook Exception: " + error.getMessage());
+                Toast.makeText(LoginActivity.this, R.string.login_with_facebook_error, Toast.LENGTH_SHORT).show();
             }
         });
 
         AccessToken currentAccessToken = AccessToken.getCurrentAccessToken();
         Profile currentProfile = Profile.getCurrentProfile();
 
-        AccessToken.refreshCurrentAccessTokenAsync(new AccessToken.AccessTokenRefreshCallback() {
+        /**  AccessToken.refreshCurrentAccessTokenAsync(new AccessToken.AccessTokenRefreshCallback() {
             @Override
             public void OnTokenRefreshed(AccessToken accessToken) {
                  int x = 1 + 2;
@@ -126,24 +138,24 @@ public class LoginActivity extends BaseActivity {
             public void OnTokenRefreshFailed(FacebookException exception) {
                 int x = 1 + 2;
             }
-        });
+        }); **/
 
     }
 
     @OnClick(R.id.viewFacebookLogin)
     protected void onClickViewFaceBookLogin() {
-        //    LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "email", "user_birthday"));
+        //LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "email", "user_birthday"));
         Intent loginIntent = new Intent();
         loginIntent.setClass(this, MainActivity.class);
         startActivity(loginIntent);
         this.finish();
     }
 
-    private void requestGraphAPI(LoginResult loginResult) {
+    private void requestGraphAPI(final LoginResult loginResult) {
         GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
             @Override
             public void onCompleted(final JSONObject object, GraphResponse response) {
-                createFacebookUser(mProfile, object);
+                createFacebookUser(mProfile, object, loginResult.getAccessToken().getToken());
             }
         });
 
@@ -153,11 +165,36 @@ public class LoginActivity extends BaseActivity {
         request.executeAsync();
     }
 
-    public void createFacebookUser(Profile profile, JSONObject object) {
+    public void createFacebookUser(Profile profile, JSONObject object, String accessToken) {
+        String pushToken = "";
+
+        try {
+            pushToken = FirebaseInstanceId.getInstance().getToken();
+        } catch (Exception e) {
+            Log.e(TAG, "Fail during getting token id from FCM: " + e.getMessage());
+        }
+
+
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("name", profile.getName());
+            jsonObject.put("userId", profile.getId());
+            jsonObject.put("email", object.optString("email", ""));
+            jsonObject.put("birthday", object.optString("gender", ""));
+            jsonObject.put("gender", object.optString("gender", ""));
+            jsonObject.put("token", accessToken);
+            jsonObject.put("pushId", pushToken);
+            jsonObject.put("platform", "android");
+            jsonObject.put("language", Locale.getDefault().getLanguage());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         Intent loginIntent = new Intent();
         loginIntent.setClass(this, MainActivity.class);
-        //startActivity(loginIntent);
-        //this.finish();
+        startActivity(loginIntent);
+        this.finish();
     }
 
     @Override

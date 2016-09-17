@@ -15,6 +15,8 @@
     <!-- Login Activity -->
     <string name="login_about_terms">About FriendlyDonation and terms</string>
     <string name="login_with_facebook">Login With Facebook</string>
+    <string name="login_with_facebook_cancelled">Login With Facebook was cancelled</string>
+    <string name="login_with_facebook_error">An error occurred during Facebook Login, try again or wait and try later.</string>
 
     <!-- Donate Detail Activity -->
     <string name="donate_detail_location">Location: %1$s</string>
