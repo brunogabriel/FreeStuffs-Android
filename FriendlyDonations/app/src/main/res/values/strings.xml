@@ -23,6 +23,9 @@
     <string name="donate_detail_see_more">See More</string>
     <string name="donate_detail_by_mail">By Mail</string>
     <string name="donate_detail_by_phone">By Phone</string>
+    <string name="donate_detail_aprox_address">Aproximated Address</string>
+    <string name="donate_detail_im_interested">I am Interested</string>
+
 
     <!-- Lorem Strings -->
     <string name="lorem_name">Lorem Ipsum Dolor</string>

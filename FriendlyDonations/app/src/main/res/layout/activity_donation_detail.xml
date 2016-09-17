@@ -68,12 +68,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingTop="16dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginRight="32dp">
+            android:paddingTop="@dimen/place_autocomplete_prediction_horizontal_margin">
 
             <!-- Description of product -->
             <LinearLayout
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -89,17 +89,17 @@
                 <TextView
                     android:id="@+id/tvDonateLocation"
                     android:text="@string/donate_detail_location"
-                    android:textSize="16sp"
+                    style="@style/TextView.Typeface3"
                     android:layout_marginTop="@dimen/material_layout_vertical_spacing_between_content_areas"
-                    android:textColor="@color/colorPallet2"
+                    android:textColor="@color/colorGraySubtitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
                 <TextView
                     android:id="@+id/tvDonateDescription"
                     android:text="@string/lorem_text"
-                    android:textSize="16sp"
-                    android:layout_marginTop="@dimen/material_layout_vertical_spacing_between_content_areas"
+                    style="@style/TextView.Typeface2"
+                    android:layout_marginTop="@dimen/place_autocomplete_prediction_horizontal_margin"
                     android:textColor="@color/colorPallet2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -115,7 +115,7 @@
                 <TextView
                     android:id="@+id/tvDonateSeeMore"
                     android:text="@string/donate_detail_see_more"
-                    android:textSize="16sp"
+                    style="@style/TextView.Typeface3"
                     android:gravity="center"
                     android:layout_marginTop="8dp"
                     android:textAllCaps="true"
@@ -123,7 +123,50 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
+                <TextView
+                    android:id="@+id/tvAproximatedAddress"
+                    android:text="@string/donate_detail_aprox_address"
+                    style="@style/TextView.Typeface3"
+                    android:layout_marginTop="@dimen/material_layout_keylines_horizontal_mobile_margin"
+                    android:textColor="@color/colorGraySubtitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+                <!-- Google Maps -->
+                <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:layout_marginTop="@dimen/material_layout_keylines_screen_edge_margin"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:id="@+id/map"
+                    tools:context=".views.activities.DonationDetailActivity"
+                    android:name="com.google.android.gms.maps.SupportMapFragment" />
+
             </LinearLayout>
+
+            <!-- I am interested -->
+            <LinearLayout
+                android:clickable="true"
+                android:id="@+id/viewImInterestedBtn"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/material_layout_keylines_screen_edge_margin"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:background="@drawable/drawable_pallet1_effect"
+                android:layout_height="80dp">
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tvImInterestedText"
+                    style="@style/TextView.Typeface3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorWhite"
+                    android:text="@string/donate_detail_im_interested"
+                    android:gravity="center" />
+            </LinearLayout>
+
+
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>

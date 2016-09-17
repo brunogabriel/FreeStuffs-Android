@@ -11,6 +11,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 import net.lucode.hackware.magicindicator.MagicIndicator;
 import net.lucode.hackware.magicindicator.ViewPagerHelper;
 import java.util.ArrayList;
@@ -27,25 +35,21 @@ import butterknife.ButterKnife;
 /**
  * Created by brunogabriel on 9/7/16.
  */
-public class DonationDetailActivity extends BaseActivity {
+public class DonationDetailActivity extends BaseActivity{
 
-    @BindView(R.id.tvDonateName)
-    protected TextView tvDonateName;
-
-    @BindView(R.id.tvDonateLocation)
-    protected TextView tvDonateLocation;
-
-    @BindView(R.id.tvDonateDescription)
-    protected TextView tvDonateDescription;
-
-    @BindView(R.id.tvDonateSeeMore)
-    protected TextView tvDonateSeeMore;
-
-    @BindView(R.id.toolbar)
-    protected Toolbar toolbar;
+    @BindView(R.id.tvDonateName) protected TextView tvDonateName;
+    @BindView(R.id.tvDonateLocation) protected TextView tvDonateLocation;
+    @BindView(R.id.tvDonateDescription) protected TextView tvDonateDescription;
+    @BindView(R.id.tvDonateSeeMore) protected TextView tvDonateSeeMore;
+    @BindView(R.id.toolbar) protected Toolbar toolbar;
 
     @BindView(R.id.viewPager) protected ViewPager viewPager;
     @BindView(R.id.circlePage) protected MagicIndicator circlePage;
+    SupportMapFragment mapFragment;
+
+    @BindView(R.id.tvImInterestedText) protected TextView tvImInterestedText;
+
+
     protected DynamicPageAdapterImages dynamicPageAdapter;
     private List<View> mViews = new ArrayList<>();
 
@@ -93,8 +97,26 @@ public class DonationDetailActivity extends BaseActivity {
         //mViews.add(mImageView);
 
         dynamicPageAdapter.notifyDataSetChanged();
-    }
 
+        mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        mapFragment.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(GoogleMap googleMap) {
+                LatLng mCoords = new LatLng(-34, 151);
+                googleMap.addMarker(new MarkerOptions().position(mCoords).title("Marker in My Coords"));
+                googleMap.moveCamera(CameraUpdateFactory.newLatLng(mCoords));
+
+                CameraPosition mCameraPosition = new CameraPosition.Builder()
+                        .target(mCoords)
+                        .zoom(15)
+                        .tilt(45)
+                        .bearing(0)
+                        .build();
+
+                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(mCameraPosition));
+            }
+        });
+    }
 
     protected void applyCloseMenu() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
@@ -127,6 +149,7 @@ public class DonationDetailActivity extends BaseActivity {
                 setTypeface(mRobotoLight, tvDonateLocation);
                 setTypeface(mRobotoRegular, tvDonateDescription);
                 setTypeface(mRobotoMedium, tvDonateSeeMore);
+                setTypeface(mMonserratRegular, tvImInterestedText);
             }
         }.execute();
     }
