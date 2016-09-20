@@ -21,11 +21,26 @@
     <!-- Donate Detail Activity -->
     <string name="donate_detail_location">Location: %1$s</string>
     <string name="donate_detail_see_more">See More</string>
-    <string name="donate_detail_by_mail">By Mail</string>
-    <string name="donate_detail_by_phone">By Phone</string>
+    <string name="donate_detail_by_mail">by mail</string>
+    <string name="donate_detail_by_phone">by phone</string>
     <string name="donate_detail_aprox_address">Aproximated Address</string>
+    <string name="donate_detail_condition">condition</string>
+    <string name="donate_detail_delivery">delivery</string>
+    <string name="donate_detail_category">category</string>
+    <string name="donate_detail_id">id</string>
     <string name="donate_detail_im_interested">I am Interested</string>
 
+    <!-- Fragment Donate -->
+    <string name="donate_fragment_upload_photos">Upload your item photos</string>
+    <string name="donate_fragment_choose_category">Select a Category</string>
+    <string name="donate_fragment_product_item_title">Product / Item Title</string>
+    <string name="donate_fragment_description">Description</string>
+    <string name="donate_fragment_location">Location</string>
+    <string name="donate_fragment_delivery">Delivery</string>
+    <string name="donate_fragment_get_touch">I would like get in touch by</string>
+    <string name="donate_fragment_by_mail">by mail</string>
+    <string name="donate_fragment_by_phone">by phone</string>
+    <string name="donate_fragment_post_it">Post it</string>
 
     <!-- Lorem Strings -->
     <string name="lorem_name">Lorem Ipsum Dolor</string>
@@ -38,10 +53,13 @@
     proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
     <string name="lorem_word">Lorem</string>
 
+    <!-- Tab bar  items -->
     <array name="array_tab_main">
         <item>Sweet Home</item>
         <item>Find a Donation</item>
+        <item>Donate</item>
         <item>Your Profile</item>
         <item>Notifications</item>
     </array>
+
 </resources>

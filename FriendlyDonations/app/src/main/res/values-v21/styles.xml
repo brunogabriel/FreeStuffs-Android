@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <resources>
-    <!-- Base application theme. -->
-    <style name="FriendlyDonationsTheme" parent="FriendlyDonations.Base">
-        <!-- Customize your theme here. -->
-    </style>
 
-    <!-- Default application theme -->
-    <style name="FriendlyDonations.Base" parent="Theme.AppCompat.Light.NoActionBar">
+    <!-- Global Theme -->
+    <style name="FriendlyDonationsTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
         <item name="android:colorPrimary">@color/colorPrimary</item>
         <item name="android:colorPrimaryDark">@color/colorPrimaryDark</item>
-        <!-- EditText Style -->
+
         <item name="android:colorControlNormal">@color/colorPrimary</item>
         <item name="android:colorControlActivated">@color/colorAccent</item>
         <item name="android:colorControlHighlight">@color/colorAccent</item>
@@ -21,13 +17,26 @@
         <item name="android:windowTranslucentNavigation">true</item>
     </style>
 
-    <!-- Default application theme -->
-    <style name="FriendlyDonations.BaseNotTranslucent" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:colorPrimary">@color/colorPrimary</item>
-        <item name="android:colorPrimaryDark">@color/colorPrimaryDark</item>
-        <!-- EditText Style -->
-        <item name="android:colorControlNormal">@color/colorPrimary</item>
-        <item name="android:colorControlActivated">@color/colorAccent</item>
-        <item name="android:colorControlHighlight">@color/colorAccent</item>
+    <style name="FriendlyDonationsTheme.NotTranslucent" parent="FriendlyDonationsTheme">
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+        <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
     </style>
+
+    <style name="FriendlyDonationsTheme.NavigationNotTranslucent" parent="FriendlyDonationsTheme">
+        <item name="android:windowTranslucentNavigation">false</item>
+        <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="FriendlyDonationsTheme.FloatingEditText" parent="FriendlyDonationsTheme">
+        <item name="android:colorControlNormal">@color/colorGraySubtitle</item>
+        <item name="android:colorControlActivated">@color/colorPallet2</item>
+        <item name="android:colorControlHighlight">@color/colorPallet2</item>
+        <item name="android:colorAccent">@color/colorPallet2</item>
+        <item name="android:textColorHint">@color/colorPallet2</item>
+        <item name="android:colorPrimary">@color/colorPallet2</item>
+        <item name="android:colorPrimaryDark">@color/colorPallet2</item>
+    </style>
+
 </resources>

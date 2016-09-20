@@ -1,28 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="FriendlyDonationsTheme" parent="FriendlyDonations.Base">
-    </style>
+    <!-- Global Theme -->
+    <style name="FriendlyDonationsTheme" parent="Theme.AppCompat.Light.NoActionBar">
 
-    <!-- Default application theme -->
-    <style name="FriendlyDonations.Base" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <!-- EditText Style -->
+
         <item name="colorControlNormal">@color/colorPrimary</item>
         <item name="colorControlActivated">@color/colorAccent</item>
         <item name="colorControlHighlight">@color/colorAccent</item>
+
     </style>
 
-    <!-- Default application theme -->
-    <style name="FriendlyDonations.BaseNotTranslucent" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <!-- EditText Style -->
-        <item name="colorControlNormal">@color/colorPrimary</item>
-        <item name="colorControlActivated">@color/colorAccent</item>
-        <item name="colorControlHighlight">@color/colorAccent</item>
+    <style name="FriendlyDonationsTheme.NotTranslucent" parent="FriendlyDonationsTheme">
+        <!-- Stub v21 -->
+    </style>
+
+    <style name="FriendlyDonationsTheme.NavigationNotTranslucent" parent="FriendlyDonationsTheme">
+        <!-- Stub v21 -->
+    </style>
+
+    <style name="FriendlyDonationsTheme.FloatingEditText" parent="FriendlyDonationsTheme">
+        <item name="colorControlNormal">@color/colorGraySubtitle</item>
+        <item name="colorControlActivated">@color/colorPallet2</item>
+        <item name="colorControlHighlight">@color/colorPallet2</item>
+        <item name="colorAccent">@color/colorPallet2</item>
+        <item name="colorPrimary">@color/colorPallet2</item>
+        <item name="colorPrimaryDark">@color/colorPallet2</item>
+
     </style>
 
 

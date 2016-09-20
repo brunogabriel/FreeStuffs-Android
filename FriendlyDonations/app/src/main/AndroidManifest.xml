@@ -71,10 +71,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".views.activities.MainActivity" android:theme="@style/FriendlyDonations.BaseNotTranslucent">
+        <activity android:name=".views.activities.MainActivity" android:theme="@style/FriendlyDonationsTheme.NotTranslucent">
         </activity>
 
-        <activity android:name=".views.activities.DonationDetailActivity">
+        <activity android:name=".views.activities.DonationDetailActivity" android:theme="@style/FriendlyDonationsTheme.NavigationNotTranslucent">
         </activity>
 
     </application>

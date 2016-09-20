@@ -24,6 +24,7 @@ import br.com.friendlydonations.R;
 import br.com.friendlydonations.managers.BaseActivity;
 import br.com.friendlydonations.utils.TypefaceMaker;
 import br.com.friendlydonations.views.adapters.DynamicTabViewPageAdapter;
+import br.com.friendlydonations.views.fragments.DonateFragment;
 import br.com.friendlydonations.views.fragments.HomeFragment;
 import br.com.friendlydonations.views.fragments.MapLocationFragment;
 import br.com.friendlydonations.views.fragments.NotificationsFragment;
@@ -52,8 +53,11 @@ public class MainActivity extends BaseActivity {
     BadgeViewLayout notificationBadge;
 
     private int[]tabIcons = {
-            R.drawable.ic_home_tab, R.drawable.ic_location_tab,
-            R.drawable.ic_profile_tab, R.drawable.ic_notifications_tab
+            R.drawable.ic_home_tab,
+            R.drawable.ic_location_tab,
+            R.drawable.ic_profile_tab,
+            R.drawable.ic_profile_tab,
+            R.drawable.ic_notifications_tab
     };
 
     private DynamicTabViewPageAdapter viewPagerAdapter;
@@ -98,8 +102,10 @@ public class MainActivity extends BaseActivity {
                 // Adding Fragments
                 viewPagerAdapter.addFragment(new HomeFragment(), tabArrayNames[0] );
                 viewPagerAdapter.addFragment(new MapLocationFragment(), tabArrayNames[1]);
-                viewPagerAdapter.addFragment(new ProfileFragment(), tabArrayNames[2]);
-                viewPagerAdapter.addFragment(new NotificationsFragment(), tabArrayNames[3]);
+                viewPagerAdapter.addFragment(new DonateFragment(), tabArrayNames[2]);
+                viewPagerAdapter.addFragment(new ProfileFragment(), tabArrayNames[3]);
+                viewPagerAdapter.addFragment(new NotificationsFragment(), tabArrayNames[4]);
+
                 viewPager.setAdapter(viewPagerAdapter);
                 tabs.setupWithViewPager(viewPager);
                 tabs.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

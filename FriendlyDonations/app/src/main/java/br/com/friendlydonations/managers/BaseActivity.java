@@ -37,9 +37,10 @@ import android.content.pm.PackageManager;
 /**
  * Created by brunogabriel on 8/23/16.
  */
-public abstract class BaseActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
+public abstract class BaseActivity extends AppCompatActivity implements
+        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
-protected static final int PERMISSIONS = 0;
+    protected static final int PERMISSIONS = 0;
     public static String TAG = "BASE_ACTIVITY";
 
     // Constants GPS
@@ -231,7 +232,5 @@ protected static final int PERMISSIONS = 0;
             }
         }
     }
-
-
 
 }

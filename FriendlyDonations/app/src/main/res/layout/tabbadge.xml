@@ -17,7 +17,6 @@
     <RelativeLayout
         android:id="@+id/rlBadge"
         android:visibility="invisible"
-        android:layout_marginLeft="40dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/drawable_circle_badge"
         android:layout_width="24dp"

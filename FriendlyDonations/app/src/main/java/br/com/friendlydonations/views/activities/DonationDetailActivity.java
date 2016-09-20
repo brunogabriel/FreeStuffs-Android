@@ -47,6 +47,14 @@ public class DonationDetailActivity extends BaseActivity{
     @BindView(R.id.circlePage) protected MagicIndicator circlePage;
     SupportMapFragment mapFragment;
 
+    @BindView(R.id.tvConditionTitle) protected TextView tvConditionTitle;
+    @BindView(R.id.tvConditionContent) protected TextView tvConditionContent;
+    @BindView(R.id.tvDeliveryTitle) protected TextView tvDeliveryTitle;
+    @BindView(R.id.tvDeliveryContent) protected TextView tvDeliveryContent;
+    @BindView(R.id.tvCategoryTitle) protected TextView tvCategoryTitle;
+    @BindView(R.id.tvCategoryContent) protected TextView tvCategoryContent;
+    @BindView(R.id.tvIdTitle) protected TextView tvIdTitle;
+    @BindView(R.id.tvIdContent) protected TextView tvIdContent;
     @BindView(R.id.tvImInterestedText) protected TextView tvImInterestedText;
 
 
@@ -149,6 +157,14 @@ public class DonationDetailActivity extends BaseActivity{
                 setTypeface(mRobotoLight, tvDonateLocation);
                 setTypeface(mRobotoRegular, tvDonateDescription);
                 setTypeface(mRobotoMedium, tvDonateSeeMore);
+                setTypeface(mRobotoLight, tvConditionTitle);
+                setTypeface(mMonserratRegular, tvConditionContent);
+                setTypeface(mRobotoLight, tvDeliveryTitle);
+                setTypeface(mMonserratRegular, tvDeliveryContent);
+                setTypeface(mRobotoLight, tvCategoryTitle);
+                setTypeface(mMonserratRegular, tvCategoryContent);
+                setTypeface(mRobotoLight, tvIdTitle);
+                setTypeface(mMonserratRegular, tvIdContent);
                 setTypeface(mMonserratRegular, tvImInterestedText);
             }
         }.execute();
