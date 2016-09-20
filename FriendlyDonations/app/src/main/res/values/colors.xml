@@ -15,6 +15,7 @@
     <color name="colorBlack">#000</color>
 
     <!-- Gray Colors -->
+    <color name="colorLightClickGray">#e6e6e6</color>
     <color name="colorGray">#A4A3B1</color>
     <color name="colorGraySubtitle">#8F8EA7</color>
 
