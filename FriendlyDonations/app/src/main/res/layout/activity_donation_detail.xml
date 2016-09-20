@@ -10,19 +10,23 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/main.appbar"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="350dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         android:fitsSystemWindows="true">
+
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/main.collapsing"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/colorWhite"
+            app:expandedTitleTextAppearance="@style/ExpandedDonationBar"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             android:fitsSystemWindows="true"
             app:contentScrim="@color/colorPrimary"
             app:statusBarScrim="@color/colorPrimaryDark"
-            app:expandedTitleMarginStart="48dp"
-            app:expandedTitleMarginEnd="64dp">
+            app:expandedTitleMarginBottom="8dp"
+            app:expandedTitleMarginStart="32dp"
+            app:expandedTitleMarginEnd="32dp">
 
             <!-- TODO: Apply paginator viewer -->
             <RelativeLayout
@@ -69,7 +73,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingTop="@dimen/place_autocomplete_prediction_horizontal_margin">
+            android:paddingTop="8dp">
 
             <!-- Description of product -->
             <LinearLayout
@@ -80,18 +84,9 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/tvDonateName"
-                    android:text="@string/lorem_name"
-                    android:textSize="30sp"
-                    android:textColor="@color/colorPrimary"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <TextView
                     android:id="@+id/tvDonateLocation"
                     android:text="@string/donate_detail_location"
                     style="@style/TextView.Typeface3"
-                    android:layout_marginTop="@dimen/material_layout_vertical_spacing_between_content_areas"
                     android:textColor="@color/colorGraySubtitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />

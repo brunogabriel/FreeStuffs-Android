@@ -41,7 +41,6 @@ import butterknife.OnClick;
  */
 public class DonationDetailActivity extends BaseActivity{
 
-    @BindView(R.id.tvDonateName) protected TextView tvDonateName;
     @BindView(R.id.tvDonateLocation) protected TextView tvDonateLocation;
     @BindView(R.id.tvDonateDescription) protected TextView tvDonateDescription;
     @BindView(R.id.tvDonateSeeMore) protected TextView tvDonateSeeMore;
@@ -91,7 +90,7 @@ public class DonationDetailActivity extends BaseActivity{
 
     @Override
     public void initUI() {
-        setupToolbar(toolbar, "", "", true, true);
+        setupToolbar(toolbar, getString(R.string.lorem_name), "", true, true);
         applyCloseMenu();
         tvDonateLocation.setText(String.format(getResources().getString(R.string.donate_detail_location), "São José dos Campos, SP, Brazil"));
         dynamicPageAdapter = new DynamicPageAdapterImages(mViews);
@@ -174,7 +173,6 @@ public class DonationDetailActivity extends BaseActivity{
             @Override
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
-                setTypeface(mMonserratBold, tvDonateName);
                 setTypeface(mRobotoLight, tvDonateLocation);
                 setTypeface(mRobotoRegular, tvDonateDescription);
                 setTypeface(mRobotoMedium, tvDonateSeeMore);

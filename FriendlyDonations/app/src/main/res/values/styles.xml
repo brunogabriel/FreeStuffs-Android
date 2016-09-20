@@ -36,5 +36,11 @@
         <item name="colorControlActivated">@color/colorPallet2</item>
     </style>
 
+    <style name="ExpandedDonationBar" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 
 </resources>
