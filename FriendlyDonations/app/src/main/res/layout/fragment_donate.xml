@@ -33,12 +33,13 @@
         android:layout_height="wrap_content">
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/tiProductItemTitle"
             app:theme="@style/FriendlyDonationsTheme.FloatingEditText"
+            app:hintTextAppearance="@style/FriendlyDonationsTheme.FloatingEditText.Hint"
+            android:id="@+id/tiProductItemTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <EditText
+            <android.support.v7.widget.AppCompatEditText
                 android:id="@+id/etProductItemTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -97,7 +98,6 @@
             android:layout_marginTop="@dimen/material_component_cards_primary_title_top_padding"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
 
     </LinearLayout>
 

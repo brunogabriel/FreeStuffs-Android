@@ -30,13 +30,18 @@
     </style>
 
     <style name="FriendlyDonationsTheme.FloatingEditText" parent="FriendlyDonationsTheme">
+        <item name="android:colorControlNormal">@color/colorGraySubtitle</item>          <!-- Line Bottom Deactivated -->
+        <item name="android:colorControlActivated">@color/colorPallet2</item>       <!-- Line Bottom Actived -->
+        <item name="android:textColorHighlight">@color/colorGray300</item>     <!-- Text Selected to Copy -->
+        <item name="android:textColorHint">@color/colorGraySubtitle</item>               <!-- Color Hint Not Actived -->
+        <item name="android:textColorPrimary">@color/colorPallet2</item>            <!-- Text Inserted -->
+    </style>
+
+    <style name="FriendlyDonationsTheme.FloatingEditText.Hint" parent="TextAppearance.AppCompat">
+        <item name="android:textColorHint">@color/colorGraySubtitle</item>
+        <item name="android:colorAccent">@color/colorPallet2</item>
         <item name="android:colorControlNormal">@color/colorGraySubtitle</item>
         <item name="android:colorControlActivated">@color/colorPallet2</item>
-        <item name="android:colorControlHighlight">@color/colorPallet2</item>
-        <item name="android:colorAccent">@color/colorPallet2</item>
-        <item name="android:textColorHint">@color/colorPallet2</item>
-        <item name="android:colorPrimary">@color/colorPallet2</item>
-        <item name="android:colorPrimaryDark">@color/colorPallet2</item>
     </style>
 
 </resources>
