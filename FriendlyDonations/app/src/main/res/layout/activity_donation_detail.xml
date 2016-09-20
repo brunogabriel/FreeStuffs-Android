@@ -62,6 +62,7 @@
         android:id="@+id/nsvContentScroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorWhite"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
@@ -95,33 +96,36 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
-                <TextView
-                    android:id="@+id/tvDonateDescription"
-                    android:text="@string/lorem_text"
-                    style="@style/TextView.Typeface2"
-                    android:layout_marginTop="@dimen/place_autocomplete_prediction_horizontal_margin"
-                    android:textColor="@color/colorPallet2"
+                <RelativeLayout
+                    android:id="@+id/rlDonateDescription"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="200dp">
 
-                <View
-                    android:alpha="0.1"
-                    android:background="@color/colorGray"
-                    android:layout_marginTop="@dimen/material_layout_keylines_screen_edge_margin"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"/>
+                    <TextView
+                        android:id="@+id/tvDonateDescription"
+                        android:text="@string/lorem_text_long"
+                        style="@style/TextView.Typeface2"
+                        android:layout_marginTop="@dimen/place_autocomplete_prediction_horizontal_margin"
+                        android:textColor="@color/colorPallet2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
 
-                <TextView
-                    android:id="@+id/tvDonateSeeMore"
-                    android:text="@string/donate_detail_see_more"
-                    style="@style/TextView.Typeface3"
-                    android:gravity="center"
-                    android:layout_marginTop="8dp"
-                    android:textAllCaps="true"
-                    android:textColor="@color/colorPrimary"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/tvDonateSeeMore"
+                        android:text="@string/donate_detail_see_more"
+                        style="@style/TextView.Typeface3"
+                        android:background="@drawable/drawable_white_gradient_effect"
+                        android:gravity="bottom|center_horizontal"
+                        android:layout_marginTop="8dp"
+                        android:paddingBottom="8dp"
+                        android:textAllCaps="true"
+                        android:textColor="@color/colorPrimary"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:layout_alignParentBottom="true"/>
+
+                </RelativeLayout>
 
                 <TextView
                     android:id="@+id/tvAproximatedAddress"

@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -33,6 +34,7 @@ import br.com.friendlydonations.views.adapters.DynamicPageAdapterImages;
 import br.com.friendlydonations.views.widgets.ScaleCircleNavigator;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by brunogabriel on 9/7/16.
@@ -58,6 +60,14 @@ public class DonationDetailActivity extends BaseActivity{
     @BindView(R.id.tvIdTitle) protected TextView tvIdTitle;
     @BindView(R.id.tvIdContent) protected TextView tvIdContent;
     @BindView(R.id.tvImInterestedText) protected TextView tvImInterestedText;
+    @BindView(R.id.rlDonateDescription) protected RelativeLayout rlDonateDescription;
+
+
+    @OnClick(R.id.tvDonateSeeMore)
+    void seeMore(){
+        rlDonateDescription.getLayoutParams().height = RelativeLayout.LayoutParams.WRAP_CONTENT;
+        tvDonateSeeMore.setVisibility(View.GONE);
+    }
 
 
     protected DynamicPageAdapterImages dynamicPageAdapter;
@@ -81,7 +91,7 @@ public class DonationDetailActivity extends BaseActivity{
 
     @Override
     public void initUI() {
-        setupToolbar(toolbar, "", "", true, true );
+        setupToolbar(toolbar, "", "", true, true);
         applyCloseMenu();
         tvDonateLocation.setText(String.format(getResources().getString(R.string.donate_detail_location), "São José dos Campos, SP, Brazil"));
         dynamicPageAdapter = new DynamicPageAdapterImages(mViews);
@@ -130,7 +140,8 @@ public class DonationDetailActivity extends BaseActivity{
             @Override
             public void onTouch() {
                 NestedScrollView nsvContentScroll = (NestedScrollView) findViewById(R.id.nsvContentScroll);
-                if (nsvContentScroll != null) nsvContentScroll.requestDisallowInterceptTouchEvent(true);
+                if (nsvContentScroll != null)
+                    nsvContentScroll.requestDisallowInterceptTouchEvent(true);
             }
         });
 
