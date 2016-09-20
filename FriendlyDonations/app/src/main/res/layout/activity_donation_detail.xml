@@ -59,6 +59,7 @@
 
     <!-- Body -->
     <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nsvContentScroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -140,7 +141,7 @@
                     android:layout_height="200dp"
                     android:id="@+id/map"
                     tools:context=".views.activities.DonationDetailActivity"
-                    android:name="com.google.android.gms.maps.SupportMapFragment" />
+                    android:name="br.com.friendlydonations.utils.WorkaroundMapFragment" />
 
                 <!-- Condition -->
                 <TextView

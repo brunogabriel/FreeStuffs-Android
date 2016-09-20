@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -27,6 +28,7 @@ import java.util.List;
 import br.com.friendlydonations.R;
 import br.com.friendlydonations.managers.BaseActivity;
 import br.com.friendlydonations.utils.TypefaceMaker;
+import br.com.friendlydonations.utils.WorkaroundMapFragment;
 import br.com.friendlydonations.views.adapters.DynamicPageAdapterImages;
 import br.com.friendlydonations.views.widgets.ScaleCircleNavigator;
 import butterknife.BindView;
@@ -106,7 +108,7 @@ public class DonationDetailActivity extends BaseActivity{
 
         dynamicPageAdapter.notifyDataSetChanged();
 
-        mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        WorkaroundMapFragment mapFragment = (WorkaroundMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap googleMap) {
@@ -124,6 +126,14 @@ public class DonationDetailActivity extends BaseActivity{
                 googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(mCameraPosition));
             }
         });
+        mapFragment.setListener(new WorkaroundMapFragment.OnTouchListener() {
+            @Override
+            public void onTouch() {
+                NestedScrollView nsvContentScroll = (NestedScrollView) findViewById(R.id.nsvContentScroll);
+                if (nsvContentScroll != null) nsvContentScroll.requestDisallowInterceptTouchEvent(true);
+            }
+        });
+
     }
 
     protected void applyCloseMenu() {
