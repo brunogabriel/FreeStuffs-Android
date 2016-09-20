@@ -8,7 +8,7 @@
     <color name="colorAccent">#FF4844</color>
     <color name="colorPallet1">#1BB7CD</color>
     <color name="colorPallet1Light">#8ae4f0</color>
-    <color name="colorPallet2">#5D5352</color>
+    <color name="colorPallet2">#686779</color>
 
     <!-- Simple Colors -->
     <color name="colorWhite">#fff</color>
@@ -17,7 +17,7 @@
     <!-- Gray Colors -->
     <color name="colorGray">#A4A3B1</color>
     <color name="colorGraySubtitle">#8F8EA7</color>
-
+    <color name="colorGray300">#E0E0E0</color>
 
     <color name="colorYellow">#FFD85C</color>
 
