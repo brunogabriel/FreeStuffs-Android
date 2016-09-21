@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -196,5 +197,29 @@ public class DonationDetailActivity extends BaseActivity{
             onBackPressed();
         }
         return super.onOptionsItemSelected(menuItem);
+    }
+
+    @OnClick(R.id.viewImInterestedBtn)
+    protected void onClickInterestedBtn() {
+        View mRootView = LayoutInflater.from(this).inflate(R.layout.alert_interested_donate, null, false);
+        AlertDialog.Builder mDialog = new AlertDialog.Builder(this);
+
+        // applying typefaces
+        TextView alertTitle = (TextView) mRootView.findViewById(R.id.alertTitle);
+        alertTitle.setTypeface(mMonserratRegular);
+
+        TextView donateUserTitle = (TextView) mRootView.findViewById(R.id.donateUserTitle);
+        donateUserTitle.setTypeface(mMonserratRegular);
+
+        TextView alertTextByMail = (TextView) mRootView.findViewById(R.id.alertTextByMail);
+        alertTextByMail.setTypeface(mRobotoMedium);
+
+        TextView alertTextByPhone = (TextView) mRootView.findViewById(R.id.alertTextByPhone);
+        alertTextByPhone.setTypeface(mRobotoMedium);
+
+
+
+        mDialog.setView(mRootView);
+        mDialog.show();
     }
 }

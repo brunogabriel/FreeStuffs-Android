@@ -1,106 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
-    <TextView
-        android:id="@+id/tvUploadPhotos"
-        android:text="@string/donate_fragment_upload_photos"
-        style="@style/TextView.Typeface3"
-        android:layout_marginLeft="@dimen/material_layout_app_bar_horizontal_padding"
-        android:layout_marginRight="@dimen/material_layout_app_bar_horizontal_padding"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    
-    
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerViewPictures"
-        android:layout_marginTop="@dimen/material_layout_app_bar_horizontal_padding"
-        android:layout_width="match_parent"
-        android:layout_height="90dp">
-    </android.support.v7.widget.RecyclerView>
-
-
     <LinearLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"
-        android:layout_marginTop="@dimen/material_component_cards_primary_title_top_padding"
-        android:layout_marginLeft="@dimen/material_layout_app_bar_horizontal_padding"
-        android:layout_marginRight="@dimen/material_layout_app_bar_horizontal_padding"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <android.support.design.widget.TextInputLayout
-            app:theme="@style/FriendlyDonationsTheme.FloatingEditText"
-            app:hintTextAppearance="@style/FriendlyDonationsTheme.FloatingEditText.Hint"
-            android:id="@+id/tiProductItemTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <android.support.v7.widget.AppCompatEditText
-                android:id="@+id/etProductItemTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/donate_fragment_product_item_title" />
-
-        </android.support.design.widget.TextInputLayout>
-
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_marginTop="@dimen/material_layout_app_bar_horizontal_padding"
-            android:id="@+id/tiDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/etDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/donate_fragment_description" />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_marginTop="@dimen/material_layout_app_bar_horizontal_padding"
-            android:id="@+id/tiLocation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/etLocation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/donate_fragment_location" />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_marginTop="@dimen/material_layout_app_bar_horizontal_padding"
-            android:id="@+id/tiDelivery"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/etDelivery"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/donate_fragment_delivery" />
-
-        </android.support.design.widget.TextInputLayout>
 
         <TextView
-            android:textColor="@color/colorPallet2"
-            android:id="@+id/tvIWouldGetTouch"
-            android:text="@string/donate_fragment_get_touch"
+            android:id="@+id/tvUploadPhotos"
+            android:text="@string/donate_fragment_upload_photos"
             style="@style/TextView.Typeface3"
-            android:layout_marginTop="@dimen/material_component_cards_primary_title_top_padding"
+            android:layout_marginLeft="@dimen/material_layout_app_bar_horizontal_padding"
+            android:layout_marginRight="@dimen/material_layout_app_bar_horizontal_padding"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerViewPictures"
+            android:layout_marginTop="@dimen/material_layout_app_bar_horizontal_padding"
+            android:layout_width="match_parent"
+            android:layout_height="90dp">
+        </android.support.v7.widget.RecyclerView>
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/material_component_cards_primary_title_top_padding"
+            android:layout_marginLeft="@dimen/material_layout_app_bar_horizontal_padding"
+            android:layout_marginRight="@dimen/material_layout_app_bar_horizontal_padding"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.TextInputLayout
+                app:theme="@style/FriendlyDonationsTheme.FloatingEditText"
+                app:hintTextAppearance="@style/FriendlyDonationsTheme.FloatingEditText.Hint"
+                android:id="@+id/tiProductItemTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/etProductItemTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/donate_fragment_product_item_title" />
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_marginTop="@dimen/material_layout_app_bar_horizontal_padding"
+                android:id="@+id/tiDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/etDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/donate_fragment_description" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_marginTop="@dimen/material_layout_app_bar_horizontal_padding"
+                android:id="@+id/tiLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/etLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/donate_fragment_location" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_marginTop="@dimen/material_layout_app_bar_horizontal_padding"
+                android:id="@+id/tiDelivery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/etDelivery"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/donate_fragment_delivery" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:textColor="@color/colorPallet2"
+                android:id="@+id/tvIWouldGetTouch"
+                android:text="@string/donate_fragment_get_touch"
+                style="@style/TextView.Typeface3"
+                android:layout_marginTop="@dimen/material_component_cards_primary_title_top_padding"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+
     </LinearLayout>
 
-
-
-</LinearLayout>
+</ScrollView>

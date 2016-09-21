@@ -29,6 +29,7 @@
     <string name="donate_detail_category">category</string>
     <string name="donate_detail_id">id</string>
     <string name="donate_detail_im_interested">I am Interested</string>
+    <string name="donate_detail_alert_get_in_touch">Get in touch</string>
 
     <!-- Fragment Donate -->
     <string name="donate_fragment_upload_photos">Upload your item photos</string>

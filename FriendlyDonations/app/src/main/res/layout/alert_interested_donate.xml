@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:id="@+id/alertTitle"
+            android:textSize="40sp"
+            android:gravity="center"
+            android:textColor="@color/colorWhite"
+            style="@style/TextView.Typeface3"
+            android:text="@string/donate_detail_alert_get_in_touch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+    </RelativeLayout>
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:src="@drawable/ic_girl_sample"
+        android:scaleType="centerCrop"
+        android:layout_marginTop="114dp"
+        android:id="@+id/circleDonateImage"
+        android:layout_width="@dimen/material_layout_keylines_content_left_margin_from_screen_edge"
+        android:layout_height="@dimen/material_layout_keylines_content_left_margin_from_screen_edge"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <LinearLayout
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/donateUserTitle"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:id="@+id/avByEmail"
+            android:orientation="vertical"
+            android:layout_margin="@dimen/material_layout_app_bar_horizontal_padding"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <ImageView
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_circle_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/alertTextByMail"
+                style="@style/TextView.Typeface3"
+                android:layout_marginTop="@dimen/material_component_grid_lists_padding_big"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/colorPrimary"
+                android:text="@string/donate_detail_by_mail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/avByPhone"
+            android:orientation="vertical"
+            android:layout_margin="@dimen/material_layout_app_bar_horizontal_padding"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <ImageView
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_circle_phone"
+                android:layout_width="56dp"
+                android:layout_height="56dp" />
+
+            <TextView
+                android:id="@+id/alertTextByPhone"
+                style="@style/TextView.Typeface3"
+                android:layout_marginTop="@dimen/material_component_grid_lists_padding_big"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/colorPrimary"
+                android:text="@string/donate_detail_by_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/donateUserTitle"
+        android:layout_marginTop="16dp"
+        android:gravity="center_horizontal"
+        android:textSize="20sp"
+        android:maxLines="1"
+        android:textColor="@color/colorPallet2"
+        android:text="Anne Polanguee"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/circleDonateImage"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+
+</RelativeLayout>
