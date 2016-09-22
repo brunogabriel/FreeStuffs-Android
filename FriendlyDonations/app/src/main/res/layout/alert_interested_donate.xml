@@ -38,6 +38,20 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
+    <TextView
+        android:id="@+id/donateUserTitle"
+        android:layout_marginTop="16dp"
+        android:gravity="center_horizontal"
+        android:textSize="20sp"
+        android:maxLines="1"
+        android:textColor="@color/colorPallet2"
+        android:text="Anne Polanguee"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/circleDonateImage"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
     <LinearLayout
         android:gravity="center_horizontal"
         android:orientation="horizontal"
@@ -57,10 +71,11 @@
             android:layout_alignParentStart="true">
 
             <ImageView
+                android:id="@+id/imgEmail"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/ic_circle_email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:src="@drawable/ic_circle_mail"
+                android:layout_width="56dp"
+                android:layout_height="56dp"  />
 
             <TextView
                 android:id="@+id/alertTextByMail"
@@ -83,6 +98,7 @@
             android:layout_alignParentStart="true">
 
             <ImageView
+                android:id="@+id/imgPhone"
                 android:layout_gravity="center_horizontal"
                 android:src="@drawable/ic_circle_phone"
                 android:layout_width="56dp"
@@ -100,22 +116,7 @@
         </LinearLayout>
 
 
-
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/donateUserTitle"
-        android:layout_marginTop="16dp"
-        android:gravity="center_horizontal"
-        android:textSize="20sp"
-        android:maxLines="1"
-        android:textColor="@color/colorPallet2"
-        android:text="Anne Polanguee"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/circleDonateImage"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>

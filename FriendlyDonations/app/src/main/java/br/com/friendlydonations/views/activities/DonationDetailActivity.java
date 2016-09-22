@@ -17,7 +17,6 @@ import android.widget.TextView;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -49,7 +48,7 @@ public class DonationDetailActivity extends BaseActivity{
 
     @BindView(R.id.viewPager) protected ViewPager viewPager;
     @BindView(R.id.circlePage) protected MagicIndicator circlePage;
-    SupportMapFragment mapFragment;
+    WorkaroundMapFragment mapFragment;
 
     @BindView(R.id.tvConditionTitle) protected TextView tvConditionTitle;
     @BindView(R.id.tvConditionContent) protected TextView tvConditionContent;
@@ -118,7 +117,7 @@ public class DonationDetailActivity extends BaseActivity{
 
         dynamicPageAdapter.notifyDataSetChanged();
 
-        WorkaroundMapFragment mapFragment = (WorkaroundMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        mapFragment = (WorkaroundMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap googleMap) {
@@ -216,8 +215,6 @@ public class DonationDetailActivity extends BaseActivity{
 
         TextView alertTextByPhone = (TextView) mRootView.findViewById(R.id.alertTextByPhone);
         alertTextByPhone.setTypeface(mRobotoMedium);
-
-
 
         mDialog.setView(mRootView);
         mDialog.show();

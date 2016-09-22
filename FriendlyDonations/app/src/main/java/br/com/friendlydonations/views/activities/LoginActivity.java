@@ -78,8 +78,11 @@ public class LoginActivity extends BaseActivity {
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
+                // Reading all typefaces
                 mMonserratRegular = TypefaceMaker.createTypeFace(LoginActivity.this, TypefaceMaker.FontFamily.MontserratRegular);
                 mRobotoRegular = TypefaceMaker.createTypeFace(LoginActivity.this, TypefaceMaker.FontFamily.RobotoRegular);
+                TypefaceMaker.createTypeFace(LoginActivity.this, TypefaceMaker.FontFamily.RobotoLight);
+                TypefaceMaker.createTypeFace(LoginActivity.this, TypefaceMaker.FontFamily.RobotoMedium);
                 return null;
             }
 

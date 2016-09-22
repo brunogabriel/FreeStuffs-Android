@@ -5,10 +5,9 @@ package br.com.friendlydonations.views.fragments;
  */
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.renderscript.Type;
 import android.support.v7.widget.AppCompatEditText;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,8 +18,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import br.com.friendlydonations.R;
+import br.com.friendlydonations.managers.BaseActivity;
 import br.com.friendlydonations.managers.BaseFragment;
 import br.com.friendlydonations.utils.TypefaceMaker;
+import br.com.friendlydonations.views.adapters.CategoryAdapter;
+import br.com.friendlydonations.views.adapters.PictureUploadAdapter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -36,7 +38,19 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
     Typeface mRobotoLight;
     Typeface mMonserratRegular;
 
+    @BindView(R.id.tvUploadPhotos) TextView tvUploadPhotos;
+    @BindView(R.id.recyclerViewPictures) RecyclerView recyclerViewPictures;
+    PictureUploadAdapter pictureAdapter;
+
+    @BindView(R.id.tvSelectCategory) TextView tvSelectCategory;
+    @BindView(R.id.recyclerViewCategories) RecyclerView recyclerViewCategories;
+    CategoryAdapter categoryAdapter;
+
     @BindView(R.id.etProductItemTitle) AppCompatEditText etProductItemTitle;
+    @BindView(R.id.etDescription) AppCompatEditText etDescription;
+
+
+
 
 
     @Override
@@ -52,7 +66,30 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
 
     @Override
     public void initUI() {
+        tvUploadPhotos.setTypeface(mMonserratRegular);
+        tvSelectCategory.setTypeface(mMonserratRegular);
+
+        recyclerViewPictures.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        pictureAdapter = new PictureUploadAdapter((BaseActivity) getActivity());
+        recyclerViewPictures.setAdapter(pictureAdapter);
+
+        recyclerViewCategories.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        categoryAdapter = new CategoryAdapter((BaseActivity) getActivity());
+        recyclerViewCategories.setAdapter(categoryAdapter);
+
+        // TODO: Remove, only to test
+        // Adding pictures
+        pictureAdapter.add(new String()); pictureAdapter.add(new String());
+        pictureAdapter.add(new String()); pictureAdapter.add(new String());
+        pictureAdapter.add(new String());
+
+        // Adding categories
+        categoryAdapter.add(new String()); categoryAdapter.add(new String());
+        categoryAdapter.add(new String()); categoryAdapter.add(new String());
+        categoryAdapter.add(new String()); categoryAdapter.add(new String());
+
         etProductItemTitle.setOnFocusChangeListener(this);
+        etDescription.setOnFocusChangeListener(this);
     }
 
     public void initTypefaces() {
