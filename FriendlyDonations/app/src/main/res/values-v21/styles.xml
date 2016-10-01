@@ -9,7 +9,6 @@
 
         <item name="android:colorControlNormal">@color/colorPrimary</item>
         <item name="android:colorControlActivated">@color/colorAccent</item>
-        <item name="android:colorControlHighlight">@color/colorAccent</item>
         
 
         <!-- Translucent -->
