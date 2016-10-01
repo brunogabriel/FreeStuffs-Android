@@ -66,6 +66,13 @@
     proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
     <string name="lorem_word">Lorem</string>
 
+
+    <!-- Donate fragment -->
+    <string name="donate_include_image">Include an image to your donation!</string>
+    <string name="donate_include_image_choose_picture">Get a picture from</string>
+    <string name="donate_include_image_from_camera">Camera</string>
+    <string name="donate_include_image_from_gallery">Gallery</string>
+
     <!-- Tab bar  items -->
     <array name="array_tab_main">
         <item>Sweet Home</item>
