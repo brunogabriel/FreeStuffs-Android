@@ -44,7 +44,7 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.toolbar) protected Toolbar toolbar;
     @BindView(R.id.viewpager) protected ViewPager viewPager;
     @BindView(R.id.tabs) protected TabLayout tabs;
-    @BindView(R.id.fabdonation) protected FloatingActionButton fabDonation;
+    // @BindView(R.id.fabdonation) protected FloatingActionButton fabDonation;
     @BindView(R.id.coordinatorLayout) protected CoordinatorLayout coordinatorLayout;
     @BindView(R.id.appBar) protected AppBarLayout appBar;
     @BindArray(R.array.array_tab_main) protected String []tabArrayNames;
@@ -160,11 +160,11 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    @OnClick(R.id.fabdonation)
+    /** @OnClick(R.id.fabdonation)
     protected void onClickFabDonation() {
         Intent mIntent = new Intent(MainActivity.this, DonationDetailActivity.class);
         startActivity(mIntent);
-    }
+    } **/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

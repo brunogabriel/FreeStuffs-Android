@@ -3,24 +3,32 @@ package br.com.friendlydonations.views.fragments;
 /**
  * Created by brunogabriel on 9/19/16.
  */
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
+
+import com.yalantis.ucrop.UCrop;
 
 import br.com.friendlydonations.R;
 import br.com.friendlydonations.managers.BaseActivity;
 import br.com.friendlydonations.managers.BaseFragment;
+import br.com.friendlydonations.utils.ConstantsTypes;
 import br.com.friendlydonations.utils.TypefaceMaker;
+import br.com.friendlydonations.utils.ViewUtility;
 import br.com.friendlydonations.views.adapters.CategoryAdapter;
 import br.com.friendlydonations.views.adapters.PictureUploadAdapter;
 import butterknife.BindView;
@@ -50,9 +58,6 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
     @BindView(R.id.etDescription) AppCompatEditText etDescription;
 
 
-
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // mainActivity = (MainActivity) getActivity();
@@ -70,7 +75,7 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
         tvSelectCategory.setTypeface(mMonserratRegular);
 
         recyclerViewPictures.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-        pictureAdapter = new PictureUploadAdapter((BaseActivity) getActivity());
+        pictureAdapter = new PictureUploadAdapter((BaseActivity) getActivity(), this);
         recyclerViewPictures.setAdapter(pictureAdapter);
 
         recyclerViewCategories.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
@@ -127,4 +132,31 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
             }
         }
     }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (resultCode == Activity.RESULT_OK) {
+            switch (requestCode) {
+                case ConstantsTypes.ACTIVITY_RESULT_CAMERA:
+                    Bitmap mPhoto = (Bitmap) data.getExtras().get("data");
+                    Uri uriSource = ViewUtility.getImageUri(getActivity(), mPhoto);
+
+                    UCrop.Options options = new UCrop.Options();
+                    options.setToolbarColor(getResources().getColor(R.color.colorPrimary));
+
+                    UCrop.of(uriSource, uriSource)
+                            .withAspectRatio(4, 3)
+                            .withMaxResultSize(1200, 900)
+                            .withOptions(options)
+                            .start(getActivity());
+
+                    break;
+                case UCrop.REQUEST_CROP:
+                    break;
+                case UCrop.RESULT_ERROR:
+                    break;
+            }
+        }
+    }
+
 }

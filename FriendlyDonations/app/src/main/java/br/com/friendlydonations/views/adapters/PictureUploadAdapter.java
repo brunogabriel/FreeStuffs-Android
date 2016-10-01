@@ -21,6 +21,8 @@ import java.util.List;
 
 import br.com.friendlydonations.R;
 import br.com.friendlydonations.managers.BaseActivity;
+import br.com.friendlydonations.managers.BaseFragment;
+import br.com.friendlydonations.utils.ConstantsTypes;
 import br.com.friendlydonations.utils.TypefaceMaker;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,12 +36,14 @@ public class PictureUploadAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     private List<Object> items = new ArrayList<>();
     BaseActivity activity;
+    BaseFragment baseFragment;
 
     protected Typeface mRobotoMedium;
     protected Typeface mMonserratRegular;
 
-    public PictureUploadAdapter (BaseActivity activity) {
+    public PictureUploadAdapter (BaseActivity activity, BaseFragment baseFragment) {
         this.activity = activity;
+        this.baseFragment = baseFragment;
         setupTypefaces();
     }
 
@@ -137,15 +141,17 @@ public class PictureUploadAdapter extends RecyclerView.Adapter<RecyclerView.View
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                activity.startActivityForResult(intent, 1);//REQUEST_CAMERA
+                baseFragment.startActivityForResult(intent, ConstantsTypes.ACTIVITY_RESULT_CAMERA);
+                //activity.startActivityForResult(intent, ConstantsTypes.ACTIVITY_RESULT_CAMERA);//REQUEST_CAMERA
             }
         });
+
         ivGallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 intent.setType("image/*");
-                activity.startActivityForResult(Intent.createChooser(intent, activity.getString(R.string.donate_include_image)), 2);//SELECT_FILE
+                //activity.startActivityForResult(Intent.createChooser(intent, activity.getString(R.string.donate_include_image_textual)), ConstantsTypes.ACTIVITY_RESULT_SELECT_PICTURE_GALLERY);//SELECT_FILE
             }
         });
 

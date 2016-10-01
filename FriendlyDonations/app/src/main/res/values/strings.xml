@@ -68,7 +68,7 @@
 
 
     <!-- Donate fragment -->
-    <string name="donate_include_image">Include an image to your donation!</string>
+    <string name="donate_include_image_textual">Include an image to your donation!</string>
     <string name="donate_include_image_choose_picture">Get a picture from</string>
     <string name="donate_include_image_from_camera">Camera</string>
     <string name="donate_include_image_from_gallery">Gallery</string>

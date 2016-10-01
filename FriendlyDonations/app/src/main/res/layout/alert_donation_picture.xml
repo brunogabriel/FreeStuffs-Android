@@ -5,44 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:id="@+id/rlTopContent"
-        android:background="@color/colorPrimary"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
-
-        <TextView
-            android:id="@+id/alertTitle"
-            android:textSize="28sp"
-            android:gravity="center"
-            android:textColor="@color/colorWhite"
-            style="@style/TextView.Typeface3"
-            android:text="@string/donate_include_image"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-    </RelativeLayout>
-
-
-    <TextView
-        android:id="@+id/tvPicture"
-        android:layout_marginTop="16dp"
-        android:gravity="center_horizontal"
-        android:textSize="20sp"
-        android:maxLines="1"
-        android:textColor="@color/colorPallet2"
-        android:text="@string/donate_include_image_choose_picture"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/rlTopContent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
     <LinearLayout
         android:gravity="center_horizontal"
         android:orientation="horizontal"
@@ -113,5 +75,41 @@
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/tvPicture"
+        android:layout_marginTop="16dp"
+        android:gravity="center_horizontal"
+        android:textSize="20sp"
+        android:maxLines="1"
+        android:textColor="@color/colorPallet2"
+        android:text="@string/donate_include_image_choose_picture"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rlTopContent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <RelativeLayout
+        android:id="@+id/rlTopContent"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:id="@+id/alertTitle"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:textColor="@color/colorWhite"
+            style="@style/TextView.Typeface3"
+            android:text="@string/donate_include_image_textual"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+    </RelativeLayout>
 
 </RelativeLayout>

@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA"/>
 
     <uses-feature
         android:glEsVersion="0x00020000"
@@ -62,6 +63,11 @@
             </intent-filter>
         </service>
 
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
         <!-- App Activities -->
         <activity android:name=".views.activities.LoginActivity">
             <intent-filter>
@@ -70,10 +76,14 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".views.activities.MainActivity" android:theme="@style/FriendlyDonationsTheme.NotTranslucent">
+        <activity
+            android:name=".views.activities.MainActivity"
+            android:theme="@style/FriendlyDonationsTheme.NotTranslucent">
         </activity>
 
-        <activity android:name=".views.activities.DonationDetailActivity" android:theme="@style/FriendlyDonationsTheme.NavigationNotTranslucent">
+        <activity
+            android:name=".views.activities.DonationDetailActivity"
+            android:theme="@style/FriendlyDonationsTheme.NavigationNotTranslucent">
         </activity>
 
     </application>
