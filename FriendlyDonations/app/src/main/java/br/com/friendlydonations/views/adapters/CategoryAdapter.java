@@ -4,7 +4,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -13,7 +12,6 @@ import java.util.List;
 import br.com.friendlydonations.R;
 import br.com.friendlydonations.managers.BaseActivity;
 import br.com.friendlydonations.utils.TypefaceMaker;
-import br.com.friendlydonations.utils.ViewUtility;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;

@@ -14,7 +14,6 @@ import android.provider.MediaStore;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -26,22 +25,21 @@ import android.widget.TextView;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
-import com.karumi.dexter.listener.PermissionDeniedResponse;
-import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
-import com.karumi.dexter.listener.multi.CompositeMultiplePermissionsListener;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
-import com.karumi.dexter.listener.single.PermissionListener;
 import com.yalantis.ucrop.UCrop;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import br.com.friendlydonations.R;
 import br.com.friendlydonations.managers.BaseActivity;
 import br.com.friendlydonations.managers.BaseFragment;
+import br.com.friendlydonations.models.PictureUpload;
 import br.com.friendlydonations.utils.ConstantsTypes;
 import br.com.friendlydonations.utils.TypefaceMaker;
-import br.com.friendlydonations.utils.ViewUtility;
+import br.com.friendlydonations.utils.ApplicationUtilities;
 import br.com.friendlydonations.views.adapters.CategoryAdapter;
 import br.com.friendlydonations.views.adapters.PictureUploadAdapter;
 import butterknife.BindView;
@@ -97,16 +95,19 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
 
         // TODO: Remove, only to test
         // Adding pictures
-        pictureAdapter.add(new String());
-        pictureAdapter.add(new String());
-        pictureAdapter.add(new String());
-        pictureAdapter.add(new String());
-        pictureAdapter.add(new String());
+        pictureAdapter.add(new PictureUpload(0, null));
+        pictureAdapter.add(new PictureUpload(1, null));
+        pictureAdapter.add(new PictureUpload(2, null));
+        pictureAdapter.add(new PictureUpload(3, null));
+        pictureAdapter.add(new PictureUpload(4, null));
 
         // Adding categories
-        categoryAdapter.add(new String()); categoryAdapter.add(new String());
-        categoryAdapter.add(new String()); categoryAdapter.add(new String());
-        categoryAdapter.add(new String()); categoryAdapter.add(new String());
+        categoryAdapter.add(new String());
+        categoryAdapter.add(new String());
+        categoryAdapter.add(new String());
+        categoryAdapter.add(new String());
+        categoryAdapter.add(new String());
+        categoryAdapter.add(new String());
 
         etProductItemTitle.setOnFocusChangeListener(this);
         etDescription.setOnFocusChangeListener(this);
@@ -151,35 +152,42 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         final Intent dataFinal = data;
 
-        if (resultCode == Activity.RESULT_OK) {
-            switch (requestCode) {
-                case ConstantsTypes.ACTIVITY_RESULT_CAMERA:
+        if (resultCode == Activity.RESULT_OK && requestCode == ConstantsTypes.ACTIVITY_RESULT_CAMERA) {
+            Dexter.checkPermissions(new MultiplePermissionsListener() {
+                @Override public void onPermissionsChecked(MultiplePermissionsReport report) {
+                    // TODO: Refactor and set uriDestination
+                    Bitmap mPhoto = (Bitmap) dataFinal.getExtras().get("data");
 
-                    Dexter.checkPermissions(new MultiplePermissionsListener() {
-                        @Override public void onPermissionsChecked(MultiplePermissionsReport report) {
-                            // TODO: Refactor and set uriDestination
-                            Bitmap mPhoto = (Bitmap) dataFinal.getExtras().get("data");
-                            Uri uriSource = ViewUtility.getImageUri(getActivity(), mPhoto);
-                            // Uri uriDestination = Uri.
+                    File mPictureFile = ApplicationUtilities.getOutputMediaFile(getActivity(), false);
+                    File mPictureFileCropped = ApplicationUtilities.getOutputMediaFile(getActivity(), true);
+                    Uri sourceUri = ApplicationUtilities.storeImageOnDiskAndGetUri(getActivity(), mPictureFile, mPhoto);
+                    Uri destinyUri = Uri.fromFile(mPictureFileCropped);
+                    UCrop.Options options = new UCrop.Options();
+                    options.setToolbarColor(getResources().getColor(R.color.colorPrimary));
 
-                            UCrop.Options options = new UCrop.Options();
-                            options.setToolbarColor(getResources().getColor(R.color.colorPrimary));
+                    UCrop.of(sourceUri, destinyUri)
+                            .withAspectRatio(4, 3)
+                            .withOptions(options)
+                            .start(getActivity(), DonateFragment.this);
+                }
+                @Override public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {/* ... */}
+            }, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE);
+        }
 
-                            UCrop.of(uriSource, uriSource)
-                                    .withAspectRatio(4, 3)
-                                    .withMaxResultSize(1200, 900)
-                                    .withOptions(options)
-                                    .start(getActivity(), DonateFragment.this);
-                        }
-                        @Override public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {/* ... */}
-                    }, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE);
+        else if (resultCode == Activity.RESULT_OK && requestCode == UCrop.REQUEST_CROP) {
+            final Uri resultUri = UCrop.getOutput(data);
+            pictureAdapter.updateImage(resultUri);
+
+            /** try {
+                //Bitmap mBitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), resultUri);
+
+                //pictureAdapter.setImage()
 
 
-                    break;
-                case UCrop.REQUEST_CROP:
-                    int x = 1;
-                    break;
-            }
+            } catch (IOException e) {
+                e.printStackTrace();
+            } **/
+
         } else if (resultCode == UCrop.RESULT_ERROR) {
             final Throwable cropError = UCrop.getError(data);
             String mCause = cropError.getMessage();

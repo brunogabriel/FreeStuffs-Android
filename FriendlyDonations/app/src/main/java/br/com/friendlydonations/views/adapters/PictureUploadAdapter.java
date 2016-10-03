@@ -3,8 +3,8 @@ package br.com.friendlydonations.views.adapters;
 import android.Manifest;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -12,7 +12,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,6 +22,7 @@ import com.karumi.dexter.listener.PermissionDeniedResponse;
 import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,9 +30,9 @@ import java.util.List;
 import br.com.friendlydonations.R;
 import br.com.friendlydonations.managers.BaseActivity;
 import br.com.friendlydonations.managers.BaseFragment;
+import br.com.friendlydonations.models.PictureUpload;
 import br.com.friendlydonations.utils.ConstantsTypes;
 import br.com.friendlydonations.utils.TypefaceMaker;
-import br.com.friendlydonations.utils.ViewUtility;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -43,12 +43,12 @@ import butterknife.OnClick;
 
 public class PictureUploadAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<Object> items = new ArrayList<>();
+    private List<PictureUpload> items = new ArrayList<>();
     BaseActivity activity;
     BaseFragment baseFragment;
-
     protected Typeface mRobotoMedium;
     protected Typeface mMonserratRegular;
+    public int clickedItem = -1;
 
     public PictureUploadAdapter (BaseActivity activity, BaseFragment baseFragment) {
         this.activity = activity;
@@ -59,7 +59,6 @@ public class PictureUploadAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        // TODO
         View mInflateredView = LayoutInflater.from(parent.getContext()).inflate(R.layout.holder_card_picture, parent, false);
         RecyclerView.ViewHolder viewHolder = new PictureCardViewHolder(mInflateredView);
         return viewHolder;
@@ -67,6 +66,49 @@ public class PictureUploadAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        PictureCardViewHolder pictureCardHolder = (PictureCardViewHolder) holder;
+        PictureUpload pictureUpload = items.get(position);
+
+        if (pictureUpload.getImage() != null) {
+            pictureCardHolder.cameraImage.setVisibility(View.GONE);
+            pictureCardHolder.contentImage.setVisibility(View.VISIBLE);
+            Picasso.with(activity).load(pictureUpload.getImage()).into(pictureCardHolder.contentImage);
+        } else {
+            pictureCardHolder.cameraImage.setVisibility(View.VISIBLE);
+            pictureCardHolder.contentImage.setVisibility(View.GONE);
+        }
+    }
+
+    public void updateImage(Uri mBitmapCandidate) {
+        int mChanged = -1;
+        PictureUpload mPictureUploadCandidate = null;
+
+        if (clickedItem >= 0 && clickedItem < items.size()) {
+            mPictureUploadCandidate = items.get(clickedItem);
+            mChanged = clickedItem;
+        }
+
+        if (mPictureUploadCandidate == null) {
+            int mEmptyPosition = -1;
+            for (int i = 0; i < items.size(); ++i) {
+                if (items.get(i).getImage() == null) {
+                    mEmptyPosition = i;
+                    break;
+                }
+            }
+
+            if (mEmptyPosition == -1) {
+                mPictureUploadCandidate = items.get(clickedItem);
+                mChanged = clickedItem;
+            } else {
+                mPictureUploadCandidate = items.get(mEmptyPosition);
+                mChanged = mEmptyPosition;
+            }
+        }
+
+        mPictureUploadCandidate.setImage(mBitmapCandidate);
+
+        notifyItemChanged(mChanged);
     }
 
     @Override
@@ -85,7 +127,7 @@ public class PictureUploadAdapter extends RecyclerView.Adapter<RecyclerView.View
         }.execute();
     }
 
-    public void addAll(List<Object> newItems) {
+    public void addAll(List<PictureUpload> newItems) {
         if (newItems != null) {
             int beforeSize = items.size();
             int newItemsSize = newItems.size();
@@ -94,7 +136,7 @@ public class PictureUploadAdapter extends RecyclerView.Adapter<RecyclerView.View
         }
     }
 
-    public void add(Object newItem) {
+    public void add(PictureUpload newItem) {
         if (newItem != null) {
             int beforeSize = items.size();
             items.add(newItem);
@@ -107,9 +149,15 @@ public class PictureUploadAdapter extends RecyclerView.Adapter<RecyclerView.View
         @BindView(R.id.flPicture)
         FrameLayout flPicture;
 
+        @BindView(R.id.cameraImage)
+        ImageView cameraImage;
+
+        @BindView(R.id.contentImage)
+        ImageView contentImage;
+
         @OnClick(R.id.flPicture)
         protected void onClickCardView() {
-            int position = getAdapterPosition();
+            clickedItem = getAdapterPosition();
             selectImage();
         }
 
@@ -118,13 +166,9 @@ public class PictureUploadAdapter extends RecyclerView.Adapter<RecyclerView.View
             ButterKnife.bind(this, itemView);
         }
 
-        public void populateUI() {
-
-        }
-
     }
 
-    private void selectImage() {
+    protected void selectImage() {
         View mRootView = LayoutInflater.from(activity).inflate(R.layout.alert_donation_picture, null, false);
         final AlertDialog mDialog = new AlertDialog.Builder(activity).create();
 
@@ -166,7 +210,7 @@ public class PictureUploadAdapter extends RecyclerView.Adapter<RecyclerView.View
 
                     @Override
                     public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
-                        int y = 0;
+
                     }
                 }, Manifest.permission.CAMERA);
 

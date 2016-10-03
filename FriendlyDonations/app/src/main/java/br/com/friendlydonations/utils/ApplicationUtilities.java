@@ -24,7 +24,7 @@ import br.com.friendlydonations.managers.BaseActivity;
  * Created by brunogabriel on 29/09/16.
  */
 
-public class ViewUtility {
+public class ApplicationUtilities {
 
     public static void showSnackBar(View rootView, String message, int snackSize, String actionUndo, View.OnClickListener onClickListener) {
         Snackbar snackbar = null;
@@ -37,40 +37,39 @@ public class ViewUtility {
         snackbar.show();
     }
 
-    public static Uri storeImageOnDisk (Activity activity, Bitmap image) {
-        File pictureFile = getOutputMediaFile(activity);
-        if (pictureFile == null) {
+    public static Uri storeImageOnDiskAndGetUri (Activity activity, File mPictureFile, Bitmap image) {
+        if (mPictureFile == null) {
             return null;
         }
         try {
-            FileOutputStream fos = new FileOutputStream(pictureFile);
-            image.compress(Bitmap.CompressFormat.PNG, 90, fos);
+            FileOutputStream fos = new FileOutputStream(mPictureFile);
+            image.compress(Bitmap.CompressFormat.JPEG, 100, fos);
             fos.close();
         } catch (FileNotFoundException e) {
+
         } catch (IOException e) {
         }
 
-        return Uri.fromFile(pictureFile);
+        return Uri.fromFile(mPictureFile);
     }
 
-    private static File getOutputMediaFile(Activity activity){
-        // TODO: Verify size (MB)
-        File mediaStorageDir = new File(Environment.getExternalStorageDirectory()
-                + "/Android/data/"
-                + activity.getApplicationContext().getPackageName()
-                + "/Images");
+    public static File getOutputMediaFile(Activity activity, boolean isCropped){
 
-        // Create the storage directory if it does not exist
-        if (! mediaStorageDir.exists()){
-            if (! mediaStorageDir.mkdirs()){
+        File mMediaStorageFile = new File(Environment.getExternalStorageDirectory()
+                + "/Android/data/" + activity.getApplicationContext().getPackageName() + "/Images");
+
+        if (!mMediaStorageFile.exists()){
+            if (!mMediaStorageFile.mkdirs()){
                 return null;
             }
         }
-        // Create a media file name
+
         String timeStamp = new SimpleDateFormat("ddMMyyyy_HHmm").format(new Date());
+
         File mediaFile;
-        String mImageName="MI_"+ timeStamp +".jpg";
-        mediaFile = new File(mediaStorageDir.getPath() + File.separator + mImageName);
+        String mImageName="pic_" + (isCropped ? "small": "") + timeStamp +".jpg";
+        mediaFile = new File(mMediaStorageFile.getPath() + File.separator + mImageName);
+
         return mediaFile;
     }
 

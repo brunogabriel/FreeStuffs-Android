@@ -3,7 +3,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.1.3'
+        classpath 'com.android.tools.build:gradle:2.2.0'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8' // To use Butterknife
         classpath 'com.google.gms:google-services:3.0.0'
     }
@@ -14,10 +14,14 @@ allprojects {
         jcenter()
         mavenCentral()
 
+
         maven {
             // Saripaar
             url "https://oss.sonatype.org/content/repositories/snapshots/"
-             // Magic View Pager
+        }
+
+        maven {
+            // Magic View Pager
             url "https://jitpack.io"
         }
     }
