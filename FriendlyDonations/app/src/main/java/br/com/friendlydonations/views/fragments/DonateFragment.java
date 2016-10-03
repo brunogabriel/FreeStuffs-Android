@@ -3,12 +3,14 @@ package br.com.friendlydonations.views.fragments;
 /**
  * Created by brunogabriel on 9/19/16.
  */
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,7 +23,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.CompositeMultiplePermissionsListener;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+import com.karumi.dexter.listener.single.PermissionListener;
 import com.yalantis.ucrop.UCrop;
+
+import java.util.List;
 
 import br.com.friendlydonations.R;
 import br.com.friendlydonations.managers.BaseActivity;
@@ -84,8 +97,10 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
 
         // TODO: Remove, only to test
         // Adding pictures
-        pictureAdapter.add(new String()); pictureAdapter.add(new String());
-        pictureAdapter.add(new String()); pictureAdapter.add(new String());
+        pictureAdapter.add(new String());
+        pictureAdapter.add(new String());
+        pictureAdapter.add(new String());
+        pictureAdapter.add(new String());
         pictureAdapter.add(new String());
 
         // Adding categories
@@ -134,28 +149,40 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        final Intent dataFinal = data;
 
         if (resultCode == Activity.RESULT_OK) {
             switch (requestCode) {
                 case ConstantsTypes.ACTIVITY_RESULT_CAMERA:
-                    Bitmap mPhoto = (Bitmap) data.getExtras().get("data");
-                    Uri uriSource = ViewUtility.getImageUri(getActivity(), mPhoto);
 
-                    UCrop.Options options = new UCrop.Options();
-                    options.setToolbarColor(getResources().getColor(R.color.colorPrimary));
+                    Dexter.checkPermissions(new MultiplePermissionsListener() {
+                        @Override public void onPermissionsChecked(MultiplePermissionsReport report) {
+                            // TODO: Refactor and set uriDestination
+                            Bitmap mPhoto = (Bitmap) dataFinal.getExtras().get("data");
+                            Uri uriSource = ViewUtility.getImageUri(getActivity(), mPhoto);
+                            // Uri uriDestination = Uri.
 
-                    UCrop.of(uriSource, uriSource)
-                            .withAspectRatio(4, 3)
-                            .withMaxResultSize(1200, 900)
-                            .withOptions(options)
-                            .start(getActivity());
+                            UCrop.Options options = new UCrop.Options();
+                            options.setToolbarColor(getResources().getColor(R.color.colorPrimary));
+
+                            UCrop.of(uriSource, uriSource)
+                                    .withAspectRatio(4, 3)
+                                    .withMaxResultSize(1200, 900)
+                                    .withOptions(options)
+                                    .start(getActivity(), DonateFragment.this);
+                        }
+                        @Override public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {/* ... */}
+                    }, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE);
+
 
                     break;
                 case UCrop.REQUEST_CROP:
-                    break;
-                case UCrop.RESULT_ERROR:
+                    int x = 1;
                     break;
             }
+        } else if (resultCode == UCrop.RESULT_ERROR) {
+            final Throwable cropError = UCrop.getError(data);
+            String mCause = cropError.getMessage();
         }
     }
 

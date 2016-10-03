@@ -13,6 +13,7 @@ import java.util.List;
 import br.com.friendlydonations.R;
 import br.com.friendlydonations.managers.BaseActivity;
 import br.com.friendlydonations.utils.TypefaceMaker;
+import br.com.friendlydonations.utils.ViewUtility;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -33,7 +34,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        // TODO
         View mInflateredView = LayoutInflater.from(parent.getContext()).inflate(R.layout.holder_card_category, parent, false);
         RecyclerView.ViewHolder viewHolder = new CategoryViewHolder(mInflateredView);
         return viewHolder;

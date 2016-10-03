@@ -10,7 +10,8 @@
     android:layout_marginBottom="@dimen/material_component_bottom_sheet_edge_top_bottom_margins">
 
     <LinearLayout
-
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
         android:id="@+id/contentView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

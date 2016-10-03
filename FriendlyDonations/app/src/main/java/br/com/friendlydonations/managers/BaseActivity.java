@@ -34,13 +34,15 @@ import android.app.Activity;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
 
+import br.com.friendlydonations.utils.ConstantsTypes;
+
 /**
  * Created by brunogabriel on 8/23/16.
  */
 public abstract class BaseActivity extends AppCompatActivity implements
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
-    protected static final int PERMISSIONS = 0;
+    // protected static final int PERMISSIONS = 0;
     public static String TAG = "BASE_ACTIVITY";
 
     // Constants GPS
@@ -201,7 +203,7 @@ public abstract class BaseActivity extends AppCompatActivity implements
                 requestPermissions(new String[]{
                                 Manifest.permission.ACCESS_FINE_LOCATION,
                                 Manifest.permission.ACCESS_COARSE_LOCATION},
-                        PERMISSIONS);
+                        ConstantsTypes.LOCATION_PERMISSIONS);
             }
             return;
         }
@@ -214,11 +216,12 @@ public abstract class BaseActivity extends AppCompatActivity implements
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+
         if (permissions == null || permissions.length <= 0) return;
         if (grantResults == null || grantResults.length <= 0) return;
 
         switch (requestCode) {
-            case PERMISSIONS: {
+            case ConstantsTypes.LOCATION_PERMISSIONS: {
                 int totalPermissions = permissions.length;
                 for (int i = 0; i < totalPermissions; i++) {
                     if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
@@ -232,5 +235,9 @@ public abstract class BaseActivity extends AppCompatActivity implements
             }
         }
     }
+
+    /** public interface PermissionsListener {
+        void communicateResult(int requestCode, int permissionCode, int permissionLength, String[] permissions, int[] grantResults);
+    } **/
 
 }

@@ -1,5 +1,6 @@
 package br.com.friendlydonations.views.adapters;
 
+import android.Manifest;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
@@ -16,6 +17,13 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.single.PermissionListener;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +32,7 @@ import br.com.friendlydonations.managers.BaseActivity;
 import br.com.friendlydonations.managers.BaseFragment;
 import br.com.friendlydonations.utils.ConstantsTypes;
 import br.com.friendlydonations.utils.TypefaceMaker;
+import br.com.friendlydonations.utils.ViewUtility;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -117,7 +126,7 @@ public class PictureUploadAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     private void selectImage() {
         View mRootView = LayoutInflater.from(activity).inflate(R.layout.alert_donation_picture, null, false);
-        AlertDialog.Builder mDialog = new AlertDialog.Builder(activity);
+        final AlertDialog mDialog = new AlertDialog.Builder(activity).create();
 
         // applying typefaces
         TextView alertTitle = (TextView) mRootView.findViewById(R.id.alertTitle);
@@ -134,21 +143,43 @@ public class PictureUploadAdapter extends RecyclerView.Adapter<RecyclerView.View
 
         ImageView ivCamera = (ImageView) mRootView.findViewById(R.id.ivCamera);
         ImageView ivGallery = (ImageView) mRootView.findViewById(R.id.ivGallery);
+
         ivCamera.setColorFilter(ContextCompat.getColor(activity, R.color.colorPrimary));
         ivGallery.setColorFilter(ContextCompat.getColor(activity, R.color.colorPrimary));
 
         ivCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Dexter.checkPermission(new PermissionListener() {
+                    @Override
+                    public void onPermissionGranted(PermissionGrantedResponse response) {
+                        mDialog.cancel();
+                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        baseFragment.startActivityForResult(intent, ConstantsTypes.ACTIVITY_RESULT_CAMERA);
+                    }
+
+                    @Override
+                    public void onPermissionDenied(PermissionDeniedResponse response) {
+                        int x = 1;
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
+                        int y = 0;
+                    }
+                }, Manifest.permission.CAMERA);
+
+                /** mDialog.cancel();
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                baseFragment.startActivityForResult(intent, ConstantsTypes.ACTIVITY_RESULT_CAMERA);
-                //activity.startActivityForResult(intent, ConstantsTypes.ACTIVITY_RESULT_CAMERA);//REQUEST_CAMERA
+                baseFragment.startActivityForResult(intent, ConstantsTypes.ACTIVITY_RESULT_CAMERA); **/
             }
         });
 
         ivGallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mDialog.cancel();
                 Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 intent.setType("image/*");
                 //activity.startActivityForResult(Intent.createChooser(intent, activity.getString(R.string.donate_include_image_textual)), ConstantsTypes.ACTIVITY_RESULT_SELECT_PICTURE_GALLERY);//SELECT_FILE
@@ -158,4 +189,6 @@ public class PictureUploadAdapter extends RecyclerView.Adapter<RecyclerView.View
         mDialog.setView(mRootView);
         mDialog.show();
     }
+
+
 }

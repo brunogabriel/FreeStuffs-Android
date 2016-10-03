@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
+import com.karumi.dexter.Dexter;
 
 import br.com.friendlydonations.utils.TypefaceMaker;
 
@@ -21,5 +22,6 @@ public class ApplicationManager extends Application {
         FacebookSdk.sdkInitialize(getApplicationContext());
         TypefaceMaker.getInstance();
         AppEventsLogger.activateApp(this);
+        Dexter.initialize(this);
     }
 }
