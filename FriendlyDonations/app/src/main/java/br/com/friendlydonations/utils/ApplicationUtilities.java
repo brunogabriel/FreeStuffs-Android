@@ -53,6 +53,24 @@ public class ApplicationUtilities {
         return Uri.fromFile(mPictureFile);
     }
 
+    public static File getCameraOutputMediaFile(Activity activity){
+
+        File mMediaStorageFile = new File(Environment.getExternalStorageDirectory()
+                + "/Android/data/" + activity.getApplicationContext().getPackageName() + "/Images");
+
+        if (!mMediaStorageFile.exists()){
+            if (!mMediaStorageFile.mkdirs()){
+                return null;
+            }
+        }
+
+        File mediaFile;
+        String mImageName="pic_camera" +".jpg";
+        mediaFile = new File(mMediaStorageFile.getPath() + File.separator + mImageName);
+
+        return mediaFile;
+    }
+
     public static File getOutputMediaFile(Activity activity, boolean isCropped){
 
         File mMediaStorageFile = new File(Environment.getExternalStorageDirectory()
@@ -64,7 +82,7 @@ public class ApplicationUtilities {
             }
         }
 
-        String timeStamp = new SimpleDateFormat("ddMMyyyy_HHmm").format(new Date());
+        String timeStamp = new SimpleDateFormat("ddMMyyyy_HHmmss").format(new Date());
 
         File mediaFile;
         String mImageName="pic_" + (isCropped ? "small": "") + timeStamp +".jpg";

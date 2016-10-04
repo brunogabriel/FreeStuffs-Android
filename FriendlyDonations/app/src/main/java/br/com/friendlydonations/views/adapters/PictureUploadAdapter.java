@@ -24,6 +24,7 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +32,7 @@ import br.com.friendlydonations.R;
 import br.com.friendlydonations.managers.BaseActivity;
 import br.com.friendlydonations.managers.BaseFragment;
 import br.com.friendlydonations.models.PictureUpload;
+import br.com.friendlydonations.utils.ApplicationUtilities;
 import br.com.friendlydonations.utils.ConstantsTypes;
 import br.com.friendlydonations.utils.TypefaceMaker;
 import butterknife.BindView;
@@ -200,6 +202,9 @@ public class PictureUploadAdapter extends RecyclerView.Adapter<RecyclerView.View
                     public void onPermissionGranted(PermissionGrantedResponse response) {
                         mDialog.cancel();
                         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        File mPictureFile = ApplicationUtilities.getCameraOutputMediaFile(activity);
+                        Uri fileUri = Uri.fromFile(mPictureFile);
+                        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
                         baseFragment.startActivityForResult(intent, ConstantsTypes.ACTIVITY_RESULT_CAMERA);
                     }
 
@@ -226,6 +231,7 @@ public class PictureUploadAdapter extends RecyclerView.Adapter<RecyclerView.View
                 mDialog.cancel();
                 Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 intent.setType("image/*");
+                baseFragment.startActivityForResult(intent, ConstantsTypes.ACTIVITY_RESULT_SELECT_PICTURE_GALLERY);
                 //activity.startActivityForResult(Intent.createChooser(intent, activity.getString(R.string.donate_include_image_textual)), ConstantsTypes.ACTIVITY_RESULT_SELECT_PICTURE_GALLERY);//SELECT_FILE
             }
         });

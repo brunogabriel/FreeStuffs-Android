@@ -154,13 +154,34 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
 
         if (resultCode == Activity.RESULT_OK && requestCode == ConstantsTypes.ACTIVITY_RESULT_CAMERA) {
             Dexter.checkPermissions(new MultiplePermissionsListener() {
+                @Override
+                public void onPermissionsChecked(MultiplePermissionsReport report) {
+
+                    File mPictureFile = ApplicationUtilities.getCameraOutputMediaFile(getActivity());
+                    Uri sourceUri = Uri.fromFile(mPictureFile);
+
+                    File mPictureFileCropped = ApplicationUtilities.getOutputMediaFile(getActivity(), true);
+                    Uri destinyUri = Uri.fromFile(mPictureFileCropped);
+                    UCrop.Options options = new UCrop.Options();
+                    options.setToolbarColor(getResources().getColor(R.color.colorPrimary));
+
+                    UCrop.of(sourceUri, destinyUri)
+                            .withAspectRatio(4, 3)
+                            .withOptions(options)
+                            .start(getActivity(), DonateFragment.this);
+                }
+
+                @Override
+                public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {/* ... */}
+            }, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE);
+        }
+
+        else if(resultCode == Activity.RESULT_OK && requestCode == ConstantsTypes.ACTIVITY_RESULT_SELECT_PICTURE_GALLERY) {
+            Dexter.checkPermissions(new MultiplePermissionsListener() {
                 @Override public void onPermissionsChecked(MultiplePermissionsReport report) {
                     // TODO: Refactor and set uriDestination
-                    Bitmap mPhoto = (Bitmap) dataFinal.getExtras().get("data");
-
-                    File mPictureFile = ApplicationUtilities.getOutputMediaFile(getActivity(), false);
                     File mPictureFileCropped = ApplicationUtilities.getOutputMediaFile(getActivity(), true);
-                    Uri sourceUri = ApplicationUtilities.storeImageOnDiskAndGetUri(getActivity(), mPictureFile, mPhoto);
+                    Uri sourceUri = dataFinal.getData();
                     Uri destinyUri = Uri.fromFile(mPictureFileCropped);
                     UCrop.Options options = new UCrop.Options();
                     options.setToolbarColor(getResources().getColor(R.color.colorPrimary));
@@ -175,7 +196,7 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
         }
 
         else if (resultCode == Activity.RESULT_OK && requestCode == UCrop.REQUEST_CROP) {
-            final Uri resultUri = UCrop.getOutput(data);
+            Uri resultUri = UCrop.getOutput(data);
             pictureAdapter.updateImage(resultUri);
 
             /** try {
