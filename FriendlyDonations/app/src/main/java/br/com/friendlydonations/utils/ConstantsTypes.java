@@ -5,6 +5,8 @@ package br.com.friendlydonations.utils;
  */
 public interface ConstantsTypes {
 
+    public static final String PLATFORM = "android";
+
     /**
      * Holders
      */

@@ -2,7 +2,9 @@ package br.com.friendlydonations.network;
 
 import org.json.JSONObject;
 
+import br.com.friendlydonations.models.LoginModel;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 import rx.Observable;
@@ -12,10 +14,20 @@ import rx.Observable;
  */
 public interface NetworkInterface {
 
-    public static final String SERVER_URL = "http://rede-doar-api.dev.azk.io";
+    public static final String SERVER_URL = "http://192.168.50.4:3000/";
 
     @FormUrlEncoded
-    @POST("/users/login")
-    Observable<Object> doLogin(@Body JSONObject user);
+    @POST("users/login")
+    Observable<LoginModel> doLogin(
+            @Field("name") String name,
+            @Field("userId") String userId,
+            @Field("email") String email,
+            @Field("birthday") String birthday,
+            @Field("gender") String gender,
+            @Field("token") String token,
+            @Field("pushId") String pushId,
+            @Field("platform") String platform,
+            @Field("language") String language
+    );
 
 }

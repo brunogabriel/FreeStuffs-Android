@@ -156,21 +156,10 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
             Dexter.checkPermissions(new MultiplePermissionsListener() {
                 @Override
                 public void onPermissionsChecked(MultiplePermissionsReport report) {
-
                     File mPictureFile = ApplicationUtilities.getCameraOutputMediaFile(getActivity());
-                    Uri sourceUri = Uri.fromFile(mPictureFile);
-
                     File mPictureFileCropped = ApplicationUtilities.getOutputMediaFile(getActivity(), true);
-                    Uri destinyUri = Uri.fromFile(mPictureFileCropped);
-                    UCrop.Options options = new UCrop.Options();
-                    options.setToolbarColor(getResources().getColor(R.color.colorPrimary));
-
-                    UCrop.of(sourceUri, destinyUri)
-                            .withAspectRatio(4, 3)
-                            .withOptions(options)
-                            .start(getActivity(), DonateFragment.this);
+                    callCrop(Uri.fromFile(mPictureFile), Uri.fromFile(mPictureFileCropped));
                 }
-
                 @Override
                 public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {/* ... */}
             }, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE);
@@ -178,41 +167,32 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
 
         else if(resultCode == Activity.RESULT_OK && requestCode == ConstantsTypes.ACTIVITY_RESULT_SELECT_PICTURE_GALLERY) {
             Dexter.checkPermissions(new MultiplePermissionsListener() {
+
                 @Override public void onPermissionsChecked(MultiplePermissionsReport report) {
-                    // TODO: Refactor and set uriDestination
                     File mPictureFileCropped = ApplicationUtilities.getOutputMediaFile(getActivity(), true);
-                    Uri sourceUri = dataFinal.getData();
-                    Uri destinyUri = Uri.fromFile(mPictureFileCropped);
-                    UCrop.Options options = new UCrop.Options();
-                    options.setToolbarColor(getResources().getColor(R.color.colorPrimary));
-
-                    UCrop.of(sourceUri, destinyUri)
-                            .withAspectRatio(4, 3)
-                            .withOptions(options)
-                            .start(getActivity(), DonateFragment.this);
+                    callCrop(dataFinal.getData(), Uri.fromFile(mPictureFileCropped));
                 }
-                @Override public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {/* ... */}
-            }, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE);
-        }
 
-        else if (resultCode == Activity.RESULT_OK && requestCode == UCrop.REQUEST_CROP) {
+                @Override public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+
+                }
+            }, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE);
+        } else if (resultCode == Activity.RESULT_OK && requestCode == UCrop.REQUEST_CROP) {
             Uri resultUri = UCrop.getOutput(data);
             pictureAdapter.updateImage(resultUri);
-
-            /** try {
-                //Bitmap mBitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), resultUri);
-
-                //pictureAdapter.setImage()
-
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            } **/
-
         } else if (resultCode == UCrop.RESULT_ERROR) {
             final Throwable cropError = UCrop.getError(data);
             String mCause = cropError.getMessage();
         }
+    }
+
+    private void callCrop(Uri sourceUri, Uri destinyUri) {
+        UCrop.Options options = new UCrop.Options();
+        options.setToolbarColor(getResources().getColor(R.color.colorPrimary));
+        UCrop.of(sourceUri, destinyUri)
+                .withAspectRatio(4, 3)
+                .withOptions(options)
+                .start(getActivity(), DonateFragment.this);
     }
 
 }

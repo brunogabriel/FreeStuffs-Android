@@ -1,5 +1,6 @@
 package br.com.friendlydonations.managers;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.location.Location;
@@ -39,8 +40,8 @@ import br.com.friendlydonations.utils.ConstantsTypes;
 /**
  * Created by brunogabriel on 8/23/16.
  */
-public abstract class BaseActivity extends AppCompatActivity implements
-        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
+public abstract class BaseActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
     // protected static final int PERMISSIONS = 0;
     public static String TAG = "BASE_ACTIVITY";
@@ -54,6 +55,7 @@ public abstract class BaseActivity extends AppCompatActivity implements
     protected LocationRequest mLocationRequest;
     protected Location mCurrentLocation;
 
+    protected ProgressDialog progressDialog;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -122,7 +124,6 @@ public abstract class BaseActivity extends AppCompatActivity implements
     }
 
     // GPS
-    // # GPS
     @Override
     public void onConnected(Bundle bundle) {
 
@@ -236,8 +237,26 @@ public abstract class BaseActivity extends AppCompatActivity implements
         }
     }
 
-    /** public interface PermissionsListener {
-        void communicateResult(int requestCode, int permissionCode, int permissionLength, String[] permissions, int[] grantResults);
-    } **/
+    public void showDialog(int progressDialogStyle, String title, String message, boolean isIndeterminate, boolean isCancelable) {
+        if (progressDialog == null) {
+            progressDialog = new ProgressDialog(this);
+        }
+
+        if (progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
+
+        progressDialog.setProgressStyle(progressDialogStyle);
+        progressDialog.setTitle(title);
+        progressDialog.setMessage(message);
+        progressDialog.setIndeterminate(isIndeterminate);
+        progressDialog.setCancelable(isCancelable);
+
+        progressDialog.show();
+    }
+
+    public ProgressDialog getProgressDialog() {
+        return this.progressDialog;
+    }
 
 }
