@@ -34,7 +34,6 @@ public class HomeFragment extends BaseFragment {
     protected StaggeredGridLayoutManager gridLayoutManager;
     protected HomeCardAdapter adapter;
 
-
     // Views
     protected View rootView;
 

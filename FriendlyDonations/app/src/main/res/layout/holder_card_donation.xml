@@ -4,6 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     card_view:cardUseCompatPadding="true"
+    android:clickable="true"
     card_view:cardElevation="4dp"
     card_view:cardCornerRadius="0dp"
     android:layout_height="wrap_content"
@@ -11,7 +12,6 @@
 
     <LinearLayout
         android:background="?android:attr/selectableItemBackground"
-        android:clickable="true"
         android:id="@+id/contentView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

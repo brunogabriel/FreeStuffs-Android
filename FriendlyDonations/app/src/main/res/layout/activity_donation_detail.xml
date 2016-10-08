@@ -100,7 +100,7 @@
                         android:id="@+id/tvDonateDescription"
                         android:text="@string/lorem_text_long"
                         style="@style/TextView.Typeface2"
-                        android:layout_marginTop="@dimen/place_autocomplete_prediction_horizontal_margin"
+                        android:layout_marginTop="@dimen/material_layout_keylines_screen_edge_margin"
                         android:textColor="@color/colorPallet2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />

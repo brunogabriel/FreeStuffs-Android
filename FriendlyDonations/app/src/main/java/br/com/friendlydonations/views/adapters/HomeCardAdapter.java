@@ -1,5 +1,6 @@
 package br.com.friendlydonations.views.adapters;
 
+import android.content.Intent;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import java.util.List;
 
 import br.com.friendlydonations.R;
 import br.com.friendlydonations.managers.BaseActivity;
+import br.com.friendlydonations.views.activities.DonationDetailActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -65,6 +67,10 @@ public class HomeCardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         public HomeCardViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            itemView.setOnClickListener(view -> {
+                Intent mIntent = new Intent(activity, DonationDetailActivity.class);
+                activity.startActivity(mIntent);
+            });
         }
 
         public void populateUI() {
@@ -73,9 +79,9 @@ public class HomeCardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             if (randomItem < 30) {
                 cardTitle.setText("Lorem ipsum dolor");
             } else if (randomItem < 60) {
-                cardTitle.setText("Brand new ladies bike 29 wheels");
+                cardTitle.setText("Brand new ladies bike 29 wheels...Brand new ladies bike 29 wheels Brand new ladies bike 29 wheels");
             } else {
-                cardTitle.setText("Brand new ladies bike 29 wheels Brand new ladies bike 29 wheels");
+                cardTitle.setText("Brand new ladies bike 29 wheels Brand new ladies bike 29 wheels...Brand new ladies bike 29 wheels Brand new ladies bike 29 wheels");
             }
         }
     }

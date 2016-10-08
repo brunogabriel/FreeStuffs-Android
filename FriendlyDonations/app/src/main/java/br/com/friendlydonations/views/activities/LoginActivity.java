@@ -152,13 +152,17 @@ public class LoginActivity extends BaseActivity {
 
     @OnClick(R.id.viewFacebookLogin)
     protected void onClickViewFaceBookLogin() {
-        if (isNetworkEnabled()) {
+        /*if (isNetworkEnabled()) {
             LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "email", "user_birthday"));
         } else {
             ApplicationUtilities.showSnackBar(getWindow().getDecorView(), getString(R.string.network_not_detected),
                     Snackbar.LENGTH_LONG, getString(R.string.try_again),
                     view -> findViewById(R.id.viewFacebookLogin).performClick());
-        }
+        } **/
+
+        Intent mIntent = new Intent(this, MainActivity.class);
+        startActivity(mIntent);
+        this.finish();
     }
 
     private void requestGraphAPI(final LoginResult loginResult) {
@@ -205,7 +209,7 @@ public class LoginActivity extends BaseActivity {
                             startActivity(mIntent);
                             this.finish();
                         } else {
-                            throwableError.call(new InvalidParameterException(result.getMessage()));
+                            throwableError.call(new InvalidParameterException(result.getMessage() ));
                         }
 
                     }, throwableError);
