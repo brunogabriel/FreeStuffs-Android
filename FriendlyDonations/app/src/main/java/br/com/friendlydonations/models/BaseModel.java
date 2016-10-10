@@ -8,12 +8,14 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public abstract class BaseModel {
+
+    @SerializedName("status")
     private boolean status;
+
+    @SerializedName("message")
     private String message;
 
-    public BaseModel() {
-
-    }
+    public BaseModel() {}
 
     public boolean isStatus() {
         return status;

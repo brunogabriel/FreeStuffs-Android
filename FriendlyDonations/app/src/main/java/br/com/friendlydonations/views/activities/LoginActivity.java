@@ -21,8 +21,11 @@ import com.facebook.Profile;
 import com.facebook.ProfileTracker;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
+import com.google.firebase.iid.FirebaseInstanceId;
+
 import org.json.JSONObject;
 
+import java.io.InvalidObjectException;
 import java.security.InvalidParameterException;
 import java.util.Arrays;
 import java.util.Locale;
@@ -99,8 +102,6 @@ public class LoginActivity extends BaseActivity {
         }.execute();
     }
 
-
-
     private void setupFacebookSDK() {
         LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
@@ -152,17 +153,13 @@ public class LoginActivity extends BaseActivity {
 
     @OnClick(R.id.viewFacebookLogin)
     protected void onClickViewFaceBookLogin() {
-        /*if (isNetworkEnabled()) {
+        if (isNetworkEnabled()) {
             LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "email", "user_birthday"));
         } else {
             ApplicationUtilities.showSnackBar(getWindow().getDecorView(), getString(R.string.network_not_detected),
                     Snackbar.LENGTH_LONG, getString(R.string.try_again),
                     view -> findViewById(R.id.viewFacebookLogin).performClick());
-        } **/
-
-        Intent mIntent = new Intent(this, MainActivity.class);
-        startActivity(mIntent);
-        this.finish();
+        }
     }
 
     private void requestGraphAPI(final LoginResult loginResult) {
@@ -187,19 +184,24 @@ public class LoginActivity extends BaseActivity {
     public void executeFacebookLogin(Profile profile, JSONObject object, String accessToken) {
         String pushId = "";
 
-        /** try {
-            pushToken = FirebaseInstanceId.getInstance().getToken();
+        try {
+            pushId = FirebaseInstanceId.getInstance().getToken();
         } catch (Exception exception) {
             Log.e(TAG, "Fail on getting push identifier: " + exception.getMessage());
-        } **/
+        }
 
         showDialog(ProgressDialog.STYLE_SPINNER, null, "Connecting to server", true, false);
 
         try {
 
-            AppSingleton.getInstance().getNetworkInterface().doLogin(profile.getName(), profile.getId(),
-                    object.optString("email", ""), object.optString("gender", ""),
-                    object.optString("gender", ""), accessToken, pushId, ConstantsTypes.PLATFORM,
+            AppSingleton.getInstance().getNetworkInterface().doLogin(
+                    profile.getName(),
+                    profile.getId(),
+                    object.optString("email", ""),
+                    object.optString("gender", ""),
+                    object.optString("gender", ""),
+                    accessToken, pushId,
+                    ConstantsTypes.PLATFORM,
                     Locale.getDefault().getLanguage().toString()
             ).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                     .subscribe(result -> {
@@ -209,7 +211,7 @@ public class LoginActivity extends BaseActivity {
                             startActivity(mIntent);
                             this.finish();
                         } else {
-                            throwableError.call(new InvalidParameterException(result.getMessage() ));
+                            throwableError.call(new InvalidObjectException(result.getMessage()));
                         }
 
                     }, throwableError);
