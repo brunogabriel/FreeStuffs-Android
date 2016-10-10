@@ -12,35 +12,35 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:layout_marginTop="@dimen/material_layout_keylines_screen_edge_margin"
+            android:layout_marginTop="@dimen/dimen_vertical_spacing"
             android:id="@+id/tvUploadPhotos"
             android:text="@string/donate_fragment_upload_photos"
             android:textSize="20sp"
-            android:layout_marginLeft="@dimen/material_layout_app_bar_horizontal_padding"
-            android:layout_marginRight="@dimen/material_layout_app_bar_horizontal_padding"
+            android:layout_marginLeft="@dimen/dimen_horizontal_spacing"
+            android:layout_marginRight="@dimen/dimen_horizontal_spacing"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerViewPictures"
-            android:layout_marginTop="@dimen/material_component_bottom_sheet_edge_top_bottom_margins"
+            android:layout_marginTop="@dimen/dimen_between_itens"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         </android.support.v7.widget.RecyclerView>
 
         <TextView
-            android:layout_marginTop="@dimen/material_layout_keylines_screen_edge_margin"
+            android:layout_marginTop="@dimen/dimen_vertical_spacing"
             android:id="@+id/tvSelectCategory"
             android:text="@string/donate_fragment_choose_category"
             android:textSize="20sp"
-            android:layout_marginLeft="@dimen/material_layout_app_bar_horizontal_padding"
-            android:layout_marginRight="@dimen/material_layout_app_bar_horizontal_padding"
+            android:layout_marginLeft="@dimen/dimen_horizontal_spacing"
+            android:layout_marginRight="@dimen/dimen_horizontal_spacing"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerViewCategories"
-            android:layout_marginTop="@dimen/material_component_bottom_sheet_edge_top_bottom_margins"
+            android:layout_marginTop="@dimen/dimen_between_itens"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         </android.support.v7.widget.RecyclerView>
@@ -48,9 +48,9 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_marginTop="@dimen/material_component_bottom_sheet_edge_top_bottom_margins"
-            android:layout_marginLeft="@dimen/material_layout_app_bar_horizontal_padding"
-            android:layout_marginRight="@dimen/material_layout_app_bar_horizontal_padding"
+            android:layout_marginTop="@dimen/dimen_vertical_spacing"
+            android:layout_marginLeft="@dimen/dimen_horizontal_spacing"
+            android:layout_marginRight="@dimen/dimen_horizontal_spacing"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -72,7 +72,7 @@
 
 
             <android.support.design.widget.TextInputLayout
-                android:layout_marginTop="@dimen/material_layout_app_bar_horizontal_padding"
+                android:layout_marginTop="@dimen/dimen_vertical_spacing"
                 android:id="@+id/tiDescription"
                 app:theme="@style/FriendlyDonationsTheme.FloatingEditText"
                 app:hintTextAppearance="@style/FriendlyDonationsTheme.FloatingEditText.Hint"
@@ -88,7 +88,7 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:layout_marginTop="@dimen/material_layout_app_bar_horizontal_padding"
+                android:layout_marginTop="@dimen/dimen_vertical_spacing"
                 android:id="@+id/tiLocation"
                 app:theme="@style/FriendlyDonationsTheme.FloatingEditText"
                 app:hintTextAppearance="@style/FriendlyDonationsTheme.FloatingEditText.Hint"
@@ -104,7 +104,7 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:layout_marginTop="@dimen/material_layout_app_bar_horizontal_padding"
+                android:layout_marginTop="@dimen/dimen_vertical_spacing"
                 app:theme="@style/FriendlyDonationsTheme.FloatingEditText"
                 app:hintTextAppearance="@style/FriendlyDonationsTheme.FloatingEditText.Hint"
                 android:id="@+id/tiDelivery"
@@ -124,7 +124,7 @@
                 android:id="@+id/tvIWouldGetTouch"
                 android:text="@string/donate_fragment_get_touch"
                 style="@style/TextView.Typeface3"
-                android:layout_marginTop="@dimen/material_component_cards_primary_title_top_padding"
+                android:layout_marginTop="@dimen/material_card_padding"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 

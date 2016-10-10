@@ -17,7 +17,7 @@
         <LinearLayout
             android:id="@+id/avByEmail"
             android:orientation="vertical"
-            android:layout_margin="@dimen/material_layout_app_bar_horizontal_padding"
+            android:layout_margin="@dimen/dimen_horizontal_spacing"
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:layout_alignParentLeft="true"
@@ -46,7 +46,7 @@
         <LinearLayout
             android:id="@+id/avByPhone"
             android:orientation="vertical"
-            android:layout_margin="@dimen/material_layout_app_bar_horizontal_padding"
+            android:layout_margin="@dimen/dimen_horizontal_spacing"
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:layout_alignParentLeft="true"

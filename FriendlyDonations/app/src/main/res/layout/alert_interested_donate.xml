@@ -33,8 +33,8 @@
         android:scaleType="centerCrop"
         android:layout_marginTop="114dp"
         android:id="@+id/circleDonateImage"
-        android:layout_width="@dimen/material_layout_keylines_content_left_margin_from_screen_edge"
-        android:layout_height="@dimen/material_layout_keylines_content_left_margin_from_screen_edge"
+        android:layout_width="@dimen/material_component_element"
+        android:layout_height="@dimen/material_component_element"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
@@ -64,7 +64,7 @@
         <LinearLayout
             android:id="@+id/avByEmail"
             android:orientation="vertical"
-            android:layout_margin="@dimen/material_layout_app_bar_horizontal_padding"
+            android:layout_margin="@dimen/dimen_horizontal_spacing"
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:layout_alignParentLeft="true"
@@ -91,7 +91,7 @@
         <LinearLayout
             android:id="@+id/avByPhone"
             android:orientation="vertical"
-            android:layout_margin="@dimen/material_layout_app_bar_horizontal_padding"
+            android:layout_margin="@dimen/dimen_horizontal_spacing"
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:layout_alignParentLeft="true"
@@ -114,9 +114,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
-
-
     </LinearLayout>
-
 
 </RelativeLayout>

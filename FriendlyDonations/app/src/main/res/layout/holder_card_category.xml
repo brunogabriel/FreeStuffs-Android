@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_margin="@dimen/material_component_bottom_sheet_edge_top_bottom_margins"
+    android:layout_margin="@dimen/dimen_between_itens"
     android:layout_width="120dp"
     android:layout_height="120dp">
 
@@ -24,8 +24,8 @@
         android:text="Eletronics"
         style="@style/TextView.Typeface3"
         android:textColor="@color/colorWhite"
-        android:layout_marginLeft="@dimen/material_component_bottom_sheet_edge_top_bottom_margins"
-        android:layout_marginRight="@dimen/material_component_bottom_sheet_edge_top_bottom_margins"
+        android:layout_marginLeft="@dimen/dimen_between_itens"
+        android:layout_marginRight="@dimen/dimen_between_itens"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 

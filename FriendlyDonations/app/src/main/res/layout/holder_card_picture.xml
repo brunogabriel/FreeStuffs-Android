@@ -7,7 +7,7 @@
     card_view:cardCornerRadius="0dp"
     android:orientation="vertical"
     android:layout_width="120dp"
-    android:layout_margin="@dimen/material_component_bottom_sheet_edge_top_bottom_margins"
+    android:layout_margin="@dimen/dimen_between_itens"
     android:layout_height="90dp">
 
     <FrameLayout

@@ -55,7 +55,7 @@
             <ImageView
                 android:contentDescription="@string/content_description"
                 android:layout_gravity="center"
-                android:layout_marginRight="@dimen/material_layout_vertical_spacing_between_content_areas"
+                android:layout_marginRight="@dimen/dimen_between_itens"
                 android:src="@drawable/ic_facebook_f"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />sp
