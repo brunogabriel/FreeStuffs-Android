@@ -16,12 +16,10 @@ allprojects {
         mavenCentral()
 
         maven {
-            // Saripaar
             url "https://oss.sonatype.org/content/repositories/snapshots/"
         }
 
         maven {
-            // Magic View Pager
             url "https://jitpack.io"
         }
     }

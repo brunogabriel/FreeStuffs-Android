@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -15,6 +16,8 @@
 
         <TextView
             android:id="@+id/alertTitle"
+            tools:ignore="MissingPrefix"
+            fontPath="fonts/Montserrat-Regular.ttf"
             android:textSize="40sp"
             android:gravity="center"
             android:textColor="@color/colorWhite"
@@ -40,6 +43,8 @@
 
     <TextView
         android:id="@+id/donateUserTitle"
+        tools:ignore="MissingPrefix"
+        fontPath="fonts/Montserrat-Regular.ttf"
         android:layout_marginTop="16dp"
         android:gravity="center_horizontal"
         android:textSize="20sp"
@@ -79,6 +84,8 @@
 
             <TextView
                 android:id="@+id/alertTextByMail"
+                tools:ignore="MissingPrefix"
+                fontPath="fonts/Montserrat-Medium.ttf"
                 style="@style/TextView.Typeface3"
                 android:layout_marginTop="@dimen/material_component_grid_lists_padding_big"
                 android:layout_gravity="center_horizontal"
@@ -106,6 +113,8 @@
 
             <TextView
                 android:id="@+id/alertTextByPhone"
+                tools:ignore="MissingPrefix"
+                fontPath="fonts/Montserrat-Medium.ttf"
                 style="@style/TextView.Typeface3"
                 android:layout_marginTop="@dimen/material_component_grid_lists_padding_big"
                 android:layout_gravity="center_horizontal"

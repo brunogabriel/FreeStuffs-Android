@@ -2,9 +2,7 @@ package br.com.friendlydonations.views.adapters;
 
 import android.Manifest;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.provider.MediaStore;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -34,7 +32,6 @@ import br.com.friendlydonations.managers.BaseFragment;
 import br.com.friendlydonations.models.PictureUpload;
 import br.com.friendlydonations.utils.ApplicationUtilities;
 import br.com.friendlydonations.utils.ConstantsTypes;
-import br.com.friendlydonations.utils.TypefaceMaker;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -48,14 +45,11 @@ public class PictureUploadAdapter extends RecyclerView.Adapter<RecyclerView.View
     private List<PictureUpload> items = new ArrayList<>();
     BaseActivity activity;
     BaseFragment baseFragment;
-    protected Typeface mRobotoMedium;
-    protected Typeface mMonserratRegular;
     public int clickedItem = -1;
 
     public PictureUploadAdapter (BaseActivity activity, BaseFragment baseFragment) {
         this.activity = activity;
         this.baseFragment = baseFragment;
-        setupTypefaces();
     }
 
 
@@ -118,17 +112,6 @@ public class PictureUploadAdapter extends RecyclerView.Adapter<RecyclerView.View
         return items == null ? 0: items.size();
     }
 
-    public void setupTypefaces() {
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... voids) {
-                mMonserratRegular = TypefaceMaker.createTypeFace(activity, TypefaceMaker.FontFamily.MontserratRegular);
-                mRobotoMedium = TypefaceMaker.createTypeFace(activity, TypefaceMaker.FontFamily.RobotoMedium);
-                return null;
-            }
-        }.execute();
-    }
-
     public void addAll(List<PictureUpload> newItems) {
         if (newItems != null) {
             int beforeSize = items.size();
@@ -176,16 +159,9 @@ public class PictureUploadAdapter extends RecyclerView.Adapter<RecyclerView.View
 
         // applying typefaces
         TextView alertTitle = (TextView) mRootView.findViewById(R.id.alertTitle);
-        alertTitle.setTypeface(mMonserratRegular);
-
         TextView tvPicture = (TextView) mRootView.findViewById(R.id.tvPicture);
-        tvPicture.setTypeface(mMonserratRegular);
-
         TextView tvCamera = (TextView) mRootView.findViewById(R.id.tvCamera);
-        tvCamera.setTypeface(mRobotoMedium);
-
         TextView tvGallery = (TextView) mRootView.findViewById(R.id.tvGallery);
-        tvGallery.setTypeface(mRobotoMedium);
 
         ImageView ivCamera = (ImageView) mRootView.findViewById(R.id.ivCamera);
         ImageView ivGallery = (ImageView) mRootView.findViewById(R.id.ivGallery);
@@ -193,36 +169,33 @@ public class PictureUploadAdapter extends RecyclerView.Adapter<RecyclerView.View
         ivCamera.setColorFilter(ContextCompat.getColor(activity, R.color.colorPrimary));
         ivGallery.setColorFilter(ContextCompat.getColor(activity, R.color.colorPrimary));
 
-        ivCamera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        ivCamera.setOnClickListener(v -> {
 
-                Dexter.checkPermission(new PermissionListener() {
-                    @Override
-                    public void onPermissionGranted(PermissionGrantedResponse response) {
-                        mDialog.cancel();
-                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        File mPictureFile = ApplicationUtilities.getCameraOutputMediaFile(activity);
-                        Uri fileUri = Uri.fromFile(mPictureFile);
-                        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-                        baseFragment.startActivityForResult(intent, ConstantsTypes.ACTIVITY_RESULT_CAMERA);
-                    }
+            Dexter.checkPermission(new PermissionListener() {
+                @Override
+                public void onPermissionGranted(PermissionGrantedResponse response) {
+                    mDialog.cancel();
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    File mPictureFile = ApplicationUtilities.getCameraOutputMediaFile(activity);
+                    Uri fileUri = Uri.fromFile(mPictureFile);
+                    intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+                    baseFragment.startActivityForResult(intent, ConstantsTypes.ACTIVITY_RESULT_CAMERA);
+                }
 
-                    @Override
-                    public void onPermissionDenied(PermissionDeniedResponse response) {
-                        int x = 1;
-                    }
+                @Override
+                public void onPermissionDenied(PermissionDeniedResponse response) {
+                    int x = 1;
+                }
 
-                    @Override
-                    public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
+                @Override
+                public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
 
-                    }
-                }, Manifest.permission.CAMERA);
+                }
+            }, Manifest.permission.CAMERA);
 
-                /** mDialog.cancel();
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                baseFragment.startActivityForResult(intent, ConstantsTypes.ACTIVITY_RESULT_CAMERA); **/
-            }
+            /** mDialog.cancel();
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            baseFragment.startActivityForResult(intent, ConstantsTypes.ACTIVITY_RESULT_CAMERA); **/
         });
 
         ivGallery.setOnClickListener(new View.OnClickListener() {
@@ -239,6 +212,4 @@ public class PictureUploadAdapter extends RecyclerView.Adapter<RecyclerView.View
         mDialog.setView(mRootView);
         mDialog.show();
     }
-
-
 }

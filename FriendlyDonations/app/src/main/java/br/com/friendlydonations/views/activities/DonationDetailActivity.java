@@ -1,7 +1,5 @@
 package br.com.friendlydonations.views.activities;
 
-import android.graphics.Typeface;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -28,7 +26,6 @@ import java.util.List;
 
 import br.com.friendlydonations.R;
 import br.com.friendlydonations.managers.BaseActivity;
-import br.com.friendlydonations.utils.TypefaceMaker;
 import br.com.friendlydonations.utils.WorkaroundMapFragment;
 import br.com.friendlydonations.views.adapters.DynamicPageAdapterImages;
 import br.com.friendlydonations.views.widgets.ScaleCircleNavigator;
@@ -61,36 +58,21 @@ public class DonationDetailActivity extends BaseActivity{
     @BindView(R.id.tvImInterestedText) protected TextView tvImInterestedText;
     @BindView(R.id.rlDonateDescription) protected RelativeLayout rlDonateDescription;
 
-
-    @OnClick(R.id.tvDonateSeeMore)
-    void seeMore(){
-        rlDonateDescription.getLayoutParams().height = RelativeLayout.LayoutParams.WRAP_CONTENT;
-        tvDonateSeeMore.setVisibility(View.GONE);
-    }
-
-
     protected DynamicPageAdapterImages dynamicPageAdapter;
     private List<View> mViews = new ArrayList<>();
-
-    // Typefaces
-    protected Typeface mRobotoRegular;
-    protected Typeface mRobotoMedium;
-    protected Typeface mRobotoLight;
-    protected Typeface mMonserratRegular;
-    protected Typeface mMonserratBold;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donation_detail);
         ButterKnife.bind(this);
-        setupTypefaces();
         initUI();
     }
 
     @Override
     public void initUI() {
         setupToolbar(toolbar, getString(R.string.lorem_name), "", true, true);
+
         applyCloseMenu();
         tvDonateLocation.setText(String.format(getResources().getString(R.string.donate_detail_location), "São José dos Campos, SP, Brazil"));
         dynamicPageAdapter = new DynamicPageAdapterImages(mViews);
@@ -157,38 +139,11 @@ public class DonationDetailActivity extends BaseActivity{
         }
     }
 
-    @Override
-    public void setupTypefaces() {
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... voids) {
-                mMonserratRegular = TypefaceMaker.createTypeFace(DonationDetailActivity.this, TypefaceMaker.FontFamily.MontserratRegular);
-                mMonserratBold = TypefaceMaker.createTypeFace(DonationDetailActivity.this, TypefaceMaker.FontFamily.MontserratBold);
-                mRobotoRegular = TypefaceMaker.createTypeFace(DonationDetailActivity.this, TypefaceMaker.FontFamily.RobotoRegular);
-                mRobotoMedium = TypefaceMaker.createTypeFace(DonationDetailActivity.this, TypefaceMaker.FontFamily.RobotoMedium);
-                mRobotoLight = TypefaceMaker.createTypeFace(DonationDetailActivity.this, TypefaceMaker.FontFamily.RobotoLight);
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Void aVoid) {
-                super.onPostExecute(aVoid);
-                setTypeface(mRobotoLight, tvDonateLocation);
-                setTypeface(mRobotoRegular, tvDonateDescription);
-                setTypeface(mRobotoMedium, tvDonateSeeMore);
-                setTypeface(mRobotoLight, tvConditionTitle);
-                setTypeface(mMonserratRegular, tvConditionContent);
-                setTypeface(mRobotoLight, tvDeliveryTitle);
-                setTypeface(mMonserratRegular, tvDeliveryContent);
-                setTypeface(mRobotoLight, tvCategoryTitle);
-                setTypeface(mMonserratRegular, tvCategoryContent);
-                setTypeface(mRobotoLight, tvIdTitle);
-                setTypeface(mMonserratRegular, tvIdContent);
-                setTypeface(mMonserratRegular, tvImInterestedText);
-            }
-        }.execute();
+    @OnClick(R.id.tvDonateSeeMore)
+    public void seeMore() {
+        rlDonateDescription.getLayoutParams().height = RelativeLayout.LayoutParams.WRAP_CONTENT;
+        tvDonateSeeMore.setVisibility(View.GONE);
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem) {
@@ -202,20 +157,6 @@ public class DonationDetailActivity extends BaseActivity{
     protected void onClickInterestedBtn() {
         View mRootView = LayoutInflater.from(this).inflate(R.layout.alert_interested_donate, null, false);
         AlertDialog.Builder mDialog = new AlertDialog.Builder(this);
-
-        // applying typefaces
-        TextView alertTitle = (TextView) mRootView.findViewById(R.id.alertTitle);
-        alertTitle.setTypeface(mMonserratRegular);
-
-        TextView donateUserTitle = (TextView) mRootView.findViewById(R.id.donateUserTitle);
-        donateUserTitle.setTypeface(mMonserratRegular);
-
-        TextView alertTextByMail = (TextView) mRootView.findViewById(R.id.alertTextByMail);
-        alertTextByMail.setTypeface(mRobotoMedium);
-
-        TextView alertTextByPhone = (TextView) mRootView.findViewById(R.id.alertTextByPhone);
-        alertTextByPhone.setTypeface(mRobotoMedium);
-
         mDialog.setView(mRootView);
         mDialog.show();
     }

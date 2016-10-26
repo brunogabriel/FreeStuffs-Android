@@ -67,6 +67,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorWhite"
                 android:text="@string/login_with_facebook"
+                fontPath="fonts/Montserrat-Regular.ttf"
                 android:textAllCaps="true"
                 android:gravity="center" />
         </LinearLayout>

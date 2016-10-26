@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="32dp">
@@ -24,6 +24,8 @@
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/textBadge"
+            tools:ignore="MissingPrefix"
+            fontPath="fonts/Montserrat-Regular.ttf"
             android:gravity="center"
             android:textSize="12sp"
             android:textStyle="bold"

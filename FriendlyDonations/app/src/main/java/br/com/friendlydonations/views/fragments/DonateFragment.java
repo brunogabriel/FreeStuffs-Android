@@ -38,12 +38,12 @@ import br.com.friendlydonations.managers.BaseActivity;
 import br.com.friendlydonations.managers.BaseFragment;
 import br.com.friendlydonations.models.PictureUpload;
 import br.com.friendlydonations.utils.ConstantsTypes;
-import br.com.friendlydonations.utils.TypefaceMaker;
 import br.com.friendlydonations.utils.ApplicationUtilities;
 import br.com.friendlydonations.views.adapters.CategoryAdapter;
 import br.com.friendlydonations.views.adapters.PictureUploadAdapter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import uk.co.chrisjenx.calligraphy.TypefaceUtils;
 
 /**
  * Created by brunogabriel on 8/27/16.
@@ -52,10 +52,6 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
 
     // Views
     protected View rootView;
-
-    // Typefaces
-    Typeface mRobotoLight;
-    Typeface mMonserratRegular;
 
     @BindView(R.id.tvUploadPhotos) TextView tvUploadPhotos;
     @BindView(R.id.recyclerViewPictures) RecyclerView recyclerViewPictures;
@@ -73,7 +69,6 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // mainActivity = (MainActivity) getActivity();
         rootView = inflater.inflate(R.layout.fragment_donate, container, false);
-        initTypefaces();
         ButterKnife.bind(this, rootView);
         //setHasOptionsMenu(true);
         initUI();
@@ -82,9 +77,6 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
 
     @Override
     public void initUI() {
-        tvUploadPhotos.setTypeface(mMonserratRegular);
-        tvSelectCategory.setTypeface(mMonserratRegular);
-
         recyclerViewPictures.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         pictureAdapter = new PictureUploadAdapter((BaseActivity) getActivity(), this);
         recyclerViewPictures.setAdapter(pictureAdapter);
@@ -113,11 +105,6 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
         etDescription.setOnFocusChangeListener(this);
     }
 
-    public void initTypefaces() {
-        mMonserratRegular = TypefaceMaker.createTypeFace(getActivity(), TypefaceMaker.FontFamily.MontserratRegular);
-        mRobotoLight = TypefaceMaker.createTypeFace(getActivity(), TypefaceMaker.FontFamily.RobotoLight);
-    }
-
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         //inflater.inflate(R.menu.menu_homefragment, menu);
@@ -139,13 +126,8 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
 
     @Override
     public void onFocusChange(View view, boolean hasFocus) {
-
         if (view instanceof AppCompatEditText) {
-            if (hasFocus) {
-                setTypeface(mMonserratRegular, (TextView)view);
-            } else {
-                setTypeface(mRobotoLight, (TextView)view);
-            }
+            ((TextView)view).setTypeface(TypefaceUtils.load(getActivity().getAssets(), hasFocus ? "fonts/Montserrat-Regular.ttf": "fonts/Roboto-Light.ttf"));
         }
     }
 

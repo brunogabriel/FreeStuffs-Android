@@ -11,7 +11,6 @@ import java.util.List;
 
 import br.com.friendlydonations.R;
 import br.com.friendlydonations.managers.BaseActivity;
-import br.com.friendlydonations.utils.TypefaceMaker;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -40,7 +39,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         CategoryViewHolder categoryViewHolder = (CategoryViewHolder) holder;
-        categoryViewHolder.populateUI();
     }
 
     @Override
@@ -73,10 +71,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         public CategoryViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-        }
-
-        public void populateUI() {
-            tvCategoryName.setTypeface(TypefaceMaker.createTypeFace(activity, TypefaceMaker.FontFamily.RobotoMedium));
         }
     }
 }

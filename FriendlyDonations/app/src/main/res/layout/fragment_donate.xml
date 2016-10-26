@@ -2,8 +2,8 @@
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -13,6 +13,8 @@
 
         <TextView
             android:layout_marginTop="@dimen/dimen_vertical_spacing"
+            tools:ignore="MissingPrefix"
+            fontPath="fonts/Montserrat-Regular.ttf"
             android:id="@+id/tvUploadPhotos"
             android:text="@string/donate_fragment_upload_photos"
             android:textSize="20sp"
@@ -31,6 +33,8 @@
         <TextView
             android:layout_marginTop="@dimen/dimen_vertical_spacing"
             android:id="@+id/tvSelectCategory"
+            tools:ignore="MissingPrefix"
+            fontPath="fonts/Montserrat-Regular.ttf"
             android:text="@string/donate_fragment_choose_category"
             android:textSize="20sp"
             android:layout_marginLeft="@dimen/dimen_horizontal_spacing"

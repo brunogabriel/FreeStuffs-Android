@@ -2,6 +2,7 @@
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
@@ -87,9 +88,12 @@
                     android:id="@+id/tvDonateLocation"
                     android:text="@string/donate_detail_location"
                     style="@style/TextView.Typeface3"
+                    tools:ignore="MissingPrefix"
+                    fontPath="fonts/Roboto-Light.ttf"
                     android:textColor="@color/colorGraySubtitle"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                     />
 
                 <RelativeLayout
                     android:id="@+id/rlDonateDescription"
@@ -108,6 +112,8 @@
 
                     <TextView
                         android:id="@+id/tvDonateSeeMore"
+                        tools:ignore="MissingPrefix"
+                        fontPath="fonts/Roboto-Medium.ttf"
                         android:text="@string/donate_detail_see_more"
                         style="@style/TextView.Typeface3"
                         android:background="@drawable/drawable_white_gradient_effect"
@@ -146,6 +152,8 @@
                 <TextView
                     android:id="@+id/tvConditionTitle"
                     android:text="@string/donate_detail_condition"
+                    tools:ignore="MissingPrefix"
+                    fontPath="fonts/Roboto-Light.ttf"
                     style="@style/TextView.Typeface3"
                     android:layout_marginTop="@dimen/dimen_vertical_space_statusbar"
                     android:textColor="@color/colorGraySubtitle"
@@ -155,6 +163,8 @@
 
                 <TextView
                     android:id="@+id/tvConditionContent"
+                    tools:ignore="MissingPrefix"
+                    fontPath="fonts/Montserrat-Regular.ttf"
                     android:text="@string/lorem_simple"
                     style="@style/TextView.Typeface3"
                     android:layout_marginTop="@dimen/dimen_between_itens"
@@ -165,6 +175,8 @@
                 <!-- Delivery -->
                 <TextView
                     android:id="@+id/tvDeliveryTitle"
+                    tools:ignore="MissingPrefix"
+                    fontPath="fonts/Roboto-Light.ttf"
                     android:text="@string/donate_detail_delivery"
                     style="@style/TextView.Typeface3"
                     android:layout_marginTop="@dimen/dimen_vertical_spacing"
@@ -175,6 +187,8 @@
 
                 <TextView
                     android:id="@+id/tvDeliveryContent"
+                    tools:ignore="MissingPrefix"
+                    fontPath="fonts/Montserrat-Regular.ttf"
                     android:text="@string/lorem_simple"
                     style="@style/TextView.Typeface3"
                     android:layout_marginTop="@dimen/dimen_between_itens"
@@ -185,6 +199,8 @@
                 <!-- Category -->
                 <TextView
                     android:id="@+id/tvCategoryTitle"
+                    tools:ignore="MissingPrefix"
+                    fontPath="fonts/Roboto-Light.ttf"
                     android:text="@string/donate_detail_category"
                     style="@style/TextView.Typeface3"
                     android:layout_marginTop="@dimen/dimen_vertical_spacing"
@@ -195,6 +211,8 @@
 
                 <TextView
                     android:id="@+id/tvCategoryContent"
+                    tools:ignore="MissingPrefix"
+                    fontPath="fonts/Montserrat-Regular.ttf"
                     android:text="@string/lorem_simple"
                     style="@style/TextView.Typeface3"
                     android:layout_marginTop="@dimen/dimen_between_itens"
@@ -205,6 +223,8 @@
                 <!-- id -->
                 <TextView
                     android:id="@+id/tvIdTitle"
+                    tools:ignore="MissingPrefix"
+                    fontPath="fonts/Roboto-Light.ttf"
                     android:text="@string/donate_detail_id"
                     style="@style/TextView.Typeface3"
                     android:layout_marginTop="@dimen/dimen_vertical_spacing"
@@ -215,6 +235,8 @@
 
                 <TextView
                     android:id="@+id/tvIdContent"
+                    tools:ignore="MissingPrefix"
+                    fontPath="fonts/Montserrat-Regular.ttf"
                     android:text="3487642"
                     style="@style/TextView.Typeface3"
                     android:layout_marginTop="@dimen/dimen_between_itens"
@@ -237,6 +259,8 @@
 
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/tvImInterestedText"
+                    tools:ignore="MissingPrefix"
+                    fontPath="fonts/Montserrat-Regular.ttf"
                     style="@style/TextView.Typeface3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

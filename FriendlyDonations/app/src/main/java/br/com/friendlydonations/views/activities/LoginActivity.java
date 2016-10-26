@@ -2,8 +2,7 @@ package br.com.friendlydonations.views.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Typeface;
-import android.os.AsyncTask;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.AppCompatTextView;
@@ -25,15 +24,21 @@ import java.io.InvalidObjectException;
 import java.security.InvalidParameterException;
 import java.util.Arrays;
 import java.util.Locale;
+
+import javax.inject.Inject;
+
 import br.com.friendlydonations.R;
-import br.com.friendlydonations.managers.AppSingleton;
+import br.com.friendlydonations.dagger.components.DaggerSharedPreferencesComponent;
+import br.com.friendlydonations.dagger.modules.SharedPreferencesModule;
+import br.com.friendlydonations.managers.App;
 import br.com.friendlydonations.managers.BaseActivity;
+import br.com.friendlydonations.network.NetworkInterface;
 import br.com.friendlydonations.utils.ApplicationUtilities;
 import br.com.friendlydonations.utils.ConstantsTypes;
-import br.com.friendlydonations.utils.TypefaceMaker;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.Retrofit;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
@@ -45,15 +50,16 @@ public class LoginActivity extends BaseActivity {
 
     public static final String TAG = "LOGIN_ACT";
 
+    @Inject
+    protected Retrofit retrofit;
+
+    protected SharedPreferences sharedPreferences;
+
     @BindView(R.id.tvAboutTerms)
     protected AppCompatTextView tvAboutTerms;
 
     @BindView(R.id.tvFacebookLogin)
     protected AppCompatTextView tvFacebookLogin;
-
-    // Typefaces
-    protected Typeface mRobotoRegular;
-    protected Typeface mMonserratRegular;
 
     // Facebook
     protected CallbackManager callbackManager;
@@ -66,8 +72,13 @@ public class LoginActivity extends BaseActivity {
         FacebookSdk.sdkInitialize(getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
         setContentView(R.layout.activity_login);
+        ((App) getApplication()).getmNetcomponent().inject(this);
+        sharedPreferences = DaggerSharedPreferencesComponent.builder()
+                .sharedPreferencesModule(new SharedPreferencesModule(getApplication()))
+                .build()
+                .getSharedPreferences();
+
         ButterKnife.bind(this);
-        setupTypefaces();
         initUI();
         setupFacebookSDK();
     }
@@ -75,27 +86,6 @@ public class LoginActivity extends BaseActivity {
     @Override
     public void initUI() {
         // @empty
-    }
-
-    @Override
-    public void setupTypefaces() {
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... voids) {
-                mMonserratRegular = TypefaceMaker.createTypeFace(LoginActivity.this, TypefaceMaker.FontFamily.MontserratRegular);
-                mRobotoRegular = TypefaceMaker.createTypeFace(LoginActivity.this, TypefaceMaker.FontFamily.RobotoRegular);
-                TypefaceMaker.createTypeFace(LoginActivity.this, TypefaceMaker.FontFamily.RobotoLight);
-                TypefaceMaker.createTypeFace(LoginActivity.this, TypefaceMaker.FontFamily.RobotoMedium);
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Void aVoid) {
-                super.onPostExecute(aVoid);
-                setTypeface(mRobotoRegular, tvAboutTerms);
-                setTypeface(mMonserratRegular, tvFacebookLogin);
-            }
-        }.execute();
     }
 
     private void setupFacebookSDK() {
@@ -149,13 +139,18 @@ public class LoginActivity extends BaseActivity {
 
     @OnClick(R.id.viewFacebookLogin)
     protected void onClickViewFaceBookLogin() {
-        if (isNetworkEnabled()) {
+        /** if (isNetworkEnabled()) {
             LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "email", "user_birthday"));
         } else {
             ApplicationUtilities.showSnackBar(getWindow().getDecorView(), getString(R.string.network_not_detected),
                     Snackbar.LENGTH_LONG, getString(R.string.try_again),
                     view -> findViewById(R.id.viewFacebookLogin).performClick());
-        }
+        } **/
+
+        // Only in dev
+        Intent mIntent = new Intent(this, MainActivity.class);
+        startActivity(mIntent);
+        this.finish();
     }
 
     private void requestGraphAPI(final LoginResult loginResult) {
@@ -190,7 +185,7 @@ public class LoginActivity extends BaseActivity {
 
         try {
 
-            AppSingleton.getInstance().getNetworkInterface().doLogin(
+            retrofit.create(NetworkInterface.class).doLogin(
                     profile.getName(),
                     profile.getId(),
                     object.optString("email", ""),

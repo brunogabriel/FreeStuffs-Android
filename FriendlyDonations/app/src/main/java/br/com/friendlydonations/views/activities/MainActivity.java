@@ -1,8 +1,6 @@
 package br.com.friendlydonations.views.activities;
 
-import android.content.Intent;
 import android.graphics.Typeface;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
@@ -21,7 +19,6 @@ import com.squareup.picasso.Picasso;
 
 import br.com.friendlydonations.R;
 import br.com.friendlydonations.managers.BaseActivity;
-import br.com.friendlydonations.utils.TypefaceMaker;
 import br.com.friendlydonations.views.adapters.DynamicTabViewPageAdapter;
 import br.com.friendlydonations.views.fragments.DonateFragment;
 import br.com.friendlydonations.views.fragments.HomeFragment;
@@ -33,6 +30,7 @@ import butterknife.BindArray;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import uk.co.chrisjenx.calligraphy.TypefaceUtils;
 
 /**
  * Created by brunogabriel on 8/27/16.
@@ -67,30 +65,13 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         initUI();
-        setupTypefaces();
-    }
-
-    @Override
-    public void setupTypefaces() {
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... voids) {
-                mMonserratRegular = TypefaceMaker.createTypeFace(MainActivity.this, TypefaceMaker.FontFamily.MontserratRegular);
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Void aVoid) {
-                super.onPostExecute(aVoid);
-                applyTypefaceToolbar(toolbar, mMonserratRegular);
-                setupTabs(viewPager);
-            }
-        }.execute();
     }
 
     @Override
     public void initUI() {
         setupToolbar(toolbar, "", null, false, false);
+        applyTypefaceToolbar(toolbar, TypefaceUtils.load(getAssets(), "fonts/Montserrat-Regular.ttf"));
+        setupTabs(viewPager);
     }
 
     private void setupTabs(final ViewPager viewPager) {

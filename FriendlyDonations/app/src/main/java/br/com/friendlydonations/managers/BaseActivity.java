@@ -36,6 +36,7 @@ import android.content.IntentSender;
 import android.content.pm.PackageManager;
 
 import br.com.friendlydonations.utils.ConstantsTypes;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
  * Created by brunogabriel on 8/23/16.
@@ -64,7 +65,6 @@ public abstract class BaseActivity extends AppCompatActivity implements GoogleAp
     }
 
     public abstract void initUI();
-    public abstract void setupTypefaces();
 
     protected void setupToolbar(Toolbar mToolbar, String mTitle, String mSubtitle, boolean
             isDisplayHomeAsUpEnabled, boolean isDisplayShowHomeEnabled) {
@@ -111,12 +111,6 @@ public abstract class BaseActivity extends AppCompatActivity implements GoogleAp
         ConnectivityManager mConnectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
         return mNetworkInfo != null && mNetworkInfo.isConnected();
-    }
-
-    protected void setTypeface (Typeface mTypeface, TextView mTextView) {
-        if (mTypeface != null && mTextView != null) {
-            mTextView.setTypeface(mTypeface);
-        }
     }
 
     // GPS
@@ -252,6 +246,11 @@ public abstract class BaseActivity extends AppCompatActivity implements GoogleAp
 
     public ProgressDialog getProgressDialog() {
         return this.progressDialog;
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
 }

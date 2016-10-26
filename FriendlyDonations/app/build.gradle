@@ -1,8 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
-//apply plugin: 'com.google.gms.google-services'
 apply plugin: 'me.tatarka.retrolambda'
-
+apply plugin: 'com.neenbedankt.android-apt'
 
 android {
     compileSdkVersion 24
@@ -39,8 +38,8 @@ android {
 
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
+    //compile fileTree(dir: 'libs', include: ['*.jar'])
+    //testCompile 'junit:junit:4.12'
 
     // Android and Google Dependencies
     compile 'com.android.support:appcompat-v7:24.2.1'
@@ -89,4 +88,12 @@ dependencies {
 
     // Dexter permissions
     compile 'com.karumi:dexter:2.3.1'
+
+    // Dagger 2
+    apt 'com.google.dagger:dagger-compiler:2.7'
+    compile 'com.google.dagger:dagger:2.7'
+    provided 'javax.annotation:jsr250-api:1.0'
+
+    // Calligraphy
+    compile 'uk.co.chrisjenx:calligraphy:2.2.0'
 }
