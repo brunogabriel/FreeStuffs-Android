@@ -18,6 +18,9 @@
     <dimen name="material_component_element">72dp</dimen>
     <dimen name="material_component_grid_lists_padding_big">4dp</dimen>
 
+    <!-- Floating Action Button -->
+    <dimen name="material_component_floating_action_button_size">56dp</dimen>
+
     <!-- Base Typefaces -->
     <dimen name="dimen_typeface1">12sp</dimen>
     <dimen name="dimen_typeface2">14sp</dimen>

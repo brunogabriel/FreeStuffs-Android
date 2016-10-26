@@ -55,6 +55,7 @@ public abstract class BaseActivity extends AppCompatActivity implements GoogleAp
     protected LocationRequest mLocationRequest;
     protected Location mCurrentLocation;
 
+    // Base Loader
     protected ProgressDialog progressDialog;
 
     @Override
@@ -74,7 +75,6 @@ public abstract class BaseActivity extends AppCompatActivity implements GoogleAp
             getSupportActionBar().setSubtitle(mSubtitle);
             getSupportActionBar().setDisplayHomeAsUpEnabled(isDisplayHomeAsUpEnabled);
             getSupportActionBar().setDisplayShowHomeEnabled(isDisplayShowHomeEnabled);
-
         }
     }
 
@@ -119,19 +119,14 @@ public abstract class BaseActivity extends AppCompatActivity implements GoogleAp
         }
     }
 
-    protected boolean isLollipopSupport() {
-        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
-    }
-
     // GPS
     @Override
     public void onConnected(Bundle bundle) {
-
     }
 
     @Override
     public void onConnectionSuspended(int i) {
-        Log.d("BASE_ACTIVITY", "onConnectionSuspended: " + i);
+        Log.d(TAG, "onConnectionSuspended: " + i);
     }
 
     @Override
@@ -156,9 +151,9 @@ public abstract class BaseActivity extends AppCompatActivity implements GoogleAp
 
     public void initLocation(Activity mActivity) {
         mLocationRequest = new LocationRequest();
-        mLocationRequest.setInterval(GPS_UPDATE_INTERVAL); // Intervalo de Atualizacoes
-        mLocationRequest.setFastestInterval(GPS_FAST_UPDATE_INTERVAL); // Intervalo Rapido
-        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY); // Prior alta do app
+        mLocationRequest.setInterval(GPS_UPDATE_INTERVAL);
+        mLocationRequest.setFastestInterval(GPS_FAST_UPDATE_INTERVAL);
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
         final Activity mFinalActivity = mActivity;
         LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()

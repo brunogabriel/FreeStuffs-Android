@@ -13,8 +13,7 @@ import rx.Observable;
  * Created by brunogabriel on 9/13/16.
  */
 public interface NetworkInterface {
-
-    public static final String SERVER_URL = "http://192.168.50.4:3000/";
+    String SERVER_URL = "http://192.168.50.4:3000/";
 
     @FormUrlEncoded
     @POST("users/login")
@@ -29,5 +28,4 @@ public interface NetworkInterface {
             @Field("platform") String platform,
             @Field("language") String language
     );
-
 }

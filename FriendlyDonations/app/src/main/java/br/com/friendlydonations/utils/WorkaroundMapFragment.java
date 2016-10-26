@@ -8,7 +8,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-
 import com.google.android.gms.maps.SupportMapFragment;
 
 /**
@@ -36,7 +35,7 @@ public class WorkaroundMapFragment extends SupportMapFragment {
     }
 
     public interface OnTouchListener {
-        public abstract void onTouch();
+       void onTouch();
     }
 
     public class TouchableWrapper extends FrameLayout {

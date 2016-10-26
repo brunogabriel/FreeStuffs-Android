@@ -23,11 +23,10 @@ import br.com.friendlydonations.managers.BaseActivity;
 /**
  * Created by brunogabriel on 29/09/16.
  */
-
 public class ApplicationUtilities {
 
     public static void showSnackBar(View rootView, String message, int snackSize, String actionUndo, View.OnClickListener onClickListener) {
-        Snackbar snackbar = null;
+        Snackbar snackbar;
         if (actionUndo != null && onClickListener != null) {
             snackbar = Snackbar.make(rootView, message, snackSize).setAction(actionUndo, onClickListener);
         } else {

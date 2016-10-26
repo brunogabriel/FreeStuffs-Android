@@ -1,6 +1,5 @@
 package br.com.friendlydonations.models;
 
-import android.graphics.Bitmap;
 import android.net.Uri;
 
 import java.io.Serializable;
@@ -8,7 +7,6 @@ import java.io.Serializable;
 /**
  * Created by brunogabriel on 03/10/16.
  */
-
 public class PictureUpload implements Serializable {
 
     private int position;

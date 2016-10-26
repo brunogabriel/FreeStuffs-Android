@@ -44,7 +44,7 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.toolbar) protected Toolbar toolbar;
     @BindView(R.id.viewpager) protected ViewPager viewPager;
     @BindView(R.id.tabs) protected TabLayout tabs;
-    // @BindView(R.id.fabdonation) protected FloatingActionButton fabDonation;
+    @BindView(R.id.fabLocation) protected FloatingActionButton fabLocation;
     @BindView(R.id.coordinatorLayout) protected CoordinatorLayout coordinatorLayout;
     @BindView(R.id.appBar) protected AppBarLayout appBar;
     @BindArray(R.array.array_tab_main) protected String []tabArrayNames;
@@ -107,7 +107,7 @@ public class MainActivity extends BaseActivity {
 
                 viewPager.setAdapter(viewPagerAdapter);
                 tabs.setupWithViewPager(viewPager);
-                tabs.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+                tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
                     @Override
                     public void onTabSelected(TabLayout.Tab tab) {
                         tab.getCustomView().setAlpha(1.0f);
@@ -157,14 +157,14 @@ public class MainActivity extends BaseActivity {
         if (tab != null) {
             viewPager.setCurrentItem(tab.getPosition());
             toolbar.setTitle(tabArrayNames[tab.getPosition()]);
+            fabLocation.setVisibility(tab.getPosition() == 1 ? View.VISIBLE: View.GONE);
         }
     }
 
-    /** @OnClick(R.id.fabdonation)
+    @OnClick(R.id.fabLocation)
     protected void onClickFabDonation() {
-        Intent mIntent = new Intent(MainActivity.this, DonationDetailActivity.class);
-        startActivity(mIntent);
-    } **/
+        // TODO
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

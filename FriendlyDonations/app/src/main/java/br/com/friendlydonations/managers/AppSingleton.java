@@ -2,11 +2,8 @@ package br.com.friendlydonations.managers;
 
 import android.util.Log;
 
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
-
 import br.com.friendlydonations.network.NetworkInterface;
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Response;
 import retrofit2.Retrofit;
@@ -18,7 +15,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class AppSingleton {
 
-    // Singleton instance reference
     private static AppSingleton ourInstance = new AppSingleton();
 
     public static final int READ_TIMEOUT = 1; // Minutes
@@ -28,7 +24,6 @@ public class AppSingleton {
     private Retrofit mRetrofit;
     private NetworkInterface mNetworkInterface;
     private OkHttpClient mOKHttp;
-
 
     private AppSingleton() {
         initializeRest();
@@ -59,7 +54,6 @@ public class AppSingleton {
         if (ourInstance == null) {
             ourInstance = new AppSingleton();
         }
-
         return ourInstance;
     }
 

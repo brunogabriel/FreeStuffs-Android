@@ -9,8 +9,6 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.Log;
 import android.widget.Toast;
-
-import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -22,9 +20,7 @@ import com.facebook.ProfileTracker;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.google.firebase.iid.FirebaseInstanceId;
-
 import org.json.JSONObject;
-
 import java.io.InvalidObjectException;
 import java.security.InvalidParameterException;
 import java.util.Arrays;
@@ -135,8 +131,8 @@ public class LoginActivity extends BaseActivity {
             }
         });
 
-        AccessToken currentAccessToken = AccessToken.getCurrentAccessToken();
-        Profile currentProfile = Profile.getCurrentProfile();
+        /** AccessToken currentAccessToken = AccessToken.getCurrentAccessToken();
+        Profile currentProfile = Profile.getCurrentProfile(); **/
 
         /**  AccessToken.refreshCurrentAccessTokenAsync(new AccessToken.AccessTokenRefreshCallback() {
             @Override

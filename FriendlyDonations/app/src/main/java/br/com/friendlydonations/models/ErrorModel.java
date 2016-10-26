@@ -5,7 +5,6 @@ import com.google.gson.annotations.SerializedName;
 /**
  * Created by brunogabriel on 10/10/16.
  */
-
 public class ErrorModel {
 
     @SerializedName("cause")
@@ -18,7 +17,6 @@ public class ErrorModel {
     private String type;
 
     public ErrorModel() {
-
     }
 
     public String getCause() {

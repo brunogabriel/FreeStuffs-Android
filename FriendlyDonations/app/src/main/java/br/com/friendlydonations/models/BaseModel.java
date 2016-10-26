@@ -2,11 +2,9 @@ package br.com.friendlydonations.models;
 
 import com.google.gson.annotations.SerializedName;
 
-
 /**
  * Created by brunogabriel on 05/10/16.
  */
-
 public abstract class BaseModel {
 
     @SerializedName("status")
