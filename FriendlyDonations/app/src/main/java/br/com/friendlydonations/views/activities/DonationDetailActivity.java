@@ -1,11 +1,14 @@
 package br.com.friendlydonations.views.activities;
 
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.text.TextPaint;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +24,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
 import net.lucode.hackware.magicindicator.ViewPagerHelper;
+
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,12 +37,14 @@ import br.com.friendlydonations.views.widgets.ScaleCircleNavigator;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import uk.co.chrisjenx.calligraphy.TypefaceUtils;
 
 /**
  * Created by brunogabriel on 9/7/16.
  */
 public class DonationDetailActivity extends BaseActivity{
 
+    @BindView(R.id.main_collapsing) protected CollapsingToolbarLayout collapsingToolbarLayout;
     @BindView(R.id.tvDonateLocation) protected TextView tvDonateLocation;
     @BindView(R.id.tvDonateDescription) protected TextView tvDonateDescription;
     @BindView(R.id.tvDonateSeeMore) protected TextView tvDonateSeeMore;
@@ -72,19 +79,17 @@ public class DonationDetailActivity extends BaseActivity{
     @Override
     public void initUI() {
         setupToolbar(toolbar, getString(R.string.lorem_name), "", true, true);
-
+        collapsingToolbarLayout.setCollapsedTitleTypeface(TypefaceUtils.load(getAssets(), "fonts/Montserrat-Regular.ttf"));
+        collapsingToolbarLayout.setExpandedTitleTypeface(TypefaceUtils.load(getAssets(), "fonts/Montserrat-Bold.ttf"));
         applyCloseMenu();
         tvDonateLocation.setText(String.format(getResources().getString(R.string.donate_detail_location), "São José dos Campos, SP, Brazil"));
         dynamicPageAdapter = new DynamicPageAdapterImages(mViews);
 
-
         ScaleCircleNavigator scaleCircleNavigator = new ScaleCircleNavigator(this);
         circlePage.setNavigator(scaleCircleNavigator);
 
-
         viewPager.setAdapter(dynamicPageAdapter);
         ViewPagerHelper.bind(circlePage, viewPager);
-
 
         // Only to test
         mViews.clear();
@@ -100,32 +105,25 @@ public class DonationDetailActivity extends BaseActivity{
         dynamicPageAdapter.notifyDataSetChanged();
 
         mapFragment = (WorkaroundMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-        mapFragment.getMapAsync(new OnMapReadyCallback() {
-            @Override
-            public void onMapReady(GoogleMap googleMap) {
-                LatLng mCoords = new LatLng(-34, 151);
-                googleMap.addMarker(new MarkerOptions().position(mCoords).title("Marker in My Coords"));
-                googleMap.moveCamera(CameraUpdateFactory.newLatLng(mCoords));
+        mapFragment.getMapAsync(googleMap -> {
+            LatLng mCoords = new LatLng(-34, 151);
+            googleMap.addMarker(new MarkerOptions().position(mCoords).title("Marker in My Coords"));
+            googleMap.moveCamera(CameraUpdateFactory.newLatLng(mCoords));
 
-                CameraPosition mCameraPosition = new CameraPosition.Builder()
-                        .target(mCoords)
-                        .zoom(15)
-                        .tilt(45)
-                        .bearing(0)
-                        .build();
+            CameraPosition mCameraPosition = new CameraPosition.Builder()
+                    .target(mCoords)
+                    .zoom(15)
+                    .tilt(45)
+                    .bearing(0)
+                    .build();
 
-                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(mCameraPosition));
-            }
+            googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(mCameraPosition));
         });
-        mapFragment.setListener(new WorkaroundMapFragment.OnTouchListener() {
-            @Override
-            public void onTouch() {
-                NestedScrollView nsvContentScroll = (NestedScrollView) findViewById(R.id.nsvContentScroll);
-                if (nsvContentScroll != null)
-                    nsvContentScroll.requestDisallowInterceptTouchEvent(true);
-            }
+        mapFragment.setListener(() -> {
+            NestedScrollView nsvContentScroll = (NestedScrollView) findViewById(R.id.nsvContentScroll);
+            if (nsvContentScroll != null)
+                nsvContentScroll.requestDisallowInterceptTouchEvent(true);
         });
-
     }
 
     protected void applyCloseMenu() {

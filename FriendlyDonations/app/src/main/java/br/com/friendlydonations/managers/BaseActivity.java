@@ -87,7 +87,7 @@ public abstract class BaseActivity extends AppCompatActivity implements GoogleAp
                         TextView tv = (TextView) view;
                         if(tv.getText().equals(mToolbar.getTitle())){
                             tv.setTypeface(typeface);
-                            break;
+                            //break;
                         }
                     }
                 }

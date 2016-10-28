@@ -1,6 +1,5 @@
 package br.com.friendlydonations.views.activities;
 
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
@@ -37,8 +36,6 @@ import uk.co.chrisjenx.calligraphy.TypefaceUtils;
  */
 public class MainActivity extends BaseActivity {
 
-    protected Typeface mMonserratRegular;
-
     @BindView(R.id.toolbar) protected Toolbar toolbar;
     @BindView(R.id.viewpager) protected ViewPager viewPager;
     @BindView(R.id.tabs) protected TabLayout tabs;
@@ -70,8 +67,8 @@ public class MainActivity extends BaseActivity {
     @Override
     public void initUI() {
         setupToolbar(toolbar, "", null, false, false);
-        applyTypefaceToolbar(toolbar, TypefaceUtils.load(getAssets(), "fonts/Montserrat-Regular.ttf"));
         setupTabs(viewPager);
+        applyTypefaceToolbar(toolbar, TypefaceUtils.load(getAssets(), "fonts/Montserrat-Regular.ttf"));
     }
 
     private void setupTabs(final ViewPager viewPager) {
@@ -111,7 +108,7 @@ public class MainActivity extends BaseActivity {
 
                     RelativeLayout mTabLayout = (RelativeLayout) LayoutInflater.from(this).inflate(R.layout.tabbadge, null, false);
                     BadgeViewLayout mBadge = new BadgeViewLayout(mTabLayout);
-                    mBadge.initUi(R.id.badgeImage, R.id.rlBadge, R.id.textBadge, mMonserratRegular);
+                    mBadge.initUi(R.id.badgeImage, R.id.rlBadge, R.id.textBadge);
                     Picasso.with(this).load(tabIcons[i]).into(mBadge.getBadgeImage());
 
                     // Save notification tab

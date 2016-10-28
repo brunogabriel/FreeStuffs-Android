@@ -21,11 +21,10 @@ public class BadgeViewLayout {
         this.rootBadge = rootBadge;
     }
 
-    public void initUi(int idImage, int idBadge, int idText, Typeface mBadgeTypeface) {
+    public void initUi(int idImage, int idBadge, int idText) {
         if (rootBadge != null) {
             rlBadge = (RelativeLayout) rootBadge.findViewById(idBadge);
             badgeText = (AppCompatTextView) rootBadge.findViewById(idText);
-            badgeText.setTypeface(mBadgeTypeface);
             badgeImage = (ImageView) rootBadge.findViewById(idImage);
         }
     }
