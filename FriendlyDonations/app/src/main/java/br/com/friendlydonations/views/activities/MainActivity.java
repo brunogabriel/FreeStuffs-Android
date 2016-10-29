@@ -3,7 +3,6 @@ package br.com.friendlydonations.views.activities;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
@@ -21,14 +20,12 @@ import br.com.friendlydonations.managers.BaseActivity;
 import br.com.friendlydonations.views.adapters.DynamicTabViewPageAdapter;
 import br.com.friendlydonations.views.fragments.DonateFragment;
 import br.com.friendlydonations.views.fragments.HomeFragment;
-import br.com.friendlydonations.views.fragments.MapLocationFragment;
 import br.com.friendlydonations.views.fragments.NotificationsFragment;
 import br.com.friendlydonations.views.fragments.ProfileFragment;
 import br.com.friendlydonations.views.widgets.BadgeViewLayout;
 import butterknife.BindArray;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import uk.co.chrisjenx.calligraphy.TypefaceUtils;
 
 /**
@@ -39,7 +36,6 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.toolbar) protected Toolbar toolbar;
     @BindView(R.id.viewpager) protected ViewPager viewPager;
     @BindView(R.id.tabs) protected TabLayout tabs;
-    @BindView(R.id.fabLocation) protected FloatingActionButton fabLocation;
     @BindView(R.id.coordinatorLayout) protected CoordinatorLayout coordinatorLayout;
     @BindView(R.id.appBar) protected AppBarLayout appBar;
     @BindArray(R.array.array_tab_main) protected String []tabArrayNames;
@@ -48,7 +44,6 @@ public class MainActivity extends BaseActivity {
 
     private int[]tabIcons = {
             R.drawable.ic_home_tab,
-            R.drawable.ic_location_tab,
             R.drawable.ic_profile_tab,
             R.drawable.ic_profile_tab,
             R.drawable.ic_notifications_tab
@@ -78,10 +73,10 @@ public class MainActivity extends BaseActivity {
             try {
                 // Adding Fragments
                 viewPagerAdapter.addFragment(new HomeFragment(), tabArrayNames[0] );
-                viewPagerAdapter.addFragment(new MapLocationFragment(), tabArrayNames[1]);
-                viewPagerAdapter.addFragment(new DonateFragment(), tabArrayNames[2]);
-                viewPagerAdapter.addFragment(new ProfileFragment(), tabArrayNames[3]);
-                viewPagerAdapter.addFragment(new NotificationsFragment(), tabArrayNames[4]);
+                // viewPagerAdapter.addFragment(new MapLocationFragment(), tabArrayNames[1]);
+                viewPagerAdapter.addFragment(new DonateFragment(), tabArrayNames[1]);
+                viewPagerAdapter.addFragment(new ProfileFragment(), tabArrayNames[2]);
+                viewPagerAdapter.addFragment(new NotificationsFragment(), tabArrayNames[3]);
 
                 viewPager.setAdapter(viewPagerAdapter);
                 tabs.setupWithViewPager(viewPager);
@@ -135,13 +130,7 @@ public class MainActivity extends BaseActivity {
         if (tab != null) {
             viewPager.setCurrentItem(tab.getPosition());
             toolbar.setTitle(tabArrayNames[tab.getPosition()]);
-            fabLocation.setVisibility(tab.getPosition() == 1 ? View.VISIBLE: View.GONE);
         }
-    }
-
-    @OnClick(R.id.fabLocation)
-    protected void onClickFabDonation() {
-        // TODO
     }
 
     @Override

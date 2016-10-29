@@ -17,9 +17,15 @@
     <dimen name="material_touchable">48dp</dimen>
     <dimen name="material_component_element">72dp</dimen>
     <dimen name="material_component_grid_lists_padding_big">4dp</dimen>
+    <dimen name="material_alert_max_height">512dp</dimen>
 
     <!-- Floating Action Button -->
     <dimen name="material_component_floating_action_button_size">56dp</dimen>
+
+    <!-- Component Profile -->
+    <dimen name="dimen_profile_username">26sp</dimen>
+    <dimen name="dimen_profile_number_donations">28sp</dimen>
+    <dimen name="dimen_profile_donations_description">20sp</dimen>
 
     <!-- Base Typefaces -->
     <dimen name="dimen_typeface1">12sp</dimen>

@@ -19,6 +19,8 @@
     <color name="colorGray">#A4A3B1</color>
     <color name="colorGraySubtitle">#8F8EA7</color>
     <color name="colorGray300">#E0E0E0</color>
+    <color name="colorLightGrayText">#F0F3F6</color>
+    <color name="colorGrayExtraBold">#404040</color>
 
     <color name="colorYellow">#FFD85C</color>
 

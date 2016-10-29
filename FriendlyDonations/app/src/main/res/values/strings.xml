@@ -19,6 +19,9 @@
     <string name="login_with_facebook">Login With Facebook</string>
     <string name="login_with_facebook_cancelled">Login With Facebook was cancelled</string>
     <string name="login_with_facebook_error">An error occurred during Facebook Login, try again or wait and try later.</string>
+    <string name="login_alert_about_title">About</string>
+    <string name="login_alert_about_accept">Accept</string>
+    <string name="login_alert_about_refuse">Refuse</string>
 
     <!-- Donate Detail Activity -->
     <string name="donate_detail_location">Location: %1$s</string>
@@ -45,6 +48,13 @@
     <string name="donate_fragment_by_phone">by phone</string>
     <string name="donate_fragment_post_it">Post it</string>
 
+    <!-- Fragment Profile -->
+    <string name="profile_fragment_preferences">preferences</string>
+    <string name="profile_fragment_donations_done">done\ndonations</string>
+    <string name="profile_fragment_donations_received">feitas\ndonations</string>
+    <string name="profile_fragment_activated_donations">My activated publications</string>
+
+
     <!-- Lorem Strings -->
     <string name="lorem_name">Lorem Ipsum Dolor</string>
     <string name="lorem_simple">lorem ipsum dolor</string>
@@ -68,6 +78,37 @@
     proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
     <string name="lorem_word">Lorem</string>
 
+    <string name="lorem_phrase_too_large">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
 
     <!-- Donate fragment -->
     <string name="donate_include_image_textual">Include an image to your donation!</string>
@@ -78,7 +119,6 @@
     <!-- Tab bar  items -->
     <array name="array_tab_main">
         <item>Sweet Home</item>
-        <item>Find a Donation</item>
         <item>Donate</item>
         <item>Your Profile</item>
         <item>Notifications</item>

@@ -34,14 +34,14 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"  />
 
 
-    <android.support.design.widget.FloatingActionButton
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:visibility="gone"
-        android:id="@+id/fabLocation"
-        android:layout_margin="@dimen/dimen_vertical_spacing"
-        android:layout_width="@dimen/material_component_floating_action_button_size"
-        android:layout_height="@dimen/material_component_floating_action_button_size"
-        android:layout_gravity="end|bottom"
-        android:src="@drawable/ic_my_location_white_48dp" />
+    <!--<android.support.design.widget.FloatingActionButton-->
+        <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+        <!--android:visibility="gone"-->
+        <!--android:id="@+id/fabLocation"-->
+        <!--android:layout_margin="@dimen/dimen_vertical_spacing"-->
+        <!--android:layout_width="@dimen/material_component_floating_action_button_size"-->
+        <!--android:layout_height="@dimen/material_component_floating_action_button_size"-->
+        <!--android:layout_gravity="end|bottom"-->
+        <!--android:src="@drawable/ic_my_location_white_48dp" />-->
 
 </android.support.design.widget.CoordinatorLayout>

@@ -5,8 +5,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Toast;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -22,7 +25,6 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import org.json.JSONObject;
 import java.io.InvalidObjectException;
 import java.security.InvalidParameterException;
-import java.util.Arrays;
 import java.util.Locale;
 
 import javax.inject.Inject;
@@ -151,6 +153,14 @@ public class LoginActivity extends BaseActivity {
         Intent mIntent = new Intent(this, MainActivity.class);
         startActivity(mIntent);
         this.finish();
+    }
+
+    @OnClick(R.id.tvAboutTerms)
+    protected void onClickTvAlert() {
+        View mView = LayoutInflater.from(this).inflate(R.layout.alert_about_terms, null, false);
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
+        mBuilder.setView(mView);
+        mBuilder.show();
     }
 
     private void requestGraphAPI(final LoginResult loginResult) {

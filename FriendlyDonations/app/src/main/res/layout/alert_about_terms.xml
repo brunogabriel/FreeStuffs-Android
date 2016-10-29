@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:background="@android:color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_margin="@dimen/material_card_padding"
+        android:id="@+id/tvAlertTitle"
+        android:gravity="center_vertical"
+        android:minHeight="@dimen/material_component_text_full_width_single_line_text_field_height"
+        android:textSize="@dimen/dimen_typeface3"
+        android:textColor="@color/colorPallet2"
+        android:text="@string/login_alert_about_title"
+        fontPath="fonts/Roboto-Medium.ttf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ScrollView
+        android:layout_marginLeft="@dimen/material_card_padding"
+        android:layout_marginRight="@dimen/material_card_padding"
+        android:layout_width="match_parent"
+        android:layout_height="300dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tvContentAlert"
+                fontPath="font/Roboto-Light.ttf"
+                android:textSize="@dimen/dimen_typeface2"
+                android:text="@string/lorem_phrase_too_large"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Bottom Layout -->
+    <LinearLayout
+        android:layout_marginLeft="@dimen/material_card_padding"
+        android:layout_marginRight="@dimen/material_card_padding"
+        android:gravity="right"
+        android:textColor="@color/colorPallet2"
+        android:orientation="horizontal"
+        android:id="@+id/bottomLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/material_component_text_full_width_single_line_text_field_height"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:textColor="@color/colorGraySubtitle"
+            android:textAllCaps="true"
+            android:gravity="right|center_vertical"
+            android:clickable="true"
+            android:background="?android:attr/selectableItemBackground"
+            android:layout_gravity="center"
+            android:layout_marginRight="@dimen/material_card_padding"
+            android:textSize="@dimen/dimen_typeface3"
+            android:minWidth="88dp"
+            android:text="@string/login_alert_about_refuse"
+            fontPath="fonts/Roboto-Medium.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:textColor="@color/colorPrimary"
+            android:textAllCaps="true"
+            android:gravity="right|center_vertical"
+            android:clickable="true"
+            android:background="?android:attr/selectableItemBackground"
+            android:minWidth="88dp"
+            android:layout_gravity="center"
+            android:text="@string/login_alert_about_accept"
+            android:textSize="@dimen/dimen_typeface3"
+            fontPath="fonts/Roboto-Medium.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+
+
+</LinearLayout>

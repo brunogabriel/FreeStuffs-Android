@@ -64,7 +64,6 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
     @BindView(R.id.etProductItemTitle) AppCompatEditText etProductItemTitle;
     @BindView(R.id.etDescription) AppCompatEditText etDescription;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // mainActivity = (MainActivity) getActivity();
