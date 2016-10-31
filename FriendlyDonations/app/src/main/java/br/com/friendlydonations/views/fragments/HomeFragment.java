@@ -62,6 +62,7 @@ public class HomeFragment extends BaseFragment {
         adapter.addAll(mItens);
     }
 
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         //inflater.inflate(R.menu.menu_homefragment, menu);

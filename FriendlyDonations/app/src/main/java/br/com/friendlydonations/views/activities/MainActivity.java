@@ -33,23 +33,33 @@ import uk.co.chrisjenx.calligraphy.TypefaceUtils;
  */
 public class MainActivity extends BaseActivity {
 
-    @BindView(R.id.toolbar) protected Toolbar toolbar;
-    @BindView(R.id.viewpager) protected ViewPager viewPager;
-    @BindView(R.id.tabs) protected TabLayout tabs;
-    @BindView(R.id.coordinatorLayout) protected CoordinatorLayout coordinatorLayout;
-    @BindView(R.id.appBar) protected AppBarLayout appBar;
-    @BindArray(R.array.array_tab_main) protected String []tabArrayNames;
-
-    BadgeViewLayout notificationBadge;
-
-    private int[]tabIcons = {
+    public static final int[]tabIcons = {
             R.drawable.ic_home_tab,
             R.drawable.ic_profile_tab,
             R.drawable.ic_profile_tab,
             R.drawable.ic_notifications_tab
     };
 
-    private DynamicTabViewPageAdapter viewPagerAdapter;
+    @BindView(R.id.toolbar)
+    protected Toolbar toolbar;
+
+    @BindView(R.id.viewpager)
+    protected ViewPager viewPager;
+
+    @BindView(R.id.tabs)
+    protected TabLayout tabs;
+
+    @BindView(R.id.coordinatorLayout)
+    protected CoordinatorLayout coordinatorLayout;
+
+    @BindView(R.id.appBar)
+    protected AppBarLayout appBar;
+
+    @BindArray(R.array.array_tab_main)
+    protected String []tabArrayNames;
+
+    protected BadgeViewLayout notificationBadge;
+    protected DynamicTabViewPageAdapter viewPagerAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,11 +83,9 @@ public class MainActivity extends BaseActivity {
             try {
                 // Adding Fragments
                 viewPagerAdapter.addFragment(new HomeFragment(), tabArrayNames[0] );
-                // viewPagerAdapter.addFragment(new MapLocationFragment(), tabArrayNames[1]);
                 viewPagerAdapter.addFragment(new DonateFragment(), tabArrayNames[1]);
                 viewPagerAdapter.addFragment(new ProfileFragment(), tabArrayNames[2]);
                 viewPagerAdapter.addFragment(new NotificationsFragment(), tabArrayNames[3]);
-
                 viewPager.setAdapter(viewPagerAdapter);
                 tabs.setupWithViewPager(viewPager);
                 tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

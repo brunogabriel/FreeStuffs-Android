@@ -17,14 +17,15 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by brunogabriel on 9/11/16.
+ * Created by brunogabriel on 31/10/16.
  */
-public class HomeCardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
+public class OwnDonationsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     // TODO: USAR HOLDERTYPES INTERFACE
     private BaseActivity activity;
     private List<Object> items = new ArrayList<>();
 
-    public HomeCardAdapter(BaseActivity activity) {
+    public OwnDonationsAdapter(BaseActivity activity) {
         this.activity = activity;
     }
 
@@ -32,15 +33,15 @@ public class HomeCardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // TODO
         View mInflateredView = LayoutInflater.from(parent.getContext()).inflate(R.layout.holder_card_donation, parent, false);
-        RecyclerView.ViewHolder viewHolder = new HomeCardViewHolder(mInflateredView);
+        RecyclerView.ViewHolder viewHolder = new OwnDonationsAdapter.OwnDonationCardViewHolder(mInflateredView);
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         // TODO
-        if (holder instanceof HomeCardViewHolder) {
-            ((HomeCardViewHolder) holder).populateUI();
+        if (holder instanceof HomeCardAdapter.HomeCardViewHolder) {
+            ((HomeCardAdapter.HomeCardViewHolder) holder).populateUI();
         }
     }
 
@@ -58,12 +59,12 @@ public class HomeCardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
-    public class HomeCardViewHolder extends RecyclerView.ViewHolder {
+    public class OwnDonationCardViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.cardTitle)
         AppCompatTextView cardTitle;
 
-        public HomeCardViewHolder(View itemView) {
+        public OwnDonationCardViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(view -> {

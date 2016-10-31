@@ -39,6 +39,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:weightSum="100"
+            android:paddingBottom="@dimen/dimen_vertical_spacing"
             android:layout_height="wrap_content">
 
             <!-- Left Text -->
@@ -131,6 +132,7 @@
                 android:layout_height="wrap_content" />
 
             <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerViewProfile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             </android.support.v7.widget.RecyclerView>
