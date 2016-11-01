@@ -7,10 +7,13 @@ public interface ConstantsTypes {
 
     String PLATFORM = "android";
 
-    /**
-     * Holders
-     */
-    int CARD_HOME = 1;
+    /** Holders **/
+
+    int VH_VOID  = 0;
+    int VH_LOADING = 1;
+
+    int VH_CATEGORY_SIMPLE = 1000;
+    int VH_CATEGORY_CHECK = 1001;
 
     /**
      * Permissions

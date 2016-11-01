@@ -4,41 +4,75 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import br.com.friendlydonations.R;
 import br.com.friendlydonations.managers.BaseActivity;
+import br.com.friendlydonations.managers.BaseRecyclerViewAdapter;
+import br.com.friendlydonations.models.CategoryModel;
+import br.com.friendlydonations.utils.ConstantsTypes;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by brunogabriel on 21/09/16.
  */
 
-public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class CategoryAdapter extends BaseRecyclerViewAdapter {
 
-    private List<Object> items = new ArrayList<>();
-    BaseActivity activity;
+    // By default, vhType is simple selection
+    private int vhType = ConstantsTypes.VH_CATEGORY_SIMPLE;
 
     public CategoryAdapter (BaseActivity activity) {
-        this.activity = activity;
+        super(activity);
     }
 
+    public CategoryAdapter(BaseActivity activity, int vhType) {
+        super(activity);
+        this.vhType = vhType;
+    }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View mInflateredView = LayoutInflater.from(parent.getContext()).inflate(R.layout.holder_card_category, parent, false);
-        RecyclerView.ViewHolder viewHolder = new CategoryViewHolder(mInflateredView);
+        RecyclerView.ViewHolder viewHolder;
+
+        switch (vhType) {
+            case ConstantsTypes.VH_CATEGORY_CHECK:
+                viewHolder = new VHCategoryCheck(mInflateredView);
+            break;
+
+            case ConstantsTypes.VH_CATEGORY_SIMPLE:
+            default:
+                viewHolder = new VHCategorySimple(mInflateredView);
+                break;
+        }
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        CategoryViewHolder categoryViewHolder = (CategoryViewHolder) holder;
+        VHCategorySimple vhCategorySimple = (VHCategorySimple) holder;
+        CategoryModel model = (CategoryModel) items.get(position);
+        switch (vhType) {
+            case ConstantsTypes.VH_CATEGORY_CHECK:
+                boolean isModelCheck = model.isChecked();
+                if (isModelCheck) {
+                    ((VHCategoryCheck) vhCategorySimple).checkMarker.setVisibility(View.VISIBLE);
+                    vhCategorySimple.itemView.setAlpha(1.0f);
+                } else {
+                    ((VHCategoryCheck) vhCategorySimple).checkMarker.setVisibility(View.GONE);
+                    vhCategorySimple.itemView.setAlpha(0.5f);
+                }
+                // break; // not necessary
+            case ConstantsTypes.VH_CATEGORY_SIMPLE:
+            default:
+                vhCategorySimple.tvCategoryName.setText(model.getCategoryName());
+                break;
+        }
     }
 
     @Override
@@ -46,31 +80,47 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return items == null ? 0: items.size();
     }
 
-    public void addAll(List<Object> newItems) {
-        if (newItems != null) {
-            int beforeSize = items.size();
-            int newItemsSize = newItems.size();
-            items.addAll(newItems);
-            notifyItemRangeInserted(beforeSize, newItemsSize);
-        }
+    @Override
+    public int getItemViewType(int position) {
+        return vhType;
     }
 
-    public void add(Object newItem) {
-        if (newItem != null) {
-            int beforeSize = items.size();
-            items.add(newItem);
-            notifyItemInserted(beforeSize);
+    private void performCheckBehaviour(int position) {
+        int i = 0;
+        for (Object mNextItem: items) {
+            ((CategoryModel) mNextItem).setChecked(i == position ? true: false);
+            i++;
         }
+
+        notifyDataSetChanged();
     }
 
-    public class CategoryViewHolder extends RecyclerView.ViewHolder {
+    /**
+     * View Holders
+     */
+
+    public class VHCategorySimple extends RecyclerView.ViewHolder {
 
         @BindView(R.id.circleImageView) CircleImageView circleImageView;
         @BindView(R.id.tvCategoryName) TextView tvCategoryName;
 
-        public CategoryViewHolder(View itemView) {
+        View itemView;
+
+        public VHCategorySimple(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            this.itemView = itemView;
         }
+    }
+
+    public class VHCategoryCheck extends VHCategorySimple {
+
+        @BindView(R.id.checkMarker) RelativeLayout checkMarker;
+
+        public VHCategoryCheck(View itemView) {
+            super(itemView);
+            itemView.setOnClickListener(v -> performCheckBehaviour(getAdapterPosition()));
+        }
+
     }
 }

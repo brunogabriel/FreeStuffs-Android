@@ -36,6 +36,7 @@ import java.util.List;
 import br.com.friendlydonations.R;
 import br.com.friendlydonations.managers.BaseActivity;
 import br.com.friendlydonations.managers.BaseFragment;
+import br.com.friendlydonations.models.CategoryModel;
 import br.com.friendlydonations.models.PictureUpload;
 import br.com.friendlydonations.utils.ConstantsTypes;
 import br.com.friendlydonations.utils.ApplicationUtilities;
@@ -50,23 +51,32 @@ import uk.co.chrisjenx.calligraphy.TypefaceUtils;
  */
 public class DonateFragment extends BaseFragment implements View.OnFocusChangeListener{
 
-    // Views
-    protected View rootView;
+    @BindView(R.id.tvUploadPhotos)
+    TextView tvUploadPhotos;
 
-    @BindView(R.id.tvUploadPhotos) TextView tvUploadPhotos;
-    @BindView(R.id.recyclerViewPictures) RecyclerView recyclerViewPictures;
-    PictureUploadAdapter pictureAdapter;
+    @BindView(R.id.recyclerViewPictures)
+    RecyclerView recyclerViewPictures;
 
-    @BindView(R.id.tvSelectCategory) TextView tvSelectCategory;
-    @BindView(R.id.recyclerViewCategories) RecyclerView recyclerViewCategories;
+    @BindView(R.id.tvSelectCategory)
+    TextView tvSelectCategory;
+
+    @BindView(R.id.recyclerViewCategories)
+    RecyclerView recyclerViewCategories;
+
+    @BindView(R.id.etProductItemTitle)
+    AppCompatEditText etProductItemTitle;
+
+    @BindView(R.id.etDescription)
+    AppCompatEditText etDescription;
+
     CategoryAdapter categoryAdapter;
 
-    @BindView(R.id.etProductItemTitle) AppCompatEditText etProductItemTitle;
-    @BindView(R.id.etDescription) AppCompatEditText etDescription;
+    PictureUploadAdapter pictureAdapter;
+
+    protected View rootView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // mainActivity = (MainActivity) getActivity();
         rootView = inflater.inflate(R.layout.fragment_donate, container, false);
         ButterKnife.bind(this, rootView);
         //setHasOptionsMenu(true);
@@ -76,32 +86,37 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
 
     @Override
     public void initUI() {
+        initImagesAdapter();
+        initCategoriesAdapter();
+        etProductItemTitle.setOnFocusChangeListener(this);
+        etDescription.setOnFocusChangeListener(this);
+    }
+
+    private void initImagesAdapter() {
         recyclerViewPictures.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         pictureAdapter = new PictureUploadAdapter((BaseActivity) getActivity(), this);
         recyclerViewPictures.setAdapter(pictureAdapter);
 
-        recyclerViewCategories.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-        categoryAdapter = new CategoryAdapter((BaseActivity) getActivity());
-        recyclerViewCategories.setAdapter(categoryAdapter);
-
-        // TODO: Remove, only to test
-        // Adding pictures
         pictureAdapter.add(new PictureUpload(0, null));
         pictureAdapter.add(new PictureUpload(1, null));
         pictureAdapter.add(new PictureUpload(2, null));
         pictureAdapter.add(new PictureUpload(3, null));
         pictureAdapter.add(new PictureUpload(4, null));
+    }
 
-        // Adding categories
-        categoryAdapter.add(new String());
-        categoryAdapter.add(new String());
-        categoryAdapter.add(new String());
-        categoryAdapter.add(new String());
-        categoryAdapter.add(new String());
-        categoryAdapter.add(new String());
+    private void initCategoriesAdapter() {
+        recyclerViewCategories.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        categoryAdapter = new CategoryAdapter((BaseActivity) getActivity(), ConstantsTypes.VH_CATEGORY_CHECK);
+        recyclerViewCategories.setAdapter(categoryAdapter);
 
-        etProductItemTitle.setOnFocusChangeListener(this);
-        etDescription.setOnFocusChangeListener(this);
+        // Only to test
+        categoryAdapter.add(new CategoryModel("Todas", true));
+        categoryAdapter.add(new CategoryModel("Alimentos", false));
+        categoryAdapter.add(new CategoryModel("Animais", false));
+        categoryAdapter.add(new CategoryModel("Eletronicos", false));
+        categoryAdapter.add(new CategoryModel("Móveis", false));
+        categoryAdapter.add(new CategoryModel("Roupas", false));
+        categoryAdapter.add(new CategoryModel("Serviços", false));
     }
 
     @Override
