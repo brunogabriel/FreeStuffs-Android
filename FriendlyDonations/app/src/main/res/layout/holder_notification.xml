@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:clickable="true"
+    android:background="?android:attr/selectableItemBackground"
+    android:padding="@dimen/dimen_horizontal_spacing"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/notificationImage"
+        android:src="@drawable/ic_girl_sample"
+        android:layout_marginRight="@dimen/dimen_horizontal_spacing"
+        android:layout_width="@dimen/dimen_notification_image"
+        android:layout_height="@dimen/dimen_notification_image" />
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_marginRight="@dimen/dimen_horizontal_spacing"
+        android:layout_marginLeft="@dimen/dimen_horizontal_spacing"
+        android:layout_width="match_parent"
+        android:minHeight="@dimen/dimen_notification_image"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/notificationTitle"
+                android:text="Brand new laddies bike 29 wheel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/TextView.Typeface2"
+                tools:ignore="MissingPrefix"
+                android:textColor="@color/colorGray"
+                android:maxLines="1"
+                android:ellipsize="end"
+                fontPath="fonts/Roboto-Light.ttf"/>
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/notificationResume"
+                android:text="Brand new laddies bike 29 wheel Brand new laddies bike 29 wheel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/TextView.Typeface3"
+                tools:ignore="MissingPrefix"
+                android:textColor="@color/colorPrimary"
+                fontPath="fonts/Roboto-Regular.ttf"/>
+
+    </LinearLayout>
+
+</LinearLayout>

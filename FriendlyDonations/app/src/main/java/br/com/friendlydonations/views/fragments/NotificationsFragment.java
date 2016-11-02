@@ -1,6 +1,9 @@
 package br.com.friendlydonations.views.fragments;
 
+import android.app.Notification;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -10,6 +13,9 @@ import android.view.ViewGroup;
 
 import br.com.friendlydonations.R;
 import br.com.friendlydonations.managers.BaseFragment;
+import br.com.friendlydonations.models.NotificationModel;
+import br.com.friendlydonations.views.adapters.NotificationAdapter;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -20,35 +26,34 @@ public class NotificationsFragment extends BaseFragment {
     // Views
     protected View rootView;
 
+    @BindView(R.id.recyclerView)
+    protected RecyclerView recyclerView;
+
+    NotificationAdapter adapter;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // mainActivity = (MainActivity) getActivity();
         rootView = inflater.inflate(R.layout.fragment_notifications, container, false);
         ButterKnife.bind(this, rootView);
-        //setHasOptionsMenu(true);
         initUI();
         return rootView;
     }
 
     @Override
-    public void initUI() {}
+    public void initUI() {
+        adapter = new NotificationAdapter(getActivity());
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setAdapter(adapter);
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        //inflater.inflate(R.menu.menu_homefragment, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
-            /* case R.id.action_exit:
-                mainActivity.doExit();
-                return true; */
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-
+        adapter.add(new NotificationModel());
+        adapter.add(new NotificationModel());
+        adapter.add(new NotificationModel());
+        adapter.add(new NotificationModel());
+        adapter.add(new NotificationModel());
+        adapter.add(new NotificationModel());
+        adapter.add(new NotificationModel());
+        adapter.add(new NotificationModel());
+        adapter.add(new NotificationModel());
     }
 }
