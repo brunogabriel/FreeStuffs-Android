@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
-    android:background="@color/colorGrayExtraBold"
+    android:background="@color/colorBrown"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
@@ -16,7 +16,7 @@
             android:gravity="center_horizontal"
             android:textSize="@dimen/dimen_profile_username"
             android:layout_marginLeft="64dp"
-            android:textColor="@color/colorLightGrayText"
+            android:textColor="@color/colorGrayLight"
             android:layout_marginRight="64dp"
             android:text="Marconi Loura Oliveira"
             android:layout_width="match_parent"
@@ -33,7 +33,7 @@
             android:textSize="@dimen/dimen_typeface2"
             fontPath="fonts/Roboto-Light"
             android:text="@string/profile_fragment_preferences"
-            android:textColor="@color/colorLightGrayText"
+            android:textColor="@color/colorGrayLight"
             android:layout_height="40dp" />
 
         <LinearLayout
@@ -52,7 +52,7 @@
                 <android.support.v7.widget.AppCompatTextView
                     android:gravity="center"
                     android:layout_gravity="center"
-                    android:textColor="@color/colorLightGrayText"
+                    android:textColor="@color/colorGraySemiLight"
                     fontPath="fonts/Montserrat-Regular"
                     android:text="50"
                     android:textSize="@dimen/dimen_profile_number_donations"
@@ -62,7 +62,7 @@
                 <android.support.v7.widget.AppCompatTextView
                     android:gravity="center"
                     android:layout_gravity="center"
-                    android:textColor="@color/colorLightGrayText"
+                    android:textColor="@color/colorGraySemiLight"
                     fontPath="fonts/Montserrat-Regular"
                     android:textSize="@dimen/dimen_profile_donations_description"
                     android:text="@string/profile_fragment_donations_done"
@@ -78,7 +78,7 @@
                 android:layout_height="match_parent">
                 <View
                     android:layout_gravity="center"
-                    android:background="@color/colorLightGrayText"
+                    android:background="@color/colorGraySemiLight"
                     android:layout_width="1px"
                     android:layout_height="match_parent"/>
             </LinearLayout>
@@ -94,7 +94,7 @@
                 <android.support.v7.widget.AppCompatTextView
                     android:gravity="center"
                     android:layout_gravity="center"
-                    android:textColor="@color/colorLightGrayText"
+                    android:textColor="@color/colorGraySemiLight"
                     fontPath="fonts/Montserrat-Regular"
                     android:text="50"
                     android:textSize="@dimen/dimen_profile_number_donations"
@@ -104,7 +104,7 @@
                 <android.support.v7.widget.AppCompatTextView
                     android:gravity="center"
                     android:layout_gravity="center"
-                    android:textColor="@color/colorLightGrayText"
+                    android:textColor="@color/colorGraySemiLight"
                     fontPath="fonts/Montserrat-Regular"
                     android:textSize="@dimen/dimen_profile_donations_description"
                     android:text="@string/profile_fragment_donations_received"
@@ -123,7 +123,7 @@
             android:orientation="vertical">
 
             <android.support.v7.widget.AppCompatTextView
-                android:textColor="@color/colorLightGrayText"
+                android:textColor="@color/colorGraySemiLight"
                 android:textSize="@dimen/dimen_profile_donations_description"
                 android:layout_marginBottom="@dimen/dimen_vertical_spacing"
                 android:gravity="center"

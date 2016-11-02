@@ -35,7 +35,7 @@ public class MainActivity extends BaseActivity {
 
     public static final int[]tabIcons = {
             R.drawable.ic_home_tab,
-            R.drawable.ic_profile_tab,
+            R.drawable.ic_donation_tab,
             R.drawable.ic_profile_tab,
             R.drawable.ic_notifications_tab
     };

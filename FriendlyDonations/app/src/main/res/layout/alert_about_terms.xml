@@ -12,7 +12,7 @@
         android:gravity="center_vertical"
         android:minHeight="@dimen/material_component_text_full_width_single_line_text_field_height"
         android:textSize="@dimen/dimen_typeface3"
-        android:textColor="@color/colorPallet2"
+        android:textColor="@color/colorBrown"
         android:text="@string/login_alert_about_title"
         fontPath="fonts/Roboto-Medium.ttf"
         android:layout_width="match_parent"
@@ -42,7 +42,7 @@
         android:layout_marginLeft="@dimen/material_card_padding"
         android:layout_marginRight="@dimen/material_card_padding"
         android:gravity="right"
-        android:textColor="@color/colorPallet2"
+        android:textColor="@color/colorGray"
         android:orientation="horizontal"
         android:id="@+id/bottomLayout"
         android:layout_width="match_parent"
@@ -52,7 +52,7 @@
         android:layout_alignParentStart="true">
 
         <android.support.v7.widget.AppCompatTextView
-            android:textColor="@color/colorGraySubtitle"
+            android:textColor="@color/colorGray"
             android:textAllCaps="true"
             android:gravity="right|center_vertical"
             android:clickable="true"

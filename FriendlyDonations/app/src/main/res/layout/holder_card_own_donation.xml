@@ -34,7 +34,7 @@
             android:layout_marginRight="@dimen/dimen_between_itens"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPallet2"
+            android:textColor="@color/colorBrown"
             android:text="Brand new ladies bike 29 wheel"/>
 
         <android.support.v7.widget.AppCompatTextView

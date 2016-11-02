@@ -11,12 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.friendlydonations.R;
-import br.com.friendlydonations.managers.BaseActivity;
 import br.com.friendlydonations.managers.BaseRecyclerViewAdapter;
 import br.com.friendlydonations.models.CategoryModel;
 import br.com.friendlydonations.models.DonationModel;
@@ -57,6 +54,7 @@ public class HomeCardAdapter extends BaseRecyclerViewAdapter {
                         inflate(R.layout.holder_card_donation, parent, false));
                 break;
         }
+
 
         return mViewHolder;
     }
@@ -147,10 +145,30 @@ public class HomeCardAdapter extends BaseRecyclerViewAdapter {
             return checkHolder;
         }
 
+        private void performCheckBehaviour(int position) {
+            int i = 0;
+            for (Object mNextItem: items) {
+                ((CategoryModel) mNextItem).setChecked(i == position ? true: false);
+                i++;
+            }
+
+            notifyDataSetChanged();
+        }
+
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
             VHCategoryCheck checkHolder = (VHCategoryCheck) holder;
             CategoryModel categoryModel = (CategoryModel) this.items.get(position);
+
+            boolean isModelCheck = categoryModel.isChecked();
+            if (isModelCheck) {
+                checkHolder.checkMarker.setVisibility(View.VISIBLE);
+                checkHolder.itemView.setAlpha(1.0f);
+            } else {
+                checkHolder.checkMarker.setVisibility(View.GONE);
+                checkHolder.itemView.setAlpha(0.5f);
+            }
+
             checkHolder.tvCategoryName.setText("" + categoryModel.getCategoryName());
         }
 
@@ -164,10 +182,12 @@ public class HomeCardAdapter extends BaseRecyclerViewAdapter {
             @BindView(R.id.tvCategoryName) TextView tvCategoryName;
             @BindView(R.id.checkMarker) RelativeLayout checkMarker;
             View itemView;
+
             public VHCategoryCheck(View itemView) {
                 super(itemView);
                 ButterKnife.bind(this, itemView);
                 this.itemView = itemView;
+                this.itemView.setOnClickListener(v -> performCheckBehaviour(getAdapterPosition()));
             }
         }
     }

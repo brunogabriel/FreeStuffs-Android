@@ -11,6 +11,7 @@
     
     <!-- Card -->
     <dimen name="dimen_height_card_home">116dp</dimen>
+    <dimen name="dimen_picture_card_height">90dp</dimen>
     <dimen name="material_card_padding">24dp</dimen>
     <dimen name="dimen_card_own_donation_width">156dp</dimen>
     <dimen name="dimen_card_own_donation_height">112dp</dimen>

@@ -4,21 +4,21 @@
     android:orientation="vertical"
     android:clickable="true"
     android:layout_margin="@dimen/dimen_between_itens"
-    android:layout_width="120dp"
-    android:layout_height="120dp">
+    android:layout_width="@dimen/dimen_height_card_home"
+    android:layout_height="@dimen/dimen_height_card_home">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/circleImageView"
         android:src="@drawable/ic_girl_sample"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="@dimen/dimen_height_card_home"
+        android:layout_height="@dimen/dimen_height_card_home"
          />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:alpha="0.5"
         android:src="@color/colorBlack"
-        android:layout_width="120dp"
-        android:layout_height="120dp"/>
+        android:layout_width="@dimen/dimen_height_card_home"
+        android:layout_height="@dimen/dimen_height_card_home"/>
 
     <RelativeLayout
         android:layout_gravity="right"
@@ -42,7 +42,7 @@
         fontPath="fonts/Roboto-Medium.ttf"
         android:layout_gravity="center"
         android:text="Eletronics"
-        style="@style/TextView.Typeface3"
+        style="@style/TextView.Typeface1"
         android:textColor="@color/colorWhite"
         android:layout_marginLeft="@dimen/dimen_between_itens"
         android:layout_marginRight="@dimen/dimen_between_itens"

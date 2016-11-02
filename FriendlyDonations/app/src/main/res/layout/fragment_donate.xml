@@ -123,7 +123,7 @@
             </android.support.design.widget.TextInputLayout>
 
             <TextView
-                android:textColor="@color/colorPallet2"
+                android:textColor="@color/colorBrown"
                 android:id="@+id/tvIWouldGetTouch"
                 android:text="@string/donate_fragment_get_touch"
                 style="@style/TextView.Typeface3"

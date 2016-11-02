@@ -1,28 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <!-- APK Colors -->
-    <color name="colorPrimary">#6E65E6</color>
-    <color name="colorPrimaryDark">#4d47a1</color>
-
-    <color name="colorAccent">#FF4844</color>
-    <color name="colorPallet1">#1BB7CD</color>
-    <color name="colorPallet1Light">#8ae4f0</color>
-    <color name="colorPallet2">#686779</color>
+    <!-- Material Colors -->
+    <color name="colorPrimary">#6D65E6</color>
+    <color name="colorPrimaryDark">#4c47a1</color>
+    <color name="colorAccent">#FF4843</color>
+    <color name="colorGreen">#00CFA6</color>
+    <color name="colorGreenLight">#8ae4f0</color>
+    <!-- <color name="colorGrayLead">#686779</color> -->
+    <color name="colorBrown">#5E5353</color>
+    <color name="colorYellow">#FFD85C</color>
 
     <!-- Simple Colors -->
     <color name="colorWhite">#fff</color>
     <color name="colorBlack">#000</color>
 
     <!-- Gray Colors -->
-    <color name="colorLightClickGray">#e6e6e6</color>
     <color name="colorGray">#A4A3B1</color>
-    <color name="colorGraySubtitle">#8F8EA7</color>
-    <color name="colorGray300">#E0E0E0</color>
-    <color name="colorLightGrayText">#F0F3F6</color>
-    <color name="colorGrayExtraBold">#404040</color>
-
-    <color name="colorYellow">#FFD85C</color>
+    <color name="colorGraySemiLight">#E6DDDD</color>
+    <color name="colorGrayLight">#EDECF1</color>
 
     <!-- Facebook -->
     <color name="colorFacebook">#3B5998</color>
@@ -31,6 +26,4 @@
     <!-- About Background Color -->
     <color name="colorAboutLogin">#1A1A1A64</color>
 
-    <!-- Badge Colors -->
-    <color name="colorBadgeAlert">#F44336</color>
 </resources>

@@ -8,6 +8,219 @@
     android:fitsSystemWindows="true">
 
     <!-- Top Content -->
+
+    <!-- Body -->
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nsvContentScroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="8dp">
+
+            <!-- Description of product -->
+            <LinearLayout
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvDonateLocation"
+                    android:text="@string/donate_detail_location"
+                    style="@style/TextView.Typeface3"
+                    tools:ignore="MissingPrefix"
+                    fontPath="fonts/Roboto-Light.ttf"
+                    android:textColor="@color/colorGray"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+
+                <RelativeLayout
+                    android:id="@+id/rlDonateDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp">
+
+                    <TextView
+                        android:id="@+id/tvDonateDescription"
+                        android:text="@string/lorem_text_long"
+                        style="@style/TextView.Typeface2"
+                        android:layout_marginTop="@dimen/dimen_vertical_spacing"
+                        android:textColor="@color/colorBrown"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+                    <TextView
+                        android:id="@+id/tvDonateSeeMore"
+                        tools:ignore="MissingPrefix"
+                        fontPath="fonts/Roboto-Medium.ttf"
+                        android:text="@string/donate_detail_see_more"
+                        style="@style/TextView.Typeface3"
+                        android:background="@drawable/drawable_white_gradient_effect"
+                        android:gravity="bottom|center_horizontal"
+                        android:layout_marginTop="8dp"
+                        android:paddingBottom="8dp"
+                        android:textAllCaps="true"
+                        android:textColor="@color/colorPrimary"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:layout_alignParentBottom="true"/>
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/tvAproximatedAddress"
+                    android:text="@string/donate_detail_aprox_address"
+                    style="@style/TextView.Typeface3"
+                    android:layout_marginTop="@dimen/dimen_vertical_spacing"
+                    android:textColor="@color/colorGray"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+                <!-- Google Maps -->
+                <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:layout_marginTop="@dimen/dimen_vertical_spacing"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:id="@+id/map"
+                    tools:context=".views.activities.DonationDetailActivity"
+                    android:name="br.com.friendlydonations.utils.WorkaroundMapFragment" />
+
+                <!-- Condition -->
+                <TextView
+                    android:id="@+id/tvConditionTitle"
+                    android:text="@string/donate_detail_condition"
+                    tools:ignore="MissingPrefix"
+                    fontPath="fonts/Roboto-Light.ttf"
+                    style="@style/TextView.Typeface3"
+                    android:layout_marginTop="@dimen/dimen_vertical_space_statusbar"
+                    android:textColor="@color/colorGray"
+                    android:textAllCaps="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tvConditionContent"
+                    tools:ignore="MissingPrefix"
+                    fontPath="fonts/Montserrat-Regular.ttf"
+                    android:text="@string/lorem_simple"
+                    style="@style/TextView.Typeface3"
+                    android:layout_marginTop="@dimen/dimen_between_itens"
+                    android:textColor="@color/colorBrown"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <!-- Delivery -->
+                <TextView
+                    android:id="@+id/tvDeliveryTitle"
+                    tools:ignore="MissingPrefix"
+                    fontPath="fonts/Roboto-Light.ttf"
+                    android:text="@string/donate_detail_delivery"
+                    style="@style/TextView.Typeface3"
+                    android:layout_marginTop="@dimen/dimen_vertical_spacing"
+                    android:textColor="@color/colorGray"
+                    android:textAllCaps="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tvDeliveryContent"
+                    tools:ignore="MissingPrefix"
+                    fontPath="fonts/Montserrat-Regular.ttf"
+                    android:text="@string/lorem_simple"
+                    style="@style/TextView.Typeface3"
+                    android:layout_marginTop="@dimen/dimen_between_itens"
+                    android:textColor="@color/colorBrown"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <!-- Category -->
+                <TextView
+                    android:id="@+id/tvCategoryTitle"
+                    tools:ignore="MissingPrefix"
+                    fontPath="fonts/Roboto-Light.ttf"
+                    android:text="@string/donate_detail_category"
+                    style="@style/TextView.Typeface3"
+                    android:layout_marginTop="@dimen/dimen_vertical_spacing"
+                    android:textColor="@color/colorGray"
+                    android:textAllCaps="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tvCategoryContent"
+                    tools:ignore="MissingPrefix"
+                    fontPath="fonts/Montserrat-Regular.ttf"
+                    android:text="@string/lorem_simple"
+                    style="@style/TextView.Typeface3"
+                    android:layout_marginTop="@dimen/dimen_between_itens"
+                    android:textColor="@color/colorBrown"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <!-- id -->
+                <TextView
+                    android:id="@+id/tvIdTitle"
+                    tools:ignore="MissingPrefix"
+                    fontPath="fonts/Roboto-Light.ttf"
+                    android:text="@string/donate_detail_id"
+                    style="@style/TextView.Typeface3"
+                    android:layout_marginTop="@dimen/dimen_vertical_spacing"
+                    android:textColor="@color/colorGray"
+                    android:textAllCaps="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tvIdContent"
+                    tools:ignore="MissingPrefix"
+                    fontPath="fonts/Montserrat-Regular.ttf"
+                    android:text="3487642"
+                    style="@style/TextView.Typeface3"
+                    android:layout_marginTop="@dimen/dimen_between_itens"
+                    android:textColor="@color/colorBrown"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <!-- I am interested -->
+            <LinearLayout
+                android:clickable="true"
+                android:id="@+id/viewImInterestedBtn"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/dimen_vertical_spacing"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:background="@drawable/drawable_green_effect"
+                android:layout_height="80dp">
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tvImInterestedText"
+                    tools:ignore="MissingPrefix"
+                    fontPath="fonts/Montserrat-Regular.ttf"
+                    style="@style/TextView.Typeface3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorWhite"
+                    android:text="@string/donate_detail_im_interested"
+                    android:gravity="center" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
     <android.support.design.widget.AppBarLayout
         android:id="@+id/main.appbar"
         android:layout_width="match_parent"
@@ -61,217 +274,5 @@
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
-
-    <!-- Body -->
-    <android.support.v4.widget.NestedScrollView
-        android:id="@+id/nsvContentScroll"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorWhite"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingTop="8dp">
-
-            <!-- Description of product -->
-            <LinearLayout
-                android:layout_marginLeft="32dp"
-                android:layout_marginRight="32dp"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/tvDonateLocation"
-                    android:text="@string/donate_detail_location"
-                    style="@style/TextView.Typeface3"
-                    tools:ignore="MissingPrefix"
-                    fontPath="fonts/Roboto-Light.ttf"
-                    android:textColor="@color/colorGraySubtitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                     />
-
-                <RelativeLayout
-                    android:id="@+id/rlDonateDescription"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp">
-
-                    <TextView
-                        android:id="@+id/tvDonateDescription"
-                        android:text="@string/lorem_text_long"
-                        style="@style/TextView.Typeface2"
-                        android:layout_marginTop="@dimen/dimen_vertical_spacing"
-                        android:textColor="@color/colorPallet2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-
-                    <TextView
-                        android:id="@+id/tvDonateSeeMore"
-                        tools:ignore="MissingPrefix"
-                        fontPath="fonts/Roboto-Medium.ttf"
-                        android:text="@string/donate_detail_see_more"
-                        style="@style/TextView.Typeface3"
-                        android:background="@drawable/drawable_white_gradient_effect"
-                        android:gravity="bottom|center_horizontal"
-                        android:layout_marginTop="8dp"
-                        android:paddingBottom="8dp"
-                        android:textAllCaps="true"
-                        android:textColor="@color/colorPrimary"
-                        android:layout_width="match_parent"
-                        android:layout_height="70dp"
-                        android:layout_alignParentBottom="true"/>
-
-                </RelativeLayout>
-
-                <TextView
-                    android:id="@+id/tvAproximatedAddress"
-                    android:text="@string/donate_detail_aprox_address"
-                    style="@style/TextView.Typeface3"
-                    android:layout_marginTop="@dimen/dimen_vertical_spacing"
-                    android:textColor="@color/colorGraySubtitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-
-                <!-- Google Maps -->
-                <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:tools="http://schemas.android.com/tools"
-                    android:layout_marginTop="@dimen/dimen_vertical_spacing"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:id="@+id/map"
-                    tools:context=".views.activities.DonationDetailActivity"
-                    android:name="br.com.friendlydonations.utils.WorkaroundMapFragment" />
-
-                <!-- Condition -->
-                <TextView
-                    android:id="@+id/tvConditionTitle"
-                    android:text="@string/donate_detail_condition"
-                    tools:ignore="MissingPrefix"
-                    fontPath="fonts/Roboto-Light.ttf"
-                    style="@style/TextView.Typeface3"
-                    android:layout_marginTop="@dimen/dimen_vertical_space_statusbar"
-                    android:textColor="@color/colorGraySubtitle"
-                    android:textAllCaps="false"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:id="@+id/tvConditionContent"
-                    tools:ignore="MissingPrefix"
-                    fontPath="fonts/Montserrat-Regular.ttf"
-                    android:text="@string/lorem_simple"
-                    style="@style/TextView.Typeface3"
-                    android:layout_marginTop="@dimen/dimen_between_itens"
-                    android:textColor="@color/colorPallet2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <!-- Delivery -->
-                <TextView
-                    android:id="@+id/tvDeliveryTitle"
-                    tools:ignore="MissingPrefix"
-                    fontPath="fonts/Roboto-Light.ttf"
-                    android:text="@string/donate_detail_delivery"
-                    style="@style/TextView.Typeface3"
-                    android:layout_marginTop="@dimen/dimen_vertical_spacing"
-                    android:textColor="@color/colorGraySubtitle"
-                    android:textAllCaps="false"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:id="@+id/tvDeliveryContent"
-                    tools:ignore="MissingPrefix"
-                    fontPath="fonts/Montserrat-Regular.ttf"
-                    android:text="@string/lorem_simple"
-                    style="@style/TextView.Typeface3"
-                    android:layout_marginTop="@dimen/dimen_between_itens"
-                    android:textColor="@color/colorPallet2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <!-- Category -->
-                <TextView
-                    android:id="@+id/tvCategoryTitle"
-                    tools:ignore="MissingPrefix"
-                    fontPath="fonts/Roboto-Light.ttf"
-                    android:text="@string/donate_detail_category"
-                    style="@style/TextView.Typeface3"
-                    android:layout_marginTop="@dimen/dimen_vertical_spacing"
-                    android:textColor="@color/colorGraySubtitle"
-                    android:textAllCaps="false"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:id="@+id/tvCategoryContent"
-                    tools:ignore="MissingPrefix"
-                    fontPath="fonts/Montserrat-Regular.ttf"
-                    android:text="@string/lorem_simple"
-                    style="@style/TextView.Typeface3"
-                    android:layout_marginTop="@dimen/dimen_between_itens"
-                    android:textColor="@color/colorPallet2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <!-- id -->
-                <TextView
-                    android:id="@+id/tvIdTitle"
-                    tools:ignore="MissingPrefix"
-                    fontPath="fonts/Roboto-Light.ttf"
-                    android:text="@string/donate_detail_id"
-                    style="@style/TextView.Typeface3"
-                    android:layout_marginTop="@dimen/dimen_vertical_spacing"
-                    android:textColor="@color/colorGraySubtitle"
-                    android:textAllCaps="false"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:id="@+id/tvIdContent"
-                    tools:ignore="MissingPrefix"
-                    fontPath="fonts/Montserrat-Regular.ttf"
-                    android:text="3487642"
-                    style="@style/TextView.Typeface3"
-                    android:layout_marginTop="@dimen/dimen_between_itens"
-                    android:textColor="@color/colorPallet2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
-
-            <!-- I am interested -->
-            <LinearLayout
-                android:clickable="true"
-                android:id="@+id/viewImInterestedBtn"
-                android:gravity="center"
-                android:layout_marginTop="@dimen/dimen_vertical_spacing"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:background="@drawable/drawable_pallet1_effect"
-                android:layout_height="80dp">
-
-                <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/tvImInterestedText"
-                    tools:ignore="MissingPrefix"
-                    fontPath="fonts/Montserrat-Regular.ttf"
-                    style="@style/TextView.Typeface3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/colorWhite"
-                    android:text="@string/donate_detail_im_interested"
-                    android:gravity="center" />
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-    </android.support.v4.widget.NestedScrollView>
 
 </android.support.design.widget.CoordinatorLayout>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     card_view:cardUseCompatPadding="true"
     android:clickable="true"
-    card_view:cardElevation="4dp"
+    card_view:cardElevation="@dimen/dimen_between_itens"
     card_view:cardCornerRadius="0dp"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/dimen_between_itens">
@@ -34,7 +34,7 @@
             android:layout_marginRight="@dimen/dimen_between_itens"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPallet2"
+            android:textColor="@color/colorBrown"
             android:text="Brand new ladies bike 29 wheel"/>
 
         <android.support.v7.widget.AppCompatTextView
