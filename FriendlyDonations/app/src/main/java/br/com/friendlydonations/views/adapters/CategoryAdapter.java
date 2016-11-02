@@ -14,7 +14,6 @@ import br.com.friendlydonations.models.CategoryModel;
 import br.com.friendlydonations.utils.ConstantsTypes;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
@@ -26,9 +25,9 @@ public class CategoryAdapter extends BaseRecyclerViewAdapter {
     // By default, vhType is simple selection
     private int vhType = ConstantsTypes.VH_CATEGORY_SIMPLE;
 
-    public CategoryAdapter (BaseActivity activity) {
+    /** public CategoryAdapter (BaseActivity activity) {
         super(activity);
-    }
+     } **/
 
     public CategoryAdapter(BaseActivity activity, int vhType) {
         super(activity);
