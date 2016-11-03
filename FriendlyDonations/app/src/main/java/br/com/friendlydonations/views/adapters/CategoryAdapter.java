@@ -11,7 +11,6 @@ import br.com.friendlydonations.R;
 import br.com.friendlydonations.managers.BaseActivity;
 import br.com.friendlydonations.managers.BaseRecyclerViewAdapter;
 import br.com.friendlydonations.models.CategoryModel;
-import br.com.friendlydonations.utils.ConstantsTypes;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -22,12 +21,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CategoryAdapter extends BaseRecyclerViewAdapter {
 
-    // By default, vhType is simple selection
-    private int vhType = ConstantsTypes.VH_CATEGORY_SIMPLE;
+    public static final int VIEW_TYPE_SIMPLE = 1000;
+    public static final int VIEW_TYPE_CHECK = 1001;
 
-    /** public CategoryAdapter (BaseActivity activity) {
-        super(activity);
-     } **/
+    // By default, vhType is simple selection
+    private int vhType = VIEW_TYPE_SIMPLE;
 
     public CategoryAdapter(BaseActivity activity, int vhType) {
         super(activity);
@@ -40,13 +38,13 @@ public class CategoryAdapter extends BaseRecyclerViewAdapter {
         RecyclerView.ViewHolder viewHolder;
 
         switch (vhType) {
-            case ConstantsTypes.VH_CATEGORY_CHECK:
-                viewHolder = new VHCategoryCheck(mInflateredView);
+            case VIEW_TYPE_CHECK:
+                viewHolder = new CategoryCheckViewHolder(mInflateredView);
             break;
 
-            case ConstantsTypes.VH_CATEGORY_SIMPLE:
+            case VIEW_TYPE_SIMPLE:
             default:
-                viewHolder = new VHCategorySimple(mInflateredView);
+                viewHolder = new CategorySimpleViewHolder(mInflateredView);
                 break;
         }
         return viewHolder;
@@ -54,20 +52,20 @@ public class CategoryAdapter extends BaseRecyclerViewAdapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        VHCategorySimple vhCategorySimple = (VHCategorySimple) holder;
+        CategorySimpleViewHolder vhCategorySimple = (CategorySimpleViewHolder) holder;
         CategoryModel model = (CategoryModel) items.get(position);
         switch (vhType) {
-            case ConstantsTypes.VH_CATEGORY_CHECK:
+            case VIEW_TYPE_CHECK:
                 boolean isModelCheck = model.isChecked();
                 if (isModelCheck) {
-                    ((VHCategoryCheck) vhCategorySimple).checkMarker.setVisibility(View.VISIBLE);
+                    ((CategoryCheckViewHolder) vhCategorySimple).checkMarker.setVisibility(View.VISIBLE);
                     vhCategorySimple.itemView.setAlpha(1.0f);
                 } else {
-                    ((VHCategoryCheck) vhCategorySimple).checkMarker.setVisibility(View.GONE);
+                    ((CategoryCheckViewHolder) vhCategorySimple).checkMarker.setVisibility(View.GONE);
                     vhCategorySimple.itemView.setAlpha(0.5f);
                 }
                 // break; // not necessary
-            case ConstantsTypes.VH_CATEGORY_SIMPLE:
+            case VIEW_TYPE_SIMPLE:
             default:
                 vhCategorySimple.tvCategoryName.setText(model.getCategoryName());
                 break;
@@ -98,28 +96,26 @@ public class CategoryAdapter extends BaseRecyclerViewAdapter {
      * View Holders
      */
 
-    public class VHCategorySimple extends RecyclerView.ViewHolder {
+    public class CategorySimpleViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.circleImageView) CircleImageView circleImageView;
         @BindView(R.id.tvCategoryName) TextView tvCategoryName;
 
         View itemView;
 
-        public VHCategorySimple(View itemView) {
+        public CategorySimpleViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             this.itemView = itemView;
         }
     }
 
-    public class VHCategoryCheck extends VHCategorySimple {
-
+    public class CategoryCheckViewHolder extends CategorySimpleViewHolder {
         @BindView(R.id.checkMarker) RelativeLayout checkMarker;
 
-        public VHCategoryCheck(View itemView) {
+        public CategoryCheckViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(v -> performCheckBehaviour(getAdapterPosition()));
         }
-
     }
 }

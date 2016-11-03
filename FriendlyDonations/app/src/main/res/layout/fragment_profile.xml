@@ -1,147 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    android:background="@color/colorBrown"
-    android:layout_height="match_parent"
+<android.support.v4.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swipeRefreshLayout"
     android:layout_width="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+    </android.support.v7.widget.RecyclerView>
 
-
-        <android.support.v7.widget.AppCompatTextView
-            android:layout_marginTop="@dimen/material_card_padding"
-            android:gravity="center_horizontal"
-            android:textSize="@dimen/dimen_profile_username"
-            android:layout_marginLeft="64dp"
-            android:textColor="@color/colorGrayLight"
-            android:layout_marginRight="64dp"
-            android:text="Marconi Loura Oliveira"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        
-        <android.support.v7.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_marginTop="@dimen/dimen_between_itens"
-            android:layout_marginBottom="@dimen/dimen_between_itens"
-            android:minWidth="100dp"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:textAllCaps="false"
-            android:textSize="@dimen/dimen_typeface2"
-            fontPath="fonts/Roboto-Light"
-            android:text="@string/profile_fragment_preferences"
-            android:textColor="@color/colorGrayLight"
-            android:layout_height="40dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:weightSum="100"
-            android:paddingBottom="@dimen/dimen_vertical_spacing"
-            android:layout_height="wrap_content">
-
-            <!-- Left Text -->
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_weight="47.5"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content">
-
-                <android.support.v7.widget.AppCompatTextView
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:textColor="@color/colorGraySemiLight"
-                    fontPath="fonts/Montserrat-Regular"
-                    android:text="50"
-                    android:textSize="@dimen/dimen_profile_number_donations"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <android.support.v7.widget.AppCompatTextView
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:textColor="@color/colorGraySemiLight"
-                    fontPath="fonts/Montserrat-Regular"
-                    android:textSize="@dimen/dimen_profile_donations_description"
-                    android:text="@string/profile_fragment_donations_done"
-                    android:layout_width="wrap_content"
-                    android:layout_height="56dp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_weight="5"
-                android:orientation="horizontal"
-                android:layout_width="0dp"
-                android:gravity="center"
-                android:layout_height="match_parent">
-                <View
-                    android:layout_gravity="center"
-                    android:background="@color/colorGraySemiLight"
-                    android:layout_width="1px"
-                    android:layout_height="match_parent"/>
-            </LinearLayout>
-
-
-            <!-- Right View -->
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_weight="47.5"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content">
-
-                <android.support.v7.widget.AppCompatTextView
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:textColor="@color/colorGraySemiLight"
-                    fontPath="fonts/Montserrat-Regular"
-                    android:text="50"
-                    android:textSize="@dimen/dimen_profile_number_donations"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <android.support.v7.widget.AppCompatTextView
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:textColor="@color/colorGraySemiLight"
-                    fontPath="fonts/Montserrat-Regular"
-                    android:textSize="@dimen/dimen_profile_donations_description"
-                    android:text="@string/profile_fragment_donations_received"
-                    android:layout_width="wrap_content"
-                    android:layout_height="56dp" />
-            </LinearLayout>
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:paddingTop="@dimen/dimen_vertical_spacing"
-            android:paddingBottom="@dimen/dimen_vertical_spacing"
-            android:background="@color/colorGray"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <android.support.v7.widget.AppCompatTextView
-                android:textColor="@color/colorGraySemiLight"
-                android:textSize="@dimen/dimen_profile_donations_description"
-                android:layout_marginBottom="@dimen/dimen_vertical_spacing"
-                android:gravity="center"
-                android:text="@string/profile_fragment_activated_donations"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerViewProfile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            </android.support.v7.widget.RecyclerView>
-
-        </LinearLayout>
-
-
-    </LinearLayout>
-
-</ScrollView>
+</android.support.v4.widget.SwipeRefreshLayout>
 
 

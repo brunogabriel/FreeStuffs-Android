@@ -18,7 +18,6 @@ import br.com.friendlydonations.managers.BaseRecyclerViewAdapter;
 import br.com.friendlydonations.models.CategoryModel;
 import br.com.friendlydonations.models.DonationModel;
 import br.com.friendlydonations.models.LoaderModel;
-import br.com.friendlydonations.utils.ConstantsTypes;
 import br.com.friendlydonations.views.activities.DonationDetailActivity;
 import br.com.friendlydonations.views.widgets.LoaderViewHolder;
 import butterknife.BindView;
@@ -28,13 +27,16 @@ import de.hdodenhof.circleimageview.CircleImageView;
 /**
  * Created by brunogabriel on 9/11/16.
  */
-public class HomeCardAdapter extends BaseRecyclerViewAdapter {
+public class HomeDonationsAdapter extends BaseRecyclerViewAdapter {
 
-    public HomeCardAdapter(Activity activity) {
+    public static final int VIEW_TYPE_DONATION_CATEGORIES = 1000;
+    public static final int VIEW_TYPE_DONATIONS = 1001;
+
+    public HomeDonationsAdapter(Activity activity) {
         super(activity);
     }
 
-    public HomeCardAdapter(Activity activity, Object headerObject) {
+    public HomeDonationsAdapter(Activity activity, Object headerObject) {
         super(activity);
         add(headerObject);
     }
@@ -45,18 +47,18 @@ public class HomeCardAdapter extends BaseRecyclerViewAdapter {
         RecyclerView.ViewHolder mViewHolder;
 
         switch (viewType) {
-            case ConstantsTypes.VH_LOADER:
+            case VIEW_TYPE_LOADER:
                 mViewHolder = new LoaderViewHolder(LayoutInflater.from(parent.getContext()).
                         inflate(R.layout.holder_list_loader, parent, false));
                 break;
-            case ConstantsTypes.VH_DONATION_CATEGORIES:
-                mViewHolder = new HorizontalRecyclerViewHolder(LayoutInflater.from(parent.getContext()).
+            case VIEW_TYPE_DONATION_CATEGORIES:
+                mViewHolder = new HorizontalCategoriesViewHolder(LayoutInflater.from(parent.getContext()).
                         inflate(R.layout.holder_category_in_home, parent, false));
                 break;
 
             default:
-            case ConstantsTypes.VH_DONATION_HOME:
-                mViewHolder = new HomeCardViewHolder(LayoutInflater.from(parent.getContext()).
+            case VIEW_TYPE_DONATIONS:
+                mViewHolder = new DonationHomeViewHolder(LayoutInflater.from(parent.getContext()).
                         inflate(R.layout.holder_card_donation, parent, false));
                 break;
         }
@@ -71,13 +73,13 @@ public class HomeCardAdapter extends BaseRecyclerViewAdapter {
             StaggeredGridLayoutManager.LayoutParams layoutParams = (StaggeredGridLayoutManager.LayoutParams) holder.itemView.getLayoutParams();
             layoutParams.setFullSpan(true);
             return;
-        } else if (holder instanceof HomeCardViewHolder) {
-            ((HomeCardViewHolder) holder).populateUI();
-        } else if (holder instanceof HorizontalRecyclerViewHolder) {
+        } else if (holder instanceof DonationHomeViewHolder) {
+            ((DonationHomeViewHolder) holder).populateUI();
+        } else if (holder instanceof HorizontalCategoriesViewHolder) {
             StaggeredGridLayoutManager.LayoutParams layoutParams = (StaggeredGridLayoutManager.LayoutParams) holder.itemView.getLayoutParams();
             layoutParams.setFullSpan(true);
-            HomeCategoryCardAdapter homeCategoryCardAdapter = new HomeCategoryCardAdapter(activity);
-            HorizontalRecyclerViewHolder horizontalRecyclerViewHolder = (HorizontalRecyclerViewHolder) holder;
+            HomeCategoryCheckAdapter homeCategoryCardAdapter = new HomeCategoryCheckAdapter(activity);
+            HorizontalCategoriesViewHolder horizontalRecyclerViewHolder = (HorizontalCategoriesViewHolder) holder;
             horizontalRecyclerViewHolder.recyclerView.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false));
             horizontalRecyclerViewHolder.recyclerView.setAdapter(homeCategoryCardAdapter);
             homeCategoryCardAdapter.addAll((List<Object>) items.get(position));
@@ -87,13 +89,12 @@ public class HomeCardAdapter extends BaseRecyclerViewAdapter {
     @Override
     public int getItemViewType(int position) {
         Object mCurrentItem = items.get(position);
-
         if (mCurrentItem instanceof LoaderModel) {
-            return ConstantsTypes.VH_LOADER;
+            return VIEW_TYPE_LOADER;
         } else if (mCurrentItem instanceof DonationModel) {
-            return ConstantsTypes.VH_DONATION_HOME;
+            return VIEW_TYPE_DONATIONS;
         } else {
-            return ConstantsTypes.VH_DONATION_CATEGORIES;
+            return VIEW_TYPE_DONATION_CATEGORIES;
         }
     }
 
@@ -103,12 +104,12 @@ public class HomeCardAdapter extends BaseRecyclerViewAdapter {
     }
 
     // Holders
-    public class HomeCardViewHolder extends RecyclerView.ViewHolder {
+    public class DonationHomeViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.cardTitle)
         AppCompatTextView cardTitle;
 
-        public HomeCardViewHolder(View itemView) {
+        public DonationHomeViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(view -> {
@@ -132,27 +133,27 @@ public class HomeCardAdapter extends BaseRecyclerViewAdapter {
         }
     }
 
-    public class HorizontalRecyclerViewHolder extends RecyclerView.ViewHolder {
+    public class HorizontalCategoriesViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.horizontalRecyclerview)
         RecyclerView recyclerView;
 
-        public HorizontalRecyclerViewHolder(View itemView) {
+        public HorizontalCategoriesViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
     }
 
 
-    public class HomeCategoryCardAdapter extends BaseRecyclerViewAdapter {
+    public class HomeCategoryCheckAdapter extends BaseRecyclerViewAdapter {
 
-        public HomeCategoryCardAdapter(Activity activity) {
+        public HomeCategoryCheckAdapter(Activity activity) {
             super(activity);
         }
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            VHCategoryCheck checkHolder = new VHCategoryCheck(LayoutInflater.from(parent.getContext()).
+            CategoryCheckViewHolder checkHolder = new CategoryCheckViewHolder(LayoutInflater.from(parent.getContext()).
                     inflate(R.layout.holder_card_category, parent, false));
 
 
@@ -171,7 +172,7 @@ public class HomeCardAdapter extends BaseRecyclerViewAdapter {
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-            VHCategoryCheck checkHolder = (VHCategoryCheck) holder;
+            CategoryCheckViewHolder checkHolder = (CategoryCheckViewHolder) holder;
             CategoryModel categoryModel = (CategoryModel) this.items.get(position);
 
             boolean isModelCheck = categoryModel.isChecked();
@@ -191,13 +192,13 @@ public class HomeCardAdapter extends BaseRecyclerViewAdapter {
             return this.items == null ? 0: this.items.size();
         }
 
-        public class VHCategoryCheck extends RecyclerView.ViewHolder {
+        public class CategoryCheckViewHolder extends RecyclerView.ViewHolder {
             @BindView(R.id.circleImageView) CircleImageView circleImageView;
             @BindView(R.id.tvCategoryName) TextView tvCategoryName;
             @BindView(R.id.checkMarker) RelativeLayout checkMarker;
             View itemView;
 
-            public VHCategoryCheck(View itemView) {
+            public CategoryCheckViewHolder(View itemView) {
                 super(itemView);
                 ButterKnife.bind(this, itemView);
                 this.itemView = itemView;

@@ -11,6 +11,7 @@ import java.util.List;
  * Created by brunogabriel on 9/10/16.
  */
 public class DynamicPageAdapterImages extends PagerAdapter {
+
     private List<View> mViews;
 
     public DynamicPageAdapterImages(List<View> mViews) {
@@ -29,12 +30,12 @@ public class DynamicPageAdapterImages extends PagerAdapter {
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        ((ViewPager) container).removeView((View) object);
+        container.removeView((View) object);
     }
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        ((ViewPager) container).addView(mViews.get(position), 0);
+        container.addView(mViews.get(position), 0);
         return mViews.get(position);
     }
 }

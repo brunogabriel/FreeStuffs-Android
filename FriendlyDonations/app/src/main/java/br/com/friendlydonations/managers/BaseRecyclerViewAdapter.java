@@ -14,6 +14,8 @@ import br.com.friendlydonations.models.LoaderModel;
 
 public abstract class BaseRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+    public static final int VIEW_TYPE_LOADER = 0; // default loader item
+
     protected List<Object> items = new ArrayList<>();
     protected Activity activity;
 

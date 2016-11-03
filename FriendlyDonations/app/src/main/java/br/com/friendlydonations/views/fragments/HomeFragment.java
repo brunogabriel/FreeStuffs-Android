@@ -18,7 +18,7 @@ import br.com.friendlydonations.managers.BaseFragment;
 import br.com.friendlydonations.models.CategoryModel;
 import br.com.friendlydonations.models.DonationModel;
 import br.com.friendlydonations.models.LoaderModel;
-import br.com.friendlydonations.views.adapters.HomeCardAdapter;
+import br.com.friendlydonations.views.adapters.HomeDonationsAdapter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import rx.Observable;
@@ -37,7 +37,7 @@ public class HomeFragment extends BaseFragment {
     protected RecyclerView recyclerView;
 
     protected StaggeredGridLayoutManager gridLayoutManager;
-    protected HomeCardAdapter adapter;
+    protected HomeDonationsAdapter adapter;
 
     // Views
     protected View rootView;
@@ -53,7 +53,7 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void initUI() {
         gridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-        adapter = new HomeCardAdapter(getActivity(), new LoaderModel());
+        adapter = new HomeDonationsAdapter(getActivity(), new LoaderModel());
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(adapter);
 

@@ -106,7 +106,7 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
 
     private void initCategoriesAdapter() {
         recyclerViewCategories.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-        categoryAdapter = new CategoryAdapter((BaseActivity) getActivity(), ConstantsTypes.VH_CATEGORY_CHECK);
+        categoryAdapter = new CategoryAdapter((BaseActivity) getActivity(), CategoryAdapter.VIEW_TYPE_CHECK);
         recyclerViewCategories.setAdapter(categoryAdapter);
 
         // Only to test
