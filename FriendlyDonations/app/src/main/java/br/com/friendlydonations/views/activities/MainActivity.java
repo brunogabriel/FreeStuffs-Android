@@ -86,6 +86,7 @@ public class MainActivity extends BaseActivity {
                 viewPagerAdapter.addFragment(new DonateFragment(), tabArrayNames[1]);
                 viewPagerAdapter.addFragment(new ProfileFragment(), tabArrayNames[2]);
                 viewPagerAdapter.addFragment(new NotificationsFragment(), tabArrayNames[3]);
+                viewPager.setOffscreenPageLimit(tabArrayNames.length);
                 viewPager.setAdapter(viewPagerAdapter);
                 tabs.setupWithViewPager(viewPager);
                 tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

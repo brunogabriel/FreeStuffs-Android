@@ -17,8 +17,10 @@ import br.com.friendlydonations.R;
 import br.com.friendlydonations.managers.BaseRecyclerViewAdapter;
 import br.com.friendlydonations.models.CategoryModel;
 import br.com.friendlydonations.models.DonationModel;
+import br.com.friendlydonations.models.LoaderModel;
 import br.com.friendlydonations.utils.ConstantsTypes;
 import br.com.friendlydonations.views.activities.DonationDetailActivity;
+import br.com.friendlydonations.views.widgets.LoaderViewHolder;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -43,6 +45,10 @@ public class HomeCardAdapter extends BaseRecyclerViewAdapter {
         RecyclerView.ViewHolder mViewHolder;
 
         switch (viewType) {
+            case ConstantsTypes.VH_LOADER:
+                mViewHolder = new LoaderViewHolder(LayoutInflater.from(parent.getContext()).
+                        inflate(R.layout.holder_list_loader, parent, false));
+                break;
             case ConstantsTypes.VH_DONATION_CATEGORIES:
                 mViewHolder = new HorizontalRecyclerViewHolder(LayoutInflater.from(parent.getContext()).
                         inflate(R.layout.holder_category_in_home, parent, false));
@@ -61,9 +67,13 @@ public class HomeCardAdapter extends BaseRecyclerViewAdapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if (holder instanceof HomeCardViewHolder) {
+        if (holder instanceof LoaderViewHolder) {
+            StaggeredGridLayoutManager.LayoutParams layoutParams = (StaggeredGridLayoutManager.LayoutParams) holder.itemView.getLayoutParams();
+            layoutParams.setFullSpan(true);
+            return;
+        } else if (holder instanceof HomeCardViewHolder) {
             ((HomeCardViewHolder) holder).populateUI();
-        } else {
+        } else if (holder instanceof HorizontalRecyclerViewHolder) {
             StaggeredGridLayoutManager.LayoutParams layoutParams = (StaggeredGridLayoutManager.LayoutParams) holder.itemView.getLayoutParams();
             layoutParams.setFullSpan(true);
             HomeCategoryCardAdapter homeCategoryCardAdapter = new HomeCategoryCardAdapter(activity);
@@ -76,7 +86,11 @@ public class HomeCardAdapter extends BaseRecyclerViewAdapter {
 
     @Override
     public int getItemViewType(int position) {
-        if (items.get(position) instanceof DonationModel) {
+        Object mCurrentItem = items.get(position);
+
+        if (mCurrentItem instanceof LoaderModel) {
+            return ConstantsTypes.VH_LOADER;
+        } else if (mCurrentItem instanceof DonationModel) {
             return ConstantsTypes.VH_DONATION_HOME;
         } else {
             return ConstantsTypes.VH_DONATION_CATEGORIES;

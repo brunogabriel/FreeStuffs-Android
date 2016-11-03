@@ -17,6 +17,7 @@ import br.com.friendlydonations.R;
 import br.com.friendlydonations.managers.BaseFragment;
 import br.com.friendlydonations.models.CategoryModel;
 import br.com.friendlydonations.models.DonationModel;
+import br.com.friendlydonations.models.LoaderModel;
 import br.com.friendlydonations.views.adapters.HomeCardAdapter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -52,7 +53,7 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void initUI() {
         gridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-        adapter = new HomeCardAdapter(getActivity());
+        adapter = new HomeCardAdapter(getActivity(), new LoaderModel());
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(adapter);
 
@@ -77,13 +78,16 @@ public class HomeFragment extends BaseFragment {
             mItens.add(new DonationModel());
         }
 
-        adapter.addAll(mItens);
+        Observable.timer(3, TimeUnit.SECONDS)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(oObject -> {
+                    adapter.addAll(mItens);
+                });
     }
 
     private void startSwipeLayout() {
-
         swipeRefreshLayout.setColorSchemeColors(ContextCompat.getColor(getActivity(), R.color.colorPrimary));
-
         swipeRefreshLayout.setOnRefreshListener(() -> {
             // TODO: refreshItens()
             Observable.timer(1, TimeUnit.SECONDS)
