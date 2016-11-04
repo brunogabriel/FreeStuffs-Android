@@ -50,8 +50,8 @@
 
     <!-- Fragment Profile -->
     <string name="profile_fragment_preferences">preferences</string>
-    <string name="profile_fragment_donations_done">done\ndonations</string>
-    <string name="profile_fragment_donations_received">feitas\ndonations</string>
+    <string name="profile_fragment_donations_done">donations\ndone</string>
+    <string name="profile_fragment_donations_received">donations\nreceived</string>
     <string name="profile_fragment_activated_donations">Activated publications</string>
 
 

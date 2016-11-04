@@ -22,8 +22,7 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:orientation="vertical"
-        android:clipToPadding="true"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

@@ -37,7 +37,7 @@ public class ProfileFragment extends BaseFragment {
     @BindView(R.id.recyclerView)
     protected RecyclerView recyclerView;
 
-    @BindView(R.id.swipeRefreshLayout)
+    //@BindView(R.id.swipeRefreshLayout)
     protected SwipeRefreshLayout swipeRefreshLayout;
 
     protected LinearLayoutManager linearLayoutManager;
@@ -56,9 +56,7 @@ public class ProfileFragment extends BaseFragment {
         linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         adapter = new ProfileDonationAdapter(getActivity(), new LoaderModel());
         recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
-
         List<Object> items = new ArrayList<>();
         items.add(new ProfileDonationModel());
 
@@ -72,8 +70,7 @@ public class ProfileFragment extends BaseFragment {
         items.add(mDonations);
 
         adapter.addAll(items);
-        linearLayoutManager.scrollToPositionWithOffset(0, 0);
-        startSwipeLayout();
+        //startSwipeLayout();
     }
 
     private void startSwipeLayout() {
