@@ -17,6 +17,7 @@ import com.squareup.picasso.Picasso;
 
 import br.com.friendlydonations.R;
 import br.com.friendlydonations.managers.BaseActivity;
+import br.com.friendlydonations.models.login.LoginModel;
 import br.com.friendlydonations.views.adapters.DynamicTabViewPageAdapter;
 import br.com.friendlydonations.views.fragments.DonateFragment;
 import br.com.friendlydonations.views.fragments.HomeFragment;
@@ -66,7 +67,12 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        loadLoginPreferences();
         initUI();
+    }
+
+    private void loadLoginPreferences() {
+        LoginModel loginModel = (LoginModel) getIntent().getExtras().getSerializable(LoginActivity.LOGIN_SERIALIZATION);
     }
 
     @Override

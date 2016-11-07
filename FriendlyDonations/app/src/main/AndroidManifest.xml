@@ -69,7 +69,9 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
 
         <!-- App Activities -->
-        <activity android:name=".views.activities.LoginActivity">
+        <activity
+            android:name=".views.activities.LoginActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -78,11 +80,13 @@
 
         <activity
             android:name=".views.activities.MainActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/FriendlyDonationsTheme.NotTranslucent">
         </activity>
 
         <activity
             android:name=".views.activities.DonationDetailActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/FriendlyDonationsTheme.NavigationNotTranslucent">
         </activity>
 

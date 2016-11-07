@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
@@ -53,6 +54,7 @@ import rx.schedulers.Schedulers;
 public class LoginActivity extends BaseActivity {
 
     public static final String TAG = "LOGIN_ACT";
+    public static final String LOGIN_SERIALIZATION = "login_serialization";
 
     @Inject
     protected Retrofit retrofit;
@@ -85,9 +87,12 @@ public class LoginActivity extends BaseActivity {
                 .getSharedPreferences();
 
         ButterKnife.bind(this);
-        initUI();
         setupFacebookSDK();
+        initUI();
+    }
 
+    @Override
+    public void initUI() {
         try {
             loginPreferenceModel = LoginPreferenceModel.
                     jsonToObject(sharedPreferences.getString(SharedPreferencesComponent.LOGIN_PREFERENCES, null));
@@ -102,11 +107,6 @@ public class LoginActivity extends BaseActivity {
         } catch (Exception ex) {
             Log.e(TAG, "Fail getting login preferences: " + ex.getMessage());
         }
-    }
-
-    @Override
-    public void initUI() {
-        // @empty
     }
 
     private void setupFacebookSDK() {
@@ -233,7 +233,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     public void executeLogin(String name, String userId, String email, String birthday, String gender, String accessToken, String pushId, String platform, String language, boolean isTermsOfUse) {
-        showDialog(ProgressDialog.STYLE_SPINNER, null, "Connecting to server", true, true);
+        showDialog(ProgressDialog.STYLE_SPINNER, null, getString(R.string.connecting_to_server), true, false);
 
         try {
             Subscription subscription = retrofit.create(NetworkInterface.class).doLogin(
@@ -256,7 +256,11 @@ public class LoginActivity extends BaseActivity {
                             } else {
                                 LoginPreferenceModel mPrefLogin = new LoginPreferenceModel(name, userId, email, gender, birthday, accessToken);
                                 mPrefLogin.saveOnPreference(sharedPreferences);
+                                // Login
+                                Bundle mBundle = new Bundle();
+                                mBundle.putSerializable(LOGIN_SERIALIZATION, result);
                                 Intent mIntent = new Intent(this, MainActivity.class);
+                                mIntent.putExtras(mBundle);
                                 startActivity(mIntent);
                                 this.finish();
                             }
@@ -266,8 +270,13 @@ public class LoginActivity extends BaseActivity {
 
                     }, throwableError);
 
-            getProgressDialog().setOnCancelListener(dialog -> {
-                subscription.unsubscribe();
+            getProgressDialog().setOnKeyListener((dialog, keyCode, event) -> {
+                if (keyCode == KeyEvent.KEYCODE_BACK) {
+                    dialog.dismiss();
+                    subscription.unsubscribe();
+                    Toast.makeText(LoginActivity.this, R.string.login_cancelled, Toast.LENGTH_SHORT).show();
+                }
+                return true;
             });
 
         } catch (Exception e) {

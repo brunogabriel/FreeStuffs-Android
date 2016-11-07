@@ -9,6 +9,7 @@
     <string name="content_description">Content Description</string>
     <string name="network_not_detected">No internet access, please check it</string>
     <string name="try_again">Try again</string>
+    <string name="connecting_to_server">Connecting to a server</string>
 
     <!-- Actions Menu -->
     <string name="action_menu_search">Search</string>
