@@ -2,10 +2,12 @@ package br.com.friendlydonations.models;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by brunogabriel on 05/10/16.
  */
-public abstract class BaseModel {
+public abstract class BaseModel implements Serializable{
 
     @SerializedName("status")
     private boolean status;

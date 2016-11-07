@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:background="@android:color/white"
+<RelativeLayout android:background="@android:color/white"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- title -->
     <android.support.v7.widget.AppCompatTextView
         android:layout_margin="@dimen/material_card_padding"
         android:id="@+id/tvAlertTitle"
@@ -18,29 +18,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <ScrollView
-        android:layout_marginLeft="@dimen/material_card_padding"
-        android:layout_marginRight="@dimen/material_card_padding"
-        android:layout_width="match_parent"
-        android:layout_height="300dp">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/tvContentAlert"
-                fontPath="font/Roboto-Light.ttf"
-                android:textSize="@dimen/dimen_typeface2"
-                android:text="@string/lorem_phrase_too_large"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-    </ScrollView>
-
     <!-- Bottom Layout -->
     <LinearLayout
-        android:layout_marginLeft="@dimen/material_card_padding"
-        android:layout_marginRight="@dimen/material_card_padding"
         android:gravity="right"
         android:textColor="@color/colorGray"
         android:orientation="horizontal"
@@ -48,13 +27,13 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/material_component_text_full_width_single_line_text_field_height"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_centerHorizontal="true">
 
         <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvRefuse"
             android:textColor="@color/colorGray"
             android:textAllCaps="true"
-            android:gravity="right|center_vertical"
+            android:gravity="center"
             android:clickable="true"
             android:background="?android:attr/selectableItemBackground"
             android:layout_gravity="center"
@@ -67,10 +46,12 @@
             android:layout_height="match_parent" />
 
         <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvAccept"
             android:textColor="@color/colorPrimary"
             android:textAllCaps="true"
-            android:gravity="right|center_vertical"
+            android:gravity="center"
             android:clickable="true"
+            android:layout_marginRight="@dimen/dimen_horizontal_spacing"
             android:background="?android:attr/selectableItemBackground"
             android:minWidth="88dp"
             android:layout_gravity="center"
@@ -81,6 +62,40 @@
             android:layout_height="match_parent" />
     </LinearLayout>
 
+    <!-- Center Scroll -->
+    <ScrollView
+        android:layout_marginBottom="70dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tvAlertTitle"
+        android:layout_alignLeft="@+id/tvAlertTitle"
+        android:layout_alignStart="@+id/tvAlertTitle">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tvContentAlert"
+                fontPath="font/Roboto-Light.ttf"
+                android:paddingBottom="70dp"
+                android:layout_marginRight="@dimen/dimen_horizontal_spacing"
+                android:textSize="@dimen/dimen_typeface2"
+                android:text="@string/lorem_phrase_too_large"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </ScrollView>
+
+    <View
+        android:layout_above="@+id/bottomLayout"
+        android:background="@drawable/drawable_white_gradient_effect"
+        android:textAllCaps="true"
+        android:textColor="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="70dp" />
 
 
-</LinearLayout>
+
+</RelativeLayout>

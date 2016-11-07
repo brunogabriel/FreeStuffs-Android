@@ -14,5 +14,8 @@ import dagger.Component;
 @Singleton
 @Component(modules = {SharedPreferencesModule.class})
 public interface SharedPreferencesComponent {
+
+    public static final String LOGIN_PREFERENCES = "login_preference";
+
     SharedPreferences getSharedPreferences();
 }

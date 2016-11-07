@@ -1,9 +1,6 @@
 package br.com.friendlydonations.network;
 
-import org.json.JSONObject;
-
-import br.com.friendlydonations.models.LoginModel;
-import retrofit2.http.Body;
+import br.com.friendlydonations.models.login.LoginModel;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
@@ -26,6 +23,7 @@ public interface NetworkInterface {
             @Field("token") String token,
             @Field("pushId") String pushId,
             @Field("platform") String platform,
-            @Field("language") String language
+            @Field("language") String language,
+            @Field("terms_of_use") boolean isTermsOfUse
     );
 }

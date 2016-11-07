@@ -10,6 +10,61 @@
     <!-- Top Content -->
 
     <!-- Body -->
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/main.appbar"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:fitsSystemWindows="true">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/main.collapsing"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorWhite"
+            app:expandedTitleTextAppearance="@style/ExpandedDonationBar"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            android:fitsSystemWindows="true"
+            app:contentScrim="@color/colorPrimary"
+            app:statusBarScrim="@color/colorPrimaryDark"
+            app:expandedTitleMarginBottom="8dp"
+            app:expandedTitleMarginStart="32dp"
+            app:expandedTitleMarginEnd="32dp">
+
+            <!-- TODO: Apply paginator viewer -->
+            <RelativeLayout
+                android:fitsSystemWindows="true"
+                android:layout_width="match_parent"
+                android:layout_height="300dp">
+
+                <android.support.v4.view.ViewPager
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:id="@+id/viewPager">
+                </android.support.v4.view.ViewPager>
+
+                <net.lucode.hackware.magicindicator.MagicIndicator
+                    android:id="@+id/circlePage"
+                    android:layout_width="wrap_content"
+                    android:minWidth="56dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:layout_collapseMode="pin" />
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/nsvContentScroll"
         android:layout_width="match_parent"
@@ -220,59 +275,5 @@
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
-
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/main.appbar"
-        android:layout_width="match_parent"
-        android:layout_height="350dp"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        android:fitsSystemWindows="true">
-
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/main.collapsing"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorWhite"
-            app:expandedTitleTextAppearance="@style/ExpandedDonationBar"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            android:fitsSystemWindows="true"
-            app:contentScrim="@color/colorPrimary"
-            app:statusBarScrim="@color/colorPrimaryDark"
-            app:expandedTitleMarginBottom="8dp"
-            app:expandedTitleMarginStart="32dp"
-            app:expandedTitleMarginEnd="32dp">
-
-            <!-- TODO: Apply paginator viewer -->
-            <RelativeLayout
-                android:fitsSystemWindows="true"
-                android:layout_width="match_parent"
-                android:layout_height="300dp">
-
-                <android.support.v4.view.ViewPager
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:id="@+id/viewPager">
-                </android.support.v4.view.ViewPager>
-
-                <net.lucode.hackware.magicindicator.MagicIndicator
-                    android:id="@+id/circlePage"
-                    android:layout_width="wrap_content"
-                    android:minWidth="56dp"
-                    android:layout_height="32dp"
-                    android:layout_gravity="bottom|center_horizontal"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true" />
-            </RelativeLayout>
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                app:layout_collapseMode="pin" />
-
-        </android.support.design.widget.CollapsingToolbarLayout>
-    </android.support.design.widget.AppBarLayout>
 
 </android.support.design.widget.CoordinatorLayout>

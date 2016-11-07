@@ -18,7 +18,8 @@
     <string name="login_about_terms">About FriendlyDonation and terms</string>
     <string name="login_with_facebook">Login With Facebook</string>
     <string name="login_with_facebook_cancelled">Login With Facebook was cancelled</string>
-    <string name="login_with_facebook_error">An error occurred during Facebook Login, try again or wait and try later.</string>
+    <string name="login_cancelled">Login was cancelled</string>
+    <string name="login_with_facebook_error">An error has occurred during login. Please try again or later.</string>
     <string name="login_alert_about_title">About</string>
     <string name="login_alert_about_accept">Accept</string>
     <string name="login_alert_about_refuse">Refuse</string>

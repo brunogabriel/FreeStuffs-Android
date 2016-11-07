@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.Log;
@@ -25,22 +24,25 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import org.json.JSONObject;
 import java.io.InvalidObjectException;
 import java.security.InvalidParameterException;
+import java.util.Arrays;
 import java.util.Locale;
 
 import javax.inject.Inject;
 
 import br.com.friendlydonations.R;
 import br.com.friendlydonations.dagger.components.DaggerSharedPreferencesComponent;
+import br.com.friendlydonations.dagger.components.SharedPreferencesComponent;
 import br.com.friendlydonations.dagger.modules.SharedPreferencesModule;
 import br.com.friendlydonations.managers.App;
 import br.com.friendlydonations.managers.BaseActivity;
+import br.com.friendlydonations.models.login.LoginPreferenceModel;
 import br.com.friendlydonations.network.NetworkInterface;
-import br.com.friendlydonations.utils.ApplicationUtilities;
 import br.com.friendlydonations.utils.ConstantsTypes;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import retrofit2.Retrofit;
+import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
@@ -68,6 +70,8 @@ public class LoginActivity extends BaseActivity {
     private ProfileTracker mProfileTracker;
     private Profile mProfile;
 
+    LoginPreferenceModel loginPreferenceModel;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,6 +87,21 @@ public class LoginActivity extends BaseActivity {
         ButterKnife.bind(this);
         initUI();
         setupFacebookSDK();
+
+        try {
+            loginPreferenceModel = LoginPreferenceModel.
+                    jsonToObject(sharedPreferences.getString(SharedPreferencesComponent.LOGIN_PREFERENCES, null));
+
+            if (loginPreferenceModel != null) {
+                if (isNetworkEnabled()) {
+                    executePreferenceLogin(loginPreferenceModel);
+                } else {
+                    Toast.makeText(LoginActivity.this, R.string.network_not_detected, Toast.LENGTH_SHORT).show();
+                }
+            }
+        } catch (Exception ex) {
+            Log.e(TAG, "Fail getting login preferences: " + ex.getMessage());
+        }
     }
 
     @Override
@@ -113,12 +132,11 @@ public class LoginActivity extends BaseActivity {
 
             @Override
             public void onCancel() {
-                Toast.makeText(LoginActivity.this, R.string.login_with_facebook_error, Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, R.string.login_with_facebook_cancelled, Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onError(FacebookException error) {
-                Log.d("LOGINACTIVITY", "Facebook Exception: " + error.getMessage());
                 Toast.makeText(LoginActivity.this, R.string.login_with_facebook_error, Toast.LENGTH_SHORT).show();
             }
         });
@@ -141,18 +159,11 @@ public class LoginActivity extends BaseActivity {
 
     @OnClick(R.id.viewFacebookLogin)
     protected void onClickViewFaceBookLogin() {
-        /** if (isNetworkEnabled()) {
+        if (isNetworkEnabled()) {
             LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "email", "user_birthday"));
         } else {
-            ApplicationUtilities.showSnackBar(getWindow().getDecorView(), getString(R.string.network_not_detected),
-                    Snackbar.LENGTH_LONG, getString(R.string.try_again),
-                    view -> findViewById(R.id.viewFacebookLogin).performClick());
-        } **/
-
-        // Only in dev
-        Intent mIntent = new Intent(this, MainActivity.class);
-        startActivity(mIntent);
-        this.finish();
+            Toast.makeText(LoginActivity.this, R.string.network_not_detected, Toast.LENGTH_SHORT).show();
+        }
     }
 
     @OnClick(R.id.tvAboutTerms)
@@ -166,8 +177,25 @@ public class LoginActivity extends BaseActivity {
     private void requestGraphAPI(final LoginResult loginResult) {
         GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
             @Override
-            public void onCompleted(final JSONObject object, GraphResponse response) {
-                executeFacebookLogin(mProfile, object, loginResult.getAccessToken().getToken());
+            public void onCompleted(JSONObject object, GraphResponse response) {
+                String pushId = "";
+
+                try {
+                    pushId = FirebaseInstanceId.getInstance().getToken();
+                } catch (Exception exception) {
+                    Log.e(TAG, "Fail on getting push identifier: " + exception.getMessage());
+                }
+
+                executeLogin(
+                        mProfile.getName(),
+                        mProfile.getId(),
+                        object.optString("email", ""),
+                        object.optString("gender", ""),
+                        object.optString("birthday", ""),
+                        loginResult.getAccessToken().getToken(), pushId,
+                        ConstantsTypes.PLATFORM,
+                        Locale.getDefault().getLanguage().toString(),
+                        false);
             }
         });
 
@@ -178,48 +206,83 @@ public class LoginActivity extends BaseActivity {
     }
 
     protected Action1<Throwable> throwableError = throwable -> {
+        clearPreference();
         getProgressDialog().dismiss();
-        ApplicationUtilities.showSnackBar(getWindow().getDecorView(), throwable.getMessage(), Snackbar.LENGTH_LONG, null, null);
+        Toast.makeText(LoginActivity.this, "" + throwable.getMessage(), Toast.LENGTH_SHORT).show();
     };
 
-    public void executeFacebookLogin(Profile profile, JSONObject object, String accessToken) {
-        String pushId = "";
-
+    public void executePreferenceLogin(LoginPreferenceModel loginPreferenceModel) {
         try {
-            pushId = FirebaseInstanceId.getInstance().getToken();
-        } catch (Exception exception) {
-            Log.e(TAG, "Fail on getting push identifier: " + exception.getMessage());
+
+            String pushId = "";
+
+            try {
+                pushId = FirebaseInstanceId.getInstance().getToken();
+            } catch (Exception exception) {
+                Log.e(TAG, "Fail on getting push identifier: " + exception.getMessage());
+            }
+
+            executeLogin(loginPreferenceModel.getName(), loginPreferenceModel.getProfileId(),
+                    loginPreferenceModel.getEmail(), loginPreferenceModel.getBirthday(),
+                    loginPreferenceModel.getGender(), loginPreferenceModel.getAccessToken(),
+                    pushId, ConstantsTypes.PLATFORM, Locale.getDefault().getLanguage().toString(), false);
+
+        } catch (Exception ex) {
+            Log.e(TAG, "Fail during preference login: " + ex.getMessage());
         }
+    }
 
-        showDialog(ProgressDialog.STYLE_SPINNER, null, "Connecting to server", true, false);
+    public void executeLogin(String name, String userId, String email, String birthday, String gender, String accessToken, String pushId, String platform, String language, boolean isTermsOfUse) {
+        showDialog(ProgressDialog.STYLE_SPINNER, null, "Connecting to server", true, true);
 
         try {
-
-            retrofit.create(NetworkInterface.class).doLogin(
-                    profile.getName(),
-                    profile.getId(),
-                    object.optString("email", ""),
-                    object.optString("gender", ""),
-                    object.optString("gender", ""),
-                    accessToken, pushId,
-                    ConstantsTypes.PLATFORM,
-                    Locale.getDefault().getLanguage().toString()
+            Subscription subscription = retrofit.create(NetworkInterface.class).doLogin(
+                    name, userId, email, birthday, gender, accessToken,
+                    pushId, platform, language, isTermsOfUse
             ).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                     .subscribe(result -> {
                         getProgressDialog().dismiss();
                         if (result.isStatus()) {
-                            Intent mIntent = new Intent(this, MainActivity.class);
-                            startActivity(mIntent);
-                            this.finish();
+                            if (!result.getData().isTermsOfUse()) {
+                                View mView = LayoutInflater.from(this).inflate(R.layout.alert_about_terms, null, false);
+                                AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
+                                mBuilder.setView(mView);
+                                final AlertDialog mAlertDialog = mBuilder.show();
+                                mView.findViewById(R.id.tvAccept).setOnClickListener(v -> {
+                                    mAlertDialog.dismiss();
+                                    executeLogin(name, userId, email, birthday, gender, accessToken, pushId, platform, language, true);
+                                });
+                                mView.findViewById(R.id.tvRefuse).setOnClickListener(v -> mAlertDialog.dismiss());
+                            } else {
+                                LoginPreferenceModel mPrefLogin = new LoginPreferenceModel(name, userId, email, gender, birthday, accessToken);
+                                mPrefLogin.saveOnPreference(sharedPreferences);
+                                Intent mIntent = new Intent(this, MainActivity.class);
+                                startActivity(mIntent);
+                                this.finish();
+                            }
                         } else {
                             throwableError.call(new InvalidObjectException(result.getMessage()));
                         }
 
                     }, throwableError);
 
+            getProgressDialog().setOnCancelListener(dialog -> {
+                subscription.unsubscribe();
+            });
+
         } catch (Exception e) {
             Log.e(TAG, "Fail during getting token id from FCM: " + e.getMessage());
             throwableError.call(new InvalidParameterException(getString(R.string.login_with_facebook_error)));
+        }
+    }
+
+    private void clearPreference() {
+        try {
+            sharedPreferences.edit().remove(SharedPreferencesComponent.LOGIN_PREFERENCES).commit();
+        } catch (Exception ex) {
+            Log.e(TAG, "Fail on erasing preference");
+        } finally {
+            loginPreferenceModel = null;
         }
     }
 

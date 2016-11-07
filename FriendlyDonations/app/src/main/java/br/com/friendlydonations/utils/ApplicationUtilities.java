@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
-import android.view.MotionEvent;
 import android.view.View;
 
 import java.io.ByteArrayOutputStream;
@@ -32,7 +31,6 @@ public class ApplicationUtilities {
         } else {
             snackbar = Snackbar.make(rootView, message, snackSize);
         }
-
         snackbar.show();
     }
 
