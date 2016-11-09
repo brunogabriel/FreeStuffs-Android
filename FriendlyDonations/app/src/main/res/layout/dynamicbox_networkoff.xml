@@ -35,7 +35,7 @@
 
     <TextView
         android:id="@+id/tvNoInternet"
-        fontPath="/fonts/Montserrat-Regular.ttf"
+        fontPath="fonts/Montserrat-Regular.ttf"
         tools:ignore="MissingPrefix"
         android:text="@string/dynamicbox_message_ops_no_internet"
         android:layout_width="wrap_content"
