@@ -11,6 +11,7 @@ import br.com.friendlydonations.dagger.components.DaggerNetComponent;
 import br.com.friendlydonations.dagger.components.NetComponent;
 import br.com.friendlydonations.dagger.modules.AppModule;
 import br.com.friendlydonations.dagger.modules.NetModule;
+import br.com.friendlydonations.models.login.LoginModel;
 import br.com.friendlydonations.network.NetworkInterface;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
@@ -20,6 +21,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 public class App extends Application {
 
     private NetComponent mNetcomponent;
+    private LoginModel loginModel;
     
     @Override
     public void onCreate() {
@@ -42,5 +44,13 @@ public class App extends Application {
 
     public NetComponent getmNetcomponent() {
         return mNetcomponent;
+    }
+
+    public void setLoginModel(LoginModel loginModel) {
+        this.loginModel = loginModel;
+    }
+
+    public LoginModel getLoginModel() {
+        return this.loginModel;
     }
 }

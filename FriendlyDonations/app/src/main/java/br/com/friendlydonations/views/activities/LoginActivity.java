@@ -55,6 +55,7 @@ public class LoginActivity extends BaseActivity {
 
     public static final String TAG = "LOGIN_ACT";
     public static final String LOGIN_SERIALIZATION = "login_serialization";
+    public static final String LOGIN_NOTIFICATIONS = "login_notifications";
 
     @Inject
     protected Retrofit retrofit;
@@ -259,6 +260,7 @@ public class LoginActivity extends BaseActivity {
                                 // Login
                                 Bundle mBundle = new Bundle();
                                 mBundle.putSerializable(LOGIN_SERIALIZATION, result);
+                                mBundle.putInt(LOGIN_NOTIFICATIONS, result.getNotifications());
                                 Intent mIntent = new Intent(this, MainActivity.class);
                                 mIntent.putExtras(mBundle);
                                 startActivity(mIntent);

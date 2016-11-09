@@ -10,12 +10,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.squareup.picasso.Picasso;
 
 import br.com.friendlydonations.R;
+import br.com.friendlydonations.listeners.BadgeNotificationListener;
+import br.com.friendlydonations.managers.App;
 import br.com.friendlydonations.managers.BaseActivity;
 import br.com.friendlydonations.models.login.LoginModel;
 import br.com.friendlydonations.views.adapters.DynamicTabViewPageAdapter;
@@ -62,6 +65,10 @@ public class MainActivity extends BaseActivity {
     protected BadgeViewLayout notificationBadge;
     protected DynamicTabViewPageAdapter viewPagerAdapter;
 
+    // Data from Login
+    LoginModel loginModel;
+    Integer notificationsOnLogin;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +79,9 @@ public class MainActivity extends BaseActivity {
     }
 
     private void loadLoginPreferences() {
-        LoginModel loginModel = (LoginModel) getIntent().getExtras().getSerializable(LoginActivity.LOGIN_SERIALIZATION);
+        ((App) getApplication()).setLoginModel((LoginModel) getIntent().getExtras().
+                getSerializable(LoginActivity.LOGIN_SERIALIZATION));
+        notificationsOnLogin = getIntent().getExtras().getInt(LoginActivity.LOGIN_NOTIFICATIONS);
     }
 
     @Override
@@ -118,13 +127,13 @@ public class MainActivity extends BaseActivity {
 
                     RelativeLayout mTabLayout = (RelativeLayout) LayoutInflater.from(this).inflate(R.layout.tabbadge, null, false);
                     BadgeViewLayout mBadge = new BadgeViewLayout(mTabLayout);
-                    mBadge.initUi(R.id.badgeImage, R.id.rlBadge, R.id.textBadge);
                     Picasso.with(this).load(tabIcons[i]).into(mBadge.getBadgeImage());
 
                     // Save notification tab
                     if (i == tabIcons.length-1) {
                         notificationBadge = mBadge;
                         mBadge.changeVisibility();
+                        mBadge.updateNotifications(notificationsOnLogin);
                     }
 
                     tabs.getTabAt(i).setCustomView(mTabLayout);
@@ -153,5 +162,16 @@ public class MainActivity extends BaseActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main_activity, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_exit:
+                System.exit(0);
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -18,6 +18,9 @@ public class LoginModel extends BaseModel implements Serializable {
     @SerializedName("data")
     private LoginModelData data;
 
+    @SerializedName("notifications")
+    private Integer notifications;
+
     public LoginModel() {
         super();
     }
@@ -36,6 +39,14 @@ public class LoginModel extends BaseModel implements Serializable {
 
     public void setData(LoginModelData data) {
         this.data = data;
+    }
+
+    public Integer getNotifications() {
+        return notifications;
+    }
+
+    public void setNotifications(Integer notifications) {
+        this.notifications = notifications;
     }
 
     /** Data Content Class **/

@@ -32,7 +32,7 @@
             app:expandedTitleMarginStart="32dp"
             app:expandedTitleMarginEnd="32dp">
 
-            <!-- TODO: Apply paginator viewer -->
+
             <RelativeLayout
                 android:fitsSystemWindows="true"
                 android:layout_width="match_parent"

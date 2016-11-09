@@ -1,32 +1,35 @@
 package br.com.friendlydonations.views.widgets;
 
-import android.graphics.Typeface;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import br.com.friendlydonations.R;
+import br.com.friendlydonations.listeners.BadgeNotificationListener;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 
 /**
  * Created by brunogabriel on 9/16/16.
  */
-public class BadgeViewLayout {
+public class BadgeViewLayout implements BadgeNotificationListener{
 
-    private RelativeLayout rootBadge;
-    private RelativeLayout rlBadge;
-    private ImageView badgeImage;
-    private AppCompatTextView badgeText;
+    protected RelativeLayout rootBadge;
+
+    @BindView(R.id.rlBadge)
+    protected RelativeLayout rlBadge;
+
+    @BindView(R.id.badgeImage)
+    protected ImageView badgeImage;
+
+    @BindView(R.id.textBadge)
+    protected AppCompatTextView badgeText;
 
     public BadgeViewLayout (RelativeLayout rootBadge) {
         this.rootBadge = rootBadge;
-    }
-
-    public void initUi(int idImage, int idBadge, int idText) {
-        if (rootBadge != null) {
-            rlBadge = (RelativeLayout) rootBadge.findViewById(idBadge);
-            badgeText = (AppCompatTextView) rootBadge.findViewById(idText);
-            badgeImage = (ImageView) rootBadge.findViewById(idImage);
-        }
+        ButterKnife.bind(this, this.rootBadge);
     }
 
     public void changeVisibility () {
@@ -35,16 +38,14 @@ public class BadgeViewLayout {
         }
     }
 
-
-    public RelativeLayout getRlBadge() {
-        return rlBadge;
+    @Override
+    public void updateNotifications(Integer notifications) {
+        if (notifications != null && notifications > -1 && badgeText != null) {
+            badgeText.setText(notifications > 99 ? "99": String.valueOf(notifications));
+        }
     }
 
     public ImageView getBadgeImage() {
-        return badgeImage;
-    }
-
-    public AppCompatTextView getBadgeText() {
-        return badgeText;
+        return this.badgeImage;
     }
 }

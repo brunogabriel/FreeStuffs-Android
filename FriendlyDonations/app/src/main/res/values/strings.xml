@@ -126,4 +126,8 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string
         <item>Notifications</item>
     </array>
 
+    <!-- Dynamic Box -->
+    <string name="dynamicbox_message_ops_no_internet">Ops\nno internet connection</string>
+    <string name="dynamicbox_btn_retry">Retry</string>
+
 </resources>

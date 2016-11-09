@@ -27,4 +27,8 @@ public abstract class BaseFragment extends Fragment {
         }
     }
 
+    public boolean isNetworkEnabled() {
+        return ((BaseActivity) getActivity()).isNetworkEnabled();
+    }
+
 }
