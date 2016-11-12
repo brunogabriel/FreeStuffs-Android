@@ -6,11 +6,8 @@ package br.com.friendlydonations.views.fragments;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -30,13 +27,12 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 import br.com.friendlydonations.R;
 import br.com.friendlydonations.managers.BaseActivity;
 import br.com.friendlydonations.managers.BaseFragment;
-import br.com.friendlydonations.models.CategoryModel;
+import br.com.friendlydonations.models.category.CategoryModel;
 import br.com.friendlydonations.models.PictureUpload;
 import br.com.friendlydonations.utils.ConstantsTypes;
 import br.com.friendlydonations.utils.ApplicationUtilities;
@@ -110,13 +106,13 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
         recyclerViewCategories.setAdapter(categoryAdapter);
 
         // Only to test
-        categoryAdapter.add(new CategoryModel("Todas", true));
+        /*categoryAdapter.add(new CategoryModel("Todas", true));
         categoryAdapter.add(new CategoryModel("Alimentos", false));
         categoryAdapter.add(new CategoryModel("Animais", false));
         categoryAdapter.add(new CategoryModel("Eletronicos", false));
         categoryAdapter.add(new CategoryModel("Móveis", false));
         categoryAdapter.add(new CategoryModel("Roupas", false));
-        categoryAdapter.add(new CategoryModel("Serviços", false));
+        categoryAdapter.add(new CategoryModel("Serviços", false)); */
     }
 
     @Override

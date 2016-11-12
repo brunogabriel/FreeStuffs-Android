@@ -10,7 +10,7 @@ import android.widget.TextView;
 import br.com.friendlydonations.R;
 import br.com.friendlydonations.managers.BaseActivity;
 import br.com.friendlydonations.managers.BaseRecyclerViewAdapter;
-import br.com.friendlydonations.models.CategoryModel;
+import br.com.friendlydonations.models.category.CategoryModel;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -67,7 +67,7 @@ public class CategoryAdapter extends BaseRecyclerViewAdapter {
                 // break; // not necessary
             case VIEW_TYPE_SIMPLE:
             default:
-                vhCategorySimple.tvCategoryName.setText(model.getCategoryName());
+                vhCategorySimple.tvCategoryName.setText(model.getName());
                 break;
         }
     }

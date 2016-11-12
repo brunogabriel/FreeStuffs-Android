@@ -66,8 +66,9 @@ public class MainActivity extends BaseActivity {
     protected DynamicTabViewPageAdapter viewPagerAdapter;
 
     // Data from Login
-    LoginModel loginModel;
-    Integer notificationsOnLogin;
+    protected String token;
+    protected LoginModel loginModel;
+    protected Integer notificationsOnLogin;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -82,6 +83,7 @@ public class MainActivity extends BaseActivity {
         ((App) getApplication()).setLoginModel((LoginModel) getIntent().getExtras().
                 getSerializable(LoginActivity.LOGIN_SERIALIZATION));
         notificationsOnLogin = getIntent().getExtras().getInt(LoginActivity.LOGIN_NOTIFICATIONS);
+        token = getIntent().getExtras().getString(LoginActivity.LOGIN_TOKEN);
     }
 
     @Override
@@ -155,6 +157,14 @@ public class MainActivity extends BaseActivity {
             viewPager.setCurrentItem(tab.getPosition());
             toolbar.setTitle(tabArrayNames[tab.getPosition()]);
         }
+    }
+
+    public LoginModel getLoginModel() {
+        return loginModel;
+    }
+
+    public String getToken() {
+        return token;
     }
 
     @Override

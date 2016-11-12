@@ -16,13 +16,11 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
-import com.facebook.GraphResponse;
 import com.facebook.Profile;
 import com.facebook.ProfileTracker;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.google.firebase.iid.FirebaseInstanceId;
-import org.json.JSONObject;
 import java.io.InvalidObjectException;
 import java.security.InvalidParameterException;
 import java.util.Arrays;
@@ -36,6 +34,7 @@ import br.com.friendlydonations.dagger.components.SharedPreferencesComponent;
 import br.com.friendlydonations.dagger.modules.SharedPreferencesModule;
 import br.com.friendlydonations.managers.App;
 import br.com.friendlydonations.managers.BaseActivity;
+import br.com.friendlydonations.models.login.LoginModel;
 import br.com.friendlydonations.models.login.LoginPreferenceModel;
 import br.com.friendlydonations.network.NetworkInterface;
 import br.com.friendlydonations.utils.ConstantsTypes;
@@ -53,15 +52,13 @@ import rx.schedulers.Schedulers;
  */
 public class LoginActivity extends BaseActivity {
 
-    public static final String TAG = "LOGIN_ACT";
+    // Constants
+    private static final String TAG = "LOGIN_ACT";
+    private static final String LOGIN_TOKEN = "login_token";
     public static final String LOGIN_SERIALIZATION = "login_serialization";
     public static final String LOGIN_NOTIFICATIONS = "login_notifications";
 
-    @Inject
-    protected Retrofit retrofit;
-
-    protected SharedPreferences sharedPreferences;
-
+    // Views
     @BindView(R.id.tvAboutTerms)
     protected AppCompatTextView tvAboutTerms;
 
@@ -69,11 +66,14 @@ public class LoginActivity extends BaseActivity {
     protected AppCompatTextView tvFacebookLogin;
 
     // Facebook
-    protected CallbackManager callbackManager;
+    private CallbackManager callbackManager;
     private ProfileTracker mProfileTracker;
     private Profile mProfile;
 
-    LoginPreferenceModel loginPreferenceModel;
+    @Inject
+    protected Retrofit retrofit;
+    private LoginPreferenceModel loginPreferenceModel;
+    private SharedPreferences sharedPreferences;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -155,7 +155,6 @@ public class LoginActivity extends BaseActivity {
             public void OnTokenRefreshFailed(FacebookException exception) {
             }
         }); **/
-
     }
 
     @OnClick(R.id.viewFacebookLogin)
@@ -176,28 +175,25 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void requestGraphAPI(final LoginResult loginResult) {
-        GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
-            @Override
-            public void onCompleted(JSONObject object, GraphResponse response) {
-                String pushId = "";
+        GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), (object, response) -> {
+            String pushId = "";
 
-                try {
-                    pushId = FirebaseInstanceId.getInstance().getToken();
-                } catch (Exception exception) {
-                    Log.e(TAG, "Fail on getting push identifier: " + exception.getMessage());
-                }
-
-                executeLogin(
-                        mProfile.getName(),
-                        mProfile.getId(),
-                        object.optString("email", ""),
-                        object.optString("gender", ""),
-                        object.optString("birthday", ""),
-                        loginResult.getAccessToken().getToken(), pushId,
-                        ConstantsTypes.PLATFORM,
-                        Locale.getDefault().getLanguage().toString(),
-                        false);
+            try {
+                pushId = FirebaseInstanceId.getInstance().getToken();
+            } catch (Exception exception) {
+                Log.e(TAG, "Fail on getting push identifier: " + exception.getMessage());
             }
+
+            executeLogin(
+                    mProfile.getName(),
+                    mProfile.getId(),
+                    object.optString("email", ""),
+                    object.optString("gender", ""),
+                    object.optString("birthday", ""),
+                    loginResult.getAccessToken().getToken(), pushId,
+                    ConstantsTypes.PLATFORM,
+                    Locale.getDefault().getLanguage(),
+                    false);
         });
 
         Bundle parameters = new Bundle();
@@ -206,13 +202,13 @@ public class LoginActivity extends BaseActivity {
         request.executeAsync();
     }
 
-    protected Action1<Throwable> throwableError = throwable -> {
+    private final Action1<Throwable> throwableError = throwable -> {
         clearPreference();
         getProgressDialog().dismiss();
         Toast.makeText(LoginActivity.this, "" + throwable.getMessage(), Toast.LENGTH_SHORT).show();
     };
 
-    public void executePreferenceLogin(LoginPreferenceModel loginPreferenceModel) {
+    private void executePreferenceLogin(LoginPreferenceModel loginPreferenceModel) {
         try {
 
             String pushId = "";
@@ -226,21 +222,20 @@ public class LoginActivity extends BaseActivity {
             executeLogin(loginPreferenceModel.getName(), loginPreferenceModel.getProfileId(),
                     loginPreferenceModel.getEmail(), loginPreferenceModel.getBirthday(),
                     loginPreferenceModel.getGender(), loginPreferenceModel.getAccessToken(),
-                    pushId, ConstantsTypes.PLATFORM, Locale.getDefault().getLanguage().toString(), false);
-
+                    pushId, ConstantsTypes.PLATFORM, Locale.getDefault().getLanguage(), false);
         } catch (Exception ex) {
             Log.e(TAG, "Fail during preference login: " + ex.getMessage());
         }
     }
 
-    public void executeLogin(String name, String userId, String email, String birthday, String gender, String accessToken, String pushId, String platform, String language, boolean isTermsOfUse) {
+    private void executeLogin(String name, String userId, String email, String birthday, String gender, String accessToken, String pushId, String platform, String language, boolean isTermsOfUse) {
         showDialog(ProgressDialog.STYLE_SPINNER, null, getString(R.string.connecting_to_server), true, false);
 
         try {
             Subscription subscription = retrofit.create(NetworkInterface.class).doLogin(
-                    name, userId, email, birthday, gender, accessToken,
-                    pushId, platform, language, isTermsOfUse
-            ).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                    name, userId, email, birthday, gender, accessToken, pushId, platform, language, isTermsOfUse)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(result -> {
                         getProgressDialog().dismiss();
                         if (result.isStatus()) {
@@ -255,21 +250,11 @@ public class LoginActivity extends BaseActivity {
                                 });
                                 mView.findViewById(R.id.tvRefuse).setOnClickListener(v -> mAlertDialog.dismiss());
                             } else {
-                                LoginPreferenceModel mPrefLogin = new LoginPreferenceModel(name, userId, email, gender, birthday, accessToken);
-                                mPrefLogin.saveOnPreference(sharedPreferences);
-                                // Login
-                                Bundle mBundle = new Bundle();
-                                mBundle.putSerializable(LOGIN_SERIALIZATION, result);
-                                mBundle.putInt(LOGIN_NOTIFICATIONS, result.getNotifications());
-                                Intent mIntent = new Intent(this, MainActivity.class);
-                                mIntent.putExtras(mBundle);
-                                startActivity(mIntent);
-                                this.finish();
+                                savePreferencesAndLogin(name, userId, email, birthday, gender, accessToken, result);
                             }
                         } else {
                             throwableError.call(new InvalidObjectException(result.getMessage()));
                         }
-
                     }, throwableError);
 
             getProgressDialog().setOnKeyListener((dialog, keyCode, event) -> {
@@ -287,9 +272,22 @@ public class LoginActivity extends BaseActivity {
         }
     }
 
+    private void savePreferencesAndLogin(String name, String userId, String email, String birthday, String gender, String accessToken, LoginModel result) {
+        LoginPreferenceModel mPrefLogin = new LoginPreferenceModel(name, userId, email, gender, birthday, accessToken);
+        mPrefLogin.saveOnPreference(sharedPreferences);
+        Bundle mBundle = new Bundle();
+        mBundle.putSerializable(LOGIN_SERIALIZATION, result);
+        mBundle.putInt(LOGIN_NOTIFICATIONS, result.getNotifications());
+        mBundle.putString(LOGIN_TOKEN, mPrefLogin.getAccessToken());
+        Intent mIntent = new Intent(this, MainActivity.class);
+        mIntent.putExtras(mBundle);
+        startActivity(mIntent);
+        this.finish();
+    }
+
     private void clearPreference() {
         try {
-            sharedPreferences.edit().remove(SharedPreferencesComponent.LOGIN_PREFERENCES).commit();
+            sharedPreferences.edit().remove(SharedPreferencesComponent.LOGIN_PREFERENCES).apply();
         } catch (Exception ex) {
             Log.e(TAG, "Fail on erasing preference");
         } finally {

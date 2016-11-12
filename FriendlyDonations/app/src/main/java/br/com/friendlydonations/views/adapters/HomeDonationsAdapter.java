@@ -15,7 +15,7 @@ import java.util.List;
 
 import br.com.friendlydonations.R;
 import br.com.friendlydonations.managers.BaseRecyclerViewAdapter;
-import br.com.friendlydonations.models.CategoryModel;
+import br.com.friendlydonations.models.category.CategoryModel;
 import br.com.friendlydonations.models.DonationModel;
 import br.com.friendlydonations.models.LoaderModel;
 import br.com.friendlydonations.views.activities.DonationDetailActivity;
@@ -184,7 +184,7 @@ public class HomeDonationsAdapter extends BaseRecyclerViewAdapter {
                 checkHolder.itemView.setAlpha(0.5f);
             }
 
-            checkHolder.tvCategoryName.setText("" + categoryModel.getCategoryName());
+            checkHolder.tvCategoryName.setText("" + categoryModel.getName());
         }
 
         @Override

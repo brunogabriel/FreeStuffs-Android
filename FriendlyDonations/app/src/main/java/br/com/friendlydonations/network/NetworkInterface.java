@@ -1,5 +1,6 @@
 package br.com.friendlydonations.network;
 
+import br.com.friendlydonations.models.category.CategoryAnswerModel;
 import br.com.friendlydonations.models.login.LoginModel;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -26,4 +27,8 @@ public interface NetworkInterface {
             @Field("language") String language,
             @Field("terms_of_use") boolean isTermsOfUse
     );
+
+    @FormUrlEncoded
+    @POST(" /product_categories")
+    Observable<CategoryAnswerModel> loadCategories(@Field("token") String token);
 }

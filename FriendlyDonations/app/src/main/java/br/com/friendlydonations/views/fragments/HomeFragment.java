@@ -8,22 +8,28 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Inject;
+
 import br.com.friendlydonations.R;
+import br.com.friendlydonations.managers.App;
 import br.com.friendlydonations.managers.BaseFragment;
-import br.com.friendlydonations.models.CategoryModel;
-import br.com.friendlydonations.models.DonationModel;
 import br.com.friendlydonations.models.LoaderModel;
+import br.com.friendlydonations.network.NetworkInterface;
+import br.com.friendlydonations.views.activities.LoginActivity;
+import br.com.friendlydonations.views.activities.MainActivity;
 import br.com.friendlydonations.views.adapters.HomeDonationsAdapter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import mehdi.sakout.dynamicbox.DynamicBox;
+import retrofit2.Retrofit;
 import rx.Observable;
+import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -31,7 +37,11 @@ import rx.schedulers.Schedulers;
  */
 public class HomeFragment extends BaseFragment {
 
+    // Constants
     private static final String DYNAMICBOX_DISCONNECTED = "dynamicboxdisconnected";
+
+    @Inject
+    protected Retrofit retrofit;
 
     @BindView(R.id.swipeRefreshLayout)
     SwipeRefreshLayout swipeRefreshLayout;
@@ -47,10 +57,14 @@ public class HomeFragment extends BaseFragment {
     protected View dynamicBoxNoInternet;
     protected DynamicBox dynamicBox;
 
+    // Vars to help requests
+    private boolean isCategoryLoaded;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_home, container, false);
         dynamicBoxNoInternet = inflater.inflate(R.layout.dynamicbox_networkoff, container, false);
+        ((App) getActivity().getApplication()).getmNetcomponent().inject(this);
         ButterKnife.bind(this, rootView);
         initUI();
         return rootView;
@@ -71,11 +85,12 @@ public class HomeFragment extends BaseFragment {
             dynamicBoxNoInternet.findViewById(R.id.btnTryAgain).setOnClickListener(v -> {
                 if (isNetworkEnabled()) {
                     dynamicBox.hideAll();
-                    // TODO: implement logic to refresh -> call request again
+                    startRequest();
                 }
             });
+        } else {
+            startRequest();
         }
-
 
         // Only to test below
         //startSwipeLayout();
@@ -105,6 +120,22 @@ public class HomeFragment extends BaseFragment {
 //                    adapter.addAll(mItens);
 //                });
     }
+
+    private void startRequest() {
+
+        Subscription subscription;
+
+        if (!isCategoryLoaded) {
+            subscription = retrofit.create(NetworkInterface.class)
+                    .loadCategories(((MainActivity) getActivity()).getToken())
+                    .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(result -> {
+                    }, throwableError);
+        }
+    }
+
+    protected Action1<Throwable> throwableError = throwable -> {
+    };
 
     private void startSwipeLayout() {
         swipeRefreshLayout.setEnabled(true);
