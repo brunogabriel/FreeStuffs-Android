@@ -62,10 +62,10 @@
 
                 <ImageView
                     android:id="@+id/imName"
-                    android:src="@drawable/ic_network_off"
+                    android:src="@drawable/ic_person_black_24px"
                     android:layout_margin="@dimen/dimen_horizontal_spacing"
-                    android:layout_width="@dimen/dimen_drawable_floating_text"
-                    android:layout_height="@dimen/dimen_drawable_floating_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true" />
@@ -101,10 +101,10 @@
 
                 <ImageView
                     android:id="@+id/imbirthday"
-                    android:src="@drawable/ic_network_off"
+                    android:src="@drawable/ic_calendar"
                     android:layout_margin="@dimen/dimen_horizontal_spacing"
-                    android:layout_width="@dimen/dimen_drawable_floating_text"
-                    android:layout_height="@dimen/dimen_drawable_floating_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true" />
@@ -140,10 +140,10 @@
 
                 <ImageView
                     android:id="@+id/imGender"
-                    android:src="@drawable/ic_network_off"
+                    android:src="@drawable/ic_group_black_24px"
                     android:layout_margin="@dimen/dimen_horizontal_spacing"
-                    android:layout_width="@dimen/dimen_drawable_floating_text"
-                    android:layout_height="@dimen/dimen_drawable_floating_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true" />
@@ -179,10 +179,10 @@
 
                 <ImageView
                     android:id="@+id/imEmail"
-                    android:src="@drawable/ic_network_off"
+                    android:src="@drawable/ic_mail_black_24px"
                     android:layout_margin="@dimen/dimen_horizontal_spacing"
-                    android:layout_width="@dimen/dimen_drawable_floating_text"
-                    android:layout_height="@dimen/dimen_drawable_floating_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true" />
@@ -218,10 +218,10 @@
 
                 <ImageView
                     android:id="@+id/imphone"
-                    android:src="@drawable/ic_network_off"
+                    android:src="@drawable/ic_mail_black_24px"
                     android:layout_margin="@dimen/dimen_horizontal_spacing"
-                    android:layout_width="@dimen/dimen_drawable_floating_text"
-                    android:layout_height="@dimen/dimen_drawable_floating_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true" />

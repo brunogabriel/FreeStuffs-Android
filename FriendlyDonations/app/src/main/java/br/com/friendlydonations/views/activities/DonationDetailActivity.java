@@ -9,6 +9,7 @@ import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.text.TextPaint;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -78,7 +79,7 @@ public class DonationDetailActivity extends BaseActivity{
 
     @Override
     public void initUI() {
-        setupToolbar(toolbar, getString(R.string.lorem_name), "", true, true);
+        setupToolbar(toolbar, getString(R.string.lorem_name), null, true, true);
         collapsingToolbarLayout.setCollapsedTitleTypeface(TypefaceUtils.load(getAssets(), "fonts/Montserrat-Regular.ttf"));
         collapsingToolbarLayout.setExpandedTitleTypeface(TypefaceUtils.load(getAssets(), "fonts/Montserrat-Bold.ttf"));
         applyCloseMenu();
@@ -109,32 +110,20 @@ public class DonationDetailActivity extends BaseActivity{
             LatLng mCoords = new LatLng(-34, 151);
             googleMap.addMarker(new MarkerOptions().position(mCoords).title("Marker in My Coords"));
             googleMap.moveCamera(CameraUpdateFactory.newLatLng(mCoords));
-
             CameraPosition mCameraPosition = new CameraPosition.Builder()
                     .target(mCoords)
                     .zoom(15)
                     .tilt(45)
                     .bearing(0)
                     .build();
-
             googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(mCameraPosition));
         });
+
         mapFragment.setListener(() -> {
             NestedScrollView nsvContentScroll = (NestedScrollView) findViewById(R.id.nsvContentScroll);
             if (nsvContentScroll != null)
                 nsvContentScroll.requestDisallowInterceptTouchEvent(true);
         });
-    }
-
-    protected void applyCloseMenu() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-            try {
-                getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_menu_close_x));
-            } catch (Exception ex) {
-
-            }
-
-        }
     }
 
     @OnClick(R.id.tvDonateSeeMore)

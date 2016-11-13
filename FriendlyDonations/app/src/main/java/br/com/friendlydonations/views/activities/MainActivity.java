@@ -1,5 +1,6 @@
 package br.com.friendlydonations.views.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
@@ -177,6 +178,12 @@ public class MainActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.action_terms:
+                startActivity(new Intent(this, TermsAndPrivacityActivity.class));
+                break;
+            case R.id.action_favourites:
+                startActivity(new Intent(this, FavouritesActivity.class));
+                break;
             case R.id.action_exit:
                 System.exit(0);
                 break;

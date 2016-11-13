@@ -35,6 +35,7 @@ import android.app.Activity;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
 
+import br.com.friendlydonations.R;
 import br.com.friendlydonations.utils.ConstantsTypes;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -251,6 +252,16 @@ public abstract class BaseActivity extends AppCompatActivity implements GoogleAp
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
+
+    public void applyCloseMenu() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            try {
+                getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu_close_x);
+            } catch (Exception ex) {
+                Log.e(TAG, "Fail to apply close menu X icon: " + ex.getMessage());
+            }
+        }
     }
 
 }
