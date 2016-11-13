@@ -90,6 +90,12 @@
             android:theme="@style/FriendlyDonationsTheme.NavigationNotTranslucent">
         </activity>
 
+        <activity
+            android:name=".views.activities.AccountSettingsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/FriendlyDonationsTheme.NotTranslucent">
+        </activity>
+
     </application>
 
 </manifest>

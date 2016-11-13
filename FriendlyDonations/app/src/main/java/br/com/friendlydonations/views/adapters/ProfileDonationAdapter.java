@@ -1,6 +1,9 @@
 package br.com.friendlydonations.views.adapters;
 
+import android.accounts.Account;
 import android.app.Activity;
+import android.content.Intent;
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,6 +16,7 @@ import br.com.friendlydonations.R;
 import br.com.friendlydonations.managers.BaseRecyclerViewAdapter;
 import br.com.friendlydonations.models.LoaderModel;
 import br.com.friendlydonations.models.ProfileDonationModel;
+import br.com.friendlydonations.views.activities.AccountSettingsActivity;
 import br.com.friendlydonations.views.widgets.LoaderViewHolder;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -92,8 +96,16 @@ public class ProfileDonationAdapter extends BaseRecyclerViewAdapter {
 
     public class ProfileDescriptionViewHolder extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.tvPreferences)
+        AppCompatTextView tvPreferences;
+
         public ProfileDescriptionViewHolder(View itemView) {
             super(itemView);
+            ButterKnife.bind(this, itemView);
+            tvPreferences.setOnClickListener(view -> {
+                Intent mIntent = new Intent(activity, AccountSettingsActivity.class);
+                activity.startActivity(mIntent);
+            });
         }
     }
 

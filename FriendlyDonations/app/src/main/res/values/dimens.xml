@@ -32,7 +32,8 @@
     <dimen name="dimen_profile_donations_description">20sp</dimen>
     <dimen name="dimen_notification_image">48dp</dimen>
 
-
+    <!-- Drawer floating text -->
+    <dimen name="dimen_drawable_floating_text">24dp</dimen>
 
     <!-- Base Typefaces -->
     <dimen name="dimen_typeface1">12sp</dimen>

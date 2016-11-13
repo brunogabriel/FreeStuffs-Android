@@ -54,7 +54,7 @@ public class LoginActivity extends BaseActivity {
 
     // Constants
     private static final String TAG = "LOGIN_ACT";
-    private static final String LOGIN_TOKEN = "login_token";
+    public static final String LOGIN_TOKEN = "login_token";
     public static final String LOGIN_SERIALIZATION = "login_serialization";
     public static final String LOGIN_NOTIFICATIONS = "login_notifications";
 

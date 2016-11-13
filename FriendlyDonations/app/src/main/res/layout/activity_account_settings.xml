@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/coordinatorLayout"
+    android:fitsSystemWindows="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBar"
+        app:contentScrim="@color/colorPrimary"
+        app:statusBarScrim="@color/colorPrimaryDark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <include layout="@layout/toolbar" android:id="@+id/toolbar" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nsvContentScroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="8dp">
+
+            <!-- Name -->
+            <RelativeLayout
+                android:layout_marginTop="@dimen/dimen_vertical_spacing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TextInputLayout
+                    app:theme="@style/FriendlyDonationsTheme.FloatingEditText"
+                    app:hintTextAppearance="@style/FriendlyDonationsTheme.FloatingEditText.Hint"
+                    android:id="@+id/tiNameTitle"
+                    android:layout_width="match_parent"
+                    android:layout_marginRight="@dimen/dimen_horizontal_spacing"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_toRightOf="@+id/imName"
+                    android:layout_toEndOf="@+id/imName">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/etName"
+                        android:maxLines="1"
+                        android:editable="false"
+                        android:text="Marconi Loura"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/acc_settings_name" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/imName"
+                    android:src="@drawable/ic_network_off"
+                    android:layout_margin="@dimen/dimen_horizontal_spacing"
+                    android:layout_width="@dimen/dimen_drawable_floating_text"
+                    android:layout_height="@dimen/dimen_drawable_floating_text"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+            </RelativeLayout>
+
+            <!-- Birthday -->
+            <RelativeLayout
+                android:layout_marginTop="@dimen/dimen_vertical_spacing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TextInputLayout
+                    app:theme="@style/FriendlyDonationsTheme.FloatingEditText"
+                    app:hintTextAppearance="@style/FriendlyDonationsTheme.FloatingEditText.Hint"
+                    android:id="@+id/tiBirthdayTitle"
+                    android:layout_width="match_parent"
+                    android:layout_marginRight="@dimen/dimen_horizontal_spacing"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_toRightOf="@+id/imbirthday"
+                    android:layout_toEndOf="@+id/imbirthday">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/etBirthday"
+                        android:maxLines="1"
+                        android:editable="false"
+                        android:text="01/01/1980"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/acc_settings_birthday" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/imbirthday"
+                    android:src="@drawable/ic_network_off"
+                    android:layout_margin="@dimen/dimen_horizontal_spacing"
+                    android:layout_width="@dimen/dimen_drawable_floating_text"
+                    android:layout_height="@dimen/dimen_drawable_floating_text"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+            </RelativeLayout>
+
+            <!-- Gender -->
+            <RelativeLayout
+                android:layout_marginTop="@dimen/dimen_vertical_spacing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TextInputLayout
+                    app:theme="@style/FriendlyDonationsTheme.FloatingEditText"
+                    app:hintTextAppearance="@style/FriendlyDonationsTheme.FloatingEditText.Hint"
+                    android:id="@+id/tiGenderTitle"
+                    android:layout_width="match_parent"
+                    android:layout_marginRight="@dimen/dimen_horizontal_spacing"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_toRightOf="@+id/imGender"
+                    android:layout_toEndOf="@+id/imGender">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/etGender"
+                        android:maxLines="1"
+                        android:editable="false"
+                        android:text="Male"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/acc_settings_gender" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/imGender"
+                    android:src="@drawable/ic_network_off"
+                    android:layout_margin="@dimen/dimen_horizontal_spacing"
+                    android:layout_width="@dimen/dimen_drawable_floating_text"
+                    android:layout_height="@dimen/dimen_drawable_floating_text"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+            </RelativeLayout>
+
+            <!-- Email -->
+            <RelativeLayout
+                android:layout_marginTop="@dimen/dimen_vertical_spacing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TextInputLayout
+                    app:theme="@style/FriendlyDonationsTheme.FloatingEditText"
+                    app:hintTextAppearance="@style/FriendlyDonationsTheme.FloatingEditText.Hint"
+                    android:id="@+id/tiEmailTitle"
+                    android:layout_width="match_parent"
+                    android:layout_marginRight="@dimen/dimen_horizontal_spacing"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_toRightOf="@+id/imEmail"
+                    android:layout_toEndOf="@+id/imEmail">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/etEmail"
+                        android:maxLines="1"
+                        android:editable="false"
+                        android:text="friendlydonations@gmail.com"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/acc_settings_phone" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/imEmail"
+                    android:src="@drawable/ic_network_off"
+                    android:layout_margin="@dimen/dimen_horizontal_spacing"
+                    android:layout_width="@dimen/dimen_drawable_floating_text"
+                    android:layout_height="@dimen/dimen_drawable_floating_text"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+            </RelativeLayout>
+
+            <!-- Phone -->
+            <RelativeLayout
+                android:layout_marginTop="@dimen/dimen_vertical_spacing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TextInputLayout
+                    app:theme="@style/FriendlyDonationsTheme.FloatingEditText"
+                    app:hintTextAppearance="@style/FriendlyDonationsTheme.FloatingEditText.Hint"
+                    android:id="@+id/tiPhoneTitle"
+                    android:layout_width="match_parent"
+                    android:layout_marginRight="@dimen/dimen_horizontal_spacing"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_toRightOf="@+id/imphone"
+                    android:layout_toEndOf="@+id/imphone">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/etPhone"
+                        android:maxLines="1"
+                        android:editable="false"
+                        android:text="1212121212"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/acc_settings_phone" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/imphone"
+                    android:src="@drawable/ic_network_off"
+                    android:layout_margin="@dimen/dimen_horizontal_spacing"
+                    android:layout_width="@dimen/dimen_drawable_floating_text"
+                    android:layout_height="@dimen/dimen_drawable_floating_text"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+            </RelativeLayout>
+
+            <android.support.v7.widget.SwitchCompat
+                android:layout_marginTop="32dp"
+                android:layout_marginLeft="@dimen/material_card_padding"
+                android:layout_marginRight="@dimen/dimen_horizontal_spacing"
+                android:text="@string/acc_settings_receive_notifications"
+                style="@style/TextView.Typeface3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+
+</android.support.design.widget.CoordinatorLayout>

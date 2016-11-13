@@ -2,13 +2,15 @@ package br.com.friendlydonations.models.category;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 import br.com.friendlydonations.models.ImageModel;
 
 /**
  * Created by brunogabriel on 31/10/16.
  */
 
-public class CategoryModel {
+public class CategoryModel implements Serializable {
 
 
     @SerializedName("_id")

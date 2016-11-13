@@ -126,6 +126,15 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string
         <item>Notifications</item>
     </array>
 
+    <!-- Activity account settings -->
+    <string name="acc_settings_name">Name</string>
+    <string name="acc_settings_birthday">Birthday</string>
+    <string name="acc_settings_gender">Gender</string>
+    <string name="acc_settings_email">Email</string>
+    <string name="acc_settings_phone">Phone</string>
+    <string name="acc_settings_receive_notifications">receive notifications</string>
+    <string name="acc_settings_save">Save</string>
+
     <!-- Dynamic Box -->
     <string name="dynamicbox_message_ops_no_internet">Ops\nno internet connection</string>
     <string name="dynamicbox_btn_retry">Retry</string>
