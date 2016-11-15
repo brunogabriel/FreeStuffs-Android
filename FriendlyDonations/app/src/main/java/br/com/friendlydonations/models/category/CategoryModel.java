@@ -12,7 +12,6 @@ import br.com.friendlydonations.models.ImageModel;
 
 public class CategoryModel implements Serializable {
 
-
     @SerializedName("_id")
     private String id;
 

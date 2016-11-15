@@ -9,7 +9,6 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/circleImageView"
-        android:src="@drawable/ic_girl_sample"
         android:layout_width="@dimen/dimen_height_card_home"
         android:layout_height="@dimen/dimen_height_card_home"
          />

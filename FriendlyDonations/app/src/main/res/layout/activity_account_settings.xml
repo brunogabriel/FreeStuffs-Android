@@ -33,7 +33,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:paddingTop="8dp">
-            
+
             <!-- Name -->
             <RelativeLayout
                 android:layout_marginTop="@dimen/dimen_vertical_spacing"

@@ -8,8 +8,9 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
@@ -128,13 +129,20 @@ public class HomeFragment extends BaseFragment {
         if (!isCategoryLoaded) {
             subscription = retrofit.create(NetworkInterface.class)
                     .loadCategories(((MainActivity) getActivity()).getToken())
-                    .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(result -> {
+                        if (result.isStatus() && result.getCategoryModelList().size() > 0) {
+                            List<Object> mItens = new ArrayList<>();
+                            mItens.add(result.getCategoryModelList());
+                            adapter.addAllWithLoading(mItens);
+                        }
                     }, throwableError);
         }
     }
 
     protected Action1<Throwable> throwableError = throwable -> {
+        int x = 1;
     };
 
     private void startSwipeLayout() {

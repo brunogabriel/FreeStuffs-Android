@@ -18,6 +18,8 @@ import br.com.friendlydonations.managers.BaseRecyclerViewAdapter;
 import br.com.friendlydonations.models.category.CategoryModel;
 import br.com.friendlydonations.models.DonationModel;
 import br.com.friendlydonations.models.LoaderModel;
+import br.com.friendlydonations.utils.ApplicationUtilities;
+import br.com.friendlydonations.utils.ImageUtility;
 import br.com.friendlydonations.views.activities.DonationDetailActivity;
 import br.com.friendlydonations.views.widgets.LoaderViewHolder;
 import butterknife.BindView;
@@ -184,7 +186,11 @@ public class HomeDonationsAdapter extends BaseRecyclerViewAdapter {
                 checkHolder.itemView.setAlpha(0.5f);
             }
 
+            // Apply information
             checkHolder.tvCategoryName.setText("" + categoryModel.getName());
+            ImageUtility.loadImageWithPlaceholder(checkHolder.circleImageView, activity,
+                    categoryModel.getImageModel().getLoader(),
+                    categoryModel.getImageModel().getLarge());
         }
 
         @Override
