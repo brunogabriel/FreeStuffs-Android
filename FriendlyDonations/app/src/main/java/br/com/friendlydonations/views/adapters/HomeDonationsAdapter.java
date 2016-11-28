@@ -2,6 +2,7 @@ package br.com.friendlydonations.views.adapters;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,16 +10,17 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import java.util.List;
 
 import br.com.friendlydonations.R;
 import br.com.friendlydonations.managers.BaseRecyclerViewAdapter;
+import br.com.friendlydonations.models.ImageModel;
 import br.com.friendlydonations.models.category.CategoryModel;
-import br.com.friendlydonations.models.DonationModel;
+import br.com.friendlydonations.models.donation.DonationModel;
 import br.com.friendlydonations.models.LoaderModel;
-import br.com.friendlydonations.utils.ApplicationUtilities;
 import br.com.friendlydonations.utils.ImageUtility;
 import br.com.friendlydonations.views.activities.DonationDetailActivity;
 import br.com.friendlydonations.views.widgets.LoaderViewHolder;
@@ -72,11 +74,12 @@ public class HomeDonationsAdapter extends BaseRecyclerViewAdapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof LoaderViewHolder) {
-            StaggeredGridLayoutManager.LayoutParams layoutParams = (StaggeredGridLayoutManager.LayoutParams) holder.itemView.getLayoutParams();
+            StaggeredGridLayoutManager.LayoutParams layoutParams = (StaggeredGridLayoutManager.LayoutParams)
+                    holder.itemView.getLayoutParams();
             layoutParams.setFullSpan(true);
             return;
         } else if (holder instanceof DonationHomeViewHolder) {
-            ((DonationHomeViewHolder) holder).populateUI();
+            ((DonationHomeViewHolder) holder).populateUI(position);
         } else if (holder instanceof HorizontalCategoriesViewHolder) {
             StaggeredGridLayoutManager.LayoutParams layoutParams = (StaggeredGridLayoutManager.LayoutParams) holder.itemView.getLayoutParams();
             layoutParams.setFullSpan(true);
@@ -111,27 +114,41 @@ public class HomeDonationsAdapter extends BaseRecyclerViewAdapter {
         @BindView(R.id.cardTitle)
         AppCompatTextView cardTitle;
 
+        @BindView(R.id.cardLocation)
+        AppCompatTextView cardLocation;
+
+        @BindView(R.id.cardImage)
+        ImageView cardImage;
+
+        DonationModel donationModel;
+
+
         public DonationHomeViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(view -> {
+                Bundle mBundle = new Bundle();
+                mBundle.putSerializable(DonationDetailActivity.DONATION_DETAIL_SERIALIZATION, donationModel);
+
                 Intent mIntent = new Intent(activity, DonationDetailActivity.class);
+                mIntent.putExtras(mBundle);
                 activity.startActivity(mIntent);
             });
         }
 
-        public void populateUI() {
-            int randomItem = (int) (Math.random() * 100);
+        public void populateUI(int position) {
+            donationModel = (DonationModel) items.get(position);
+            ImageModel imageModel = donationModel.getImages().get(0);
 
-            if (randomItem < 30) {
-                cardTitle.setText("Lorem ipsum dolor");
-            } else if (randomItem < 60) {
-                cardTitle.setText("Brand new ladies bike 29 wheels...Brand new ladies " +
-                        "bike 29 wheels Brand new ladies bike 29 wheels");
-            } else {
-                cardTitle.setText("Brand new ladies bike 29 wheels Brand new ladies bike 29 " +
-                        "wheels...Brand new ladies bike 29 wheels Brand new ladies bike 29 wheels");
+            try {
+                ImageUtility.loadImageWithPlaceholder(cardImage, activity,
+                        imageModel.getLoader(), imageModel.getLarge());
+            } catch (Exception exception) {
+
             }
+
+            cardTitle.setText(donationModel.getTitle());
+            cardLocation.setText(donationModel.getLocationModel().getContext());
         }
     }
 

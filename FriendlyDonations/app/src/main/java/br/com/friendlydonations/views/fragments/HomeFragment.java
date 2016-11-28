@@ -1,5 +1,6 @@
 package br.com.friendlydonations.views.fragments;
 
+import android.net.Network;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -59,6 +60,7 @@ public class HomeFragment extends BaseFragment {
     protected DynamicBox dynamicBox;
 
     // Vars to help requests
+    private Subscription donationSubscription;
     private boolean isCategoryLoaded;
 
     @Override
@@ -123,11 +125,10 @@ public class HomeFragment extends BaseFragment {
     }
 
     private void startRequest() {
-
-        Subscription subscription;
+        //Subscription subscription;
 
         if (!isCategoryLoaded) {
-            subscription = retrofit.create(NetworkInterface.class)
+            retrofit.create(NetworkInterface.class)
                     .loadCategories(((MainActivity) getActivity()).getToken())
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -136,13 +137,37 @@ public class HomeFragment extends BaseFragment {
                             List<Object> mItens = new ArrayList<>();
                             mItens.add(result.getCategoryModelList());
                             adapter.addAllWithLoading(mItens);
+                            this.isCategoryLoaded = true;
+                            loadDonations();
+                        } else {
+                            adapter.removeLoader();
                         }
                     }, throwableError);
+        } else {
+            loadDonations();
         }
     }
 
+    private void loadDonations() {
+        String token = ((MainActivity) getActivity()).getToken();
+        donationSubscription = retrofit.create(NetworkInterface.class)
+                .loadDonations(((MainActivity) getActivity()).getToken())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(result -> {
+                    if (result.isStatus() && result.getDonationModelList().size() > 0) {
+                        List<Object> mItens = new ArrayList<>();
+                        mItens.addAll(result.getDonationModelList());
+                        adapter.addAll(mItens);
+                    } else {
+                        adapter.removeLoader();
+                    }
+                }, throwableError);
+    }
+
+
     protected Action1<Throwable> throwableError = throwable -> {
-        int x = 1;
+       // TODO: implement
     };
 
     private void startSwipeLayout() {

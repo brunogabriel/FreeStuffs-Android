@@ -8,7 +8,7 @@ import java.io.Serializable;
  * Created by brunogabriel on 09/11/16.
  */
 
-public class ImageModel implements Serializable{
+public class ImageModel implements Serializable {
 
     @SerializedName("_id")
     private String id;

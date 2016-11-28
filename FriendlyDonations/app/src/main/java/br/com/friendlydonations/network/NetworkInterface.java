@@ -1,6 +1,7 @@
 package br.com.friendlydonations.network;
 
 import br.com.friendlydonations.models.category.CategoryAnswerModel;
+import br.com.friendlydonations.models.donation.DonationAnswerModel;
 import br.com.friendlydonations.models.login.LoginModel;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -11,7 +12,8 @@ import rx.Observable;
  * Created by brunogabriel on 9/13/16.
  */
 public interface NetworkInterface {
-    public static String SERVER_URL = "http://192.168.50.4:3000/";
+
+    public static String SERVER_URL = "https://rededoar.thiagosf.net/";
 
     @FormUrlEncoded
     @POST("users/login")
@@ -29,6 +31,10 @@ public interface NetworkInterface {
     );
 
     @FormUrlEncoded
-    @POST(" /product_categories")
+    @POST("product_categories")
     Observable<CategoryAnswerModel> loadCategories(@Field("token") String token);
+
+    @FormUrlEncoded
+    @POST("products")
+    Observable<DonationAnswerModel> loadDonations(@Field("token") String token);
 }

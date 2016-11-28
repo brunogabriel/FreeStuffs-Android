@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -32,6 +33,9 @@ import java.util.List;
 
 import br.com.friendlydonations.R;
 import br.com.friendlydonations.managers.BaseActivity;
+import br.com.friendlydonations.models.ImageModel;
+import br.com.friendlydonations.models.donation.DonationModel;
+import br.com.friendlydonations.utils.ImageUtility;
 import br.com.friendlydonations.utils.WorkaroundMapFragment;
 import br.com.friendlydonations.views.adapters.DynamicPageAdapterImages;
 import br.com.friendlydonations.views.widgets.ScaleCircleNavigator;
@@ -45,6 +49,8 @@ import uk.co.chrisjenx.calligraphy.TypefaceUtils;
  */
 public class DonationDetailActivity extends BaseActivity{
 
+    public static final String DONATION_DETAIL_SERIALIZATION = "donation_detail_serialization";
+
     @BindView(R.id.main_collapsing) protected CollapsingToolbarLayout collapsingToolbarLayout;
     @BindView(R.id.tvDonateLocation) protected TextView tvDonateLocation;
     @BindView(R.id.tvDonateDescription) protected TextView tvDonateDescription;
@@ -53,7 +59,7 @@ public class DonationDetailActivity extends BaseActivity{
 
     @BindView(R.id.viewPager) protected ViewPager viewPager;
     @BindView(R.id.circlePage) protected MagicIndicator circlePage;
-    WorkaroundMapFragment mapFragment;
+    protected WorkaroundMapFragment mapFragment;
 
     @BindView(R.id.tvConditionTitle) protected TextView tvConditionTitle;
     @BindView(R.id.tvConditionContent) protected TextView tvConditionContent;
@@ -69,21 +75,24 @@ public class DonationDetailActivity extends BaseActivity{
     protected DynamicPageAdapterImages dynamicPageAdapter;
     private List<View> mViews = new ArrayList<>();
 
+    DonationModel donationModel;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donation_detail);
         ButterKnife.bind(this);
+        donationModel = (DonationModel) getIntent().getExtras().getSerializable(DONATION_DETAIL_SERIALIZATION);
         initUI();
     }
 
     @Override
     public void initUI() {
-        setupToolbar(toolbar, getString(R.string.lorem_name), null, true, true);
+        setupToolbar(toolbar, donationModel.getTitle(), null, true, true);
         collapsingToolbarLayout.setCollapsedTitleTypeface(TypefaceUtils.load(getAssets(), "fonts/Montserrat-Regular.ttf"));
         collapsingToolbarLayout.setExpandedTitleTypeface(TypefaceUtils.load(getAssets(), "fonts/Montserrat-Bold.ttf"));
         applyCloseMenu();
-        tvDonateLocation.setText(String.format(getResources().getString(R.string.donate_detail_location), "São José dos Campos, SP, Brazil"));
+        tvDonateLocation.setText(String.format(getResources().getString(R.string.donate_detail_location), donationModel.getLocationModel().getContext()));
         dynamicPageAdapter = new DynamicPageAdapterImages(mViews);
 
         ScaleCircleNavigator scaleCircleNavigator = new ScaleCircleNavigator(this);
@@ -92,16 +101,11 @@ public class DonationDetailActivity extends BaseActivity{
         viewPager.setAdapter(dynamicPageAdapter);
         ViewPagerHelper.bind(circlePage, viewPager);
 
-        // Only to test
         mViews.clear();
-        //Picasso.with(this).load(R.drawable.ic_picture_bike).into(mImageView);
-        mViews.add(LayoutInflater.from(this).inflate(R.layout.image_view_pager, null));
-        mViews.add(LayoutInflater.from(this).inflate(R.layout.image_view_pager, null));
-        mViews.add(LayoutInflater.from(this).inflate(R.layout.image_view_pager, null));
-
+        for (int i = 0; i < donationModel.getImages().size(); ++i) {
+            mViews.add(bindedImage(donationModel.getImages().get(i)));
+        }
         scaleCircleNavigator.setCircleCount(mViews.size());
-
-        //mViews.add(mImageView);
 
         dynamicPageAdapter.notifyDataSetChanged();
 
@@ -124,6 +128,21 @@ public class DonationDetailActivity extends BaseActivity{
             if (nsvContentScroll != null)
                 nsvContentScroll.requestDisallowInterceptTouchEvent(true);
         });
+
+
+
+        tvDonateDescription.setText(donationModel.getDescription());
+        tvDonateDescription.post(() -> {
+            int lineCount = tvDonateDescription.getLineCount();
+            if (lineCount < 8) {
+                rlDonateDescription.getLayoutParams().height = RelativeLayout.LayoutParams.WRAP_CONTENT;
+                tvDonateSeeMore.setVisibility(View.GONE);
+            }
+        });
+
+        tvConditionContent.setText(donationModel.getCondition());
+        tvDeliveryContent.setText(donationModel.getDelivery());
+        tvIdContent.setText(donationModel.getId());
     }
 
     @OnClick(R.id.tvDonateSeeMore)
@@ -146,5 +165,12 @@ public class DonationDetailActivity extends BaseActivity{
         AlertDialog.Builder mDialog = new AlertDialog.Builder(this);
         mDialog.setView(mRootView);
         mDialog.show();
+    }
+
+    private View bindedImage(ImageModel imageModel) {
+        View mView = LayoutInflater.from(this).inflate(R.layout.image_view_pager, null);
+        ImageView imageView = (ImageView) mView.findViewById(R.id.imageSource);
+        ImageUtility.loadImageWithPlaceholder(imageView, this, imageModel.getLoader(), imageModel.getLarge());
+        return mView;
     }
 }

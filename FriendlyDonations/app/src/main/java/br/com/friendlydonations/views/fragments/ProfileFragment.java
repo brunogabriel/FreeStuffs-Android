@@ -14,9 +14,8 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import br.com.friendlydonations.R;
-import br.com.friendlydonations.managers.BaseActivity;
 import br.com.friendlydonations.managers.BaseFragment;
-import br.com.friendlydonations.models.DonationModel;
+import br.com.friendlydonations.models.donation.DonationModel;
 import br.com.friendlydonations.models.LoaderModel;
 import br.com.friendlydonations.models.ProfileDonationModel;
 import br.com.friendlydonations.views.adapters.ProfileDonationAdapter;
