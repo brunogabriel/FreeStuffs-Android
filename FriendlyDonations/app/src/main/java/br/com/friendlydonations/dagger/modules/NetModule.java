@@ -21,6 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class NetModule {
 
+    // Constants
     public static final int READ_TIMEOUT = 2;
     public static final int CONNECT_TIMEOUT = 2;
 

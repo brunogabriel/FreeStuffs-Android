@@ -6,7 +6,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import br.com.friendlydonations.R;
-import br.com.friendlydonations.listeners.BadgeNotificationListener;
+import br.com.friendlydonations.views.actions.BadgeAction;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -14,7 +14,7 @@ import butterknife.ButterKnife;
 /**
  * Created by brunogabriel on 9/16/16.
  */
-public class BadgeViewLayout implements BadgeNotificationListener{
+public class BadgeViewLayout implements BadgeAction {
 
     protected RelativeLayout rootBadge;
 

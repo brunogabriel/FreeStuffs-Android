@@ -14,6 +14,7 @@ android {
         versionCode 1
         versionName "1.0"
     }
+    
     buildTypes {
 
         debug {
@@ -39,7 +40,6 @@ android {
 ext {
     supportLibVersion = "24.2.1"
 }
-
 
 dependencies {
     //compile fileTree(dir: 'libs', include: ['*.jar'])

@@ -14,19 +14,16 @@ import com.google.android.gms.maps.SupportMapFragment;
  * Created by william on 12/09/16.
  */
 public class WorkaroundMapFragment extends SupportMapFragment {
+
     private OnTouchListener mListener;
 
     @Override
     public View onCreateView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle savedInstance) {
         View layout = super.onCreateView(layoutInflater, viewGroup, savedInstance);
-
         TouchableWrapper frameLayout = new TouchableWrapper(getActivity());
-
         frameLayout.setBackgroundColor(ContextCompat.getColor(getActivity(), android.R.color.transparent));
-
         ((ViewGroup) layout).addView(frameLayout,
                 new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-
         return layout;
     }
 

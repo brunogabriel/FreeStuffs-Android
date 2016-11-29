@@ -12,13 +12,11 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.squareup.picasso.Picasso;
 
 import br.com.friendlydonations.R;
-import br.com.friendlydonations.listeners.BadgeNotificationListener;
 import br.com.friendlydonations.managers.App;
 import br.com.friendlydonations.managers.BaseActivity;
 import br.com.friendlydonations.models.login.LoginModel;
@@ -185,10 +183,14 @@ public class MainActivity extends BaseActivity {
                 startActivity(new Intent(this, FavouritesActivity.class));
                 break;
             case R.id.action_exit:
-                System.exit(0);
+                showExit();
                 break;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void showExit() {
+        System.exit(0);
     }
 }

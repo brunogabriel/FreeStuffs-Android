@@ -14,14 +14,9 @@ import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
 import android.util.Log;
 import android.widget.ImageView;
-
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
-
-
-import br.com.friendlydonations.network.NetworkInterface;
-
 
 public class ImageUtility {
 
@@ -29,10 +24,6 @@ public class ImageUtility {
     private static final int BLUR_LEVEL = 4;
 
     public static void loadImageWithPlaceholder(ImageView imageView, Context context, String urlPlaceholder, String urlFinal) {
-        urlPlaceholder = urlPlaceholder.replace("http://rede-doar-api.dev.azk.io/", NetworkInterface.SERVER_URL);
-        urlFinal =  urlFinal.replace("http://rede-doar-api.dev.azk.io/", NetworkInterface.SERVER_URL);
-        String finalUrlFinal = urlFinal;
-
         try {
             Picasso.with(context)
                     .load(urlPlaceholder)
@@ -43,7 +34,6 @@ public class ImageUtility {
                             source.recycle();
                             return blurred;
                         }
-
                         @Override
                         public String key() {
                             return "blur()";
@@ -51,7 +41,7 @@ public class ImageUtility {
                     }).into(imageView, new Callback() {
                         @Override
                         public void onSuccess() {
-                            Picasso.with(context).load(finalUrlFinal).into(imageView);
+                            Picasso.with(context).load(urlFinal).placeholder(imageView.getDrawable()).into(imageView);
                         }
 
                         @Override
@@ -62,9 +52,6 @@ public class ImageUtility {
             Log.e(TAG, "Fail to apply placeholder and result image: " + exception.getMessage());
         }
     }
-
-
-
 
     /*
      * Copyright 2014 Manuel Peinado
@@ -82,6 +69,35 @@ public class ImageUtility {
      * limitations under the License.
      */
     public static class Blur {
+
+        // Stack Blur v1.0 from
+        // http://www.quasimondo.com/StackBlurForCanvas/StackBlurDemo.html
+        //
+        // Java Author: Mario Klingemann <mario at quasimondo.com>
+        // http://incubator.quasimondo.com
+        // created Feburary 29, 2004
+        // Android port : Yahel Bouaziz <yahel at kayenko.com>
+        // http://www.kayenko.com
+        // ported april 5th, 2012
+
+        // This is a compromise between Gaussian Blur and Box blur
+        // It creates much better looking blurs than Box Blur, but is
+        // 7x faster than my Gaussian Blur implementation.
+        //
+        // I called it Stack Blur because this describes best how this
+        // filter works internally: it creates a kind of moving stack
+        // of colors whilst scanning through the image. Thereby it
+        // just has to add one new block of color to the right side
+        // of the stack and remove the leftmost color. The remaining
+        // colors on the topmost layer of the stack are either added on
+        // or reduced by one, depending on if they are on the right or
+        // on the left side of the stack.
+        //
+        // If you are using this algorithm in your code please add
+        // the following line:
+        //
+        // Stack Blur Algorithm by Mario Klingemann <mario@quasimondo.com>
+
         @SuppressLint("NewApi")
         public static Bitmap fastblur(Context context, Bitmap sentBitmap, int radius) {
              if (VERSION.SDK_INT > 16) {
@@ -97,34 +113,6 @@ public class ImageUtility {
                 output.copyTo(bitmap);
                 return bitmap;
             }
-
-            // Stack Blur v1.0 from
-            // http://www.quasimondo.com/StackBlurForCanvas/StackBlurDemo.html
-            //
-            // Java Author: Mario Klingemann <mario at quasimondo.com>
-            // http://incubator.quasimondo.com
-            // created Feburary 29, 2004
-            // Android port : Yahel Bouaziz <yahel at kayenko.com>
-            // http://www.kayenko.com
-            // ported april 5th, 2012
-
-            // This is a compromise between Gaussian Blur and Box blur
-            // It creates much better looking blurs than Box Blur, but is
-            // 7x faster than my Gaussian Blur implementation.
-            //
-            // I called it Stack Blur because this describes best how this
-            // filter works internally: it creates a kind of moving stack
-            // of colors whilst scanning through the image. Thereby it
-            // just has to add one new block of color to the right side
-            // of the stack and remove the leftmost color. The remaining
-            // colors on the topmost layer of the stack are either added on
-            // or reduced by one, depending on if they are on the right or
-            // on the left side of the stack.
-            //
-            // If you are using this algorithm in your code please add
-            // the following line:
-            //
-            // Stack Blur Algorithm by Mario Klingemann <mario@quasimondo.com>
 
             Bitmap bitmap = sentBitmap.copy(sentBitmap.getConfig(), true);
 

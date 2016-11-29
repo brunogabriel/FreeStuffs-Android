@@ -22,6 +22,7 @@ import br.com.friendlydonations.models.category.CategoryModel;
 import br.com.friendlydonations.models.donation.DonationModel;
 import br.com.friendlydonations.models.LoaderModel;
 import br.com.friendlydonations.utils.ImageUtility;
+import br.com.friendlydonations.views.actions.CategoryAction;
 import br.com.friendlydonations.views.activities.DonationDetailActivity;
 import br.com.friendlydonations.views.widgets.LoaderViewHolder;
 import butterknife.BindView;
@@ -35,6 +36,8 @@ public class HomeDonationsAdapter extends BaseRecyclerViewAdapter {
 
     public static final int VIEW_TYPE_DONATION_CATEGORIES = 1000;
     public static final int VIEW_TYPE_DONATIONS = 1001;
+
+    private CategoryAction categoryAction;
 
     public HomeDonationsAdapter(Activity activity) {
         super(activity);
@@ -69,6 +72,25 @@ public class HomeDonationsAdapter extends BaseRecyclerViewAdapter {
 
 
         return mViewHolder;
+    }
+
+    public void removeAllExceptCategories(boolean isAddLoader) {
+        if (items != null && items.size() > 0 ) {
+            Object firstItem = items.get(0);
+
+            if (firstItem instanceof LoaderModel || firstItem instanceof DonationModel) {
+                return;
+            } else {
+                items.clear();
+                items.add(firstItem);
+                items.add(new LoaderModel());
+                notifyDataSetChanged();
+            }
+        }
+    }
+
+    public void setCategoryAction(CategoryAction categoryAction) {
+        this.categoryAction = categoryAction;
     }
 
     @Override
@@ -129,7 +151,6 @@ public class HomeDonationsAdapter extends BaseRecyclerViewAdapter {
             itemView.setOnClickListener(view -> {
                 Bundle mBundle = new Bundle();
                 mBundle.putSerializable(DonationDetailActivity.DONATION_DETAIL_SERIALIZATION, donationModel);
-
                 Intent mIntent = new Intent(activity, DonationDetailActivity.class);
                 mIntent.putExtras(mBundle);
                 activity.startActivity(mIntent);
@@ -175,15 +196,23 @@ public class HomeDonationsAdapter extends BaseRecyclerViewAdapter {
             CategoryCheckViewHolder checkHolder = new CategoryCheckViewHolder(LayoutInflater.from(parent.getContext()).
                     inflate(R.layout.holder_card_category, parent, false));
 
-
             return checkHolder;
         }
 
         private void performCheckBehaviour(int position) {
             int i = 0;
             for (Object mNextItem: items) {
-                ((CategoryModel) mNextItem).setChecked(i == position ? true: false);
+                CategoryModel categoryModel = (CategoryModel) mNextItem;
+                boolean isCallAction = false;
+                if (i == position && !categoryModel.isChecked()) { // need to call action
+                    isCallAction = true;
+                }
+                categoryModel.setChecked(i == position ? true: false);
                 i++;
+
+                if (isCallAction && categoryAction != null) {
+                    categoryAction.onClickAtPosition(position, categoryModel);
+                }
             }
 
             notifyDataSetChanged();
@@ -205,9 +234,16 @@ public class HomeDonationsAdapter extends BaseRecyclerViewAdapter {
 
             // Apply information
             checkHolder.tvCategoryName.setText("" + categoryModel.getName());
-            ImageUtility.loadImageWithPlaceholder(checkHolder.circleImageView, activity,
-                    categoryModel.getImageModel().getLoader(),
-                    categoryModel.getImageModel().getLarge());
+
+
+            // All Image
+            if (categoryModel.getImageModel().getId() == null && categoryModel.getId() == null) {
+
+            } else {
+                ImageUtility.loadImageWithPlaceholder(checkHolder.circleImageView, activity,
+                        categoryModel.getImageModel().getLoader(),
+                        categoryModel.getImageModel().getLarge());
+            }
         }
 
         @Override

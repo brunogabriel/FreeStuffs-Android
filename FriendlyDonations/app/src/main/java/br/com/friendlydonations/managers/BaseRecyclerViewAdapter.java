@@ -28,7 +28,7 @@ public abstract class BaseRecyclerViewAdapter extends RecyclerView.Adapter<Recyc
     }
 
     public void addLoader() {
-        if (isLoaderLastElement()) {
+        if (!isLoaderLastElement()) {
             items.add(new LoaderModel());
             notifyItemInserted(items.size() - 1);
         }

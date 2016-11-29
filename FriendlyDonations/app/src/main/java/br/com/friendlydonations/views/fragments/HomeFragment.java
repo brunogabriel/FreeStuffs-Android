@@ -1,6 +1,5 @@
 package br.com.friendlydonations.views.fragments;
 
-import android.net.Network;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -12,23 +11,22 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
 import br.com.friendlydonations.R;
 import br.com.friendlydonations.managers.App;
 import br.com.friendlydonations.managers.BaseFragment;
+import br.com.friendlydonations.models.ImageModel;
 import br.com.friendlydonations.models.LoaderModel;
+import br.com.friendlydonations.models.category.CategoryModel;
 import br.com.friendlydonations.network.NetworkInterface;
-import br.com.friendlydonations.views.activities.LoginActivity;
 import br.com.friendlydonations.views.activities.MainActivity;
 import br.com.friendlydonations.views.adapters.HomeDonationsAdapter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import mehdi.sakout.dynamicbox.DynamicBox;
 import retrofit2.Retrofit;
-import rx.Observable;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
@@ -75,12 +73,27 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     public void initUI() {
-        swipeRefreshLayout.setEnabled(false);
+        // Setup List and Adapter
         gridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         adapter = new HomeDonationsAdapter(getActivity(), new LoaderModel());
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(adapter);
+        adapter.setCategoryAction((position, categoryModel) -> {
+            reloadDonations();
+        });
 
+        // Setup swipe
+        swipeRefreshLayout.setEnabled(false);
+        swipeRefreshLayout.setColorSchemeColors(ContextCompat.getColor(getActivity(), R.color.colorPrimary));
+        swipeRefreshLayout.setOnRefreshListener(() -> {
+            if (isCategoryLoaded) {
+                reloadDonations();
+            } else {
+                startRequest();
+            }
+        });
+
+        // Request Starting
         if(!isNetworkEnabled()) {
             dynamicBox = new DynamicBox(getActivity(), recyclerView);
             dynamicBox.addCustomView(dynamicBoxNoInternet, DYNAMICBOX_DISCONNECTED);
@@ -94,47 +107,33 @@ public class HomeFragment extends BaseFragment {
         } else {
             startRequest();
         }
-
-        // Only to test below
-        //startSwipeLayout();
-//
-//        // Fake Objects
-//        List<Object> mItens = new ArrayList<>();
-//        List<Object> mCategories = new ArrayList<>();
-//
-//        mCategories.add(new CategoryModel("Todas", true));
-//        mCategories.add(new CategoryModel("Alimentos", false));
-//        mCategories.add(new CategoryModel("Animais", false));
-//        mCategories.add(new CategoryModel("Eletrônicos", false));
-//        mCategories.add(new CategoryModel("Móveis", false));
-//        mCategories.add(new CategoryModel("Roupas", false));
-//        mCategories.add(new CategoryModel("Serviços", false));
-//
-//        mItens.add(mCategories);
-//
-//        for (int i = 0; i < 10; ++i) {
-//            mItens.add(new DonationModel());
-//        }
-//
-//        Observable.timer(3, TimeUnit.SECONDS)
-//                .subscribeOn(Schedulers.newThread())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(oObject -> {
-//                    adapter.addAll(mItens);
-//                });
     }
 
-    private void startRequest() {
-        //Subscription subscription;
+    private Action1<Throwable> throwableError = throwable -> {
+        updateSwipe(true, false);
+    };
 
+    /**
+     * Start request categories and if has success, execute a new request to get donations
+     */
+    private void startRequest() {
         if (!isCategoryLoaded) {
             retrofit.create(NetworkInterface.class)
                     .loadCategories(((MainActivity) getActivity()).getToken())
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(result -> {
+                        updateSwipe(true, false);
                         if (result.isStatus() && result.getCategoryModelList().size() > 0) {
                             List<Object> mItens = new ArrayList<>();
+                            // All
+                            CategoryModel categoryModel = new CategoryModel();
+                            categoryModel.setId(null);
+                            categoryModel.setChecked(true);
+                            categoryModel.setName("Todos");
+                            categoryModel.setImageModel(new ImageModel());
+                            result.getCategoryModelList().add(0, categoryModel);
+
                             mItens.add(result.getCategoryModelList());
                             adapter.addAllWithLoading(mItens);
                             this.isCategoryLoaded = true;
@@ -148,13 +147,17 @@ public class HomeFragment extends BaseFragment {
         }
     }
 
+    /**
+     * Basic method to request donations
+     */
     private void loadDonations() {
         String token = ((MainActivity) getActivity()).getToken();
         donationSubscription = retrofit.create(NetworkInterface.class)
-                .loadDonations(((MainActivity) getActivity()).getToken())
+                .loadDonations(token)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(result -> {
+                    updateSwipe(true, false);
                     if (result.isStatus() && result.getDonationModelList().size() > 0) {
                         List<Object> mItens = new ArrayList<>();
                         mItens.addAll(result.getDonationModelList());
@@ -165,22 +168,25 @@ public class HomeFragment extends BaseFragment {
                 }, throwableError);
     }
 
+    /**
+     * Apply changes to Swipe Refresh Layout
+     * @param isEnabled indicate state of swipe (enable to use)
+     * @param isRefreshing indicate if swipe is running now
+     */
+    private void updateSwipe(boolean isEnabled, boolean isRefreshing) {
+        swipeRefreshLayout.setEnabled(isEnabled);
+        swipeRefreshLayout.setRefreshing(isRefreshing);
+    }
 
-    protected Action1<Throwable> throwableError = throwable -> {
-       // TODO: implement
-    };
-
-    private void startSwipeLayout() {
-        swipeRefreshLayout.setEnabled(true);
-        swipeRefreshLayout.setColorSchemeColors(ContextCompat.getColor(getActivity(), R.color.colorPrimary));
-        swipeRefreshLayout.setOnRefreshListener(() -> {
-            // TODO: refreshItens()
-            Observable.timer(1, TimeUnit.SECONDS)
-                    .subscribeOn(Schedulers.newThread())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(oObject -> {
-                        swipeRefreshLayout.setRefreshing(false);
-                    });
-        });
+    /**
+     * By default remove other requests because cancel subscription, maintain categories
+     * and start new request (page 0)
+     */
+    private void reloadDonations() {
+        if (donationSubscription != null) {
+            donationSubscription.unsubscribe();
+        }
+        adapter.removeAllExceptCategories(true);
+        loadDonations();
     }
 }
