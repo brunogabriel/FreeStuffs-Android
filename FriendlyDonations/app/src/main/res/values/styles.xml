@@ -3,13 +3,17 @@
 
     <!-- Global Theme -->
     <style name="FriendlyDonationsTheme" parent="Theme.AppCompat.Light.NoActionBar">
-
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorControlNormal">@color/colorPrimary</item>
         <item name="colorControlActivated">@color/colorAccent</item>
         <item name="colorControlHighlight">@color/colorAccent</item>
-
+    </style>
+    
+    <!-- ProgressDialog color -->
+    <style name="FriendlyDonationsTheme.ProgressDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorControlActivated">@color/colorPrimary</item>
+        <item name="colorControlHighlight">@color/colorPrimaryDark</item>
     </style>
 
     <style name="FriendlyDonationsTheme.NotTranslucent" parent="FriendlyDonationsTheme">
@@ -40,6 +44,5 @@
         <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:textStyle">bold</item>
     </style>
-
 
 </resources>

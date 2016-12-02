@@ -3,18 +3,20 @@
 
     <!-- Global Theme -->
     <style name="FriendlyDonationsTheme" parent="Theme.AppCompat.Light.NoActionBar">
-
         <item name="android:colorPrimary">@color/colorPrimary</item>
         <item name="android:colorPrimaryDark">@color/colorPrimaryDark</item>
-
         <item name="android:colorControlNormal">@color/colorPrimary</item>
         <item name="android:colorControlActivated">@color/colorAccent</item>
-        
-
         <!-- Translucent -->
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
+    <!-- ProgressDialog color -->
+    <style name="FriendlyDonationsTheme.ProgressDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:colorControlActivated">@color/colorPrimary</item>
+        <item name="android:colorControlHighlight">@color/colorPrimaryDark</item>
     </style>
 
     <style name="FriendlyDonationsTheme.NotTranslucent" parent="FriendlyDonationsTheme">

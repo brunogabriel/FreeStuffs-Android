@@ -29,6 +29,7 @@ import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.places.Places;
 
 import android.Manifest;
 import android.app.Activity;
@@ -137,9 +138,12 @@ public abstract class BaseActivity extends AppCompatActivity implements GoogleAp
     }
 
     public synchronized void callConnection() {
-        mGoogleApiClient = new GoogleApiClient.Builder(this).
-                addConnectionCallbacks(this).addOnConnectionFailedListener(this).
-                addApi(LocationServices.API).build();
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addApi(Places.PLACE_DETECTION_API)
+                .enableAutoManage(this, this)
+                .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API).build();
 
         mGoogleApiClient.connect();
     }
@@ -229,7 +233,7 @@ public abstract class BaseActivity extends AppCompatActivity implements GoogleAp
 
     public void showDialog(int progressDialogStyle, String title, String message, boolean isIndeterminate, boolean isCancelable) {
         if (progressDialog == null) {
-            progressDialog = new ProgressDialog(this);
+            progressDialog = new ProgressDialog(this, R.style.FriendlyDonationsTheme_ProgressDialogStyle);
         }
 
         if (progressDialog.isShowing()) {
@@ -263,5 +267,4 @@ public abstract class BaseActivity extends AppCompatActivity implements GoogleAp
             }
         }
     }
-
 }

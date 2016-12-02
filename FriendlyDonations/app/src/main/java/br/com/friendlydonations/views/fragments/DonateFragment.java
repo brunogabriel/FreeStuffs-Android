@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,6 +20,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -32,7 +36,6 @@ import java.util.List;
 import br.com.friendlydonations.R;
 import br.com.friendlydonations.managers.BaseActivity;
 import br.com.friendlydonations.managers.BaseFragment;
-import br.com.friendlydonations.models.category.CategoryModel;
 import br.com.friendlydonations.models.PictureUpload;
 import br.com.friendlydonations.utils.ConstantsTypes;
 import br.com.friendlydonations.utils.ApplicationUtilities;
@@ -98,21 +101,13 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
         pictureAdapter.add(new PictureUpload(2, null));
         pictureAdapter.add(new PictureUpload(3, null));
         pictureAdapter.add(new PictureUpload(4, null));
+
     }
 
     private void initCategoriesAdapter() {
         recyclerViewCategories.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         categoryAdapter = new CategoryAdapter((BaseActivity) getActivity(), CategoryAdapter.VIEW_TYPE_CHECK);
         recyclerViewCategories.setAdapter(categoryAdapter);
-
-        // Only to test
-        /*categoryAdapter.add(new CategoryModel("Todas", true));
-        categoryAdapter.add(new CategoryModel("Alimentos", false));
-        categoryAdapter.add(new CategoryModel("Animais", false));
-        categoryAdapter.add(new CategoryModel("Eletronicos", false));
-        categoryAdapter.add(new CategoryModel("Móveis", false));
-        categoryAdapter.add(new CategoryModel("Roupas", false));
-        categoryAdapter.add(new CategoryModel("Serviços", false)); */
     }
 
     @Override
@@ -138,6 +133,21 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
     public void onFocusChange(View view, boolean hasFocus) {
         if (view instanceof AppCompatEditText) {
             ((TextView)view).setTypeface(TypefaceUtils.load(getActivity().getAssets(), hasFocus ? "fonts/Montserrat-Regular.ttf": "fonts/Roboto-Light.ttf"));
+
+            if (view == etDescription) {
+                int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
+                // ...
+                try {
+                    // Only to test
+                    Intent intent = new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_OVERLAY)
+                                    .build(getActivity());
+                    startActivityForResult(intent, PLACE_AUTOCOMPLETE_REQUEST_CODE);
+                } catch (GooglePlayServicesRepairableException e) {
+                    // TODO: Handle the error.
+                } catch (GooglePlayServicesNotAvailableException e) {
+                    // TODO: Handle the error.
+                }
+            }
         }
     }
 
@@ -180,7 +190,8 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
 
     private void callCrop(Uri sourceUri, Uri destinyUri) {
         UCrop.Options options = new UCrop.Options();
-        options.setToolbarColor(getResources().getColor(R.color.colorPrimary));
+        options.setToolbarColor(ContextCompat.getColor(getActivity(), R.color.colorPrimary));
+        options.setStatusBarColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryDark));
         UCrop.of(sourceUri, destinyUri)
                 .withAspectRatio(4, 3)
                 .withOptions(options)

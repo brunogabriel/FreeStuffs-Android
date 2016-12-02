@@ -52,7 +52,6 @@ public class PictureUploadAdapter extends RecyclerView.Adapter<RecyclerView.View
         this.baseFragment = baseFragment;
     }
 
-
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View mInflateredView = LayoutInflater.from(parent.getContext()).inflate(R.layout.holder_card_picture, parent, false);
@@ -158,10 +157,10 @@ public class PictureUploadAdapter extends RecyclerView.Adapter<RecyclerView.View
         final AlertDialog mDialog = new AlertDialog.Builder(activity).create();
 
         // applying typefaces
-        TextView alertTitle = (TextView) mRootView.findViewById(R.id.alertTitle);
-        TextView tvPicture = (TextView) mRootView.findViewById(R.id.tvPicture);
-        TextView tvCamera = (TextView) mRootView.findViewById(R.id.tvCamera);
-        TextView tvGallery = (TextView) mRootView.findViewById(R.id.tvGallery);
+//        TextView alertTitle = (TextView) mRootView.findViewById(R.id.alertTitle);
+//        TextView tvPicture = (TextView) mRootView.findViewById(R.id.tvPicture);
+//        TextView tvCamera = (TextView) mRootView.findViewById(R.id.tvCamera);
+//        TextView tvGallery = (TextView) mRootView.findViewById(R.id.tvGallery);
 
         ImageView ivCamera = (ImageView) mRootView.findViewById(R.id.ivCamera);
         ImageView ivGallery = (ImageView) mRootView.findViewById(R.id.ivGallery);
@@ -184,29 +183,23 @@ public class PictureUploadAdapter extends RecyclerView.Adapter<RecyclerView.View
 
                 @Override
                 public void onPermissionDenied(PermissionDeniedResponse response) {
-                    int x = 1;
+                    mDialog.cancel();
+                    // TODO: Implement open settings
                 }
 
                 @Override
                 public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
-
+                    mDialog.cancel();
+                    token.continuePermissionRequest();
                 }
             }, Manifest.permission.CAMERA);
-
-            /** mDialog.cancel();
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            baseFragment.startActivityForResult(intent, ConstantsTypes.ACTIVITY_RESULT_CAMERA); **/
         });
 
-        ivGallery.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mDialog.cancel();
-                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                intent.setType("image/*");
-                baseFragment.startActivityForResult(intent, ConstantsTypes.ACTIVITY_RESULT_SELECT_PICTURE_GALLERY);
-                //activity.startActivityForResult(Intent.createChooser(intent, activity.getString(R.string.donate_include_image_textual)), ConstantsTypes.ACTIVITY_RESULT_SELECT_PICTURE_GALLERY);//SELECT_FILE
-            }
+        ivGallery.setOnClickListener( v -> {
+            mDialog.cancel();
+            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            intent.setType("image/*");
+            baseFragment.startActivityForResult(intent, ConstantsTypes.ACTIVITY_RESULT_SELECT_PICTURE_GALLERY);
         });
 
         mDialog.setView(mRootView);
