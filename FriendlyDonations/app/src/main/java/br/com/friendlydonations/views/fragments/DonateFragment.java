@@ -20,14 +20,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
-import com.google.android.gms.common.GooglePlayServicesRepairableException;
-import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+import com.karumi.dexter.listener.single.PermissionListener;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
@@ -93,7 +93,7 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
 
     private void initImagesAdapter() {
         recyclerViewPictures.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-        pictureAdapter = new PictureUploadAdapter((BaseActivity) getActivity(), this);
+        pictureAdapter = new PictureUploadAdapter((BaseActivity) getActivity(), this, recyclerViewPictures.getLayoutManager());
         recyclerViewPictures.setAdapter(pictureAdapter);
 
         pictureAdapter.add(new PictureUpload(0, null));
@@ -101,7 +101,6 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
         pictureAdapter.add(new PictureUpload(2, null));
         pictureAdapter.add(new PictureUpload(3, null));
         pictureAdapter.add(new PictureUpload(4, null));
-
     }
 
     private void initCategoriesAdapter() {
@@ -134,7 +133,7 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
         if (view instanceof AppCompatEditText) {
             ((TextView)view).setTypeface(TypefaceUtils.load(getActivity().getAssets(), hasFocus ? "fonts/Montserrat-Regular.ttf": "fonts/Roboto-Light.ttf"));
 
-            if (view == etDescription) {
+            /* if (view == etDescription) {
                 int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
                 // ...
                 try {
@@ -147,7 +146,7 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
                 } catch (GooglePlayServicesNotAvailableException e) {
                     // TODO: Handle the error.
                 }
-            }
+            } */
         }
     }
 
@@ -158,25 +157,34 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
             Dexter.checkPermissions(new MultiplePermissionsListener() {
                 @Override
                 public void onPermissionsChecked(MultiplePermissionsReport report) {
-                    File mPictureFile = ApplicationUtilities.getCameraOutputMediaFile(getActivity());
-                    File mPictureFileCropped = ApplicationUtilities.getOutputMediaFile(getActivity(), true);
-                    callCrop(Uri.fromFile(mPictureFile), Uri.fromFile(mPictureFileCropped));
+                    if (report.isAnyPermissionPermanentlyDenied()) {
+                        ApplicationUtilities.showPermissionRequest(getActivity());
+                    } else {
+                        File mPictureFile = ApplicationUtilities.getCameraOutputMediaFile(getActivity());
+                        File mPictureFileCropped = ApplicationUtilities.getOutputMediaFile(getActivity(), true);
+                        callCrop(Uri.fromFile(mPictureFile), Uri.fromFile(mPictureFileCropped));
+                    }
                 }
                 @Override
-                public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {/* ... */}
+                public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+                    token.continuePermissionRequest();
+                }
             }, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE);
         }
 
         else if(resultCode == Activity.RESULT_OK && requestCode == ConstantsTypes.ACTIVITY_RESULT_SELECT_PICTURE_GALLERY) {
+
             Dexter.checkPermissions(new MultiplePermissionsListener() {
-
                 @Override public void onPermissionsChecked(MultiplePermissionsReport report) {
-                    File mPictureFileCropped = ApplicationUtilities.getOutputMediaFile(getActivity(), true);
-                    callCrop(dataFinal.getData(), Uri.fromFile(mPictureFileCropped));
+                    if (report.isAnyPermissionPermanentlyDenied()) {
+                        ApplicationUtilities.showPermissionRequest(getActivity());
+                    } else {
+                        File mPictureFileCropped = ApplicationUtilities.getOutputMediaFile(getActivity(), true);
+                        callCrop(dataFinal.getData(), Uri.fromFile(mPictureFileCropped));
+                    }
                 }
-
                 @Override public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
-
+                    token.continuePermissionRequest();
                 }
             }, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE);
         } else if (resultCode == Activity.RESULT_OK && requestCode == UCrop.REQUEST_CROP) {

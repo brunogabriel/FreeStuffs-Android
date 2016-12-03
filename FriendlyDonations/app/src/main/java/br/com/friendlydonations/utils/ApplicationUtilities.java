@@ -1,10 +1,20 @@
 package br.com.friendlydonations.utils;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Environment;
+import android.provider.Settings;
+import android.support.v7.app.AlertDialog;
+import android.view.LayoutInflater;
+import android.view.View;
+
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import br.com.friendlydonations.R;
 
 /**
  * Created by brunogabriel on 29/09/16.
@@ -82,5 +92,25 @@ public class ApplicationUtilities {
         mediaFile = new File(mMediaStorageFile.getPath() + File.separator + mImageName);
 
         return mediaFile;
+    }
+
+    public static void showPermissionRequest(Context context) {
+        View dialogPermissionView = LayoutInflater.from(context).inflate(R.layout.alert_permissions, null, false);
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(context);
+        mBuilder.setView(dialogPermissionView);
+        final AlertDialog mAlertDialog = mBuilder.show();
+
+        dialogPermissionView.findViewById(R.id.tvNo).setOnClickListener(v -> {
+            mAlertDialog.dismiss();
+        });
+
+        dialogPermissionView.findViewById(R.id.tvYes).setOnClickListener(v -> {
+            mAlertDialog.dismiss();
+            Intent mIntent = new Intent();
+            mIntent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+            Uri mUri = Uri.fromParts("package", context.getPackageName(), null);
+            mIntent.setData(mUri);
+            context.startActivity(mIntent);
+        });
     }
 }

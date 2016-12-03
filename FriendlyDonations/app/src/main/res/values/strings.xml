@@ -10,6 +10,8 @@
     <string name="network_not_detected">No internet access, please check it</string>
     <string name="try_again">Try again</string>
     <string name="connecting_to_server">Connecting to a server</string>
+    <string name="app_str_yes">Yes</string>
+    <string name="app_str_no">No</string>
 
     <!-- Actions Menu -->
     <string name="action_menu_search">Search</string>
@@ -93,6 +95,10 @@
     <string name="dynamicbox_message_ops_no_internet">Ops\nno internet connection</string>
     <string name="dynamicbox_btn_retry">Retry</string>
     <string name="dynamicbox_favourites_empty">No favorites yet</string>
+
+    <!-- Permissions Text -->
+    <string name="permission_denied_title">Permission Denied</string>
+    <string name="permission_denied_content">You need to change it in settings. Do you want to make it now?</string>
 
     <!-- Lorem Strings -->
     <string name="lorem_name">Lorem Ipsum Dolor</string>

@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
@@ -45,11 +44,13 @@ public class PictureUploadAdapter extends RecyclerView.Adapter<RecyclerView.View
     private List<PictureUpload> items = new ArrayList<>();
     BaseActivity activity;
     BaseFragment baseFragment;
-    public int clickedItem = -1;
+    private int clickedItem = 0;
+    private RecyclerView.LayoutManager layoutManager;
 
-    public PictureUploadAdapter (BaseActivity activity, BaseFragment baseFragment) {
+    public PictureUploadAdapter (BaseActivity activity, BaseFragment baseFragment, RecyclerView.LayoutManager layoutManager) {
         this.activity = activity;
         this.baseFragment = baseFragment;
+        this.layoutManager = layoutManager;
     }
 
     @Override
@@ -75,35 +76,27 @@ public class PictureUploadAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     public void updateImage(Uri mBitmapCandidate) {
-        int mChanged = -1;
-        PictureUpload mPictureUploadCandidate = null;
+        int mChangeIndex = -1;
 
-        if (clickedItem >= 0 && clickedItem < items.size()) {
-            mPictureUploadCandidate = items.get(clickedItem);
-            mChanged = clickedItem;
-        }
-
-        if (mPictureUploadCandidate == null) {
-            int mEmptyPosition = -1;
+        if (items.get(clickedItem).getImage() != null) {
+            mChangeIndex = clickedItem;
+        } else {
             for (int i = 0; i < items.size(); ++i) {
                 if (items.get(i).getImage() == null) {
-                    mEmptyPosition = i;
+                    mChangeIndex = i;
                     break;
                 }
             }
 
-            if (mEmptyPosition == -1) {
-                mPictureUploadCandidate = items.get(clickedItem);
-                mChanged = clickedItem;
-            } else {
-                mPictureUploadCandidate = items.get(mEmptyPosition);
-                mChanged = mEmptyPosition;
+            if (mChangeIndex == -1) {
+                mChangeIndex = clickedItem;
             }
         }
 
+        PictureUpload mPictureUploadCandidate = items.get(mChangeIndex);
         mPictureUploadCandidate.setImage(mBitmapCandidate);
-
-        notifyItemChanged(mChanged);
+        notifyItemChanged(mChangeIndex);
+        layoutManager.scrollToPosition(mChangeIndex);
     }
 
     @Override
@@ -155,13 +148,6 @@ public class PictureUploadAdapter extends RecyclerView.Adapter<RecyclerView.View
     protected void selectImage() {
         View mRootView = LayoutInflater.from(activity).inflate(R.layout.alert_donation_picture, null, false);
         final AlertDialog mDialog = new AlertDialog.Builder(activity).create();
-
-        // applying typefaces
-//        TextView alertTitle = (TextView) mRootView.findViewById(R.id.alertTitle);
-//        TextView tvPicture = (TextView) mRootView.findViewById(R.id.tvPicture);
-//        TextView tvCamera = (TextView) mRootView.findViewById(R.id.tvCamera);
-//        TextView tvGallery = (TextView) mRootView.findViewById(R.id.tvGallery);
-
         ImageView ivCamera = (ImageView) mRootView.findViewById(R.id.ivCamera);
         ImageView ivGallery = (ImageView) mRootView.findViewById(R.id.ivGallery);
 
@@ -169,7 +155,6 @@ public class PictureUploadAdapter extends RecyclerView.Adapter<RecyclerView.View
         ivGallery.setColorFilter(ContextCompat.getColor(activity, R.color.colorPrimary));
 
         ivCamera.setOnClickListener(v -> {
-
             Dexter.checkPermission(new PermissionListener() {
                 @Override
                 public void onPermissionGranted(PermissionGrantedResponse response) {
@@ -184,7 +169,7 @@ public class PictureUploadAdapter extends RecyclerView.Adapter<RecyclerView.View
                 @Override
                 public void onPermissionDenied(PermissionDeniedResponse response) {
                     mDialog.cancel();
-                    // TODO: Implement open settings
+                    ApplicationUtilities.showPermissionRequest(activity);
                 }
 
                 @Override

@@ -1,36 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:background="@android:color/white"
+<LinearLayout android:background="@android:color/white"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/dimen_horizontal_spacing"
+    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- title -->
     <android.support.v7.widget.AppCompatTextView
-        android:layout_margin="@dimen/material_card_padding"
         android:id="@+id/tvAlertTitle"
         android:gravity="center_vertical"
         android:minHeight="@dimen/material_component_text_full_width_single_line_text_field_height"
         android:textSize="@dimen/dimen_typeface3"
         android:textColor="@color/colorBrown"
-        android:text="@string/login_alert_about_title"
+        android:text="@string/permission_denied_title"
         fontPath="fonts/Roboto-Medium.ttf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_between_itens"
+        android:layout_centerHorizontal="true" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/tvContentAlert"
+        fontPath="fonts/Roboto-Light.ttf"
+        android:textSize="@dimen/dimen_typeface3"
+        android:text="@string/permission_denied_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <!-- Bottom Layout -->
     <LinearLayout
         android:gravity="right"
         android:textColor="@color/colorGray"
         android:orientation="horizontal"
         android:id="@+id/bottomLayout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/material_component_text_full_width_single_line_text_field_height"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true">
+        android:layout_height="@dimen/material_component_text_full_width_single_line_text_field_height">
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/tvRefuse"
+            android:id="@+id/tvNo"
             android:textColor="@color/colorGray"
             android:textAllCaps="true"
             android:gravity="center"
@@ -40,13 +47,13 @@
             android:layout_marginRight="@dimen/material_card_padding"
             android:textSize="@dimen/dimen_typeface3"
             android:minWidth="88dp"
-            android:text="@string/login_alert_about_refuse"
+            android:text="@string/app_str_no"
             fontPath="fonts/Roboto-Medium.ttf"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/tvAccept"
+            android:id="@+id/tvYes"
             android:textColor="@color/colorPrimary"
             android:textAllCaps="true"
             android:gravity="center"
@@ -55,45 +62,11 @@
             android:background="?android:attr/selectableItemBackground"
             android:minWidth="88dp"
             android:layout_gravity="center"
-            android:text="@string/login_alert_about_accept"
+            android:text="@string/app_str_yes"
             android:textSize="@dimen/dimen_typeface3"
             fontPath="fonts/Roboto-Medium.ttf"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
     </LinearLayout>
 
-    <!-- Center Scroll -->
-    <ScrollView
-        android:layout_marginBottom="70dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/tvAlertTitle"
-        android:layout_alignLeft="@+id/tvAlertTitle"
-        android:layout_alignStart="@+id/tvAlertTitle">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/tvContentAlert"
-                fontPath="fonts/Roboto-Light.ttf"
-                android:paddingBottom="70dp"
-                android:layout_marginRight="@dimen/dimen_horizontal_spacing"
-                android:textSize="@dimen/dimen_typeface2"
-                android:text="@string/lorem_phrase_too_large"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-
-    </ScrollView>
-
-    <View
-        android:layout_above="@+id/bottomLayout"
-        android:background="@drawable/drawable_white_gradient_effect"
-        android:textAllCaps="true"
-        android:textColor="@color/colorPrimary"
-        android:layout_width="match_parent"
-        android:layout_height="70dp" />
-
-</RelativeLayout>
+</LinearLayout>
