@@ -56,6 +56,7 @@
                 fontPath="fonts/Montserrat-Regular.ttf"
                 android:layout_marginTop="@dimen/dimen_between_itens"
                 android:textColor="@color/colorGray"
+                android:paddingBottom="@dimen/dimen_space_double"
                 android:text="@string/lorem_phrase_too_large"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

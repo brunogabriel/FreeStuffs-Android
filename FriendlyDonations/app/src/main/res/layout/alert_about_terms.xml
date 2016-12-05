@@ -2,12 +2,14 @@
 <RelativeLayout android:background="@android:color/white"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="360dp"
     xmlns:tools="http://schemas.android.com/tools">
 
     <!-- title -->
     <android.support.v7.widget.AppCompatTextView
-        android:layout_margin="@dimen/material_card_padding"
+        android:layout_marginLeft="@dimen/material_card_padding"
+        android:layout_marginRight="@dimen/material_card_padding"
+        android:layout_marginTop="@dimen/material_card_padding"
         android:id="@+id/tvAlertTitle"
         android:gravity="center_vertical"
         android:minHeight="@dimen/material_component_text_full_width_single_line_text_field_height"

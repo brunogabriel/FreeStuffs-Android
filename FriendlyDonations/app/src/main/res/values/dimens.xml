@@ -35,6 +35,9 @@
     <!-- Drawer floating text -->
     <dimen name="dimen_drawable_floating_text">24dp</dimen>
 
+    <!-- Generic Space -->
+    <dimen name="dimen_space_double">32dp</dimen>
+
     <!-- Base Typefaces -->
     <dimen name="dimen_typeface1">12sp</dimen>
     <dimen name="dimen_typeface2">14sp</dimen>

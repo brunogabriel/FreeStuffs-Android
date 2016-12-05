@@ -82,6 +82,7 @@
     <string name="acc_settings_phone">Phone</string>
     <string name="acc_settings_receive_notifications">receive notifications</string>
     <string name="acc_settings_save">Save</string>
+    <string name="acc_settings_desactivate_account">Desactivate Account</string>
 
     <!-- Activity Terms and Privacity -->
     <string name="terms_priv_title">Terms and Privacity</string>

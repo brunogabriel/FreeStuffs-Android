@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/coordinatorLayout"
     android:fitsSystemWindows="true"
     android:layout_width="match_parent"
@@ -230,7 +230,7 @@
             </RelativeLayout>
 
             <android.support.v7.widget.SwitchCompat
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="@dimen/dimen_space_double"
                 android:layout_marginLeft="@dimen/material_card_padding"
                 android:layout_marginRight="@dimen/dimen_horizontal_spacing"
                 android:text="@string/acc_settings_receive_notifications"
@@ -239,7 +239,24 @@
                 android:layout_height="wrap_content" />
 
 
+            <Button
+                android:alpha="0.75"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dimen_space_double"
+                android:text="@string/acc_settings_desactivate_account"
+                android:textAllCaps="true"
+                android:paddingLeft="@dimen/dimen_horizontal_spacing"
+                android:paddingRight="@dimen/dimen_horizontal_spacing"
+                android:textColor="@color/colorGray"
+                tools:ignore="MissingPrefix"
+                fontPath="fonts/Roboto-Medium.ttf"
+                style="@style/TextView.Typeface2"
+                android:background="@drawable/drawable_button_border_gray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
         </LinearLayout>
+
+
 
     </android.support.v4.widget.NestedScrollView>
 
