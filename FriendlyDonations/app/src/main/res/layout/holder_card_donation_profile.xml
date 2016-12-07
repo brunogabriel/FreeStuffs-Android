@@ -5,10 +5,10 @@
     android:layout_width="155dp"
     card_view:cardUseCompatPadding="true"
     android:clickable="true"
-    card_view:cardElevation="@dimen/dimen_between_itens"
+    card_view:cardElevation="@dimen/space_between_views"
     card_view:cardCornerRadius="0dp"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/dimen_between_itens">
+    android:layout_marginBottom="@dimen/space_between_views">
 
     <LinearLayout
         android:background="?android:attr/selectableItemBackground"
@@ -21,17 +21,17 @@
             android:id="@+id/cardImage"
             android:src="@drawable/ic_picture_bike"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_height_card_home"
+            android:layout_height="@dimen/card_home_height"
             android:contentDescription="@string/content_description"
             android:scaleType="centerCrop"/>
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/cardTitle"
             style="@style/TextView.Typeface3"
-            android:layout_marginTop="@dimen/dimen_vertical_spacing"
-            android:layout_marginBottom="@dimen/dimen_between_itens"
-            android:layout_marginLeft="@dimen/dimen_between_itens"
-            android:layout_marginRight="@dimen/dimen_between_itens"
+            android:layout_marginTop="@dimen/view_space_vertical"
+            android:layout_marginBottom="@dimen/space_between_views"
+            android:layout_marginLeft="@dimen/space_between_views"
+            android:layout_marginRight="@dimen/space_between_views"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorBrown"
@@ -40,9 +40,9 @@
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/cardLocation"
             style="@style/TextView.Typeface1"
-            android:layout_marginLeft="@dimen/dimen_between_itens"
-            android:layout_marginRight="@dimen/dimen_between_itens"
-            android:layout_marginBottom="@dimen/dimen_vertical_spacing"
+            android:layout_marginLeft="@dimen/space_between_views"
+            android:layout_marginRight="@dimen/space_between_views"
+            android:layout_marginBottom="@dimen/view_space_vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorGray"
@@ -50,8 +50,8 @@
 
         <LinearLayout
             android:layout_marginBottom="16dp"
-            android:layout_marginLeft="@dimen/dimen_between_itens"
-            android:layout_marginRight="@dimen/dimen_between_itens"
+            android:layout_marginLeft="@dimen/space_between_views"
+            android:layout_marginRight="@dimen/space_between_views"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="2">
@@ -67,7 +67,6 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorGray"
                 android:text="2.1 km"/>
-
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/cardMsgText"

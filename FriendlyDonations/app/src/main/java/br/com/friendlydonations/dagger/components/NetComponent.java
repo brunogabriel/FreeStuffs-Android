@@ -6,6 +6,7 @@ import br.com.friendlydonations.dagger.modules.AppModule;
 import br.com.friendlydonations.dagger.modules.NetModule;
 import br.com.friendlydonations.views.activities.LoginActivity;
 import br.com.friendlydonations.views.activities.MainActivity;
+import br.com.friendlydonations.views.fragments.DonateFragment;
 import br.com.friendlydonations.views.fragments.HomeFragment;
 import dagger.Component;
 
@@ -18,4 +19,5 @@ import dagger.Component;
 public interface NetComponent {
     void inject(LoginActivity loginActivity);
     void inject(HomeFragment homeFragment);
+    void inject(DonateFragment donateFragment);
 }

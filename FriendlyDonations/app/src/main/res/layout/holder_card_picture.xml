@@ -6,8 +6,8 @@
     card_view:cardElevation="8dp"
     card_view:cardCornerRadius="0dp"
     android:orientation="vertical"
-    android:layout_width="@dimen/dimen_height_card_home"
-    android:layout_height="@dimen/dimen_picture_card_height">
+    android:layout_width="@dimen/card_home_height"
+    android:layout_height="@dimen/card_picture_height">
 
     <FrameLayout
         android:id="@+id/flPicture"

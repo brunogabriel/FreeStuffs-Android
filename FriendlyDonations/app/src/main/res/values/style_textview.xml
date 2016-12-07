@@ -13,4 +13,12 @@
         <item name="android:textSize">@dimen/dimen_typeface3</item>
     </style>
 
+    <style name="TextView.Typeface4" parent="@style/TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/dimen_typeface4</item>
+    </style>
+
+    <style name="TextView.Typeface5" parent="@style/TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/dimen_typeface5</item>
+    </style>
+
 </resources>

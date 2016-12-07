@@ -10,7 +10,7 @@
     <TextView
         android:text="@string/profile_fragment_activated_donations"
         android:gravity="center"
-        android:layout_margin="@dimen/dimen_vertical_spacing"
+        android:layout_margin="@dimen/view_space_vertical"
         android:textSize="30sp"
         tools:ignore="MissingPrefix"
         fontPath="fonts/Roboto-Regular.ttf"

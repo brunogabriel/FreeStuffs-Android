@@ -14,9 +14,9 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_marginTop="@dimen/dimen_vertical_spacing"
-            android:layout_marginLeft="@dimen/dimen_horizontal_spacing"
-            android:layout_marginRight="@dimen/dimen_horizontal_spacing"
+            android:layout_marginTop="@dimen/view_space_vertical"
+            android:layout_marginLeft="@dimen/view_space_horizontal"
+            android:layout_marginRight="@dimen/view_space_horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -34,7 +34,7 @@
                 android:id="@+id/tvSecurity"
                 style="@style/TextView.Typeface2"
                 fontPath="fonts/Montserrat-Regular.ttf"
-                android:layout_marginTop="@dimen/dimen_between_itens"
+                android:layout_marginTop="@dimen/space_between_views"
                 android:textColor="@color/colorGray"
                 android:text="@string/lorem_phrase_too_large"
                 android:layout_width="match_parent"
@@ -43,7 +43,7 @@
             <!-- Security -->
             <android.support.v7.widget.AppCompatTextView
                 style="@style/TextView.Typeface3"
-                android:layout_marginTop="@dimen/dimen_vertical_spacing"
+                android:layout_marginTop="@dimen/view_space_vertical"
                 fontPath="fonts/Montserrat-Bold.ttf"
                 android:textColor="@color/colorBrown"
                 android:text="@string/terms_priv_privacity"
@@ -54,9 +54,9 @@
                 android:id="@+id/tvPrivacity"
                 style="@style/TextView.Typeface2"
                 fontPath="fonts/Montserrat-Regular.ttf"
-                android:layout_marginTop="@dimen/dimen_between_itens"
+                android:layout_marginTop="@dimen/space_between_views"
                 android:textColor="@color/colorGray"
-                android:paddingBottom="@dimen/dimen_space_double"
+                android:paddingBottom="@dimen/double_view_space_vertical"
                 android:text="@string/lorem_phrase_too_large"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

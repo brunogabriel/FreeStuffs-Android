@@ -1,45 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="dimen_between_itens">8dp</dimen>
-    <dimen name="dimen_vertical_spacing">16dp</dimen>
-    <dimen name="dimen_horizontal_spacing">16dp</dimen>
-    <dimen name="dimen_vertical_space_statusbar">24dp</dimen>
 
-    <!-- Text Field -->
-    <dimen name="material_component_text_fields_floating_label_height">72dp</dimen>
-    <dimen name="material_component_text_full_width_single_line_text_field_height">56dp</dimen>
+    <!-- Material Views Spaces -->
+    <dimen name="space_between_views">8dp</dimen>
+    <dimen name="space_between_semi_views">4dp</dimen>
+    <dimen name="view_space_vertical">16dp</dimen>
+    <dimen name="view_space_horizontal">16dp</dimen>
+    <dimen name="status_bar_height">24dp</dimen>
+
+    <!-- TextViews -->
+    <dimen name="text_view_floating_label_height">72dp</dimen>
+    <dimen name="text_view_height">56dp</dimen>
     
-    <!-- Card -->
-    <dimen name="dimen_height_card_home">116dp</dimen>
-    <dimen name="dimen_picture_card_height">90dp</dimen>
-    <dimen name="material_card_padding">24dp</dimen>
-    <dimen name="dimen_card_own_donation_width">156dp</dimen>
-    <dimen name="dimen_card_own_donation_height">112dp</dimen>
+    <!-- Cards -->
+    <dimen name="card_category">74dp</dimen>
+    <dimen name="card_home_height">116dp</dimen>
+    <dimen name="card_picture_height">90dp</dimen>
+    <dimen name="card_padding">24dp</dimen>
+    <dimen name="card_own_donation_width">156dp</dimen>
+    <dimen name="card_own_donation_height">112dp</dimen>
+    <dimen name="card_marker_height">16dp</dimen>
 
     <!-- Components -->
-    <dimen name="material_touchable">48dp</dimen>
-    <dimen name="material_component_element">72dp</dimen>
-    <dimen name="material_component_grid_lists_padding_big">4dp</dimen>
-    <dimen name="material_loader_list_height">40dp</dimen>
-    <dimen name="material_alert_max_height">512dp</dimen>
+    <dimen name="touchable_area">48dp</dimen>
+    <dimen name="component_element">72dp</dimen>
+    <dimen name="grid_lists_padding_big">4dp</dimen>
+    <dimen name="loader_list_height">40dp</dimen>
+    <dimen name="alert_max_height">512dp</dimen>
 
     <!-- Floating Action Button -->
-    <dimen name="material_component_floating_action_button_size">56dp</dimen>
+    <dimen name="floating_action_button_size">56dp</dimen>
 
     <!-- Component Profile -->
-    <dimen name="dimen_profile_username">26sp</dimen>
-    <dimen name="dimen_profile_number_donations">28sp</dimen>
-    <dimen name="dimen_profile_donations_description">20sp</dimen>
-    <dimen name="dimen_notification_image">48dp</dimen>
+    <dimen name="profile_username">26sp</dimen>
+    <dimen name="profile_number_donations">28sp</dimen>
+    <dimen name="profile_donations_description">20sp</dimen>
+    <dimen name="notification_image">48dp</dimen>
 
     <!-- Drawer floating text -->
-    <dimen name="dimen_drawable_floating_text">24dp</dimen>
+    <dimen name="drawable_floating_text">24dp</dimen>
 
     <!-- Generic Space -->
-    <dimen name="dimen_space_double">32dp</dimen>
+    <dimen name="double_view_space_vertical">32dp</dimen>
 
-    <!-- Base Typefaces -->
+    <!-- Typefaces Sizes -->
     <dimen name="dimen_typeface1">12sp</dimen>
     <dimen name="dimen_typeface2">14sp</dimen>
     <dimen name="dimen_typeface3">16sp</dimen>
+    <dimen name="dimen_typeface4">18sp</dimen>
+    <dimen name="dimen_typeface5">20sp</dimen>
+
 </resources>

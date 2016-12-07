@@ -8,30 +8,30 @@
     card_view:cardCornerRadius="0dp"
     android:layout_height="wrap_content"
     android:layout_width="wrap_content"
-    android:layout_marginBottom="@dimen/dimen_between_itens">
+    android:layout_marginBottom="@dimen/space_between_views">
 
     <LinearLayout
         android:background="?android:attr/selectableItemBackground"
         android:id="@+id/contentView"
-        android:layout_width="@dimen/dimen_card_own_donation_width"
+        android:layout_width="@dimen/card_own_donation_width"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <ImageView
             android:id="@+id/cardImage"
             android:src="@drawable/ic_picture_bike"
-            android:layout_width="@dimen/dimen_card_own_donation_width"
-            android:layout_height="@dimen/dimen_card_own_donation_height"
+            android:layout_width="@dimen/card_own_donation_width"
+            android:layout_height="@dimen/card_own_donation_height"
             android:contentDescription="@string/content_description"
             android:scaleType="centerCrop"/>
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/cardTitle"
             style="@style/TextView.Typeface3"
-            android:layout_marginTop="@dimen/dimen_vertical_spacing"
-            android:layout_marginBottom="@dimen/dimen_between_itens"
-            android:layout_marginLeft="@dimen/dimen_between_itens"
-            android:layout_marginRight="@dimen/dimen_between_itens"
+            android:layout_marginTop="@dimen/view_space_vertical"
+            android:layout_marginBottom="@dimen/space_between_views"
+            android:layout_marginLeft="@dimen/space_between_views"
+            android:layout_marginRight="@dimen/space_between_views"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorBrown"
@@ -40,18 +40,18 @@
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/cardLocation"
             style="@style/TextView.Typeface1"
-            android:layout_marginLeft="@dimen/dimen_between_itens"
-            android:layout_marginRight="@dimen/dimen_between_itens"
-            android:layout_marginBottom="@dimen/dimen_vertical_spacing"
+            android:layout_marginLeft="@dimen/space_between_views"
+            android:layout_marginRight="@dimen/space_between_views"
+            android:layout_marginBottom="@dimen/view_space_vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorGray"
             android:text="Brand new ladies bike 29 wheel"/>
 
         <LinearLayout
-            android:layout_marginBottom="16dp"
-            android:layout_marginLeft="@dimen/dimen_between_itens"
-            android:layout_marginRight="@dimen/dimen_between_itens"
+            android:layout_marginBottom="@dimen/view_space_vertical"
+            android:layout_marginLeft="@dimen/space_between_views"
+            android:layout_marginRight="@dimen/space_between_views"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="2">

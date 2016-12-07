@@ -3,14 +3,14 @@
     android:orientation="vertical"
     android:background="@color/colorBrown"
     android:layout_width="match_parent"
-    android:paddingTop="@dimen/dimen_vertical_spacing"
-    android:paddingBottom="@dimen/dimen_vertical_spacing"
+    android:paddingTop="@dimen/view_space_vertical"
+    android:paddingBottom="@dimen/view_space_vertical"
     android:layout_height="wrap_content">
 
     <android.support.v7.widget.AppCompatTextView
-        android:layout_marginTop="@dimen/material_card_padding"
+        android:layout_marginTop="@dimen/card_padding"
         android:gravity="center_horizontal"
-        android:textSize="@dimen/dimen_profile_username"
+        android:textSize="@dimen/profile_username"
         android:layout_marginLeft="64dp"
         android:textColor="@color/colorGrayLight"
         android:layout_marginRight="64dp"
@@ -20,8 +20,8 @@
 
     <android.support.v7.widget.AppCompatTextView
         android:layout_width="wrap_content"
-        android:layout_marginTop="@dimen/dimen_between_itens"
-        android:layout_marginBottom="@dimen/dimen_between_itens"
+        android:layout_marginTop="@dimen/space_between_views"
+        android:layout_marginBottom="@dimen/space_between_views"
         android:minWidth="250dp"
         android:gravity="center"
         android:layout_gravity="center"
@@ -36,7 +36,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:weightSum="100"
-        android:paddingBottom="@dimen/dimen_vertical_spacing"
+        android:paddingBottom="@dimen/view_space_vertical"
         android:layout_height="wrap_content">
 
         <!-- Left Text -->
@@ -52,7 +52,7 @@
                 android:textColor="@color/colorGraySemiLight"
                 fontPath="fonts/Montserrat-Regular.ttf"
                 android:text="50"
-                android:textSize="@dimen/dimen_profile_number_donations"
+                android:textSize="@dimen/profile_number_donations"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -61,7 +61,7 @@
                 android:layout_gravity="center"
                 android:textColor="@color/colorGraySemiLight"
                 fontPath="fonts/Montserrat-Regular.ttf"
-                android:textSize="@dimen/dimen_profile_donations_description"
+                android:textSize="@dimen/profile_donations_description"
                 android:text="@string/profile_fragment_donations_done"
                 android:layout_width="wrap_content"
                 android:layout_height="56dp" />
@@ -94,7 +94,7 @@
                 android:textColor="@color/colorGraySemiLight"
                 fontPath="fonts/Montserrat-Regular.ttf"
                 android:text="50"
-                android:textSize="@dimen/dimen_profile_number_donations"
+                android:textSize="@dimen/profile_number_donations"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -103,7 +103,7 @@
                 android:layout_gravity="center"
                 android:textColor="@color/colorGraySemiLight"
                 fontPath="fonts/Montserrat-Regular.ttf"
-                android:textSize="@dimen/dimen_profile_donations_description"
+                android:textSize="@dimen/profile_donations_description"
                 android:text="@string/profile_fragment_donations_received"
                 android:layout_width="wrap_content"
                 android:layout_height="56dp" />

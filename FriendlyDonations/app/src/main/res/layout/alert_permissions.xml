@@ -3,26 +3,26 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/dimen_horizontal_spacing"
+    android:padding="@dimen/view_space_horizontal"
     android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools">
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/tvAlertTitle"
         android:gravity="center_vertical"
-        android:minHeight="@dimen/material_component_text_full_width_single_line_text_field_height"
-        android:textSize="@dimen/dimen_typeface3"
-        android:textColor="@color/colorBrown"
+        android:minHeight="@dimen/text_view_height"
+        android:textSize="@dimen/dimen_typeface5"
+        android:textColor="@color/colorLead"
         android:text="@string/permission_denied_title"
         fontPath="fonts/Roboto-Medium.ttf"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_between_itens"
+        android:layout_marginTop="@dimen/space_between_views"
         android:layout_centerHorizontal="true" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/tvContentAlert"
-        fontPath="fonts/Roboto-Light.ttf"
+        fontPath="fonts/Roboto-Regular.ttf"
         android:textSize="@dimen/dimen_typeface3"
         android:text="@string/permission_denied_content"
         android:layout_width="match_parent"
@@ -34,7 +34,7 @@
         android:orientation="horizontal"
         android:id="@+id/bottomLayout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/material_component_text_full_width_single_line_text_field_height">
+        android:layout_height="@dimen/text_view_height">
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/tvNo"
@@ -44,10 +44,10 @@
             android:clickable="true"
             android:background="?android:attr/selectableItemBackground"
             android:layout_gravity="center"
-            android:layout_marginRight="@dimen/material_card_padding"
-            android:textSize="@dimen/dimen_typeface3"
+            android:layout_marginRight="@dimen/card_padding"
+            android:textSize="@dimen/dimen_typeface2"
             android:minWidth="88dp"
-            android:text="@string/app_str_no"
+            android:text="@string/app_str_not_now"
             fontPath="fonts/Roboto-Medium.ttf"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
@@ -58,12 +58,12 @@
             android:textAllCaps="true"
             android:gravity="center"
             android:clickable="true"
-            android:layout_marginRight="@dimen/dimen_horizontal_spacing"
+            android:layout_marginRight="@dimen/view_space_horizontal"
             android:background="?android:attr/selectableItemBackground"
             android:minWidth="88dp"
             android:layout_gravity="center"
             android:text="@string/app_str_yes"
-            android:textSize="@dimen/dimen_typeface3"
+            android:textSize="@dimen/dimen_typeface2"
             fontPath="fonts/Roboto-Medium.ttf"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />

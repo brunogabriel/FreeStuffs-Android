@@ -4,23 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:clickable="true"
     android:background="?android:attr/selectableItemBackground"
-    android:padding="@dimen/dimen_horizontal_spacing"
+    android:padding="@dimen/view_space_horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/notificationImage"
         android:src="@drawable/ic_girl_sample"
-        android:layout_marginRight="@dimen/dimen_horizontal_spacing"
-        android:layout_width="@dimen/dimen_notification_image"
-        android:layout_height="@dimen/dimen_notification_image" />
+        android:layout_marginRight="@dimen/view_space_horizontal"
+        android:layout_width="@dimen/notification_image"
+        android:layout_height="@dimen/notification_image" />
 
     <LinearLayout
         android:gravity="center"
-        android:layout_marginRight="@dimen/dimen_horizontal_spacing"
-        android:layout_marginLeft="@dimen/dimen_horizontal_spacing"
+        android:layout_marginRight="@dimen/view_space_horizontal"
+        android:layout_marginLeft="@dimen/view_space_horizontal"
         android:layout_width="match_parent"
-        android:minHeight="@dimen/dimen_notification_image"
+        android:minHeight="@dimen/notification_image"
         android:orientation="vertical"
         android:layout_height="wrap_content">
 

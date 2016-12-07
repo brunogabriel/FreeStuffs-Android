@@ -8,5 +8,5 @@
         android:layout_centerInParent="true"
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/material_loader_list_height" />
+        android:layout_height="@dimen/loader_list_height" />
 </RelativeLayout>

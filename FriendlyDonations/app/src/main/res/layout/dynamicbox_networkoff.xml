@@ -8,7 +8,7 @@
     <ImageView
         android:layout_above="@+id/tvNoInternet"
         android:layout_centerHorizontal="true"
-        android:layout_margin="@dimen/dimen_horizontal_spacing"
+        android:layout_margin="@dimen/view_space_horizontal"
         android:src="@drawable/ic_network_off"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,11 +25,11 @@
         android:textAllCaps="true"
         android:text="@string/dynamicbox_btn_retry"
         android:background="@drawable/drawable_button_border_primary"
-        android:layout_marginTop="16dp"
-        android:paddingTop="@dimen/dimen_horizontal_spacing"
+        android:layout_marginTop="@dimen/view_space_vertical"
+        android:paddingTop="@dimen/view_space_horizontal"
         android:paddingLeft="36dp"
         android:paddingRight="36dp"
-        android:paddingBottom="@dimen/dimen_horizontal_spacing"
+        android:paddingBottom="@dimen/view_space_vertical"
         android:layout_below="@+id/tvNoInternet"
         android:layout_centerHorizontal="true" />
 

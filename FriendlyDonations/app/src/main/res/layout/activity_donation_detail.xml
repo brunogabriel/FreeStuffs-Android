@@ -10,7 +10,6 @@
     <!-- Top Content -->
 
     <!-- Body -->
-
     <android.support.design.widget.AppBarLayout
         android:id="@+id/main.appbar"
         android:layout_width="match_parent"
@@ -106,7 +105,7 @@
                         android:id="@+id/tvDonateDescription"
                         android:text="@string/lorem_text_long"
                         style="@style/TextView.Typeface2"
-                        android:layout_marginTop="@dimen/dimen_vertical_spacing"
+                        android:layout_marginTop="@dimen/view_space_vertical"
                         android:textColor="@color/colorBrown"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
@@ -133,7 +132,7 @@
                     android:id="@+id/tvAproximatedAddress"
                     android:text="@string/donate_detail_aprox_address"
                     style="@style/TextView.Typeface3"
-                    android:layout_marginTop="@dimen/dimen_vertical_spacing"
+                    android:layout_marginTop="@dimen/view_space_vertical"
                     android:textColor="@color/colorGray"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -142,7 +141,7 @@
                 <!-- Google Maps -->
                 <fragment xmlns:android="http://schemas.android.com/apk/res/android"
                     xmlns:tools="http://schemas.android.com/tools"
-                    android:layout_marginTop="@dimen/dimen_vertical_spacing"
+                    android:layout_marginTop="@dimen/view_space_vertical"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:id="@+id/map"
@@ -156,7 +155,7 @@
                     tools:ignore="MissingPrefix"
                     fontPath="fonts/Roboto-Light.ttf"
                     style="@style/TextView.Typeface3"
-                    android:layout_marginTop="@dimen/dimen_vertical_space_statusbar"
+                    android:layout_marginTop="@dimen/view_space_vertical"
                     android:textColor="@color/colorGray"
                     android:textAllCaps="false"
                     android:layout_width="match_parent"
@@ -168,7 +167,7 @@
                     fontPath="fonts/Montserrat-Regular.ttf"
                     android:text="@string/lorem_simple"
                     style="@style/TextView.Typeface3"
-                    android:layout_marginTop="@dimen/dimen_between_itens"
+                    android:layout_marginTop="@dimen/space_between_views"
                     android:textColor="@color/colorBrown"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -180,7 +179,7 @@
                     fontPath="fonts/Roboto-Light.ttf"
                     android:text="@string/donate_detail_delivery"
                     style="@style/TextView.Typeface3"
-                    android:layout_marginTop="@dimen/dimen_vertical_spacing"
+                    android:layout_marginTop="@dimen/view_space_vertical"
                     android:textColor="@color/colorGray"
                     android:textAllCaps="false"
                     android:layout_width="match_parent"
@@ -192,7 +191,7 @@
                     fontPath="fonts/Montserrat-Regular.ttf"
                     android:text="@string/lorem_simple"
                     style="@style/TextView.Typeface3"
-                    android:layout_marginTop="@dimen/dimen_between_itens"
+                    android:layout_marginTop="@dimen/space_between_views"
                     android:textColor="@color/colorBrown"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -204,7 +203,7 @@
                     fontPath="fonts/Roboto-Light.ttf"
                     android:text="@string/donate_detail_category"
                     style="@style/TextView.Typeface3"
-                    android:layout_marginTop="@dimen/dimen_vertical_spacing"
+                    android:layout_marginTop="@dimen/view_space_vertical"
                     android:textColor="@color/colorGray"
                     android:textAllCaps="false"
                     android:layout_width="match_parent"
@@ -216,7 +215,7 @@
                     fontPath="fonts/Montserrat-Regular.ttf"
                     android:text="@string/lorem_simple"
                     style="@style/TextView.Typeface3"
-                    android:layout_marginTop="@dimen/dimen_between_itens"
+                    android:layout_marginTop="@dimen/space_between_views"
                     android:textColor="@color/colorBrown"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -228,7 +227,7 @@
                     fontPath="fonts/Roboto-Light.ttf"
                     android:text="@string/donate_detail_id"
                     style="@style/TextView.Typeface3"
-                    android:layout_marginTop="@dimen/dimen_vertical_spacing"
+                    android:layout_marginTop="@dimen/view_space_vertical"
                     android:textColor="@color/colorGray"
                     android:textAllCaps="false"
                     android:layout_width="match_parent"
@@ -240,7 +239,7 @@
                     fontPath="fonts/Montserrat-Regular.ttf"
                     android:text="3487642"
                     style="@style/TextView.Typeface3"
-                    android:layout_marginTop="@dimen/dimen_between_itens"
+                    android:layout_marginTop="@dimen/space_between_views"
                     android:textColor="@color/colorBrown"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -252,7 +251,7 @@
                 android:clickable="true"
                 android:id="@+id/viewImInterestedBtn"
                 android:gravity="center"
-                android:layout_marginTop="@dimen/dimen_vertical_spacing"
+                android:layout_marginTop="@dimen/view_space_vertical"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:background="@drawable/drawable_green_effect"
@@ -269,7 +268,6 @@
                     android:text="@string/donate_detail_im_interested"
                     android:gravity="center" />
             </LinearLayout>
-
 
         </LinearLayout>
 

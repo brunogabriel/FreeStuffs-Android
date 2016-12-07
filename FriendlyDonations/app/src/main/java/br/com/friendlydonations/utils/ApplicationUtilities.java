@@ -23,16 +23,6 @@ public class ApplicationUtilities {
 
     //private static final String TAG = "APP_UTIL";
 
-    /** public static void showSnackBar(View rootView, String message, int snackSize, String actionUndo, View.OnClickListener onClickListener) {
-        Snackbar snackbar;
-        if (actionUndo != null && onClickListener != null) {
-            snackbar = Snackbar.make(rootView, message, snackSize).setAction(actionUndo, onClickListener);
-        } else {
-            snackbar = Snackbar.make(rootView, message, snackSize);
-        }
-        snackbar.show();
-    } **/
-
     /** public static Uri storeImageOnDiskAndGetUri (Activity activity, File mPictureFile, Bitmap image) {
         if (mPictureFile == null) {
             return null;

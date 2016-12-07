@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_logo_login"
             android:contentDescription="@string/content_description"
-            android:layout_marginTop="@dimen/material_component_text_fields_floating_label_height"
+            android:layout_marginTop="@dimen/text_view_floating_label_height"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
 
@@ -31,7 +31,7 @@
             android:id="@+id/tvAboutTerms"
             style="@style/TextView.Typeface2"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/material_component_text_full_width_single_line_text_field_height"
+            android:layout_height="@dimen/text_view_height"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:background="@color/colorAboutLogin"
@@ -39,7 +39,6 @@
             android:gravity="center"
             android:text="@string/login_about_terms" />
 
-        <!-- Facebook Button -->
         <LinearLayout
             android:clickable="true"
             android:id="@+id/viewFacebookLogin"
@@ -55,10 +54,10 @@
             <ImageView
                 android:contentDescription="@string/content_description"
                 android:layout_gravity="center"
-                android:layout_marginRight="@dimen/dimen_between_itens"
+                android:layout_marginRight="@dimen/space_between_views"
                 android:src="@drawable/ic_facebook_f"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />sp
+                android:layout_height="wrap_content"/>
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/tvFacebookLogin"
@@ -71,10 +70,6 @@
                 android:textAllCaps="true"
                 android:gravity="center" />
         </LinearLayout>
-        <!-- Facebook Button -->
-
-
     </RelativeLayout>
-
 
 </FrameLayout>

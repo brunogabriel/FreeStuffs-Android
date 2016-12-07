@@ -6,7 +6,10 @@
     <color name="colorAccent">#FF4843</color>
     <color name="colorGreen">#00CFA6</color>
     <color name="colorGreenLight">#8ae4f0</color>
-    <!-- <color name="colorGrayLead">#686779</color> -->
+
+    <color name="colorLead">#3B4859</color>
+
+    <!-- TODO: Ver e remover -->
     <color name="colorBrown">#5E5353</color>
     <color name="colorYellow">#FFD85C</color>
 
@@ -25,5 +28,4 @@
 
     <!-- About Background Color -->
     <color name="colorAboutLogin">#1A1A1A64</color>
-
 </resources>

@@ -7,14 +7,14 @@
 
     <!-- title -->
     <android.support.v7.widget.AppCompatTextView
-        android:layout_marginLeft="@dimen/material_card_padding"
-        android:layout_marginRight="@dimen/material_card_padding"
-        android:layout_marginTop="@dimen/material_card_padding"
+        android:layout_marginLeft="@dimen/card_padding"
+        android:layout_marginRight="@dimen/card_padding"
+        android:layout_marginTop="@dimen/card_padding"
         android:id="@+id/tvAlertTitle"
         android:gravity="center_vertical"
-        android:minHeight="@dimen/material_component_text_full_width_single_line_text_field_height"
-        android:textSize="@dimen/dimen_typeface3"
-        android:textColor="@color/colorBrown"
+        android:minHeight="@dimen/text_view_height"
+        android:textSize="@dimen/dimen_typeface5"
+        android:textColor="@color/colorLead"
         android:text="@string/login_alert_about_title"
         fontPath="fonts/Roboto-Medium.ttf"
         android:layout_width="match_parent"
@@ -27,7 +27,7 @@
         android:orientation="horizontal"
         android:id="@+id/bottomLayout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/material_component_text_full_width_single_line_text_field_height"
+        android:layout_height="@dimen/text_view_height"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true">
 
@@ -39,8 +39,8 @@
             android:clickable="true"
             android:background="?android:attr/selectableItemBackground"
             android:layout_gravity="center"
-            android:layout_marginRight="@dimen/material_card_padding"
-            android:textSize="@dimen/dimen_typeface3"
+            android:layout_marginRight="@dimen/card_padding"
+            android:textSize="@dimen/dimen_typeface2"
             android:minWidth="88dp"
             android:text="@string/login_alert_about_refuse"
             fontPath="fonts/Roboto-Medium.ttf"
@@ -53,12 +53,12 @@
             android:textAllCaps="true"
             android:gravity="center"
             android:clickable="true"
-            android:layout_marginRight="@dimen/dimen_horizontal_spacing"
+            android:layout_marginRight="@dimen/view_space_horizontal"
             android:background="?android:attr/selectableItemBackground"
             android:minWidth="88dp"
             android:layout_gravity="center"
             android:text="@string/login_alert_about_accept"
-            android:textSize="@dimen/dimen_typeface3"
+            android:textSize="@dimen/dimen_typeface2"
             fontPath="fonts/Roboto-Medium.ttf"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
@@ -79,10 +79,10 @@
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/tvContentAlert"
-                fontPath="fonts/Roboto-Light.ttf"
-                android:paddingBottom="70dp"
-                android:layout_marginRight="@dimen/dimen_horizontal_spacing"
-                android:textSize="@dimen/dimen_typeface2"
+                fontPath="fonts/Roboto-Regular.ttf"
+                android:paddingBottom="@dimen/text_view_height"
+                android:layout_marginRight="@dimen/view_space_horizontal"
+                android:textSize="@dimen/dimen_typeface3"
                 android:text="@string/lorem_phrase_too_large"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

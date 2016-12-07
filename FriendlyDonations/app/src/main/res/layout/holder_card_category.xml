@@ -3,36 +3,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:clickable="true"
-    android:layout_margin="@dimen/dimen_between_itens"
-    android:layout_width="@dimen/dimen_height_card_home"
-    android:layout_height="@dimen/dimen_height_card_home">
+    android:layout_margin="@dimen/space_between_views"
+    android:layout_width="@dimen/card_category"
+    android:layout_height="@dimen/card_category">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/circleImageView"
-        android:layout_width="@dimen/dimen_height_card_home"
-        android:layout_height="@dimen/dimen_height_card_home"
+        android:layout_width="@dimen/card_category"
+        android:layout_height="@dimen/card_category"
          />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:alpha="0.5"
         android:src="@color/colorBlack"
-        android:layout_width="@dimen/dimen_height_card_home"
-        android:layout_height="@dimen/dimen_height_card_home"/>
+        android:layout_width="@dimen/card_category"
+        android:layout_height="@dimen/card_category"/>
 
     <RelativeLayout
         android:layout_gravity="right"
         android:visibility="gone"
         android:background="@drawable/drawable_bg_circle_marker"
         android:id="@+id/checkMarker"
-        android:layout_width="36dp"
-        android:layout_height="36dp">
+        android:layout_width="@dimen/card_padding"
+        android:layout_height="@dimen/card_padding">
 
         <ImageView
             android:layout_margin="6dp"
             android:gravity="center"
             android:src="@drawable/ic_check_marker_white"
-            android:layout_width="24dp"
-            android:layout_height="24dp" />
+            android:layout_width="@dimen/card_marker_height"
+            android:layout_height="@dimen/card_marker_height" />
     </RelativeLayout>
 
     <TextView
@@ -43,8 +43,8 @@
         android:text="Eletronics"
         style="@style/TextView.Typeface1"
         android:textColor="@color/colorWhite"
-        android:layout_marginLeft="@dimen/dimen_between_itens"
-        android:layout_marginRight="@dimen/dimen_between_itens"
+        android:layout_marginLeft="@dimen/space_between_semi_views"
+        android:layout_marginRight="@dimen/space_between_semi_views"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 

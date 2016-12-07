@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="@dimen/material_touchable">
+    android:layout_height="@dimen/touchable_area">
     <ImageView
         android:id="@+id/tab_image"
         android:layout_gravity="center"

@@ -12,6 +12,7 @@
     <string name="connecting_to_server">Connecting to a server</string>
     <string name="app_str_yes">Yes</string>
     <string name="app_str_no">No</string>
+    <string name="app_str_not_now">Not now</string>
 
     <!-- Actions Menu -->
     <string name="action_menu_search">Search</string>

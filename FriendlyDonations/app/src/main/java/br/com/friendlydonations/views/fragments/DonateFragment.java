@@ -31,18 +31,30 @@ import com.karumi.dexter.listener.single.PermissionListener;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
+import javax.inject.Inject;
 
 import br.com.friendlydonations.R;
+import br.com.friendlydonations.managers.App;
 import br.com.friendlydonations.managers.BaseActivity;
 import br.com.friendlydonations.managers.BaseFragment;
 import br.com.friendlydonations.models.PictureUpload;
+import br.com.friendlydonations.models.category.CategoryModel;
+import br.com.friendlydonations.network.NetworkInterface;
 import br.com.friendlydonations.utils.ConstantsTypes;
 import br.com.friendlydonations.utils.ApplicationUtilities;
+import br.com.friendlydonations.views.activities.MainActivity;
 import br.com.friendlydonations.views.adapters.CategoryAdapter;
 import br.com.friendlydonations.views.adapters.PictureUploadAdapter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Retrofit;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 import uk.co.chrisjenx.calligraphy.TypefaceUtils;
 
 /**
@@ -74,10 +86,14 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
 
     protected View rootView;
 
+    @Inject
+    protected Retrofit retrofit;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_donate, container, false);
         ButterKnife.bind(this, rootView);
+        ((App) getActivity().getApplication()).getmNetcomponent().inject(this);
         //setHasOptionsMenu(true);
         initUI();
         return rootView;
@@ -104,9 +120,28 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
     }
 
     private void initCategoriesAdapter() {
-        recyclerViewCategories.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-        categoryAdapter = new CategoryAdapter((BaseActivity) getActivity(), CategoryAdapter.VIEW_TYPE_CHECK);
-        recyclerViewCategories.setAdapter(categoryAdapter);
+//        recyclerViewCategories.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+//        categoryAdapter = new CategoryAdapter((BaseActivity) getActivity(), CategoryAdapter.VIEW_TYPE_CHECK);
+//        recyclerViewCategories.setAdapter(categoryAdapter);
+//        categoryAdapter.addLoader();
+//        startCategoryRequest();
+    }
+
+    private Action1<Throwable> throwableCategoriesError = throwable -> {
+    };
+
+    private void startCategoryRequest() {
+        retrofit.create(NetworkInterface.class)
+                .loadCategories(((MainActivity) getActivity()).getToken())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(result -> {
+                    if (result.isStatus() && result.getCategoryModelList().size() > 0) {
+                        List<Object> mItens = new ArrayList<>();
+                        mItens.addAll(result.getCategoryModelList());
+                        // TODO: add in adapter
+                    }
+                }, throwableCategoriesError);
     }
 
     @Override

@@ -58,17 +58,17 @@ public class LoginActivity extends BaseActivity {
     public static final String LOGIN_SERIALIZATION = "login_serialization";
     public static final String LOGIN_NOTIFICATIONS = "login_notifications";
 
+    // Facebook
+    private CallbackManager callbackManager;
+    private ProfileTracker mProfileTracker;
+    private Profile mProfile;
+
     // Views
     @BindView(R.id.tvAboutTerms)
     protected AppCompatTextView tvAboutTerms;
 
     @BindView(R.id.tvFacebookLogin)
     protected AppCompatTextView tvFacebookLogin;
-
-    // Facebook
-    private CallbackManager callbackManager;
-    private ProfileTracker mProfileTracker;
-    private Profile mProfile;
 
     @Inject
     protected Retrofit retrofit;
@@ -86,14 +86,18 @@ public class LoginActivity extends BaseActivity {
                 .sharedPreferencesModule(new SharedPreferencesModule(getApplication()))
                 .build()
                 .getSharedPreferences();
-
         ButterKnife.bind(this);
         setupFacebookSDK();
         initUI();
+        initService();
     }
 
     @Override
     public void initUI() {
+        // Stub
+    }
+
+    public void initService() {
         try {
             loginPreferenceModel = LoginPreferenceModel.
                     jsonToObject(sharedPreferences.getString(SharedPreferencesComponent.LOGIN_PREFERENCES, null));
@@ -123,7 +127,6 @@ public class LoginActivity extends BaseActivity {
                             mProfileTracker.stopTracking();
                         }
                     };
-
                     mProfileTracker.startTracking();
                 } else {
                     mProfile = Profile.getCurrentProfile();
@@ -141,20 +144,6 @@ public class LoginActivity extends BaseActivity {
                 Toast.makeText(LoginActivity.this, R.string.login_with_facebook_error, Toast.LENGTH_SHORT).show();
             }
         });
-
-        /** AccessToken currentAccessToken = AccessToken.getCurrentAccessToken();
-        Profile currentProfile = Profile.getCurrentProfile(); **/
-
-        /**  AccessToken.refreshCurrentAccessTokenAsync(new AccessToken.AccessTokenRefreshCallback() {
-            @Override
-            public void OnTokenRefreshed(AccessToken accessToken) {
-
-            }
-
-            @Override
-            public void OnTokenRefreshFailed(FacebookException exception) {
-            }
-        }); **/
     }
 
     @OnClick(R.id.viewFacebookLogin)
