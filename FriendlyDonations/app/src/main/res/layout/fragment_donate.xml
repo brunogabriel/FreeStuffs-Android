@@ -98,11 +98,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <EditText
-                    android:id="@+id/etLocation"
+                <br.com.friendlydonations.views.widgets.LocationSelectEditText
+                    android:id="@+id/locationSelectET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/donate_fragment_location" />
+                    android:hint="@string/donate_fragment_location"
+                    />
 
             </android.support.design.widget.TextInputLayout>
 

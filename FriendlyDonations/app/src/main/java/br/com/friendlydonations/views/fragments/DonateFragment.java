@@ -12,6 +12,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,21 +21,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
-import com.karumi.dexter.listener.PermissionDeniedResponse;
-import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
-import com.karumi.dexter.listener.single.PermissionListener;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-
 import javax.inject.Inject;
 
 import br.com.friendlydonations.R;
@@ -42,25 +40,20 @@ import br.com.friendlydonations.managers.App;
 import br.com.friendlydonations.managers.BaseActivity;
 import br.com.friendlydonations.managers.BaseFragment;
 import br.com.friendlydonations.models.PictureUpload;
-import br.com.friendlydonations.models.category.CategoryModel;
-import br.com.friendlydonations.network.NetworkInterface;
 import br.com.friendlydonations.utils.ConstantsTypes;
 import br.com.friendlydonations.utils.ApplicationUtilities;
-import br.com.friendlydonations.views.activities.MainActivity;
 import br.com.friendlydonations.views.adapters.CategoryAdapter;
 import br.com.friendlydonations.views.adapters.PictureUploadAdapter;
+import br.com.friendlydonations.views.widgets.LocationSelectEditText;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Retrofit;
-import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
-import rx.schedulers.Schedulers;
-import uk.co.chrisjenx.calligraphy.TypefaceUtils;
 
 /**
  * Created by brunogabriel on 8/27/16.
  */
-public class DonateFragment extends BaseFragment implements View.OnFocusChangeListener{
+public class DonateFragment extends BaseFragment implements View.OnFocusChangeListener {
 
     @BindView(R.id.tvUploadPhotos)
     TextView tvUploadPhotos;
@@ -80,6 +73,9 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
     @BindView(R.id.etDescription)
     AppCompatEditText etDescription;
 
+    @BindView(R.id.locationSelectET)
+    LocationSelectEditText locationSelectEditText;
+
     CategoryAdapter categoryAdapter;
 
     PictureUploadAdapter pictureAdapter;
@@ -94,13 +90,22 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
         rootView = inflater.inflate(R.layout.fragment_donate, container, false);
         ButterKnife.bind(this, rootView);
         ((App) getActivity().getApplication()).getmNetcomponent().inject(this);
-        //setHasOptionsMenu(true);
         initUI();
         return rootView;
     }
 
     @Override
     public void initUI() {
+        locationSelectEditText.setOnClickListener(v -> {
+            try {
+                Intent intent = new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_FULLSCREEN)
+                        .build(getActivity());
+                startActivityForResult(intent, ConstantsTypes.ACTIVITY_LOCATION_ADDRESS);
+            } catch (Exception exception) {
+                Log.e(TAG, "Fail on location selection: " + exception.getMessage());
+            }
+        });
+
         initImagesAdapter();
         initCategoriesAdapter();
         etProductItemTitle.setOnFocusChangeListener(this);
@@ -120,43 +125,19 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
     }
 
     private void initCategoriesAdapter() {
-//        recyclerViewCategories.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-//        categoryAdapter = new CategoryAdapter((BaseActivity) getActivity(), CategoryAdapter.VIEW_TYPE_CHECK);
-//        recyclerViewCategories.setAdapter(categoryAdapter);
-//        categoryAdapter.addLoader();
-//        startCategoryRequest();
     }
 
     private Action1<Throwable> throwableCategoriesError = throwable -> {
     };
 
-    private void startCategoryRequest() {
-        retrofit.create(NetworkInterface.class)
-                .loadCategories(((MainActivity) getActivity()).getToken())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(result -> {
-                    if (result.isStatus() && result.getCategoryModelList().size() > 0) {
-                        List<Object> mItens = new ArrayList<>();
-                        mItens.addAll(result.getCategoryModelList());
-                        // TODO: add in adapter
-                    }
-                }, throwableCategoriesError);
-    }
-
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        //inflater.inflate(R.menu.menu_homefragment, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
-            /* case R.id.action_exit:
-                mainActivity.doExit();
-                return true; */
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -165,26 +146,9 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
 
     @Override
     public void onFocusChange(View view, boolean hasFocus) {
-        if (view instanceof AppCompatEditText) {
-            ((TextView)view).setTypeface(TypefaceUtils.load(getActivity().getAssets(), hasFocus ? "fonts/Montserrat-Regular.ttf": "fonts/Roboto-Light.ttf"));
-
-            /* if (view == etDescription) {
-                int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
-                // ...
-                try {
-                    // Only to test
-                    Intent intent = new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_OVERLAY)
-                                    .build(getActivity());
-                    startActivityForResult(intent, PLACE_AUTOCOMPLETE_REQUEST_CODE);
-                } catch (GooglePlayServicesRepairableException e) {
-                    // TODO: Handle the error.
-                } catch (GooglePlayServicesNotAvailableException e) {
-                    // TODO: Handle the error.
-                }
-            } */
-        }
     }
 
+    // Needs refactor
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         final Intent dataFinal = data;
 
@@ -205,10 +169,7 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
                     token.continuePermissionRequest();
                 }
             }, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE);
-        }
-
-        else if(resultCode == Activity.RESULT_OK && requestCode == ConstantsTypes.ACTIVITY_RESULT_SELECT_PICTURE_GALLERY) {
-
+        } else if(resultCode == Activity.RESULT_OK && requestCode == ConstantsTypes.ACTIVITY_RESULT_SELECT_PICTURE_GALLERY) {
             Dexter.checkPermissions(new MultiplePermissionsListener() {
                 @Override public void onPermissionsChecked(MultiplePermissionsReport report) {
                     if (report.isAnyPermissionPermanentlyDenied()) {
@@ -225,9 +186,24 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
         } else if (resultCode == Activity.RESULT_OK && requestCode == UCrop.REQUEST_CROP) {
             Uri resultUri = UCrop.getOutput(data);
             pictureAdapter.updateImage(resultUri);
+        } else if (requestCode == ConstantsTypes.ACTIVITY_LOCATION_ADDRESS) {
+            onPlaceApiAnswer(resultCode, data);
         } else if (resultCode == UCrop.RESULT_ERROR) {
             final Throwable cropError = UCrop.getError(data);
             String mCause = cropError.getMessage();
+            // TODO: Fail on crop result
+        }
+    }
+
+    private void onPlaceApiAnswer(int resultCode, Intent data) {
+        if (resultCode == Activity.RESULT_OK) {
+            Place place = PlaceAutocomplete.getPlace(getContext(), data);
+            locationSelectEditText.setPlace(place);
+        } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
+            // Status status = PlaceAutocomplete.getStatus(getContext(), data);
+            // TODO:
+        } else if (resultCode == Activity.RESULT_CANCELED) {
+            // TODO:
         }
     }
 
@@ -240,5 +216,4 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
                 .withOptions(options)
                 .start(getActivity(), DonateFragment.this);
     }
-
 }

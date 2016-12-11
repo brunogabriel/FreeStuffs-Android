@@ -12,6 +12,8 @@ import android.widget.TextView;
  */
 public abstract class BaseFragment extends Fragment {
 
+    public static final String TAG = "BASEFRAGMENT";
+
     public BaseFragment() {}
 
     @Override
