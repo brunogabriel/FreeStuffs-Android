@@ -4,37 +4,41 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.support.v7.widget.AppCompatEditText;
 import android.util.AttributeSet;
-import com.google.android.gms.location.places.Place;
 
 /**
  * Created by brunogabriel on 11/12/16.
  */
 
-public class LocationSelectEditText<T> extends AppCompatEditText {
-    Place place;
+public class SelectEditText<T> extends AppCompatEditText {
+    Object mModel;
     CharSequence mHint;
 
-    public LocationSelectEditText(Context context) {
+    public SelectEditText(Context context) {
         super(context);
         mHint = getHint();
     }
 
-    public LocationSelectEditText(Context context, AttributeSet attrs) {
+    public SelectEditText(Context context, AttributeSet attrs) {
         super(context, attrs);
         mHint = getHint();
     }
 
-    public LocationSelectEditText(Context context, AttributeSet attrs, int defStyleAttr) {
+    public SelectEditText(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mHint = getHint();
     }
 
-    public void setPlace(Place place) {
-        this.place = place;
-        if (this.place == null) {
-            setText("");
+    public void setModel(Object mModel, boolean isSetText) {
+        this.mModel = mModel;
+
+        if (!isSetText) {
+            return;
         } else {
-            setText(place.getAddress());
+            if (this.mModel == null) {
+                setText("");
+            } else {
+                setText(mModel.toString());
+            }
         }
     }
 

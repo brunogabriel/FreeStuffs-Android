@@ -20,6 +20,10 @@
     <string name="action_favourites">Favorites</string>
     <string name="action_menu_exit">Exit</string>
 
+    <!-- Delivery Menu -->
+    <string name="delivery_hands">by hands</string>
+    <string name="delivery_combine">combine</string>
+
     <!-- Login Activity -->
     <string name="login_about_terms">About FriendlyDonation and terms</string>
     <string name="login_with_facebook">Login With Facebook</string>

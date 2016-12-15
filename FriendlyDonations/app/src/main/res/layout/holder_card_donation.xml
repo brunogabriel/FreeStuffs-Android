@@ -36,7 +36,7 @@
             fontPath="fonts/Roboto-Medium.ttf"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorBrown"
+            android:textColor="@color/colorTitle"
             android:text="Brand new ladies bike 29 wheel"/>
 
         <android.support.v7.widget.AppCompatTextView
@@ -47,7 +47,7 @@
             android:layout_marginBottom="@dimen/view_space_vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorGray"
+            android:textColor="@color/colorSubtitle"
             android:text="Brand new ladies bike 29 wheel"/>
 
         <LinearLayout
@@ -67,7 +67,7 @@
                 android:drawableLeft="@drawable/ic_gps"
                 android:drawablePadding="6dp"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorGray"
+                android:textColor="@color/colorSubtitle"
                 android:text="2.1 km"/>
 
             <android.support.v7.widget.AppCompatTextView
@@ -79,7 +79,7 @@
                 android:drawableLeft="@drawable/ic_messages"
                 android:drawablePadding="6dp"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorGray"
+                android:textColor="@color/colorSubtitle"
                 android:text="999+"/>
         </LinearLayout>
 

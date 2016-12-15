@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         style="@style/TextView.Typeface3"
         android:gravity="center"
-        android:textColor="@color/colorGray"
+        android:textColor="@color/colorSubtitle"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 

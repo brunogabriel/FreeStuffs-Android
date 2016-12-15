@@ -12,7 +12,7 @@
         android:gravity="center_vertical"
         android:minHeight="@dimen/text_view_height"
         android:textSize="@dimen/dimen_typeface5"
-        android:textColor="@color/colorLead"
+        android:textColor="@color/colorParagraph"
         android:text="@string/permission_denied_title"
         fontPath="fonts/Roboto-Medium.ttf"
         android:layout_width="match_parent"
@@ -30,7 +30,7 @@
 
     <LinearLayout
         android:gravity="right"
-        android:textColor="@color/colorGray"
+        android:textColor="@color/colorSubtitle"
         android:orientation="horizontal"
         android:id="@+id/bottomLayout"
         android:layout_width="match_parent"
@@ -38,7 +38,7 @@
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/tvNo"
-            android:textColor="@color/colorGray"
+            android:textColor="@color/colorSubtitle"
             android:textAllCaps="true"
             android:gravity="center"
             android:clickable="true"

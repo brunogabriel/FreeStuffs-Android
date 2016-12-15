@@ -98,31 +98,35 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <br.com.friendlydonations.views.widgets.LocationSelectEditText
+                <br.com.friendlydonations.views.widgets.SelectEditText
                     android:id="@+id/locationSelectET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/donate_fragment_location"
                     />
-
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_marginTop="@dimen/view_space_vertical"
+                android:id="@+id/tiDelivery"
                 app:theme="@style/FriendlyDonationsTheme.FloatingEditText"
                 app:hintTextAppearance="@style/FriendlyDonationsTheme.FloatingEditText.Hint"
-                android:id="@+id/tiDelivery"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <EditText
-                    android:id="@+id/etDelivery"
+
+                <br.com.friendlydonations.views.widgets.SelectEditText
+                    android:id="@+id/deliverySelectET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/donate_fragment_delivery" />
+                    android:drawableEnd="@drawable/ic_spinner_arrow"
+                    android:drawableRight="@drawable/ic_spinner_arrow"
+                    android:hint="@string/donate_fragment_delivery"
+                    />
             </android.support.design.widget.TextInputLayout>
 
+
             <TextView
-                android:textColor="@color/colorBrown"
+                android:textColor="@color/colorTitle"
                 android:id="@+id/tvIWouldGetTouch"
                 android:text="@string/donate_fragment_get_touch"
                 style="@style/TextView.Typeface3"

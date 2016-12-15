@@ -7,10 +7,12 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,7 +23,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import com.karumi.dexter.Dexter;
@@ -44,7 +45,7 @@ import br.com.friendlydonations.utils.ConstantsTypes;
 import br.com.friendlydonations.utils.ApplicationUtilities;
 import br.com.friendlydonations.views.adapters.CategoryAdapter;
 import br.com.friendlydonations.views.adapters.PictureUploadAdapter;
-import br.com.friendlydonations.views.widgets.LocationSelectEditText;
+import br.com.friendlydonations.views.widgets.SelectEditText;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Retrofit;
@@ -74,7 +75,10 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
     AppCompatEditText etDescription;
 
     @BindView(R.id.locationSelectET)
-    LocationSelectEditText locationSelectEditText;
+    SelectEditText locationSelectEditText;
+
+    @BindView(R.id.deliverySelectET)
+    SelectEditText deliverySelectET;
 
     CategoryAdapter categoryAdapter;
 
@@ -106,10 +110,19 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
             }
         });
 
+        deliverySelectET.setOnClickListener( v -> {
+           PopupMenu popupMenu = new PopupMenu(getActivity(), deliverySelectET);
+            popupMenu.getMenuInflater().inflate(R.menu.menu_delivery, popupMenu.getMenu());
+            popupMenu.setOnMenuItemClickListener(item -> {
+                deliverySelectET.setModel(item, false);
+                deliverySelectET.setText(item.getTitle());
+                return true;
+            });
+
+            popupMenu.show();
+        });
+
         initImagesAdapter();
-        initCategoriesAdapter();
-        etProductItemTitle.setOnFocusChangeListener(this);
-        etDescription.setOnFocusChangeListener(this);
     }
 
     private void initImagesAdapter() {
@@ -198,7 +211,8 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
     private void onPlaceApiAnswer(int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
             Place place = PlaceAutocomplete.getPlace(getContext(), data);
-            locationSelectEditText.setPlace(place);
+            locationSelectEditText.setModel(place, false);
+            locationSelectEditText.setText(place.getAddress());
         } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
             // Status status = PlaceAutocomplete.getStatus(getContext(), data);
             // TODO:

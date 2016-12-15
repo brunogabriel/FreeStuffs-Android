@@ -25,7 +25,7 @@
             <android.support.v7.widget.AppCompatTextView
                 style="@style/TextView.Typeface3"
                 fontPath="fonts/Montserrat-Bold.ttf"
-                android:textColor="@color/colorBrown"
+                android:textColor="@color/colorTitle"
                 android:text="@string/terms_priv_security"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -35,7 +35,7 @@
                 style="@style/TextView.Typeface2"
                 fontPath="fonts/Montserrat-Regular.ttf"
                 android:layout_marginTop="@dimen/space_between_views"
-                android:textColor="@color/colorGray"
+                android:textColor="@color/colorParagraph"
                 android:text="@string/lorem_phrase_too_large"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -45,7 +45,7 @@
                 style="@style/TextView.Typeface3"
                 android:layout_marginTop="@dimen/view_space_vertical"
                 fontPath="fonts/Montserrat-Bold.ttf"
-                android:textColor="@color/colorBrown"
+                android:textColor="@color/colorTitle"
                 android:text="@string/terms_priv_privacity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -55,7 +55,7 @@
                 style="@style/TextView.Typeface2"
                 fontPath="fonts/Montserrat-Regular.ttf"
                 android:layout_marginTop="@dimen/space_between_views"
-                android:textColor="@color/colorGray"
+                android:textColor="@color/colorParagraph"
                 android:paddingBottom="@dimen/double_view_space_vertical"
                 android:text="@string/lorem_phrase_too_large"
                 android:layout_width="match_parent"

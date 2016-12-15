@@ -14,7 +14,7 @@
         android:textSize="30sp"
         tools:ignore="MissingPrefix"
         fontPath="fonts/Roboto-Regular.ttf"
-        android:textColor="@color/colorGray"
+        android:textColor="@color/colorSubtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />

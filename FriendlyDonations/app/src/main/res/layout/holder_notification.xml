@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 style="@style/TextView.Typeface2"
                 tools:ignore="MissingPrefix"
-                android:textColor="@color/colorGray"
+                android:textColor="@color/colorSubtitle"
                 android:maxLines="1"
                 android:ellipsize="end"
                 fontPath="fonts/Roboto-Light.ttf"/>

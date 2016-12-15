@@ -25,18 +25,18 @@
     </style>
 
     <style name="FriendlyDonationsTheme.FloatingEditText" parent="FriendlyDonationsTheme">
-        <item name="colorControlNormal">@color/colorGray</item>          <!-- Line Bottom Deactivated -->
-        <item name="colorControlActivated">@color/colorBrown</item>       <!-- Line Bottom Actived -->
-        <item name="android:textColorHighlight">@color/colorGraySemiLight</item>     <!-- Text Selected to Copy -->
-        <item name="android:textColorHint">@color/colorGray</item>               <!-- Color Hint Not Actived -->
-        <item name="android:textColorPrimary">@color/colorBrown</item>            <!-- Text Inserted -->
+        <item name="colorControlNormal">@color/colorSubtitle</item>          <!-- Line Bottom Deactivated -->
+        <item name="colorControlActivated">@color/colorTitle</item>       <!-- Line Bottom Actived -->
+        <item name="android:textColorHighlight">@color/colorDisabled</item>     <!-- Text Selected to Copy -->
+        <item name="android:textColorHint">@color/colorSubtitle</item>               <!-- Color Hint Not Actived -->
+        <item name="android:textColorPrimary">@color/colorTitle</item>            <!-- Text Inserted -->
     </style>
 
     <style name="FriendlyDonationsTheme.FloatingEditText.Hint" parent="TextAppearance.AppCompat">
-        <item name="android:textColorHint">@color/colorGray</item>
-        <item name="colorAccent">@color/colorBrown</item>
-        <item name="colorControlNormal">@color/colorGray</item>
-        <item name="colorControlActivated">@color/colorBrown</item>
+        <item name="android:textColorHint">@color/colorSubtitle</item>
+        <item name="colorAccent">@color/colorTitle</item>
+        <item name="colorControlNormal">@color/colorSubtitle</item>
+        <item name="colorControlActivated">@color/colorTitle</item>
     </style>
 
     <style name="ExpandedDonationBar" parent="@android:style/TextAppearance.Medium">

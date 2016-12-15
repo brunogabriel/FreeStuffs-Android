@@ -31,7 +31,6 @@
             app:expandedTitleMarginStart="32dp"
             app:expandedTitleMarginEnd="32dp">
 
-
             <RelativeLayout
                 android:fitsSystemWindows="true"
                 android:layout_width="match_parent"
@@ -91,7 +90,7 @@
                     style="@style/TextView.Typeface3"
                     tools:ignore="MissingPrefix"
                     fontPath="fonts/Roboto-Light.ttf"
-                    android:textColor="@color/colorGray"
+                    android:textColor="@color/colorSubtitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     />
@@ -106,7 +105,7 @@
                         android:text="@string/lorem_text_long"
                         style="@style/TextView.Typeface2"
                         android:layout_marginTop="@dimen/view_space_vertical"
-                        android:textColor="@color/colorBrown"
+                        android:textColor="@color/colorTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -133,7 +132,7 @@
                     android:text="@string/donate_detail_aprox_address"
                     style="@style/TextView.Typeface3"
                     android:layout_marginTop="@dimen/view_space_vertical"
-                    android:textColor="@color/colorGray"
+                    android:textColor="@color/colorSubtitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -156,7 +155,7 @@
                     fontPath="fonts/Roboto-Light.ttf"
                     style="@style/TextView.Typeface3"
                     android:layout_marginTop="@dimen/view_space_vertical"
-                    android:textColor="@color/colorGray"
+                    android:textColor="@color/colorSubtitle"
                     android:textAllCaps="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -168,7 +167,7 @@
                     android:text="@string/lorem_simple"
                     style="@style/TextView.Typeface3"
                     android:layout_marginTop="@dimen/space_between_views"
-                    android:textColor="@color/colorBrown"
+                    android:textColor="@color/colorTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -180,7 +179,7 @@
                     android:text="@string/donate_detail_delivery"
                     style="@style/TextView.Typeface3"
                     android:layout_marginTop="@dimen/view_space_vertical"
-                    android:textColor="@color/colorGray"
+                    android:textColor="@color/colorSubtitle"
                     android:textAllCaps="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -192,7 +191,7 @@
                     android:text="@string/lorem_simple"
                     style="@style/TextView.Typeface3"
                     android:layout_marginTop="@dimen/space_between_views"
-                    android:textColor="@color/colorBrown"
+                    android:textColor="@color/colorTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -204,7 +203,7 @@
                     android:text="@string/donate_detail_category"
                     style="@style/TextView.Typeface3"
                     android:layout_marginTop="@dimen/view_space_vertical"
-                    android:textColor="@color/colorGray"
+                    android:textColor="@color/colorSubtitle"
                     android:textAllCaps="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -216,7 +215,7 @@
                     android:text="@string/lorem_simple"
                     style="@style/TextView.Typeface3"
                     android:layout_marginTop="@dimen/space_between_views"
-                    android:textColor="@color/colorBrown"
+                    android:textColor="@color/colorTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -228,7 +227,7 @@
                     android:text="@string/donate_detail_id"
                     style="@style/TextView.Typeface3"
                     android:layout_marginTop="@dimen/view_space_vertical"
-                    android:textColor="@color/colorGray"
+                    android:textColor="@color/colorSubtitle"
                     android:textAllCaps="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -240,7 +239,7 @@
                     android:text="3487642"
                     style="@style/TextView.Typeface3"
                     android:layout_marginTop="@dimen/space_between_views"
-                    android:textColor="@color/colorBrown"
+                    android:textColor="@color/colorTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 

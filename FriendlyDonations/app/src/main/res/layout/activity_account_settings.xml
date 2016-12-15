@@ -246,7 +246,7 @@
                 android:textAllCaps="true"
                 android:paddingLeft="@dimen/view_space_horizontal"
                 android:paddingRight="@dimen/view_space_horizontal"
-                android:textColor="@color/colorGray"
+                android:textColor="@color/colorDisabled"
                 tools:ignore="MissingPrefix"
                 fontPath="fonts/Roboto-Medium.ttf"
                 style="@style/TextView.Typeface2"
