@@ -11,14 +11,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+
 import java.util.List;
 
 import br.com.friendlydonations.R;
 import br.com.friendlydonations.managers.BaseRecyclerViewAdapter;
 import br.com.friendlydonations.models.ImageModel;
-import br.com.friendlydonations.models.category.CategoryModel;
 import br.com.friendlydonations.models.donation.DonationModel;
 import br.com.friendlydonations.models.LoaderModel;
 import br.com.friendlydonations.utils.ImageUtility;
@@ -27,7 +25,6 @@ import br.com.friendlydonations.views.activities.DonationDetailActivity;
 import br.com.friendlydonations.views.widgets.LoaderViewHolder;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by brunogabriel on 9/11/16.
@@ -38,10 +35,6 @@ public class HomeDonationsAdapter extends BaseRecyclerViewAdapter {
     public static final int VIEW_TYPE_DONATIONS = 1001;
 
     private CategoryAction categoryAction;
-
-    public HomeDonationsAdapter(Activity activity) {
-        super(activity);
-    }
 
     public HomeDonationsAdapter(Activity activity, Object headerObject) {
         super(activity);
@@ -58,6 +51,7 @@ public class HomeDonationsAdapter extends BaseRecyclerViewAdapter {
                 mViewHolder = new LoaderViewHolder(LayoutInflater.from(parent.getContext()).
                         inflate(R.layout.holder_list_loader, parent, false));
                 break;
+
             case VIEW_TYPE_DONATION_CATEGORIES:
                 mViewHolder = new HorizontalCategoriesViewHolder(LayoutInflater.from(parent.getContext()).
                         inflate(R.layout.holder_category_in_home, parent, false));
@@ -105,11 +99,12 @@ public class HomeDonationsAdapter extends BaseRecyclerViewAdapter {
         } else if (holder instanceof HorizontalCategoriesViewHolder) {
             StaggeredGridLayoutManager.LayoutParams layoutParams = (StaggeredGridLayoutManager.LayoutParams) holder.itemView.getLayoutParams();
             layoutParams.setFullSpan(true);
-            HomeCategoryCheckAdapter homeCategoryCardAdapter = new HomeCategoryCheckAdapter(activity);
+            ConcreteCategoryAdapter homeCategoryCardAdapter = new ConcreteCategoryAdapter(activity, this.categoryAction);
             HorizontalCategoriesViewHolder horizontalRecyclerViewHolder = (HorizontalCategoriesViewHolder) holder;
             horizontalRecyclerViewHolder.recyclerView.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false));
             horizontalRecyclerViewHolder.recyclerView.setAdapter(homeCategoryCardAdapter);
             homeCategoryCardAdapter.addAll((List<Object>) items.get(position));
+            homeCategoryCardAdapter.setClickedItem(0);
         }
     }
 
@@ -181,88 +176,6 @@ public class HomeDonationsAdapter extends BaseRecyclerViewAdapter {
         public HorizontalCategoriesViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-        }
-    }
-
-
-    public class HomeCategoryCheckAdapter extends BaseRecyclerViewAdapter {
-
-        public HomeCategoryCheckAdapter(Activity activity) {
-            super(activity);
-        }
-
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            CategoryCheckViewHolder checkHolder = new CategoryCheckViewHolder(LayoutInflater.from(parent.getContext()).
-                    inflate(R.layout.holder_card_category, parent, false));
-
-            return checkHolder;
-        }
-
-        private void performCheckBehaviour(int position) {
-            int i = 0;
-            for (Object mNextItem: items) {
-                CategoryModel categoryModel = (CategoryModel) mNextItem;
-                boolean isCallAction = false;
-                if (i == position && !categoryModel.isChecked()) { // need to call action
-                    isCallAction = true;
-                }
-                categoryModel.setChecked(i == position ? true: false);
-                i++;
-
-                if (isCallAction && categoryAction != null) {
-                    categoryAction.onClickAtPosition(position, categoryModel);
-                }
-            }
-
-            notifyDataSetChanged();
-        }
-
-        @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-            CategoryCheckViewHolder checkHolder = (CategoryCheckViewHolder) holder;
-            CategoryModel categoryModel = (CategoryModel) this.items.get(position);
-
-            boolean isModelCheck = categoryModel.isChecked();
-            if (isModelCheck) {
-                checkHolder.checkMarker.setVisibility(View.VISIBLE);
-                checkHolder.itemView.setAlpha(1.0f);
-            } else {
-                checkHolder.checkMarker.setVisibility(View.GONE);
-                checkHolder.itemView.setAlpha(0.5f);
-            }
-
-            // Apply information
-            checkHolder.tvCategoryName.setText("" + categoryModel.getName());
-
-
-            // All Image
-            if (categoryModel.getImageModel().getId() == null && categoryModel.getId() == null) {
-
-            } else {
-                ImageUtility.loadImageWithPlaceholder(checkHolder.circleImageView, activity,
-                        categoryModel.getImageModel().getLoader(),
-                        categoryModel.getImageModel().getLarge());
-            }
-        }
-
-        @Override
-        public int getItemCount() {
-            return this.items == null ? 0: this.items.size();
-        }
-
-        public class CategoryCheckViewHolder extends RecyclerView.ViewHolder {
-            @BindView(R.id.circleImageView) CircleImageView circleImageView;
-            @BindView(R.id.tvCategoryName) TextView tvCategoryName;
-            @BindView(R.id.checkMarker) RelativeLayout checkMarker;
-            View itemView;
-
-            public CategoryCheckViewHolder(View itemView) {
-                super(itemView);
-                ButterKnife.bind(this, itemView);
-                this.itemView = itemView;
-                this.itemView.setOnClickListener(v -> performCheckBehaviour(getAdapterPosition()));
-            }
         }
     }
 

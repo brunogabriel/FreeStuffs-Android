@@ -6,8 +6,8 @@ package br.com.friendlydonations.views.fragments;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatEditText;
@@ -21,7 +21,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceAutocomplete;
@@ -33,28 +36,43 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.Inflater;
+
 import javax.inject.Inject;
 
 import br.com.friendlydonations.R;
 import br.com.friendlydonations.managers.App;
 import br.com.friendlydonations.managers.BaseActivity;
 import br.com.friendlydonations.managers.BaseFragment;
+import br.com.friendlydonations.models.ImageModel;
 import br.com.friendlydonations.models.PictureUpload;
+import br.com.friendlydonations.models.category.CategoryModel;
+import br.com.friendlydonations.network.NetworkInterface;
 import br.com.friendlydonations.utils.ConstantsTypes;
 import br.com.friendlydonations.utils.ApplicationUtilities;
-import br.com.friendlydonations.views.adapters.CategoryAdapter;
+import br.com.friendlydonations.views.actions.CategoryAction;
+import br.com.friendlydonations.views.activities.LoginActivity;
+import br.com.friendlydonations.views.activities.MainActivity;
+import br.com.friendlydonations.views.adapters.ConcreteCategoryAdapter;
 import br.com.friendlydonations.views.adapters.PictureUploadAdapter;
 import br.com.friendlydonations.views.widgets.SelectEditText;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import mehdi.sakout.dynamicbox.DynamicBox;
 import retrofit2.Retrofit;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by brunogabriel on 8/27/16.
  */
 public class DonateFragment extends BaseFragment implements View.OnFocusChangeListener {
+
+    private static final String DYNAMICBOX_LOADING = "dynamicboxloading";
+    private static final String DYNAMICBOX_LOADAGAIN = "dynamicboxloadingagain";
 
     @BindView(R.id.tvUploadPhotos)
     TextView tvUploadPhotos;
@@ -80,8 +98,6 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
     @BindView(R.id.deliverySelectET)
     SelectEditText deliverySelectET;
 
-    CategoryAdapter categoryAdapter;
-
     PictureUploadAdapter pictureAdapter;
 
     protected View rootView;
@@ -89,12 +105,22 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
     @Inject
     protected Retrofit retrofit;
 
+    private boolean isCategoryLoaded;
+
+    ConcreteCategoryAdapter concreteCategoryAdapter;
+
+    // Views
+    protected View dynamicBoxLoading;
+    protected View dynamicBoxNoInternet;
+    protected DynamicBox dynamicBox;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_donate, container, false);
         ButterKnife.bind(this, rootView);
         ((App) getActivity().getApplication()).getmNetcomponent().inject(this);
         initUI();
+        initCategoriesAdapter(inflater, container);
         return rootView;
     }
 
@@ -137,11 +163,72 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
         pictureAdapter.add(new PictureUpload(4, null));
     }
 
-    private void initCategoriesAdapter() {
+    private void initCategoriesAdapter(LayoutInflater inflater, ViewGroup container) {
+        dynamicBox = new DynamicBox(getActivity(), recyclerViewCategories);
+        dynamicBoxLoading = inflater.inflate(R.layout.holder_list_loader, container, false);
+        dynamicBoxNoInternet = inflater.inflate(R.layout.holder_category_error_on_donate, container, false);
+        try {
+
+            ProgressBar progressBar = (ProgressBar) dynamicBoxLoading.findViewById(R.id.progressBar);
+            progressBar.getIndeterminateDrawable().setColorFilter(Color.parseColor("#6D65E6"),
+                    android.graphics.PorterDuff.Mode.MULTIPLY);
+        } catch (Exception exception) {
+            Log.e(TAG, "Fail to apply loading color on progressbar: " + exception.getMessage());
+        }
+
+        // adding views to dynamic box
+        dynamicBox.addCustomView(dynamicBoxLoading, DYNAMICBOX_LOADING);
+        dynamicBox.addCustomView(dynamicBoxNoInternet, DYNAMICBOX_LOADAGAIN);
+
+        // Setup adapter
+        concreteCategoryAdapter = new ConcreteCategoryAdapter(getActivity(), (position, categoryModel) -> {
+            // TODO: Apply actions
+        });
+
+        recyclerViewCategories.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        recyclerViewCategories.setAdapter(concreteCategoryAdapter);
+
+        // Starting loading
+        if (!isNetworkEnabled()) {
+            showLoadAgain();
+        } else if (!isCategoryLoaded) {
+            loadCategories();
+        }
+
+        dynamicBoxNoInternet.findViewById(R.id.btnCategoryLoadAgain).setOnClickListener(v -> loadCategories());
     }
 
-    private Action1<Throwable> throwableCategoriesError = throwable -> {
+    private Action1<Throwable> throwableErrorCategories = throwable -> {
+        showLoadAgain();
     };
+
+    private void showLoadAgain() {
+        dynamicBox.hideAll();
+        dynamicBox.showCustomView(DYNAMICBOX_LOADAGAIN);
+        Toast.makeText(getActivity(), R.string.donate_fail_loading_categories, Toast.LENGTH_SHORT).show();
+    }
+
+    private void loadCategories() {
+        dynamicBox.hideAll();
+        if (!isCategoryLoaded) {
+            dynamicBox.showCustomView(DYNAMICBOX_LOADING);
+            retrofit.create(NetworkInterface.class)
+                    .loadCategories(((MainActivity) getActivity()).getToken())
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(result -> {
+                        dynamicBox.hideAll();
+                        if (result.isStatus() && result.getCategoryModelList().size() > 0) {
+                            List<Object> mItens = new ArrayList<>();
+                            mItens.addAll(result.getCategoryModelList());
+                            concreteCategoryAdapter.addAll(mItens);
+                            this.isCategoryLoaded = true;
+                        } else {
+                            showLoadAgain();
+                        }
+                    }, throwableErrorCategories);
+        }
+    }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {

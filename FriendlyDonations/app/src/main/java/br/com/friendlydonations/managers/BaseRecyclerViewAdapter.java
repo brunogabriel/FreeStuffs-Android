@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.friendlydonations.models.LoaderModel;
+import br.com.friendlydonations.models.category.CategoryModel;
 
 /**
  * Created by brunogabriel on 31/10/16.
@@ -69,5 +70,6 @@ public abstract class BaseRecyclerViewAdapter extends RecyclerView.Adapter<Recyc
             notifyItemInserted(beforeSize);
         }
     }
+
 
 }

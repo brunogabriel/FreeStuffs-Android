@@ -44,10 +44,10 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerViewCategories"
             android:layout_marginTop="@dimen/space_between_views"
+            android:minHeight="@dimen/card_category_base"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         </android.support.v7.widget.RecyclerView>
-
 
         <LinearLayout
             android:orientation="vertical"

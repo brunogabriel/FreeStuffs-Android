@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:paddingBottom="@dimen/view_space_vertical"
+    android:layout_height="wrap_content">
+
+    <Button android:alpha="0.75"
+        android:id="@+id/btnCategoryLoadAgain"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/double_view_space_vertical"
+        android:text="@string/donate_load_categories_again"
+        android:textAllCaps="true"
+        android:paddingLeft="@dimen/view_space_horizontal"
+        android:paddingRight="@dimen/view_space_horizontal"
+        android:textColor="@color/colorDisabled"
+        tools:ignore="MissingPrefix"
+        fontPath="fonts/Roboto-Medium.ttf"
+        style="@style/TextView.Typeface2"
+        android:background="@drawable/drawable_button_border_gray"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools" />
+
+</LinearLayout>

@@ -29,6 +29,7 @@ import rx.schedulers.Schedulers;
  * Created by brunogabriel on 8/27/16.
  */
 public class ProfileFragment extends BaseFragment {
+    // TODO: Reestruture
 
     // Views
     protected View rootView;
@@ -69,19 +70,19 @@ public class ProfileFragment extends BaseFragment {
         items.add(mDonations);
 
         adapter.addAll(items);
-        //startSwipeLayout();
+        startSwipeLayout();
     }
 
     private void startSwipeLayout() {
-        swipeRefreshLayout.setColorSchemeColors(ContextCompat.getColor(getActivity(), R.color.colorPrimary));
-        swipeRefreshLayout.setOnRefreshListener(() -> {
-            // TODO: refreshItens()
-            Observable.timer(1, TimeUnit.SECONDS)
-                    .subscribeOn(Schedulers.newThread())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(oObject -> {
-                        swipeRefreshLayout.setRefreshing(false);
-                    });
-        });
+//        swipeRefreshLayout.setColorSchemeColors(ContextCompat.getColor(getActivity(), R.color.colorPrimary));
+//        swipeRefreshLayout.setOnRefreshListener(() -> {
+//            // TODO: refreshItens()
+//            Observable.timer(1, TimeUnit.SECONDS)
+//                    .subscribeOn(Schedulers.newThread())
+//                    .observeOn(AndroidSchedulers.mainThread())
+//                    .subscribe(oObject -> {
+//                        swipeRefreshLayout.setRefreshing(false);
+//                    });
+//        });
     }
 }
