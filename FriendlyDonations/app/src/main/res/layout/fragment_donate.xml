@@ -133,6 +133,29 @@
                 android:layout_marginTop="@dimen/card_padding"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/view_space_vertical"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <include
+                    android:id="@+id/viewGetByMail"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    layout="@layout/checkbox_touchdonate"
+                    />
+
+                <include
+                    android:id="@+id/viewGetByPhone"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    layout="@layout/checkbox_touchdonate"
+                    android:layout_marginLeft="@dimen/card_padding"
+                    />
+
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
