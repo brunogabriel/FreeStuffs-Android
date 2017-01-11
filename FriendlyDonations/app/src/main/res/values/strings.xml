@@ -60,6 +60,13 @@
     <string name="donate_fragment_by_mail">by mail</string>
     <string name="donate_fragment_by_phone">by phone</string>
     <string name="donate_fragment_post_it">Post it</string>
+    <string name="donate_fragment_apply_donate">Donate</string>
+    <string name="donate_fragment_add_other">Add other</string>
+    <string name="donate_fragment_add">Add</string>
+    <string name="donate_fragment_cancel">Cancel</string>
+    <string name="donate_fragment_invalid_email">Invalid mail</string>
+    <string name="donate_fragment_invalid_phone">Invalid phone</string>
+
 
     <!-- Fragment Profile -->
     <string name="profile_fragment_preferences">preferences</string>

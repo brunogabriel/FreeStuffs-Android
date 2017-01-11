@@ -156,7 +156,34 @@
                     />
 
             </LinearLayout>
+
         </LinearLayout>
+
+        <!-- Donate Button -->
+        <LinearLayout
+            android:clickable="true"
+            android:id="@+id/viewDonatedBtn"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/double_view_space_vertical"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:background="@drawable/drawable_green_effect"
+            android:layout_height="80dp">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tvDonateText"
+                android:drawableRight="@drawable/ic_donation_tab"
+                tools:ignore="MissingPrefix"
+                android:drawablePadding="@dimen/space_between_views"
+                fontPath="fonts/Montserrat-Regular.ttf"
+                style="@style/TextView.Typeface3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorWhite"
+                android:text="@string/donate_detail_im_interested"
+                android:gravity="center" />
+        </LinearLayout>
+
 
     </LinearLayout>
 

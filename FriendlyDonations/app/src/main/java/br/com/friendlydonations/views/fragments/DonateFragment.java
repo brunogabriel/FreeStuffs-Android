@@ -9,18 +9,28 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatEditText;
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.telephony.PhoneNumberUtils;
+import android.text.Editable;
+import android.text.InputType;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,6 +64,7 @@ import br.com.friendlydonations.views.adapters.PictureUploadAdapter;
 import br.com.friendlydonations.views.widgets.SelectEditText;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import mehdi.sakout.dynamicbox.DynamicBox;
 import retrofit2.Retrofit;
 import rx.android.schedulers.AndroidSchedulers;
@@ -91,6 +102,12 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
 
     @BindView(R.id.deliverySelectET)
     SelectEditText deliverySelectET;
+
+    @BindView(R.id.viewGetByMail)
+    View viewGetByMail;
+
+    @BindView(R.id.viewGetByPhone)
+    View viewGetByPhone;
 
     PictureUploadAdapter pictureAdapter;
 
@@ -143,18 +160,24 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
         });
 
         initImagesAdapter();
+        initGetByMailAndPhoneView();
     }
 
     private void initImagesAdapter() {
         recyclerViewPictures.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         pictureAdapter = new PictureUploadAdapter((BaseActivity) getActivity(), this, recyclerViewPictures.getLayoutManager());
         recyclerViewPictures.setAdapter(pictureAdapter);
-
         pictureAdapter.add(new PictureUpload(0, null));
         pictureAdapter.add(new PictureUpload(1, null));
         pictureAdapter.add(new PictureUpload(2, null));
         pictureAdapter.add(new PictureUpload(3, null));
         pictureAdapter.add(new PictureUpload(4, null));
+    }
+
+    private void initGetByMailAndPhoneView() {
+        // Setup Phone
+        ((ImageView) viewGetByPhone.findViewById(R.id.imageTouchable)).setImageResource(R.drawable.ic_circle_phone);
+        ((AppCompatTextView) viewGetByPhone.findViewById(R.id.textTouchable)).setText(getResources().getString(R.string.donate_detail_by_phone));
     }
 
     private void initCategoriesAdapter(LayoutInflater inflater, ViewGroup container) {
@@ -200,6 +223,107 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
         dynamicBox.hideAll();
         dynamicBox.showCustomView(DYNAMICBOX_LOADAGAIN);
         Toast.makeText(getActivity(), R.string.donate_fail_loading_categories, Toast.LENGTH_SHORT).show();
+    }
+
+    @OnClick(R.id.viewGetByMail)
+    protected void onClickGetByMail() {
+
+        PopupMenu popupMenu = new PopupMenu(getActivity(), viewGetByMail);
+        popupMenu.getMenu().add(0, 0, 0, getString(R.string.donate_fragment_add_other));
+        popupMenu.getMenu().add(0, 1, 0, ((App) getActivity().getApplication()).getLoginModel().getData().getEmail());
+        // TODO: Populate other itens by using preferences ;D
+        popupMenu.setOnMenuItemClickListener(item -> {
+            if (item.getItemId() == 0) {
+                showAddAnotherDialog(false);
+            }
+            return true;
+        });
+        popupMenu.show();
+    }
+
+    @OnClick(R.id.viewGetByPhone)
+    protected void onClickGetByPhone() {
+        PopupMenu popupMenu = new PopupMenu(getActivity(), viewGetByMail);
+        popupMenu.getMenu().add(0, 0, 0, getString(R.string.donate_fragment_add_other));
+//        popupMenu.getMenu().add(0, 1, 0, ((App) getActivity().getApplication()).getLoginModel().getData().getEmail());
+        // TODO: Populate other itens by using preferences ;D
+        popupMenu.setOnMenuItemClickListener(item -> {
+            if (item.getItemId() == 0) {
+                showAddAnotherDialog(true);
+            }
+            return true;
+        });
+        popupMenu.show();
+    }
+
+    private void showAddAnotherDialog(final boolean isPhone) {
+        View mView = LayoutInflater.from(getActivity()).inflate(R.layout.alert_textinput, null, false);
+        final AlertDialog mAlertDialog; // Variable to apply show custom dialog, used to dismiss content
+
+        // Input Data
+        TextInputLayout tiInformation = ((TextInputLayout) mView.findViewById(R.id.tiInformation));
+        AppCompatEditText appCompatEditText = (AppCompatEditText) mView.findViewById(R.id.etInformation);
+        appCompatEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // Empty
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // Empty
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (tiInformation.getError() != null && tiInformation.isErrorEnabled()) {
+                    tiInformation.setError(null);
+                    tiInformation.setErrorEnabled(true);
+                }
+            }
+        });
+
+        // Setup Texts
+        if(isPhone) {
+            ((AppCompatTextView) mView.findViewById(R.id.tvAlertTitle)).setText(getString(R.string.donate_detail_by_phone));
+            appCompatEditText.setHint(getString(R.string.acc_settings_phone));
+            appCompatEditText.setInputType(InputType.TYPE_CLASS_PHONE);
+        }
+        ((AppCompatTextView) mView.findViewById(R.id.tvAlertTitle))
+                .setText(getString(isPhone ? R.string.donate_fragment_by_phone: R.string.donate_fragment_by_mail));
+
+        // Show Alert Dialog
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
+        mBuilder.setView(mView);
+        mAlertDialog = mBuilder.show();
+
+        AppCompatTextView appCompatYes = (AppCompatTextView) mView.findViewById(R.id.tvYes);
+        appCompatYes.setOnClickListener(view -> {
+            if(!isPhone) {
+                if (appCompatEditText.getText().toString().isEmpty() ||
+                        !Patterns.EMAIL_ADDRESS.matcher(appCompatEditText.getText().toString()).matches()) {
+                    tiInformation.setErrorEnabled(true);
+                    tiInformation.setError(getString(R.string.donate_fragment_invalid_email));
+                } else {
+                    // TODO: Save new e-mail inside preferences if is different from profile and use it in form
+                    mAlertDialog.dismiss();
+                }
+            } else {
+                if (appCompatEditText.getText().toString().isEmpty() || !PhoneNumberUtils
+                        .isGlobalPhoneNumber(appCompatEditText.getText().toString())){
+                    tiInformation.setErrorEnabled(true);
+                    tiInformation.setError(getString(R.string.donate_fragment_invalid_phone));
+                } else {
+                    // TODO: Save new phone inside preferences if is different from profile and use it in form
+                    mAlertDialog.dismiss();
+                }
+            }
+        });
+
+        AppCompatTextView appCompatNo = (AppCompatTextView) mView.findViewById(R.id.tvNo);
+        appCompatNo.setOnClickListener(view -> {
+            mAlertDialog.dismiss();
+        });
     }
 
     private void loadCategories() {
