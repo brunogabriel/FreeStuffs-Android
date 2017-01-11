@@ -21,14 +21,17 @@ import android.telephony.PhoneNumberUtils;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.text.method.DigitsKeyListener;
 import android.util.Log;
 import android.util.Patterns;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -287,8 +290,11 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
         if(isPhone) {
             ((AppCompatTextView) mView.findViewById(R.id.tvAlertTitle)).setText(getString(R.string.donate_detail_by_phone));
             appCompatEditText.setHint(getString(R.string.acc_settings_phone));
-            appCompatEditText.setInputType(InputType.TYPE_CLASS_PHONE);
+            tiInformation.setHint(getString(R.string.acc_settings_phone));
+            appCompatEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
+            appCompatEditText.setKeyListener(DigitsKeyListener.getInstance("0123456789"));
         }
+
         ((AppCompatTextView) mView.findViewById(R.id.tvAlertTitle))
                 .setText(getString(isPhone ? R.string.donate_fragment_by_phone: R.string.donate_fragment_by_mail));
 
@@ -296,7 +302,7 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
         mBuilder.setView(mView);
         mAlertDialog = mBuilder.show();
-
+        
         AppCompatTextView appCompatYes = (AppCompatTextView) mView.findViewById(R.id.tvYes);
         appCompatYes.setOnClickListener(view -> {
             if(!isPhone) {
@@ -318,6 +324,14 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
                     mAlertDialog.dismiss();
                 }
             }
+        });
+
+        appCompatEditText.setOnEditorActionListener((v, actionId, event) -> {
+            if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
+                appCompatYes.performClick();
+                return true;
+            }
+            return false;
         });
 
         AppCompatTextView appCompatNo = (AppCompatTextView) mView.findViewById(R.id.tvNo);
