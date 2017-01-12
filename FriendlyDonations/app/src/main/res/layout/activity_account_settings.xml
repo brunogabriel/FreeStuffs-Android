@@ -242,6 +242,7 @@
                 android:alpha="0.75"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/double_view_space_vertical"
+                android:layout_marginBottom="@dimen/double_view_space_vertical"
                 android:text="@string/acc_settings_desactivate_account"
                 android:textAllCaps="true"
                 android:paddingLeft="@dimen/view_space_horizontal"

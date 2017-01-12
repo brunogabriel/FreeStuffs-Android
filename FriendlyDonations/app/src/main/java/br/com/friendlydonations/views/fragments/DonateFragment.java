@@ -6,6 +6,7 @@ package br.com.friendlydonations.views.fragments;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,9 +20,11 @@ import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.telephony.PhoneNumberUtils;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.text.method.DigitsKeyListener;
+import android.util.ArraySet;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.KeyEvent;
@@ -32,7 +35,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -49,7 +51,9 @@ import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.inject.Inject;
 
@@ -68,6 +72,8 @@ import br.com.friendlydonations.views.widgets.SelectEditText;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnItemLongClick;
+import butterknife.OnLongClick;
 import mehdi.sakout.dynamicbox.DynamicBox;
 import retrofit2.Retrofit;
 import rx.android.schedulers.AndroidSchedulers;
@@ -79,9 +85,11 @@ import rx.schedulers.Schedulers;
  */
 public class DonateFragment extends BaseFragment implements View.OnFocusChangeListener {
 
+    // Constants
     private static final String DYNAMICBOX_LOADING = "dynamicboxloading";
     private static final String DYNAMICBOX_LOADAGAIN = "dynamicboxloadingagain";
 
+    // Views
     @BindView(R.id.tvUploadPhotos)
     TextView tvUploadPhotos;
 
@@ -112,27 +120,43 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
     @BindView(R.id.viewGetByPhone)
     View viewGetByPhone;
 
-    PictureUploadAdapter pictureAdapter;
+    View rootView;          // Fragment Layout
 
-    protected View rootView;
+    // Dynamic Box Views
+    View dynamicBoxLoading;
+    View dynamicBoxNoInternet;
+
+    // Adapters
+    PictureUploadAdapter pictureAdapter;
+    ConcreteCategoryAdapter concreteCategoryAdapter;
 
     @Inject
     protected Retrofit retrofit;
+    private SharedPreferences sharedPreferences;
 
+    // Others
+    DynamicBox dynamicBox;
     private boolean isCategoryLoaded;
 
-    ConcreteCategoryAdapter concreteCategoryAdapter;
+    // Set from preferences
+    Set<String> setMails = new HashSet<>();
+    Set<String> setPhones = new HashSet<>();
 
-    // Views
-    protected View dynamicBoxLoading;
-    protected View dynamicBoxNoInternet;
-    protected DynamicBox dynamicBox;
+    // Form Data
+    private String donateByEmailStr;
+    private String donateByPhoneStr;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_donate, container, false);
         ButterKnife.bind(this, rootView);
         ((App) getActivity().getApplication()).getmNetcomponent().inject(this);
+
+        // Apply data from user in sets
+        setMails.add(((App) getActivity().getApplication()).getLoginModel().getData().getEmail());
+        // TODO: Phone too
+
+
         initUI();
         initCategoriesAdapter(inflater, container);
         return rootView;
@@ -230,32 +254,83 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
 
     @OnClick(R.id.viewGetByMail)
     protected void onClickGetByMail() {
-
         PopupMenu popupMenu = new PopupMenu(getActivity(), viewGetByMail);
         popupMenu.getMenu().add(0, 0, 0, getString(R.string.donate_fragment_add_other));
-        popupMenu.getMenu().add(0, 1, 0, ((App) getActivity().getApplication()).getLoginModel().getData().getEmail());
-        // TODO: Populate other itens by using preferences ;D
+
+        int i = 1;
+        for (String strSet: setMails) {
+            popupMenu.getMenu().add(0, i, 0, strSet);
+            i++;
+        }
+
         popupMenu.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == 0) {
                 showAddAnotherDialog(false);
+            } else {
+                applyViewValue(item.getTitle().toString(), false);
             }
             return true;
         });
+
         popupMenu.show();
+    }
+
+    private void applyViewValue(String value, boolean isPhone) {
+        if (value != null && !value.isEmpty()) {
+            if (isPhone) {
+                donateByPhoneStr = value;
+                viewGetByPhone.findViewById(R.id.checkMarker).setVisibility(View.VISIBLE);
+                viewGetByPhone.setAlpha(1.0f);
+            } else {
+                donateByEmailStr = value;
+                viewGetByMail.findViewById(R.id.checkMarker).setVisibility(View.VISIBLE);
+                viewGetByMail.setAlpha(1.0f);
+            }
+        }
+    }
+
+    @OnLongClick(R.id.viewGetByMail)
+    protected boolean onLongClickGetByMail() {
+        if (!(donateByEmailStr == null || donateByEmailStr.isEmpty())) {
+            donateByEmailStr = null;
+            viewGetByMail.findViewById(R.id.checkMarker).setVisibility(View.INVISIBLE);
+            viewGetByMail.setAlpha(0.5f);
+        }
+
+        return true;
+    }
+
+    @OnLongClick(R.id.viewGetByPhone)
+    protected boolean onLongClickGetByPhone() {
+        if (!(donateByPhoneStr == null || donateByPhoneStr.isEmpty())) {
+            donateByPhoneStr = null;
+            viewGetByPhone.findViewById(R.id.checkMarker).setVisibility(View.INVISIBLE);
+            viewGetByPhone.setAlpha(0.5f);
+        }
+
+        return true;
     }
 
     @OnClick(R.id.viewGetByPhone)
     protected void onClickGetByPhone() {
-        PopupMenu popupMenu = new PopupMenu(getActivity(), viewGetByMail);
+        PopupMenu popupMenu = new PopupMenu(getActivity(), viewGetByPhone);
         popupMenu.getMenu().add(0, 0, 0, getString(R.string.donate_fragment_add_other));
-//        popupMenu.getMenu().add(0, 1, 0, ((App) getActivity().getApplication()).getLoginModel().getData().getEmail());
-        // TODO: Populate other itens by using preferences ;D
+
+        int i = 1;
+        for (String strSet: setPhones) {
+            popupMenu.getMenu().add(0, i, 0, strSet);
+            i++;
+        }
+
         popupMenu.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == 0) {
                 showAddAnotherDialog(true);
+            } else {
+                applyViewValue(item.getTitle().toString(), true);
             }
             return true;
         });
+
         popupMenu.show();
     }
 
@@ -292,17 +367,20 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
             appCompatEditText.setHint(getString(R.string.acc_settings_phone));
             tiInformation.setHint(getString(R.string.acc_settings_phone));
             appCompatEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
+            appCompatEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(20)});
             appCompatEditText.setKeyListener(DigitsKeyListener.getInstance("0123456789"));
         }
 
         ((AppCompatTextView) mView.findViewById(R.id.tvAlertTitle))
-                .setText(getString(isPhone ? R.string.donate_fragment_by_phone: R.string.donate_fragment_by_mail));
+                .setText(getString(isPhone ?
+                        R.string.donate_fragment_by_phone:
+                        R.string.donate_fragment_by_mail));
 
         // Show Alert Dialog
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
         mBuilder.setView(mView);
         mAlertDialog = mBuilder.show();
-        
+
         AppCompatTextView appCompatYes = (AppCompatTextView) mView.findViewById(R.id.tvYes);
         appCompatYes.setOnClickListener(view -> {
             if(!isPhone) {
@@ -311,7 +389,10 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
                     tiInformation.setErrorEnabled(true);
                     tiInformation.setError(getString(R.string.donate_fragment_invalid_email));
                 } else {
-                    // TODO: Save new e-mail inside preferences if is different from profile and use it in form
+                    if(!setMails.contains(appCompatEditText.getText().toString())) {
+                        setMails.add(appCompatEditText.getText().toString());
+                    }
+                    applyViewValue(appCompatEditText.getText().toString(), false);
                     mAlertDialog.dismiss();
                 }
             } else {
@@ -320,14 +401,18 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
                     tiInformation.setErrorEnabled(true);
                     tiInformation.setError(getString(R.string.donate_fragment_invalid_phone));
                 } else {
-                    // TODO: Save new phone inside preferences if is different from profile and use it in form
+                    if (!setPhones.contains(appCompatEditText.getText().toString())) {
+                        setPhones.add(appCompatEditText.getText().toString());
+                    }
+                    applyViewValue(appCompatEditText.getText().toString(), true);
                     mAlertDialog.dismiss();
                 }
             }
         });
 
         appCompatEditText.setOnEditorActionListener((v, actionId, event) -> {
-            if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
+            if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER))
+                    || (actionId == EditorInfo.IME_ACTION_DONE)) {
                 appCompatYes.performClick();
                 return true;
             }
@@ -335,9 +420,7 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
         });
 
         AppCompatTextView appCompatNo = (AppCompatTextView) mView.findViewById(R.id.tvNo);
-        appCompatNo.setOnClickListener(view -> {
-            mAlertDialog.dismiss();
-        });
+        appCompatNo.setOnClickListener(view -> mAlertDialog.dismiss());
     }
 
     private void loadCategories() {
@@ -373,7 +456,6 @@ public class DonateFragment extends BaseFragment implements View.OnFocusChangeLi
             default:
                 return super.onOptionsItemSelected(item);
         }
-
     }
 
     @Override

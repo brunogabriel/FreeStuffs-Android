@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
+    android:alpha="0.5"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
@@ -20,7 +21,7 @@
         <RelativeLayout
             android:id="@+id/checkMarker"
             android:layout_marginLeft="@dimen/double_view_space_vertical"
-            android:visibility="gone"
+            android:visibility="invisible"
             android:background="@drawable/drawable_bg_circle_marker"
             android:layout_width="@dimen/card_padding"
             android:layout_height="@dimen/card_padding">

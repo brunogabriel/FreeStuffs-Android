@@ -67,6 +67,7 @@
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/etProductItemTitle"
                     android:maxLines="1"
+                    android:singleLine="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/donate_fragment_product_item_title" />
