@@ -25,11 +25,11 @@
     </style>
 
     <style name="FriendlyDonationsTheme.FloatingEditText" parent="FriendlyDonationsTheme">
-        <item name="colorControlNormal">@color/colorSubtitle</item>          <!-- Line Bottom Deactivated -->
-        <item name="colorControlActivated">@color/colorTitle</item>       <!-- Line Bottom Actived -->
-        <item name="android:textColorHighlight">@color/colorDisabled</item>     <!-- Text Selected to Copy -->
-        <item name="android:textColorHint">@color/colorSubtitle</item>               <!-- Color Hint Not Actived -->
-        <item name="android:textColorPrimary">@color/colorTitle</item>            <!-- Text Inserted -->
+        <item name="colorControlNormal">@color/colorSubtitle</item>
+        <item name="colorControlActivated">@color/colorTitle</item>
+        <item name="android:textColorHighlight">@color/colorDisable</item>
+        <item name="android:textColorHint">@color/colorSubtitle</item>
+        <item name="android:textColorPrimary">@color/colorTitle</item>
     </style>
 
     <style name="FriendlyDonationsTheme.FloatingEditText.Hint" parent="TextAppearance.AppCompat">

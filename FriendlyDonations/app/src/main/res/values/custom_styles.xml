@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/tools">
+
+    <!-- Text Size -->
+    <style name="TextSize13" parent="@android:style/TextAppearance.Widget.TextView">
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="TextSize14" parent="@android:style/TextAppearance.Widget.TextView">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <!-- Typeface -->
+    <style name="TextSize14.MontSerratRegular">
+        <item name="fontPath">fonts/Montserrat-Regular.ttf</item>
+    </style>
+
+    <!-- Text Color -->
+    <style name="TextSize13.White">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="TextSize14.MontSerratRegular.White">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+</resources>
