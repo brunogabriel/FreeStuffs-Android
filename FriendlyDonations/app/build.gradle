@@ -57,6 +57,7 @@ dependencies {
     })
 
     testCompile 'junit:junit:4.12'
+    testCompile "org.mockito:mockito-core:2.7.4"
 
     // Android and Google Dependencies
     compile "com.android.support:appcompat-v7:${SUPPORT_LIB_VERSION}"
@@ -106,7 +107,7 @@ dependencies {
 //    compile 'com.github.medyo:dynamicbox:1.2@aar'
 //
 //    // Facebook
-//    compile 'com.facebook.android:facebook-android-sdk:[4,5)'
+    compile 'com.facebook.android:facebook-android-sdk:[4,5)'
 //
 //
 //    // View Pager Indicator

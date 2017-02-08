@@ -1,11 +1,8 @@
 package br.com.friendlydonations.manager;
 
 import android.app.Application;
-
-import com.karumi.dexter.Dexter;
-
-import java.net.NetworkInterface;
-
+import com.facebook.appevents.AppEventsLogger;
+import java.util.Locale;
 import br.com.friendlydonations.R;
 import br.com.friendlydonations.dagger.component.DaggerNetworkComponent;
 import br.com.friendlydonations.dagger.component.NetworkComponent;
@@ -19,13 +16,28 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 public class CustomApplication extends Application {
 
+    public static final String PLATFORM = "android";
+
     private NetworkComponent networkComponent;
+    public static Locale locale;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        initLocale();
+        initFacebookSDK();
         initializeComponents();
         initializeDaggerComponents();
+    }
+
+    private void initLocale() {
+        // TODO: Get locale when app start and will be used during all the time
+        locale = new Locale("pt", "BR");
+    }
+
+    private void initFacebookSDK() {
+//        FacebookSdk.sdkInitialize(getApplicationContext());
+        AppEventsLogger.activateApp(this);
     }
 
     private void initializeDaggerComponents() {
