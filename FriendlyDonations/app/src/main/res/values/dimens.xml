@@ -43,12 +43,4 @@
 
     <!-- Generic Space -->
     <dimen name="double_view_space_vertical">32dp</dimen>
-
-    <!-- Typefaces Sizes -->
-    <dimen name="dimen_typeface1">12sp</dimen>
-    <dimen name="dimen_typeface2">14sp</dimen>
-    <dimen name="dimen_typeface3">16sp</dimen>
-    <dimen name="dimen_typeface4">18sp</dimen>
-    <dimen name="dimen_typeface5">20sp</dimen>
-
 </resources>

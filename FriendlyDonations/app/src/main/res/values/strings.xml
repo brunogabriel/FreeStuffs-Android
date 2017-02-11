@@ -8,9 +8,21 @@
     <string name="content_description">content description</string>
     <string name="network_not_detected">No internet access, please check it</string>
 
+    <!-- General Arrays -->
+    <array name="array_tab_main">
+        <item>Sweet Home</item>
+        <item>Donate</item>
+        <item>Your Profile</item>
+        <item>Notifications</item>
+    </array>
+
     <!-- Login -->
     <string name="login_about_terms">About FriendlyDonation and terms</string>
     <string name="login_with_facebook">Login With Facebook</string>
     <string name="login_with_facebook_cancelled">Login With Facebook was cancelled</string>
     <string name="login_with_facebook_error">An error has occurred during login. Please try again or later.</string>
+
+    <!-- Home Fragment -->
+
+
 </resources>

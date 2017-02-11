@@ -1,27 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/tools">
 
-    <!-- Text Size -->
-    <style name="TextSize13" parent="@android:style/TextAppearance.Widget.TextView">
-        <item name="android:textSize">13sp</item>
+    <!-- Typefaces -->
+    <style name="RobotoRegular" parent="@android:style/TextAppearance.Widget.TextView">>
+        <item name="fontPath">fonts/Roboto-Regular.ttf</item>
     </style>
 
-    <style name="TextSize14" parent="@android:style/TextAppearance.Widget.TextView">
-        <item name="android:textSize">14sp</item>
+    <style name="RobotoBold" parent="@android:style/TextAppearance.Widget.TextView">>
+        <item name="fontPath">fonts/Roboto-Bold.ttf</item>
     </style>
 
-    <!-- Typeface -->
-    <style name="TextSize14.MontSerratRegular">
+    <style name="RobotoLight" parent="@android:style/TextAppearance.Widget.TextView">>
+        <item name="fontPath">fonts/Roboto-RobotoLight.ttf</item>
+    </style>
+
+    <style name="RobotoMedium" parent="@android:style/TextAppearance.Widget.TextView">>
+        <item name="fontPath">fonts/Roboto-Medium.ttf</item>
+    </style>
+
+    <style name="RobotoThin" parent="@android:style/TextAppearance.Widget.TextView">>
+        <item name="fontPath">fonts/Roboto-Thin.ttf</item>
+    </style>
+
+    <style name="MontserratRegular" parent="@android:style/TextAppearance.Widget.TextView">>
         <item name="fontPath">fonts/Montserrat-Regular.ttf</item>
     </style>
 
-    <!-- Text Color -->
-    <style name="TextSize13.White">
-        <item name="android:textColor">@android:color/white</item>
+    <style name="MontserratBold" parent="@android:style/TextAppearance.Widget.TextView">>
+        <item name="fontPath">fonts/Montserrat-Bold.ttf</item>
     </style>
 
-    <style name="TextSize14.MontSerratRegular.White">
-        <item name="android:textColor">@android:color/white</item>
+    <!-- By Text Size -->
+
+    <style name="RobotoRegular.13sp">
+        <item name="android:textSize">13sp</item>
     </style>
 
+    <style name="MontserratRegular.14sp">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <!-- By Color -->
+    <style name="RobotoRegular.13sp.White">
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+    <style name="MontserratRegular.14sp.White">
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
 </resources>

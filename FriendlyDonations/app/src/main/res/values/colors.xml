@@ -29,8 +29,8 @@
     <!--<color name="colorDisabled">#D8D8D8</color>-->
 
     <!--&lt;!&ndash; Simple Colors &ndash;&gt;-->
-    <!--<color name="colorWhite">#fff</color>-->
-    <!--<color name="colorBlack">#000</color>-->
+    <color name="colorWhite">#fff</color>
+    <color name="colorBlack">#000</color>
 
     <!--&lt;!&ndash; Gray Colors &ndash;&gt;-->
     <!--&lt;!&ndash;<color name="colorGray">#A4A3B1</color>&ndash;&gt;-->
