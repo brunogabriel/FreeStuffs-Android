@@ -15,11 +15,9 @@ import butterknife.ButterKnife;
  */
 
 public class HomeFragment extends BaseFragment {
-
     public HomeFragment() {
         super();
     }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
