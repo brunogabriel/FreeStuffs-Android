@@ -1,102 +1,70 @@
 package br.com.friendlydonations.application.login;
 
-import android.os.Bundle;
 
-import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.facebook.Profile;
-import com.facebook.ProfileTracker;
-import com.facebook.login.LoginManager;
-import com.facebook.login.LoginResult;
 
-import java.util.Arrays;
-import java.util.List;
+import org.json.JSONObject;
 
-import br.com.friendlydonations.manager.BaseActivity;
-import br.com.friendlydonations.manager.CustomApplication;
+import br.com.friendlydonations.models.login.LoginModel;
 import br.com.friendlydonations.network.NetworkLogin;
+import br.com.friendlydonations.util.UnknownHostOperator;
+import rx.Observable;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action0;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by brunogabriel on 05/02/17.
  */
 
-public class LoginPresenter implements LoginPresenter {
-    private static List<String> FACEBOOK_LOGIN_PERMISSIONS = Arrays.asList("public_profile", "email", "user_birthday");
-    private CallbackManager callbackManager;
-    private ProfileTracker profileTracker;
-    private Profile facebookProfile;
-    private LoginView loginView;
-    private NetworkLogin networkLogin;
+public class LoginPresenter {
 
-    public LoginPresenter(LoginView loginView, CallbackManager callbackManager, NetworkLogin networkLogin) {
-        this.loginView = loginView;
-        this.callbackManager = callbackManager;
+    private NetworkLogin networkLogin;
+    private LoginView view;
+    private Subscription subscription;
+
+    public LoginPresenter(LoginView view, NetworkLogin networkLogin) {
+        this.view = view;
         this.networkLogin = networkLogin;
     }
 
-    @Override
-    public void init() {
-        setupFacebookSdk();
-    }
+    public void loginWithFacebook(String firebaseDeviceToken, JSONObject jsonObject, GraphResponse graphResponse, Profile profile) {
+        subscription =
+                createLoginObservable(firebaseDeviceToken, jsonObject, graphResponse, profile)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .lift(UnknownHostOperator.getUnknownHostOperator(networkUnavailable()))
+                .doOnSubscribe(() -> view.showLoader())
+                .doOnTerminate(() -> view.dismissLoader())
+                .subscribe(result -> {
+                    view.userLogged();
+                }, throwable -> {
+                    view.showError(throwable.getMessage());
+                });
 
-    @Override
-    public void requestGraphAPI(LoginResult loginResult) {
-        GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), (object, response) -> {
-            // TODO: Get Firebase ID
-            String pushId = "";
-            // TODO: Retrofit call
-            String localeStr = CustomApplication.locale.getLanguage() + " - " + CustomApplication.locale.getCountry();
-        });
-
-        Bundle parameters = new Bundle();
-        parameters.putString("fields", "id, birthday, gender, email");
-        request.setParameters(parameters);
-        request.executeAsync();
-    }
-
-    @Override
-    public void loginWithFacebook(BaseActivity activity) {
-        if (activity.isNetworkEnable()) {
-            LoginManager.getInstance().logInWithReadPermissions(activity, FACEBOOK_LOGIN_PERMISSIONS);
-        } else {
-            loginView.showNetworkNotAvailable();
-        }
-    }
-
-    private void setupFacebookSdk() {
-        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                if (Profile.getCurrentProfile() == null) {
-                    profileTracker = new ProfileTracker() {
-                        @Override
-                        protected void onCurrentProfileChanged(Profile oldProfile, Profile currentProfile) {
-                            facebookProfile = currentProfile;
-                            requestGraphAPI(loginResult);
-                            profileTracker.stopTracking();
-                        }
-                    };
-                    profileTracker.startTracking();
-                } else {
-                    facebookProfile = Profile.getCurrentProfile();
-                    requestGraphAPI(loginResult);
-                }
-            }
-
-            @Override
-            public void onCancel() {
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-            }
+        view.actionOnKeyBack(()-> {
+            subscription.unsubscribe();
+            view.facebookLoginCancelled();
         });
     }
 
-    @Override
-    public CallbackManager getCallbackManager() {
-        return this.callbackManager;
+    public Action0 networkUnavailable() {
+        return () -> view.showNetworkUnavailable();
+    }
+
+    private Observable<LoginModel> createLoginObservable(String firebaseDeviceToken, JSONObject jsonObject, GraphResponse graphResponse, Profile profile) {
+        // TODO: Verify params, in the future will use google plus and application login
+        return networkLogin.login(profile.getName(),
+                profile.getId(),
+                jsonObject.optString("email", ""),
+                jsonObject.optString("gender", ""),
+                jsonObject.optString("birthday", ""),
+                graphResponse.getRequest().getAccessToken().getToken(),
+                firebaseDeviceToken,
+                "android",
+                "pt-br",
+                false);
     }
 }

@@ -6,7 +6,6 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.widget.RelativeLayout;
@@ -14,17 +13,20 @@ import android.widget.RelativeLayout;
 import com.squareup.picasso.Picasso;
 
 import br.com.friendlydonations.R;
-import br.com.friendlydonations.adapters.BadgeTabViewAdapter;
-import br.com.friendlydonations.manager.BaseActivity;
-import br.com.friendlydonations.widgets.BadgeView;
+import br.com.friendlydonations.application.main.donate.DonateFragment;
+import br.com.friendlydonations.application.main.donate.HomeFragment;
+import br.com.friendlydonations.application.main.donate.NotificationsFragment;
+import br.com.friendlydonations.application.main.donate.ProfileFragment;
+import br.com.friendlydonations.shared.BaseActivity;
+import br.com.friendlydonations.shared.views.BadgeView;
+import br.com.friendlydonations.shared.widgets.NonSwipeableViewPager;
 import butterknife.BindArray;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import uk.co.chrisjenx.calligraphy.TypefaceUtils;
 
 /**
- * Created by brunogabriel on 10/02/17.
+ * Created by brunogabriel on 11/02/17.
  */
 
 public class MainActivity extends BaseActivity implements MainView {
@@ -33,32 +35,24 @@ public class MainActivity extends BaseActivity implements MainView {
     private static float DESACTIVATED_TAB = 0.38f;
 
     @BindView(R.id.tab_layout)
-    TabLayout tabLayout;
-
+    protected TabLayout tabLayout;
     @BindView(R.id.app_bar_layout)
-    AppBarLayout appBarLayout;
-
+    protected AppBarLayout appBarLayout;
     @BindView(R.id.view_pager)
-    ViewPager viewPager;
-
+    protected NonSwipeableViewPager viewPager;
     @BindView(R.id.coordinator_layout)
-    CoordinatorLayout coordinatorLayout;
-
+    protected CoordinatorLayout coordinatorLayout;
     @BindView(R.id.toolbar)
-    Toolbar toolbar;
-
+    protected Toolbar toolbar;
     @BindArray(R.array.array_tab_main)
     protected String []tabArrayNames;
-
     protected int []tabIcons = {
             R.drawable.ic_home_tab,
             R.drawable.ic_donation_tab,
             R.drawable.ic_profile_tab,
             R.drawable.ic_notifications_tab
     };
-    
-    private MainPresenter mainPresenter;
-    private Unbinder unbinder;
+    private MainViewFragmentPagerAdapter mainViewFragmentPagerAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -67,24 +61,19 @@ public class MainActivity extends BaseActivity implements MainView {
         unbinder = ButterKnife.bind(this);
         setupToolbar(toolbar, "", null, false, false);
         applyTypefaceToolbar(toolbar, TypefaceUtils.load(getAssets(), "fonts/Montserrat-Regular.ttf"));
-        mainPresenter = new MainPresenter(this);
-        mainPresenter.init(new BadgeTabViewAdapter(getSupportFragmentManager()));
+        initComponents();
     }
 
     @Override
-    public void setToolbarTitle(String title) {
-        toolbar.setTitle(title);
+    public void initComponents() {
+        mainViewFragmentPagerAdapter = new MainViewFragmentPagerAdapter(getSupportFragmentManager());
+        mainViewFragmentPagerAdapter.addFragment(new HomeFragment());
+        mainViewFragmentPagerAdapter.addFragment(new DonateFragment());
+        mainViewFragmentPagerAdapter.addFragment(new ProfileFragment());
+        mainViewFragmentPagerAdapter.addFragment(new NotificationsFragment());
+        setupTabStructure(mainViewFragmentPagerAdapter.getCount(), mainViewFragmentPagerAdapter);
     }
 
-    @Override
-    public void changeTab(TabLayout.Tab tab) {
-        if (tab != null) {
-            viewPager.setCurrentItem(tab.getPosition());
-            setToolbarTitle(tabArrayNames[tab.getPosition()]);
-        }
-    }
-
-    @Override
     public void setupTabStructure(int offScreenLimit, FragmentPagerAdapter fragmentPagerAdapter) {
         viewPager.setOffscreenPageLimit(offScreenLimit);
         viewPager.setAdapter(fragmentPagerAdapter);
@@ -107,7 +96,7 @@ public class MainActivity extends BaseActivity implements MainView {
             }
         });
 
-        for (int i = 0; i < tabIcons.length; ++i) {
+        for (int i = 0; i < offScreenLimit; i++) {
             RelativeLayout relativeBadge = inflaterRelativeBadge();
             BadgeView badgeView = new BadgeView(relativeBadge);
             Picasso.with(this).load(tabIcons[i]).into(badgeView.getBadgeImage());
@@ -118,15 +107,19 @@ public class MainActivity extends BaseActivity implements MainView {
         setToolbarTitle(tabArrayNames[0]);
     }
 
-    @Override
     public RelativeLayout inflaterRelativeBadge() {
         return (RelativeLayout)
                 LayoutInflater.from(this).inflate(R.layout.widget_badgeview, null, false);
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        unbinder.unbind();
+    public void changeTab(TabLayout.Tab tab) {
+        if (tab != null) {
+            viewPager.setCurrentItem(tab.getPosition());
+            setToolbarTitle(tabArrayNames[tab.getPosition()]);
+        }
+    }
+
+    public void setToolbarTitle(String title) {
+        toolbar.setTitle(title);
     }
 }

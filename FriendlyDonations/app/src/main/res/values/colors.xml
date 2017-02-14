@@ -8,7 +8,7 @@
     <color name="colorTitle">#686779</color>
     <color name="colorSubtitle">#ADADB6</color>
     <color name="colorDisable">#D8D8D8</color>
-    <color name="colorErrorNo">#FF4843</color>
+    <color name="colorError">#FF4843</color>
     <color name="colorSuccessYes">#00CFA6</color>
     <color name="colorRating">#FFDC6D</color>
 
@@ -18,6 +18,13 @@
 
 
     <color name="colorAccent">#FF4843</color>
+
+    <!-- Basic Colors -->
+    <color name="colorWhite">#fff</color>
+    <color name="colorBlack">#000</color>
+
+
+
     <!--<color name="colorGreen">#00CFA6</color>-->
     <!--<color name="colorGreenLight">#8ae4f0</color>-->
 
@@ -29,8 +36,7 @@
     <!--<color name="colorDisabled">#D8D8D8</color>-->
 
     <!--&lt;!&ndash; Simple Colors &ndash;&gt;-->
-    <color name="colorWhite">#fff</color>
-    <color name="colorBlack">#000</color>
+
 
     <!--&lt;!&ndash; Gray Colors &ndash;&gt;-->
     <!--&lt;!&ndash;<color name="colorGray">#A4A3B1</color>&ndash;&gt;-->

@@ -14,7 +14,7 @@ public interface NetworkLogin {
 
     @FormUrlEncoded
     @POST("users/login")
-    Observable<LoginModel> doLogin(
+    Observable<LoginModel> login(
             @Field("name") String name,
             @Field("userId") String userId,
             @Field("email") String email,

@@ -40,6 +40,10 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <style name="MontserratRegular.20sp">
+        <item name="android:textSize">20sp</item>
+    </style>
+
     <!-- By Color -->
     <style name="RobotoRegular.13sp.White">
         <item name="android:textColor">@color/colorWhite</item>
@@ -48,4 +52,10 @@
     <style name="MontserratRegular.14sp.White">
         <item name="android:textColor">@color/colorWhite</item>
     </style>
+    
+    <style name="MontserratRegular.20sp.ColorTitle">
+        <item name="android:textColor">@color/colorTitle</item>
+    </style>
+
+
 </resources>

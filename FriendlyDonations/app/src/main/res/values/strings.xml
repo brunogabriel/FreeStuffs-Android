@@ -7,6 +7,13 @@
     <string name="app_name">FriendlyDonations</string>
     <string name="content_description">content description</string>
     <string name="network_not_detected">No internet access, please check it</string>
+    <string name="settings">Settings</string>
+    <string name="donate">Donate</string>
+    <string name="by_mail">by mail</string>
+    <string name="by_phone">by phone</string>
+    <string name="loading">Loading</string>
+    <string name="gallery">Gallery</string>
+    <string name="camera">Camera</string>
 
     <!-- General Arrays -->
     <array name="array_tab_main">
@@ -23,6 +30,15 @@
     <string name="login_with_facebook_error">An error has occurred during login. Please try again or later.</string>
 
     <!-- Home Fragment -->
+    
+    <!-- Donate Fragment -->
+    <string name="donate_upload_your_photos">Upload your item photos</string>
+    <string name="donate_select_a_category">Select a Category</string>
+    <string name="donate_hint_item_title">Item Title</string>
+    <string name="donate_hint_description">Description</string>
+    <string name="donate_hint_location">Location</string>
+    <string name="donate_hint_delivery">Delivery</string>
+    <string name="donate_would_get_by">I would like get in touch by</string>
 
 
 </resources>

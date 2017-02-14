@@ -1,4 +1,5 @@
-package br.com.friendlydonations.widgets;
+package br.com.friendlydonations.shared.views;
+
 
 import android.view.View;
 import android.widget.ImageView;

@@ -1,7 +1,5 @@
 package br.com.friendlydonations.dagger.module;
 
-import android.net.Network;
-import android.os.Build;
 import android.support.compat.BuildConfig;
 import android.util.Log;
 

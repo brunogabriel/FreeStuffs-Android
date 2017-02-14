@@ -4,7 +4,6 @@ import android.app.Application;
 
 import javax.inject.Singleton;
 
-import br.com.friendlydonations.manager.CustomApplication;
 import dagger.Module;
 import dagger.Provides;
 

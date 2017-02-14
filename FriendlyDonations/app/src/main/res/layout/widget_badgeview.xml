@@ -10,6 +10,7 @@
         android:layout_gravity="center"
         android:layout_width="24dp"
         android:layout_height="24dp"
+        android:contentDescription="@string/content_description"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 

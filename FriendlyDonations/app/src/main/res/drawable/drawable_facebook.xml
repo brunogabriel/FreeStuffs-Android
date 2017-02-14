@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_pressed="true" android:drawable="@color/colorFacebookClickable" /> <!-- pressed -->
-    <item android:state_focused="true" android:drawable="@color/colorFacebookClickable" /> <!-- focused -->
-    <item android:drawable="@color/colorFacebook" /> <!-- default -->
+    <item android:state_pressed="true" android:drawable="@color/colorFacebookClickable" />
+    <item android:state_focused="true" android:drawable="@color/colorFacebookClickable" />
+    <item android:drawable="@color/colorFacebook" />
 </selector>

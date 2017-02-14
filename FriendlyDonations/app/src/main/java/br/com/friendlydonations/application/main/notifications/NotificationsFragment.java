@@ -14,9 +14,9 @@ import butterknife.ButterKnife;
  * Created by brunogabriel on 12/02/17.
  */
 
-public class HomeFragment extends BaseFragment {
+public class NotificationsFragment extends BaseFragment {
 
-    public HomeFragment() {
+    public NotificationsFragment() {
         super();
     }
 

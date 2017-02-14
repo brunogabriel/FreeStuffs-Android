@@ -1,4 +1,4 @@
-package br.com.friendlydonations.adapters;
+package br.com.friendlydonations.application.main;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -8,14 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by brunogabriel on 10/02/17.
+ * Created by brunogabriel on 12/02/17.
  */
 
-public class BadgeTabViewAdapter extends FragmentPagerAdapter {
+public class MainViewFragmentPagerAdapter extends FragmentPagerAdapter {
 
     private List<Fragment> fragmentList = new ArrayList<>();
 
-    public BadgeTabViewAdapter(FragmentManager fragmentManager) {
+    public MainViewFragmentPagerAdapter(FragmentManager fragmentManager) {
         super(fragmentManager);
     }
 
@@ -35,6 +35,6 @@ public class BadgeTabViewAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-       return null;
+        return null;
     }
 }
