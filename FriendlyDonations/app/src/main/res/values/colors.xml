@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <!-- Base pallet colors -->
     <color name="colorPrimary">#6D65E6</color>
     <color name="colorPrimaryDark">#4c47a1</color>
@@ -11,41 +10,10 @@
     <color name="colorError">#FF4843</color>
     <color name="colorSuccessYes">#00CFA6</color>
     <color name="colorRating">#FFDC6D</color>
-
-    <!-- Facebook colors -->
-    <color name="colorFacebook">#3B5998</color>
-    <color name="colorFacebookClickable">#4F6AA3</color>
-
-
     <color name="colorAccent">#FF4843</color>
 
     <!-- Basic Colors -->
     <color name="colorWhite">#fff</color>
     <color name="colorBlack">#000</color>
 
-
-
-    <!--<color name="colorGreen">#00CFA6</color>-->
-    <!--<color name="colorGreenLight">#8ae4f0</color>-->
-
-
-
-    <!--<color name="colorTitle">#5E5353</color>-->
-    <!--<color name="colorYellow">#FFDC6D</color>-->
-    <!--<color name="colorSubtitle">#ADADB6</color>-->
-    <!--<color name="colorDisabled">#D8D8D8</color>-->
-
-    <!--&lt;!&ndash; Simple Colors &ndash;&gt;-->
-
-
-    <!--&lt;!&ndash; Gray Colors &ndash;&gt;-->
-    <!--&lt;!&ndash;<color name="colorGray">#A4A3B1</color>&ndash;&gt;-->
-    <!--<color name="colorGraySemiLight">#E6DDDD</color>-->
-    <!--&lt;!&ndash;<color name="colorGrayLight">#EDECF1</color>&ndash;&gt;-->
-
-    <!--&lt;!&ndash; Facebook &ndash;&gt;-->
-    <!--<color name="colorFacebook">#3B5998</color>-->
-    <!--<color name="colorFacebookClickable">#4F6AA3</color>-->
-    <!--&lt;!&ndash; About Background Color &ndash;&gt;-->
-    <!--<color name="colorAboutLogin">#1A1A1A64</color>-->
 </resources>

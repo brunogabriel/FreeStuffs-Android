@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    
+    <dimen name="horizontal_space">16dp</dimen>
+    <dimen name="vertical_space">16dp</dimen>
+    <dimen name="margin_space">32dp</dimen>
 
     <!-- Material Views Spaces -->
     <dimen name="space_between_views">8dp</dimen>
@@ -11,7 +15,7 @@
     <!-- TextViews -->
     <dimen name="text_view_floating_label_height">72dp</dimen>
     <dimen name="text_view_height">56dp</dimen>
-    
+
     <!-- Cards -->
     <dimen name="card_category_base">90dp</dimen>
     <dimen name="card_category">74dp</dimen>

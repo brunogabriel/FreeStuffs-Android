@@ -115,10 +115,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
-    public void initComponents() {
-        // Stub
-    }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
