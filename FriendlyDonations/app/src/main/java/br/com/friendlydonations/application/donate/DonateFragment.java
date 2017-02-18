@@ -19,6 +19,7 @@ import com.jakewharton.rxbinding.view.RxView;
 
 import br.com.friendlydonations.R;
 import br.com.friendlydonations.shared.BaseFragment;
+import br.com.friendlydonations.shared.views.ApplicationDialogFragment;
 import br.com.friendlydonations.shared.views.RxTextViewUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,6 +31,7 @@ import rx.functions.Action1;
 
 public class DonateFragment extends BaseFragment implements DonateView {
 
+    private static final String TAG = DonateFragment.class.getSimpleName();
     private static final int PLACE_LOCATION_RESULT = 1000;
 
     protected View rootView;
@@ -81,7 +83,7 @@ public class DonateFragment extends BaseFragment implements DonateView {
     }
 
     private Action1<Throwable> throwableLocation = throwable -> {
-        // TODO: Emit notification or something to communicate user
+        presenter.createGooglePlayServicesDialogError(throwable);
     };
 
     private Action1<Void> onPlaceIntentAction = result -> {
@@ -117,8 +119,15 @@ public class DonateFragment extends BaseFragment implements DonateView {
                 presenter.onPlaceApiAnswerCanceled();
                 break;
             default:
-                presenter.onPlaceApiAnswerunknown();
+                presenter.onPlaceApiAnswerUnknown();
                 break;
         }
+    }
+
+    @Override
+    public void emitGooglePlayServicesError(int titleId, int contentId, int yesId, boolean isScrollable) {
+        ApplicationDialogFragment applicationDialogFragment =
+                new ApplicationDialogFragment(getString(titleId), getString(contentId), null, getString(yesId), isScrollable);
+        applicationDialogFragment.show(getActivity().getFragmentManager(), TAG);
     }
 }

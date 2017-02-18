@@ -13,6 +13,10 @@
         <item name="android:windowTranslucentNavigation">false</item>
     </style>
 
+    <style name="FriendlyDonationsTheme.CustomTabTextAppearence" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+    </style>
+
     <!-- ProgressDialog color -->
     <style name="FriendlyDonationsTheme.ProgressDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:colorControlActivated">@color/colorPrimary</item>
@@ -42,10 +46,6 @@
         <item name="android:colorAccent">@color/colorTitle</item>
         <item name="android:colorControlNormal">@color/colorSubtitle</item>
         <item name="android:colorControlActivated">@color/colorTitle</item>
-    </style>
-    
-    <style name="FriendlyDonationsTheme.CustomTabTextAppearence" parent="TextAppearance.Design.Tab">
-        <item name="textAllCaps">false</item>
     </style>
 
 </resources>

@@ -80,9 +80,6 @@ public class MainPresenterTest {
 
         // then
         verify(badgeImageView).setOrChangeNotificationCount(1, true);
-
-
-        //onNotificationReceiver
     }
 
 }

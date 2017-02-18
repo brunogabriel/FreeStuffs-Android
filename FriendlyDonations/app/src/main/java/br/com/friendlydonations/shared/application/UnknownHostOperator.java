@@ -1,4 +1,4 @@
-package br.com.friendlydonations.util;
+package br.com.friendlydonations.shared.application;
 
 import java.net.UnknownHostException;
 

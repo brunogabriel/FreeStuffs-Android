@@ -4,6 +4,7 @@
     <dimen name="horizontal_space">16dp</dimen>
     <dimen name="vertical_space">16dp</dimen>
     <dimen name="margin_space">32dp</dimen>
+    <dimen name="margin_double_space">64dp</dimen>
 
     <!-- Material Views Spaces -->
     <dimen name="space_between_views">8dp</dimen>

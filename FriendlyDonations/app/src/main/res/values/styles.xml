@@ -9,6 +9,10 @@
         <item name="colorControlActivated">@color/colorAccent</item>
         <item name="colorControlHighlight">@color/colorAccent</item>
     </style>
+
+    <style name="FriendlyDonationsTheme.CustomTabTextAppearence" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+    </style>
     
     <!-- ProgressDialog color -->
     <style name="FriendlyDonationsTheme.ProgressDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
