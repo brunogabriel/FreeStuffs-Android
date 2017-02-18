@@ -8,7 +8,7 @@
     android:layout_height="match_parent">
 
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/appBar"
+        android:id="@+id/app_bar_layout"
         app:contentScrim="@color/colorPrimary"
         app:statusBarScrim="@color/colorPrimaryDark"
         android:layout_width="match_parent"
@@ -18,7 +18,8 @@
         <include layout="@layout/toolbar" android:id="@+id/toolbar" />
 
         <android.support.design.widget.TabLayout
-            android:id="@+id/tabs"
+            android:id="@+id/tab_layout"
+            app:tabTextAppearance="@style/FriendlyDonationsTheme.CustomTabTextAppearence"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
@@ -27,21 +28,11 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager"
+    <br.com.friendlydonations.shared.widgets.NonSwipeableViewPager
+        android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"  />
 
-
-    <!--<android.support.design.widget.FloatingActionButton-->
-        <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-        <!--android:visibility="gone"-->
-        <!--android:id="@+id/fabLocation"-->
-        <!--android:layout_margin="@dimen/dimen_vertical_spacing"-->
-        <!--android:layout_width="@dimen/material_component_floating_action_button_size"-->
-        <!--android:layout_height="@dimen/material_component_floating_action_button_size"-->
-        <!--android:layout_gravity="end|bottom"-->
-        <!--android:src="@drawable/ic_my_location_white_48dp" />-->
 
 </android.support.design.widget.CoordinatorLayout>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/tools">
+
+    <!-- Typefaces -->
+    <style name="RobotoRegular" parent="@android:style/TextAppearance.Widget.TextView">>
+        <item name="fontPath">fonts/Roboto-Regular.ttf</item>
+    </style>
+
+    <style name="RobotoBold" parent="@android:style/TextAppearance.Widget.TextView">>
+        <item name="fontPath">fonts/Roboto-Bold.ttf</item>
+    </style>
+
+    <style name="RobotoLight" parent="@android:style/TextAppearance.Widget.TextView">>
+        <item name="fontPath">fonts/Roboto-RobotoLight.ttf</item>
+    </style>
+
+    <style name="RobotoMedium" parent="@android:style/TextAppearance.Widget.TextView">>
+        <item name="fontPath">fonts/Roboto-Medium.ttf</item>
+    </style>
+
+    <style name="RobotoThin" parent="@android:style/TextAppearance.Widget.TextView">>
+        <item name="fontPath">fonts/Roboto-Thin.ttf</item>
+    </style>
+
+    <style name="MontserratRegular" parent="@android:style/TextAppearance.Widget.TextView">>
+        <item name="fontPath">fonts/Montserrat-Regular.ttf</item>
+    </style>
+
+    <style name="MontserratBold" parent="@android:style/TextAppearance.Widget.TextView">>
+        <item name="fontPath">fonts/Montserrat-Bold.ttf</item>
+    </style>
+
+    <!-- By Color -->
+    <style name="MontserratRegular.ColorTitle">
+        <item name="android:textColor">@color/colorTitle</item>
+    </style>
+
+    <!-- By Text Size -->
+    <style name="MontserratRegular.ColorTitle.20sp">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+
+</resources>

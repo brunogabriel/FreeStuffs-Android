@@ -4,15 +4,16 @@ apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'com.neenbedankt.android-apt'
 
 android {
-    compileSdkVersion 24
+    compileSdkVersion 25
     buildToolsVersion "24.0.3"
 
     defaultConfig {
         applicationId "br.com.friendlydonations"
-        minSdkVersion 15
-        targetSdkVersion 24
+        minSdkVersion 16
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -37,70 +38,60 @@ android {
     }
 }
 
+def SUPPORT_LIB_VERSION = "25.1.0"
+def GOOGLE_LIB_VERSION = "9.6.1"
+def DAGGER_LIB_VERSION = "2.8"
+def BUTTERKNIFE_LIB_VERSION = "8.5.1"
+def RETROFIT_LIB_VERSION = "2.1.0"
+def RX_LIB_VERSION = "1.2.1"
+def EVENTBUS_VERSION = "3.0.0"
+
 ext {
     supportLibVersion = "24.2.1" // 24.2.1
     googleLibVersion = "9.6.1"
 }
 
 dependencies {
-    //compile fileTree(dir: 'libs', include: ['*.jar'])
-    //testCompile 'junit:junit:4.12'
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    testCompile 'junit:junit:4.12'
+    testCompile "org.mockito:mockito-core:2.7.4"
 
     // Android and Google Dependencies
-    compile "com.android.support:appcompat-v7:${supportLibVersion}"
-    compile "com.android.support:design:${supportLibVersion}"
-    compile "com.android.support:cardview-v7:${supportLibVersion}"
-    compile "com.android.support:recyclerview-v7:${supportLibVersion}"
+    compile "com.android.support:appcompat-v7:${SUPPORT_LIB_VERSION}"
+    compile "com.android.support:design:${SUPPORT_LIB_VERSION}"
+    compile "com.android.support:cardview-v7:${SUPPORT_LIB_VERSION}"
+    compile "com.android.support:recyclerview-v7:${SUPPORT_LIB_VERSION}"
 
-    compile "com.google.firebase:firebase-messaging:${googleLibVersion}"
-    compile "com.google.android.gms:play-services-maps:${googleLibVersion}"
-    compile "com.google.android.gms:play-services-location:${googleLibVersion}"
-    compile "com.google.android.gms:play-services-places:${googleLibVersion}"
+    compile "com.google.firebase:firebase-messaging:${GOOGLE_LIB_VERSION}"
+    compile "com.google.android.gms:play-services-maps:${GOOGLE_LIB_VERSION}"
+    compile "com.google.android.gms:play-services-location:${GOOGLE_LIB_VERSION}"
+    compile "com.google.android.gms:play-services-places:${GOOGLE_LIB_VERSION}"
 
-    // Http Connection: Retrofit + OkHttp
-    compile 'com.squareup.okhttp3:okhttp:3.4.1'
-    compile 'com.squareup.retrofit2:retrofit:2.1.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
-    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
-
-    // Butterknife dependencies
-    compile 'com.jakewharton:butterknife:8.3.0'
-    apt 'com.jakewharton:butterknife-compiler:8.3.0'
-
-    // Saripaar Forms
-    compile 'com.mobsandgeeks:android-saripaar:2.0.3'
-
-    // Image Picasso
-    compile 'com.squareup.picasso:picasso:2.5.2'
-
-    // Dynamic Box
-    compile 'com.github.medyo:dynamicbox:1.2@aar'
-
-    // Facebook
-    compile 'com.facebook.android:facebook-android-sdk:[4,5)'
-
-    // RxJava
-    // compile 'io.reactivex:rxjava:1.1.10'
-    compile 'io.reactivex:rxandroid:1.2.1'
-    compile 'io.reactivex:rxjava:1.1.6'
-
-    // View Pager Indicator
-    compile 'com.github.hackware1993:MagicIndicator:1.3.1'
-
-    // CircularImageView
-    compile 'de.hdodenhof:circleimageview:2.1.0'
-
-    // Ucrop
-    compile 'com.yalantis:ucrop:2.2.0'
-
-    // Dexter permissions
-    compile 'com.karumi:dexter:2.3.1'
-
-    // Dagger 2
-    apt 'com.google.dagger:dagger-compiler:2.7'
-    compile 'com.google.dagger:dagger:2.7'
+    apt "com.google.dagger:dagger-compiler:${DAGGER_LIB_VERSION}"
+    compile "com.google.dagger:dagger:${DAGGER_LIB_VERSION}"
     provided 'javax.annotation:jsr250-api:1.0'
 
-    // Calligraphy
+    compile "com.jakewharton:butterknife:${BUTTERKNIFE_LIB_VERSION}"
+    apt "com.jakewharton:butterknife-compiler:${BUTTERKNIFE_LIB_VERSION}"
+
+    compile 'com.squareup.okhttp3:okhttp:3.6.0'
+    compile "com.squareup.retrofit2:retrofit:${RETROFIT_LIB_VERSION}"
+    compile "com.squareup.retrofit2:converter-gson:${RETROFIT_LIB_VERSION}"
+    compile "com.squareup.retrofit2:adapter-rxjava:${RETROFIT_LIB_VERSION}"
+
+    compile "io.reactivex:rxandroid:${RX_LIB_VERSION}"
+    compile "io.reactivex:rxjava:${RX_LIB_VERSION}"
+    compile 'com.jakewharton.rxbinding:rxbinding:1.0.0'
+
     compile 'uk.co.chrisjenx:calligraphy:2.2.0'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.karumi:dexter:3.0.2'
+    compile 'com.annimon:stream:1.1.5'
+    compile 'com.facebook.android:facebook-android-sdk:[4,5)'
+    compile 'com.yalantis:ucrop:2.2.0'
+    compile "org.greenrobot:eventbus:${EVENTBUS_VERSION}"
 }

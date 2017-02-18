@@ -1,75 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/coordinator_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="false">
 
-    <ImageView
-        android:src="@drawable/ic_background_login"
-        android:layout_width="match_parent"
-        android:contentDescription="@string/content_description"
-        android:scaleType="centerCrop"
-        android:layout_height="match_parent" />
+    <include layout="@layout/content_login"/>
 
-    <RelativeLayout
-        android:fitsSystemWindows="true"
-        android:id="@+id/contentLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/imgLogoLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_logo_login"
-            android:contentDescription="@string/content_description"
-            android:layout_marginTop="@dimen/text_view_floating_label_height"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
-
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/tvAboutTerms"
-            style="@style/TextView.Typeface2"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/text_view_height"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:background="@color/colorAboutLogin"
-            android:textColor="@color/colorWhite"
-            android:gravity="center"
-            android:text="@string/login_about_terms" />
-
-        <LinearLayout
-            android:clickable="true"
-            android:id="@+id/viewFacebookLogin"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:background="@drawable/drawable_facebook_effect"
-            android:layout_height="80dp"
-            android:layout_above="@+id/tvAboutTerms"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
-
-            <ImageView
-                android:contentDescription="@string/content_description"
-                android:layout_gravity="center"
-                android:layout_marginRight="@dimen/space_between_views"
-                android:src="@drawable/ic_facebook_f"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/tvFacebookLogin"
-                style="@style/TextView.Typeface3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorWhite"
-                android:text="@string/login_with_facebook"
-                fontPath="fonts/Montserrat-Regular.ttf"
-                android:textAllCaps="true"
-                android:gravity="center" />
-        </LinearLayout>
-    </RelativeLayout>
-
-</FrameLayout>
+</android.support.design.widget.CoordinatorLayout>

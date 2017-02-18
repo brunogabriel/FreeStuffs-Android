@@ -10,7 +10,7 @@
         <!-- Translucent -->
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowTranslucentNavigation">false</item>
     </style>
 
     <!-- ProgressDialog color -->
@@ -23,20 +23,18 @@
         <item name="android:windowTranslucentStatus">false</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:windowTranslucentNavigation">false</item>
-        <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
     </style>
 
     <style name="FriendlyDonationsTheme.NavigationNotTranslucent" parent="FriendlyDonationsTheme">
         <item name="android:windowTranslucentNavigation">false</item>
-        <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
     </style>
 
     <style name="FriendlyDonationsTheme.FloatingEditText" parent="FriendlyDonationsTheme">
-        <item name="android:colorControlNormal">@color/colorSubtitle</item>          <!-- Line Bottom Deactivated -->
-        <item name="android:colorControlActivated">@color/colorTitle</item>       <!-- Line Bottom Actived -->
-        <item name="android:textColorHighlight">@color/colorGraySemiLight</item>     <!-- Text Selected to Copy -->
-        <item name="android:textColorHint">@color/colorSubtitle</item>               <!-- Color Hint Not Actived -->
-        <item name="android:textColorPrimary">@color/colorTitle</item>            <!-- Text Inserted -->
+        <item name="android:colorControlNormal">@color/colorSubtitle</item>
+        <item name="android:colorControlActivated">@color/colorTitle</item>
+        <item name="android:textColorHighlight">@color/colorDisable</item>
+        <item name="android:textColorHint">@color/colorSubtitle</item>
+        <item name="android:textColorPrimary">@color/colorTitle</item>
     </style>
 
     <style name="FriendlyDonationsTheme.FloatingEditText.Hint" parent="TextAppearance.AppCompat">
@@ -44,6 +42,10 @@
         <item name="android:colorAccent">@color/colorTitle</item>
         <item name="android:colorControlNormal">@color/colorSubtitle</item>
         <item name="android:colorControlActivated">@color/colorTitle</item>
+    </style>
+    
+    <style name="FriendlyDonationsTheme.CustomTabTextAppearence" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
     </style>
 
 </resources>

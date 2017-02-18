@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:text="@string/donate_upload_your_photos"
+        android:layout_marginTop="@dimen/margin_space"
+        android:layout_marginRight="@dimen/horizontal_space"
+        android:layout_marginBottom="@dimen/margin_space"
+        android:layout_marginLeft="@dimen/horizontal_space"
+        style="@style/MontserratRegular.ColorTitle.20sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_pictures"
+        android:background="@color/colorPrimary"
+        android:layout_marginBottom="@dimen/margin_space"
+        android:layout_width="match_parent"
+        android:layout_height="92dp"/>
+
+    <TextView
+        android:text="@string/donate_select_a_category"
+        android:layout_marginRight="@dimen/horizontal_space"
+        android:layout_marginBottom="@dimen/margin_space"
+        android:layout_marginLeft="@dimen/horizontal_space"
+        style="@style/MontserratRegular.ColorTitle.20sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_donations"
+        android:background="@color/colorPrimary"
+        android:layout_marginBottom="@dimen/margin_space"
+        android:layout_width="match_parent"
+        android:layout_height="116sp"/>
+
+    <LinearLayout
+        android:id="@+id/form_layout"
+        android:paddingLeft="@dimen/horizontal_space"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.design.widget.TextInputLayout
+            app:theme="@style/FriendlyDonationsTheme.FloatingEditText"
+            app:hintTextAppearance="@style/FriendlyDonationsTheme.FloatingEditText.Hint"
+            android:id="@+id/item_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/item_text"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/donate_hint_item_title" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            app:theme="@style/FriendlyDonationsTheme.FloatingEditText"
+            android:layout_marginTop="@dimen/margin_space"
+            app:hintTextAppearance="@style/FriendlyDonationsTheme.FloatingEditText.Hint"
+            android:id="@+id/description_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/description_text"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/donate_hint_description" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            app:theme="@style/FriendlyDonationsTheme.FloatingEditText"
+            android:layout_marginTop="@dimen/margin_space"
+            app:hintTextAppearance="@style/FriendlyDonationsTheme.FloatingEditText.Hint"
+            android:id="@+id/location_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/location_text"
+                android:maxLines="1"
+                android:focusable="false"
+                android:cursorVisible="false"
+                android:clickable="true"
+                android:singleLine="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/donate_hint_location" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            app:theme="@style/FriendlyDonationsTheme.FloatingEditText"
+            android:layout_marginTop="@dimen/margin_space"
+            app:hintTextAppearance="@style/FriendlyDonationsTheme.FloatingEditText.Hint"
+            android:id="@+id/delivery_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/delivery_text"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/donate_hint_delivery" />
+
+        </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

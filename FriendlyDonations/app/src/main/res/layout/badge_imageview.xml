@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="40dp"
+    android:layout_height="40dp">
+
+    <ImageView
+        android:id="@+id/icon_image"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_tab_house"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/notification_count"
+        android:visibility="invisible"
+        android:layout_gravity="center_horizontal"
+        android:textSize="10sp"
+        android:layout_marginLeft="@dimen/space_between_views"
+        android:background="@drawable/drawable_red_circle"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:text="10"
+        android:textColor="@color/colorWhite"
+        android:layout_width="16dp"
+        android:layout_height="16dp" />
+
+</FrameLayout>

@@ -1,86 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <!-- Keys -->
     <string name="google_android_apikey" translatable="false">AIzaSyDu3zC4_c1LgXXvYG8x0SCcHYl_z32W3Nk</string>
 
     <!-- General Strings -->
     <string name="app_name">FriendlyDonations</string>
-    <string name="content_description">Content Description</string>
+    <string name="content_description">content description</string>
     <string name="network_not_detected">No internet access, please check it</string>
-    <string name="try_again">Try again</string>
-    <string name="connecting_to_server">Connecting to a server</string>
-    <string name="app_str_yes">Yes</string>
-    <string name="app_str_no">No</string>
-    <string name="app_str_not_now">Not now</string>
+    <string name="settings">Settings</string>
+    <string name="donate">Donate</string>
+    <string name="by_mail">by mail</string>
+    <string name="by_phone">by phone</string>
+    <string name="loading">Loading</string>
+    <string name="gallery">Gallery</string>
+    <string name="camera">Camera</string>
 
-    <!-- Actions Menu -->
-    <string name="action_menu_search">Search</string>
-    <string name="action_terms">Terms and privacity</string>
-    <string name="action_favourites">Favorites</string>
-    <string name="action_menu_exit">Exit</string>
-
-    <!-- Delivery Menu -->
-    <string name="delivery_hands">by hands</string>
-    <string name="delivery_combine">combine</string>
-
-    <!-- Login Activity -->
-    <string name="login_about_terms">About FriendlyDonation and terms</string>
-    <string name="login_with_facebook">Login With Facebook</string>
-    <string name="login_with_facebook_cancelled">Login With Facebook was cancelled</string>
-    <string name="login_cancelled">Login was cancelled</string>
-    <string name="login_with_facebook_error">An error has occurred during login. Please try again or later.</string>
-    <string name="login_alert_about_title">About</string>
-    <string name="login_alert_about_accept">Accept</string>
-    <string name="login_alert_about_refuse">Refuse</string>
-
-    <!-- Donate Detail Activity -->
-    <string name="donate_detail_location">Location: %1$s</string>
-    <string name="donate_detail_see_more">See More</string>
-    <string name="donate_detail_by_mail">by mail</string>
-    <string name="donate_detail_by_phone">by phone</string>
-    <string name="donate_detail_aprox_address">Aproximated Address</string>
-    <string name="donate_detail_condition">condition</string>
-    <string name="donate_detail_delivery">delivery</string>
-    <string name="donate_detail_category">category</string>
-    <string name="donate_detail_id">id</string>
-    <string name="donate_detail_im_interested">I am Interested</string>
-    <string name="donate_detail_alert_get_in_touch">Get in touch</string>
-    <string name="donate_fail_loading_categories">Fail to get categories</string>
-    <string name="donate_load_categories_again">Tap to load</string>
-
-    <!-- Fragment Donate -->
-    <string name="donate_fragment_upload_photos">Upload your item photos</string>
-    <string name="donate_fragment_choose_category">Select a Category</string>
-    <string name="donate_fragment_product_item_title">Product / Item Title</string>
-    <string name="donate_fragment_description">Description</string>
-    <string name="donate_fragment_location">Location</string>
-    <string name="donate_fragment_delivery">Delivery</string>
-    <string name="donate_fragment_get_touch">I would like get in touch by</string>
-    <string name="donate_fragment_by_mail">by mail</string>
-    <string name="donate_fragment_by_phone">by phone</string>
-    <string name="donate_fragment_post_it">Post it</string>
-    <string name="donate_fragment_apply_donate">Donate</string>
-    <string name="donate_fragment_add_other">Add other</string>
-    <string name="donate_fragment_add">Add</string>
-    <string name="donate_fragment_cancel">Cancel</string>
-    <string name="donate_fragment_invalid_email">Invalid mail</string>
-    <string name="donate_fragment_invalid_phone">Invalid phone</string>
-
-
-    <!-- Fragment Profile -->
-    <string name="profile_fragment_preferences">preferences</string>
-    <string name="profile_fragment_donations_done">donations\ndone</string>
-    <string name="profile_fragment_donations_received">donations\nreceived</string>
-    <string name="profile_fragment_activated_donations">Activated publications</string>
-
-    <!-- Donate fragment -->
-    <string name="donate_include_image_textual">Include an image to your donation!</string>
-    <string name="donate_include_image_choose_picture">Get a picture from</string>
-    <string name="donate_include_image_from_camera">Camera</string>
-    <string name="donate_include_image_from_gallery">Gallery</string>
-
-    <!-- Tab bar  items -->
+    <!-- General Arrays -->
     <array name="array_tab_main">
         <item>Sweet Home</item>
         <item>Donate</item>
@@ -88,86 +23,22 @@
         <item>Notifications</item>
     </array>
 
-    <!-- Activity account settings -->
-    <string name="acc_settings_name">Name</string>
-    <string name="acc_settings_birthday">Birthday</string>
-    <string name="acc_settings_gender">Gender</string>
-    <string name="acc_settings_email">Email</string>
-    <string name="acc_settings_phone">Phone</string>
-    <string name="acc_settings_receive_notifications">receive notifications</string>
-    <string name="acc_settings_save">Save</string>
-    <string name="acc_settings_desactivate_account">Desactivate Account</string>
+    <!-- Login -->
+    <string name="login_about_terms">About FriendlyDonation and terms</string>
+    <string name="login_with_facebook">Login With Facebook</string>
+    <string name="login_with_facebook_cancelled">Login With Facebook was cancelled</string>
+    <string name="login_with_facebook_error">An error has occurred during login. Please try again or later.</string>
 
-    <!-- Activity Terms and Privacity -->
-    <string name="terms_priv_title">Terms and Privacity</string>
-    <string name="terms_priv_security">Security</string>
-    <string name="terms_priv_privacity">Privacity</string>
+    <!-- Home Fragment -->
+    
+    <!-- Donate Fragment -->
+    <string name="donate_upload_your_photos">Upload your item photos</string>
+    <string name="donate_select_a_category">Select a Category</string>
+    <string name="donate_hint_item_title">Item Title</string>
+    <string name="donate_hint_description">Description</string>
+    <string name="donate_hint_location">Location</string>
+    <string name="donate_hint_delivery">Delivery</string>
+    <string name="donate_would_get_by">I would like get in touch by</string>
 
-    <!-- Activity Favourites -->
-    <string name="favourites_title">Favorites</string>
-
-    <!-- Dynamic Box -->
-    <string name="dynamicbox_message_ops_no_internet">Ops\nno internet connection</string>
-    <string name="dynamicbox_btn_retry">Retry</string>
-    <string name="dynamicbox_favourites_empty">No favorites yet</string>
-
-    <!-- Permissions Text -->
-    <string name="permission_denied_title">Permission Denied</string>
-    <string name="permission_denied_content">You need to change it in settings. Do you want to make it now?</string>
-
-    <!-- Lorem Strings -->
-    <string name="lorem_name">Lorem Ipsum Dolor</string>
-    <string name="lorem_simple">lorem ipsum dolor</string>
-    <string name="lorem_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
-    <string name="lorem_text_long">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
-        <string name="lorem_word">Lorem</string>
-
-    <string name="lorem_phrase_too_large">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-    proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-    proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-    proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-    proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-    proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
 
 </resources>
