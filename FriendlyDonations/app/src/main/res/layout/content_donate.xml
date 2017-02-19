@@ -172,13 +172,17 @@
             <android.support.v7.widget.AppCompatEditText
                 android:id="@+id/delivery_text"
                 android:maxLines="1"
+                android:focusable="false"
+                android:cursorVisible="false"
+                android:clickable="true"
+                android:drawableRight="@drawable/ic_spinner_indicator"
+                android:padding="@dimen/horizontal_space"
                 android:singleLine="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/donate_hint_delivery" />
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
-
 
     </LinearLayout>
 

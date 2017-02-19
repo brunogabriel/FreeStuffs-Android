@@ -1,5 +1,6 @@
 package br.com.friendlydonations.application.donate;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -7,6 +8,7 @@ import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.places.Place;
 
 import br.com.friendlydonations.R;
+import br.com.friendlydonations.shared.PermissionApplication;
 import br.com.friendlydonations.shared.adapter.PictureUpdaterAdapter;
 import br.com.friendlydonations.shared.models.PictureDiskModel;
 import rx.functions.Action1;
@@ -20,6 +22,7 @@ public class DonatePresenter {
     private final DonateView view;
     private final PictureUpdaterAdapter adapter;
     private Place inputedPlace;
+    private PictureDiskModel pictureDiskModel;
 
     public DonatePresenter (DonateView view, PictureUpdaterAdapter adapter) {
         this.view = view;
@@ -54,6 +57,28 @@ public class DonatePresenter {
 
     public void initialize(RecyclerView recyclerViewPictures) {
         recyclerViewPictures.setAdapter(adapter);
-        adapter.setActionClickPictureModel(pictureDiskModel -> view.onClickChangePicture(pictureDiskModel));
+        adapter.setActionClickPictureModel(new Action1<PictureDiskModel>() {
+            @Override
+            public void call(PictureDiskModel pictureDiskModel) {
+                DonatePresenter.this.pictureDiskModel = pictureDiskModel;
+                view.onClickChangePicture();
+            }
+        });
+    }
+
+    public void verifyCameraPermissions(Context context, String[] permissions) {
+        if (PermissionApplication.areAllPermissionsEnabled(context, permissions)) {
+            view.takePicture();
+        } else {
+            view.requestCameraPermissions(permissions);
+        }
+    }
+
+    public void verifyGalleryPermission(Context context, String permission) {
+        if (PermissionApplication.isPermissionEnabled(context, permission)) {
+            view.selectPictureFromGallery();
+        } else {
+            view.requestWriteExternalPermission(permission);
+        }
     }
 }
