@@ -32,6 +32,10 @@
         <item name="android:textColor">@color/colorWhite</item>
     </style>
 
+    <style name="MontserratRegular.ColorParagraph">
+        <item name="android:textColor">@color/colorParagraph</item>
+    </style>
+
     <style name="RobotoMedium.ColorTitle">
         <item name="android:textColor">@color/colorTitle</item>
     </style>
@@ -48,9 +52,17 @@
         <item name="android:color">@color/colorParagraph</item>
     </style>
 
+    <style name="RobotoRegular.ColorWhite">
+        <item name="android:color">@color/colorWhite</item>
+    </style>
+
     <!-- By Text Size -->
     <style name="RobotoRegular.ColorParagraph.16sp">
         <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="RobotoRegular.ColorWhite.13sp">
+        <item name="android:textSize">13sp</item>
     </style>
 
     <style name="RobotoMedium.ColorTitle.20sp">
@@ -67,6 +79,14 @@
 
     <style name="MontserratRegular.ColorTitle.20sp">
         <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="MontserratRegular.ColorWhite.14sp">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="MontserratRegular.ColorParagraph.14sp">
+        <item name="android:textSize">14sp</item>
     </style>
 
     <style name="MontserratRegular.ColorWhite.30sp">

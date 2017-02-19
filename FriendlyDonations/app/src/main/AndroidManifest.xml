@@ -70,14 +70,19 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
 
-        <!-- Application Components -->
-        <activity android:name=".application.main.MainActivity"
+        <activity android:name=".application.login.LoginActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/FriendlyDonationsTheme.NotTranslucent">
+            android:theme="@style/FriendlyDonationsTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+
+        <!-- Application Components -->
+        <activity android:name=".application.main.MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/FriendlyDonationsTheme.NotTranslucent">
         </activity>
 
     </application>

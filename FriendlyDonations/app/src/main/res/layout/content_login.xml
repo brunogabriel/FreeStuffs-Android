@@ -1,7 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</LinearLayout>
+    <ImageView
+        android:src="@drawable/ic_login_background"
+        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <RelativeLayout
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/about_button"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:textAllCaps="false"
+            android:background="@android:color/transparent"
+            style="@style/RobotoRegular.ColorWhite.13sp"
+            android:textColor="@color/colorWhite"
+            android:paddingRight="@dimen/horizontal_space"
+            android:paddingLeft="@dimen/horizontal_space"
+            android:text="@string/login_about_and_use_terms"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
+
+        <LinearLayout
+            android:id="@+id/social_layout"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/about_button"
+            android:layout_centerHorizontal="true">
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/facebook_button"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/drawable_facebook_hover"
+                style="@style/MontserratRegular.ColorWhite.14sp"
+                android:drawableLeft="@drawable/ic_facebook_logo"
+                android:drawablePadding="@dimen/space_between_views"
+                android:paddingRight="@dimen/horizontal_space"
+                android:paddingLeft="@dimen/horizontal_space"
+                android:layout_marginRight="@dimen/margin_space"
+                android:layout_marginLeft="@dimen/margin_space"
+                android:text="@string/login_with_facebook"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="60dp" />
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/google_button"
+                android:layout_marginTop="@dimen/space_between_views"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/drawable_google_hover"
+                style="@style/MontserratRegular.ColorParagraph.14sp"
+                android:drawableLeft="@drawable/ic_google_logo"
+                android:layout_marginRight="@dimen/margin_space"
+                android:layout_marginLeft="@dimen/margin_space"
+                android:drawablePadding="@dimen/space_between_views"
+                android:paddingRight="@dimen/horizontal_space"
+                android:paddingLeft="@dimen/horizontal_space"
+                android:text="@string/login_with_google"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="60dp" />
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/login_custom_button"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:layout_marginRight="@dimen/margin_space"
+                android:layout_marginLeft="@dimen/margin_space"
+                android:layout_marginTop="@dimen/space_between_views"
+                android:background="@android:color/transparent"
+                style="@style/MontserratRegular.ColorWhite.14sp"
+                android:paddingRight="@dimen/horizontal_space"
+                android:paddingLeft="@dimen/horizontal_space"
+                android:text="@string/login_with_custom_account"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/create_account_button"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:layout_marginTop="@dimen/space_between_views"
+                android:background="@android:color/transparent"
+                style="@style/MontserratRegular.ColorWhite.14sp"
+                android:layout_marginRight="@dimen/margin_space"
+                android:layout_marginLeft="@dimen/margin_space"
+                android:paddingRight="@dimen/horizontal_space"
+                android:paddingLeft="@dimen/horizontal_space"
+                android:text="@string/login_create_account"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</FrameLayout>
