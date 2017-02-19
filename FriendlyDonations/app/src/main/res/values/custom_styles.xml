@@ -40,12 +40,12 @@
         <item name="android:textColor">@color/colorPrimary</item>
     </style>
 
-    <style name="RobotoRegular.ColorContentDialog">
-        <item name="android:color">@color/colorContentDialog</item>
+    <style name="RobotoRegular.ColorParagraph">
+        <item name="android:color">@color/colorParagraph</item>
     </style>
 
     <!-- By Text Size -->
-    <style name="RobotoRegular.ColorContentDialog.16sp">
+    <style name="RobotoRegular.ColorParagraph.16sp">
         <item name="android:textSize">16sp</item>
     </style>
 

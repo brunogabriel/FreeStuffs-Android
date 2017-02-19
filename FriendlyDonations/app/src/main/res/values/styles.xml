@@ -29,6 +29,7 @@
     </style>
 
     <style name="FriendlyDonationsTheme.FloatingEditText" parent="FriendlyDonationsTheme">
+        <item name="android:textSize">16sp</item>
         <item name="colorControlNormal">@color/colorSubtitle</item>
         <item name="colorControlActivated">@color/colorTitle</item>
         <item name="android:textColorHighlight">@color/colorDisable</item>

@@ -60,7 +60,6 @@ public class DonateFragment extends BaseFragment implements DonateView {
     private Context context;
 
     public DonateFragment() {
-
     }
 
     @Nullable
@@ -75,16 +74,10 @@ public class DonateFragment extends BaseFragment implements DonateView {
     }
 
     private void initialize() {
-        RxTextViewUtils.applyFormTypefaceRule(context, itemText);
-        RxTextViewUtils.applyFormTypefaceRule(context, descriptionText);
-        RxTextViewUtils.applyFormTypefaceRule(context, locationText);
-        RxTextViewUtils.applyFormTypefaceRule(context, deliveryText);
         RxView.clicks(locationText).subscribe(onPlaceIntentAction, throwableLocation);
     }
 
-    private Action1<Throwable> throwableLocation = throwable -> {
-        presenter.createGooglePlayServicesDialogError(throwable);
-    };
+    private Action1<Throwable> throwableLocation = throwable -> presenter.createGooglePlayServicesDialogError(throwable);
 
     private Action1<Void> onPlaceIntentAction = result -> {
         Intent intent = null;
@@ -130,4 +123,5 @@ public class DonateFragment extends BaseFragment implements DonateView {
                 new ApplicationDialogFragment(getString(titleId), getString(contentId), null, getString(yesId), isScrollable);
         applicationDialogFragment.show(getActivity().getFragmentManager(), TAG);
     }
+
 }

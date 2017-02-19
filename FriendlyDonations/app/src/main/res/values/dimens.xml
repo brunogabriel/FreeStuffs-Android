@@ -17,6 +17,9 @@
     <dimen name="text_view_floating_label_height">72dp</dimen>
     <dimen name="text_view_height">56dp</dimen>
 
+    <!-- Icons -->
+    <dimen name="image_default_size">24dp</dimen>
+
     <!-- Cards -->
     <dimen name="card_category_base">90dp</dimen>
     <dimen name="card_category">74dp</dimen>

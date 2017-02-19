@@ -71,7 +71,7 @@
 
                 <TextView
                     android:id="@+id/content_text"
-                    style="@style/RobotoRegular.ColorContentDialog.16sp"
+                    style="@style/RobotoRegular.ColorParagraph.16sp"
                     android:paddingBottom="@dimen/text_view_height"
                     android:layout_marginRight="@dimen/view_space_horizontal"
                     android:layout_width="match_parent"
