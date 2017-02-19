@@ -51,4 +51,7 @@
 
     <!-- Generic Space -->
     <dimen name="double_view_space_vertical">32dp</dimen>
+
+    <!-- Alert -->
+    <dimen name="custom_chooser_size">48dp</dimen>
 </resources>

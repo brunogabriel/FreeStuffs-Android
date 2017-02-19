@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:text="@string/dialog_title_choose_updater"
+        android:textAlignment="center"
+        android:padding="@dimen/horizontal_space"
+        style="@style/MontserratRegular.ColorWhite.30sp"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:layout_marginTop="@dimen/margin_space"
+        android:layout_marginBottom="@dimen/margin_space"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/updater_method_layout"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/camera_layout"
+                android:layout_marginRight="@dimen/margin_space"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:background="@drawable/drawable_primary_circle_stroke"
+                    android:layout_width="@dimen/custom_chooser_size"
+                    android:layout_height="@dimen/custom_chooser_size">
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_camera"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true" />
+                </RelativeLayout>
+
+                <TextView
+                    android:text="@string/camera"
+                    style="@style/RobotoMedium.ColorPrimary.14sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/gallery_layout"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:background="@drawable/drawable_primary_circle_stroke"
+                    android:layout_width="@dimen/custom_chooser_size"
+                    android:layout_height="@dimen/custom_chooser_size">
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:tint="@color/colorPrimary"
+                        android:src="@drawable/ic_crop_original_black_24dp"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true" />
+                </RelativeLayout>
+
+                <TextView
+                    android:text="@string/gallery"
+                    style="@style/RobotoMedium.ColorPrimary.14sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

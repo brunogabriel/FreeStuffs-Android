@@ -28,6 +28,10 @@
         <item name="android:textColor">@color/colorTitle</item>
     </style>
 
+    <style name="MontserratRegular.ColorWhite">
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
     <style name="RobotoMedium.ColorTitle">
         <item name="android:textColor">@color/colorTitle</item>
     </style>
@@ -64,4 +68,9 @@
     <style name="MontserratRegular.ColorTitle.20sp">
         <item name="android:textSize">20sp</item>
     </style>
+
+    <style name="MontserratRegular.ColorWhite.30sp">
+        <item name="android:textSize">30sp</item>
+    </style>
+
 </resources>

@@ -5,4 +5,14 @@ package br.com.friendlydonations.shared.models;
  */
 
 public class PictureDiskModel {
+
+    private int index;
+
+    public PictureDiskModel() {
+
+    }
+
+    public PictureDiskModel(int index) {
+        this.index = index;
+    }
 }

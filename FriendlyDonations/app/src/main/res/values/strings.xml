@@ -27,6 +27,9 @@
         <item>Your Profile</item>
         <item>Notifications</item>
     </array>
+    
+    <!-- Dialog Texts -->
+    <string name="dialog_title_choose_updater">Choose to change or update</string>
 
     <!-- Login -->
     <string name="login_about_terms">About FriendlyDonation and terms</string>

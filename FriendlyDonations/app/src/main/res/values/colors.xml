@@ -15,5 +15,6 @@
     <!-- Basic Colors -->
     <color name="colorWhite">#fff</color>
     <color name="colorBlack">#000</color>
+    <color name="colorLegacyLight">#ffe6e6e6</color>
 
 </resources>

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.AppCompatEditText;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,10 +20,13 @@ import com.jakewharton.rxbinding.view.RxView;
 
 import br.com.friendlydonations.R;
 import br.com.friendlydonations.shared.BaseFragment;
+import br.com.friendlydonations.shared.adapter.PictureUpdaterAdapter;
+import br.com.friendlydonations.shared.models.PictureDiskModel;
 import br.com.friendlydonations.shared.views.ApplicationDialogFragment;
-import br.com.friendlydonations.shared.views.RxTextViewUtils;
+import br.com.friendlydonations.shared.views.PictureUpdaterDialogFragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import rx.functions.Action0;
 import rx.functions.Action1;
 
 /**
@@ -58,6 +62,7 @@ public class DonateFragment extends BaseFragment implements DonateView {
 
     private DonatePresenter presenter;
     private Context context;
+    private PictureUpdaterAdapter pictureUpdaterAdapter;
 
     public DonateFragment() {
     }
@@ -68,8 +73,11 @@ public class DonateFragment extends BaseFragment implements DonateView {
         rootView = inflater.inflate(R.layout.fragment_donate, container, false);
         unbinder = ButterKnife.bind(this, rootView);
         context = getActivity();
-        presenter = new DonatePresenter(this);
+        presenter = new DonatePresenter(this, new PictureUpdaterAdapter());
+        recyclerViewPictures.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        presenter.initialize(recyclerViewPictures);
         initialize();
+
         return rootView;
     }
 
@@ -122,6 +130,17 @@ public class DonateFragment extends BaseFragment implements DonateView {
         ApplicationDialogFragment applicationDialogFragment =
                 new ApplicationDialogFragment(getString(titleId), getString(contentId), null, getString(yesId), isScrollable);
         applicationDialogFragment.show(getActivity().getFragmentManager(), TAG);
+    }
+
+    @Override
+    public void onClickChangePicture(PictureDiskModel pictureDiskModel) {
+        PictureUpdaterDialogFragment pictureDialog = new PictureUpdaterDialogFragment(() -> {
+            // verify permissions
+        }, () -> {
+            // verify permissions
+        });
+
+        pictureDialog.show(getActivity().getFragmentManager(), TAG);
     }
 
 }
