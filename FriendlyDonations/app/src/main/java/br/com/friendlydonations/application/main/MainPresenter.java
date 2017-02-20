@@ -1,11 +1,10 @@
 package br.com.friendlydonations.application.main;
 
-import android.support.design.widget.TabLayout;
-
 import com.annimon.stream.Stream;
 
 import br.com.friendlydonations.application.donate.DonateFragment;
 import br.com.friendlydonations.application.home.HomeFragment;
+import br.com.friendlydonations.application.profile.ProfileFragment;
 import br.com.friendlydonations.shared.adapter.DynamicTabPageAdapter;
 import br.com.friendlydonations.shared.widgets.BadgeImageView;
 
@@ -27,9 +26,9 @@ public class MainPresenter {
     }
 
     public void initialize() {
+        adapter.addFragment(new HomeFragment());
         adapter.addFragment(new DonateFragment());
-        adapter.addFragment(new HomeFragment());
-        adapter.addFragment(new HomeFragment());
+        adapter.addFragment(new ProfileFragment());
         adapter.addFragment(new HomeFragment());
         view.setAdapterSettings(adapter);
     }

@@ -23,6 +23,7 @@
     <style name="MontserratBold" parent="@android:style/TextAppearance.Widget.TextView">>
         <item name="fontPath">fonts/Montserrat-Bold.ttf</item>
     </style>
+
     <!-- By Color -->
     <style name="MontserratRegular.ColorTitle">
         <item name="android:textColor">@color/colorTitle</item>
@@ -49,11 +50,15 @@
     </style>
 
     <style name="RobotoRegular.ColorParagraph">
-        <item name="android:color">@color/colorParagraph</item>
+        <item name="android:textColor">@color/colorParagraph</item>
     </style>
 
     <style name="RobotoRegular.ColorWhite">
-        <item name="android:color">@color/colorWhite</item>
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+    <style name="RobotoLight.ColorWhite">
+        <item name="android:textColor">@color/colorWhite</item>
     </style>
 
     <!-- By Text Size -->
@@ -63,6 +68,10 @@
 
     <style name="RobotoRegular.ColorWhite.13sp">
         <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="RobotoRegular.ColorWhite.30sp">
+        <item name="android:textSize">30sp</item>
     </style>
 
     <style name="RobotoMedium.ColorTitle.20sp">
@@ -83,6 +92,14 @@
 
     <style name="MontserratRegular.ColorWhite.14sp">
         <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="MontserratRegular.ColorWhite.20sp">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="MontserratRegular.ColorWhite.36sp">
+        <item name="android:textSize">36sp</item>
     </style>
 
     <style name="MontserratRegular.ColorParagraph.14sp">

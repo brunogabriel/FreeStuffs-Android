@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@color/colorTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            style="@style/RobotoRegular.ColorWhite.30sp"
+            android:text="Marconi Loura"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/margin_double_space"
+            android:layout_marginRight="@dimen/double_view_space_vertical"
+            android:layout_marginLeft="@dimen/double_view_space_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            style="@style/RobotoLight.ColorWhite"
+            android:text="@string/preferences"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/space_between_views"
+            android:layout_marginBottom="@dimen/margin_space"
+            android:drawablePadding="8dp"
+            android:drawableLeft="@drawable/ic_settings_white_24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/space_between_views"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/donations_done_text"
+                android:text="6"
+                style="@style/MontserratRegular.ColorWhite.36sp"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:layout_weight="0.985"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:layout_weight="0.01"
+                android:background="@color/colorWhite"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:id="@+id/donations_received_text"
+                android:text="2"
+                style="@style/MontserratRegular.ColorWhite.36sp"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:layout_weight="0.985"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginBottom="@dimen/margin_space"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/donations_done_title"
+                android:text="@string/profile_donations_done"
+                style="@style/MontserratRegular.ColorWhite.20sp"
+                android:layout_weight="0.985"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:layout_weight="0.01"
+                android:background="@color/colorWhite"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:id="@+id/donations_received_title"
+                android:text="@string/profile_donations_received"
+                style="@style/MontserratRegular.ColorWhite.20sp"
+                android:layout_weight="0.985"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

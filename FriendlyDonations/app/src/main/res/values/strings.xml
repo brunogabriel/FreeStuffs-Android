@@ -8,6 +8,7 @@
     <string name="content_description">content description</string>
     <string name="network_not_detected">No internet access, please check it</string>
     <string name="settings">Settings</string>
+    <string name="preferences">Preferences</string>
     <string name="donate">Donate</string>
     <string name="by_mail">by mail</string>
     <string name="by_phone">by phone</string>
@@ -55,6 +56,10 @@
     <string name="donate_hint_location">Location</string>
     <string name="donate_hint_delivery">Delivery</string>
     <string name="donate_would_get_by">I would like get in touch by</string>
+
+    <!-- Profile Fragmen -->
+    <string name="profile_donations_done">donations\ndone</string>
+    <string name="profile_donations_received">donations\nreceived</string>
 
 
 </resources>
