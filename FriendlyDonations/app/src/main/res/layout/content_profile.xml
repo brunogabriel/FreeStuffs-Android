@@ -15,7 +15,7 @@
             style="@style/RobotoRegular.ColorWhite.30sp"
             android:text="Marconi Loura"
             android:gravity="center"
-            android:layout_marginTop="@dimen/margin_double_space"
+            android:layout_marginTop="@dimen/double_view_space_vertical"
             android:layout_marginRight="@dimen/double_view_space_vertical"
             android:layout_marginLeft="@dimen/double_view_space_vertical"
             android:layout_width="match_parent"
@@ -99,7 +99,19 @@
                 android:layout_height="wrap_content" />
 
         </LinearLayout>
-
     </LinearLayout>
+
+    <TextView
+        android:text="@string/profile_my_activated_publications"
+        android:textAlignment="center"
+        style="@style/RobotoRegular.ColorPrimary.24sp"
+        android:layout_margin="@dimen/double_view_space_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

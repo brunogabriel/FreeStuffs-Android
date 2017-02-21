@@ -21,16 +21,20 @@ import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import com.jakewharton.rxbinding.view.RxView;
 
+import javax.inject.Inject;
+
 import br.com.friendlydonations.R;
+import br.com.friendlydonations.network.NetworkCategory;
 import br.com.friendlydonations.shared.BaseFragment;
-import br.com.friendlydonations.shared.PermissionApplication;
+import br.com.friendlydonations.shared.adapter.CategoryAdapter;
 import br.com.friendlydonations.shared.adapter.PictureUpdaterAdapter;
-import br.com.friendlydonations.shared.models.PictureDiskModel;
 import br.com.friendlydonations.shared.views.ApplicationDialogFragment;
+import br.com.friendlydonations.shared.views.DynamicBoxHelper;
 import br.com.friendlydonations.shared.views.PictureUpdaterDialogFragment;
 import butterknife.BindArray;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Retrofit;
 import rx.functions.Action1;
 
 /**
@@ -45,8 +49,8 @@ public class DonateFragment extends BaseFragment implements DonateView {
     protected View rootView;
     @BindView(R.id.recycler_view_pictures)
     RecyclerView recyclerViewPictures;
-    @BindView(R.id.recycler_view_donations)
-    RecyclerView recyclerViewDonations;
+    @BindView(R.id.recycler_view_categories)
+    RecyclerView recyclerViewCategories;
     @BindView(R.id.item_text)
     AppCompatEditText itemText;
     @BindView(R.id.item_layout)
@@ -66,9 +70,13 @@ public class DonateFragment extends BaseFragment implements DonateView {
     @BindArray(R.array.array_spinner_delivery)
     String[] deliveryOptionsArray;
 
+    @Inject
+    protected Retrofit retrofit;
     private DonatePresenter presenter;
     private Context context;
     private PictureUpdaterAdapter pictureUpdaterAdapter;
+    private DynamicBoxHelper dynamicBoxHelper;
+    private CategoryAdapter categoryAdapter;
 
     public DonateFragment() {
     }
@@ -79,11 +87,14 @@ public class DonateFragment extends BaseFragment implements DonateView {
         rootView = inflater.inflate(R.layout.fragment_donate, container, false);
         unbinder = ButterKnife.bind(this, rootView);
         context = getActivity();
-        presenter = new DonatePresenter(this, new PictureUpdaterAdapter());
+        getNetworkComponent().inject(this);
+        dynamicBoxHelper = new DynamicBoxHelper(getContext(), recyclerViewCategories);
+        categoryAdapter = new CategoryAdapter(getContext());
+        presenter = new DonatePresenter(this, new PictureUpdaterAdapter(), retrofit.create(NetworkCategory.class), categoryAdapter);
         recyclerViewPictures.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         presenter.initialize(recyclerViewPictures);
         initialize();
-
+        presenter.startRequests();
         return rootView;
     }
 
@@ -125,6 +136,21 @@ public class DonateFragment extends BaseFragment implements DonateView {
 
     }
 
+    @Override
+    public void showLoader() {
+        dynamicBoxHelper.showLoader();
+    }
+
+    @Override
+    public void dismissLoader() {
+        dynamicBoxHelper.hideAll();
+    }
+
+    @Override
+    public void onCategoryError() {
+
+    }
+
     private Action1<Throwable> throwableLocation = throwable -> presenter.createGooglePlayServicesDialogError(throwable);
 
     private Action1<Void> onPlaceIntentAction = result -> {
@@ -163,6 +189,8 @@ public class DonateFragment extends BaseFragment implements DonateView {
     private void initialize() {
         RxView.clicks(locationText).subscribe(onPlaceIntentAction, throwableLocation);
         RxView.clicks(deliveryText).subscribe(onDeliveryAction);
+        recyclerViewCategories.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        recyclerViewCategories.setAdapter(categoryAdapter);
     }
 
     private void verifyPlaceAutocompleteAnswer(int resultCode, Intent data) {

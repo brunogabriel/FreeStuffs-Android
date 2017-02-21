@@ -8,10 +8,16 @@ import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.places.Place;
 
 import br.com.friendlydonations.R;
+import br.com.friendlydonations.network.NetworkCategory;
 import br.com.friendlydonations.shared.PermissionApplication;
+import br.com.friendlydonations.shared.adapter.CategoryAdapter;
 import br.com.friendlydonations.shared.adapter.PictureUpdaterAdapter;
+import br.com.friendlydonations.shared.application.UnknownHostOperator;
 import br.com.friendlydonations.shared.models.PictureDiskModel;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by brunogabriel on 16/02/17.
@@ -23,10 +29,15 @@ public class DonatePresenter {
     private final PictureUpdaterAdapter adapter;
     private Place inputedPlace;
     private PictureDiskModel pictureDiskModel;
+    private NetworkCategory networkCategory;
+    private Subscription subscription;
+    private CategoryAdapter categoryAdapter;
 
-    public DonatePresenter (DonateView view, PictureUpdaterAdapter adapter) {
+    public DonatePresenter (DonateView view, PictureUpdaterAdapter adapter, NetworkCategory networkCategory, CategoryAdapter categoryAdapter) {
         this.view = view;
         this.adapter = adapter;
+        this.networkCategory = networkCategory;
+        this.categoryAdapter = categoryAdapter;
     }
 
     public void onPlaceApiAnswer(Place place) {
@@ -64,6 +75,27 @@ public class DonatePresenter {
                 view.onClickChangePicture();
             }
         });
+
+//        TODO: Action on click category
+//        categoryAdapter.setAction();
+    }
+
+    public void startRequests() {
+        subscription = networkCategory.findCategories()
+                .subscribeOn(Schedulers.io())
+                .lift(UnknownHostOperator.getUnknownHostOperator(() -> {
+                    // TODO: Verify
+                }))
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(() -> view.showLoader())
+                .doAfterTerminate(() -> view.dismissLoader())
+                .subscribe(result -> {
+                    if (result.isStatus() && result.getCategoryModelList().size() > 0) {
+                        categoryAdapter.addAll(result.getCategoryModelList());
+                    } else {
+                        view.onCategoryError();
+                    }
+                }, error -> view.onCategoryError());
     }
 
     public void verifyCameraPermissions(Context context, String[] permissions) {

@@ -2,6 +2,7 @@ package br.com.friendlydonations.dagger.component;
 
 import javax.inject.Singleton;
 
+import br.com.friendlydonations.application.donate.DonateFragment;
 import br.com.friendlydonations.dagger.module.CustomApplicationModule;
 import br.com.friendlydonations.dagger.module.NetworkModule;
 import dagger.Component;
@@ -13,4 +14,5 @@ import dagger.Component;
 @Singleton
 @Component(modules = {CustomApplicationModule.class, NetworkModule.class})
 public interface NetworkComponent {
+    void inject(DonateFragment donateFragment);
 }

@@ -30,7 +30,7 @@
 
             <LinearLayout
                 android:id="@+id/camera_layout"
-                android:layout_marginRight="@dimen/margin_space"
+                android:layout_marginRight="@dimen/margin_double_space"
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">

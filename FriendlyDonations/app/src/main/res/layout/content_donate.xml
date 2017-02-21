@@ -34,11 +34,11 @@
         android:layout_height="wrap_content" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view_donations"
-        android:background="@color/colorPrimary"
-        android:layout_marginBottom="@dimen/margin_space"
+        android:id="@+id/recycler_view_categories"
+        android:clipToPadding="false"
+        android:layout_marginBottom="@dimen/margin_double_space"
         android:layout_width="match_parent"
-        android:layout_height="116sp"/>
+        android:layout_height="wrap_content"/>
 
     <LinearLayout
         android:id="@+id/form_layout"

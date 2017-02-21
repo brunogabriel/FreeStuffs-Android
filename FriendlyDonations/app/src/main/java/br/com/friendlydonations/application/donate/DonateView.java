@@ -13,4 +13,10 @@ public interface DonateView {
 
     void selectPictureFromGallery();
     void requestWriteExternalPermission(String permissions);
+
+    void showLoader();
+
+    void dismissLoader();
+
+    void onCategoryError();
 }

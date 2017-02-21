@@ -57,6 +57,10 @@
         <item name="android:textColor">@color/colorWhite</item>
     </style>
 
+    <style name="RobotoRegular.ColorPrimary">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
     <style name="RobotoLight.ColorWhite">
         <item name="android:textColor">@color/colorWhite</item>
     </style>
@@ -72,6 +76,10 @@
 
     <style name="RobotoRegular.ColorWhite.30sp">
         <item name="android:textSize">30sp</item>
+    </style>
+
+    <style name="RobotoRegular.ColorPrimary.24sp">
+        <item name="android:textSize">24sp</item>
     </style>
 
     <style name="RobotoMedium.ColorTitle.20sp">

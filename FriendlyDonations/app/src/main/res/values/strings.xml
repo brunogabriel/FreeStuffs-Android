@@ -57,9 +57,10 @@
     <string name="donate_hint_delivery">Delivery</string>
     <string name="donate_would_get_by">I would like get in touch by</string>
 
-    <!-- Profile Fragmen -->
+    <!-- Profile Fragment -->
     <string name="profile_donations_done">donations\ndone</string>
     <string name="profile_donations_received">donations\nreceived</string>
+    <string name="profile_my_activated_publications">My activated publications</string>
 
 
 </resources>
