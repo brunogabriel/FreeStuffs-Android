@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
         <TextView
             style="@style/RobotoRegular.ColorWhite.30sp"
             android:text="Marconi Loura"

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <style name="MontserratBold.ColorWhite">
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+    <style name="MontserratRegular.ColorParagraph">
+        <item name="android:textColor">@color/colorParagraph</item>
+    </style>
+
+    <style name="MontserratRegular.ColorTitle">
+        <item name="android:textColor">@color/colorTitle</item>
+    </style>
+
+    <style name="MontserratRegular.ColorWhite">
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+    <style name="RobotoLight.ColorWhite">
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+    <style name="RobotoMedium.ColorDisable">
+        <item name="android:textColor">@color/colorDisable</item>
+    </style>
+
+    <style name="RobotoMedium.ColorPrimary">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="RobotoMedium.ColorTitle">
+        <item name="android:textColor">@color/colorTitle</item>
+    </style>
+
+    <style name="RobotoMedium.ColorWhite">
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+    <style name="RobotoRegular.ColorParagraph">
+        <item name="android:textColor">@color/colorParagraph</item>
+    </style>
+
+    <style name="RobotoRegular.ColorPrimary">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="RobotoRegular.ColorWhite">
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+</resources>

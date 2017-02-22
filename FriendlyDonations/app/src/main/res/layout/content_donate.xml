@@ -22,7 +22,7 @@
         android:clipToPadding="false"
         android:layout_marginBottom="@dimen/margin_space"
         android:layout_width="match_parent"
-        android:layout_height="92dp"/>
+        android:layout_height="90dp"/>
 
     <TextView
         android:text="@string/donate_select_a_category"
@@ -31,17 +31,19 @@
         android:layout_marginLeft="@dimen/horizontal_space"
         style="@style/MontserratRegular.ColorTitle.20sp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:id="@+id/textView" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_categories"
         android:clipToPadding="false"
-        android:layout_marginBottom="@dimen/margin_double_space"
+        android:paddingLeft="@dimen/horizontal_space"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="116dp"/>
 
     <LinearLayout
         android:id="@+id/form_layout"
+        android:paddingTop="@dimen/card_padding"
         android:paddingLeft="@dimen/horizontal_space"
         android:paddingRight="@dimen/horizontal_space"
         android:orientation="vertical"
@@ -78,7 +80,6 @@
                     android:hint="@string/donate_hint_item_title" />
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
-
 
         <!-- Description -->
         <LinearLayout
@@ -184,6 +185,141 @@
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
+        <!-- Touch donation -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/margin_space"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="@string/donate_would_get_by"
+                android:layout_marginRight="@dimen/horizontal_space"
+                android:layout_marginBottom="@dimen/view_space_vertical"
+                style="@style/MontserratRegular.ColorTitle.20sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <!-- by mail -->
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/margin_space"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/touchable_area">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/touchable_area">
+
+                    <RelativeLayout
+                        android:id="@+id/stroke_bymail_layout"
+                        android:background="@drawable/drawable_primary_circle_stroke"
+                        android:layout_width="@dimen/touchable_area"
+                        android:layout_height="@dimen/touchable_area">
+
+                        <ImageView
+                            android:id="@+id/bymail_image"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/ic_mail"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp" />
+
+                        <RelativeLayout
+                            android:id="@+id/bymail_marker"
+                            android:layout_gravity="right"
+                            android:gravity="right"
+                            android:visibility="visible"
+                            android:background="@drawable/drawable_green_circle"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true">
+
+                            <ImageView
+                                android:gravity="center"
+                                android:src="@drawable/ic_done_white_36dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" />
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/bymail_text"
+                        android:text="@string/by_mail"
+                        android:layout_marginLeft="@dimen/vertical_space"
+                        android:layout_gravity="center_vertical"
+                        style="@style/RobotoMedium.ColorPrimary.14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <!-- By phone -->
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/touchable_area">
+
+                    <RelativeLayout
+                        android:id="@+id/stroke_byphone_layout"
+                        android:background="@drawable/drawable_primary_circle_stroke"
+                        android:layout_width="@dimen/touchable_area"
+                        android:layout_height="@dimen/touchable_area">
+
+                        <ImageView
+                            android:id="@+id/byphone_image"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/ic_phone"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp" />
+
+                        <RelativeLayout
+                            android:id="@+id/byphone_marker"
+                            android:layout_gravity="right"
+                            android:gravity="right"
+                            android:visibility="visible"
+                            android:background="@drawable/drawable_green_circle"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true">
+
+                            <ImageView
+                                android:gravity="center"
+                                android:src="@drawable/ic_done_white_36dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" />
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/byphone_text"
+                        android:text="@string/by_phone"
+                        android:layout_marginLeft="@dimen/vertical_space"
+                        android:layout_gravity="center_vertical"
+                        style="@style/RobotoMedium.ColorPrimary.14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+        
     </LinearLayout>
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/donate_button"
+        android:layout_gravity="center"
+        android:background="@drawable/drawable_green_hover"
+        style="@style/MontserratBold.ColorWhite.22sp"
+        android:text="@string/donate"
+        android:textAllCaps="false"
+        android:textAlignment="center"
+        android:layout_width="match_parent"
+        android:layout_height="80dp" />
 
 </LinearLayout>

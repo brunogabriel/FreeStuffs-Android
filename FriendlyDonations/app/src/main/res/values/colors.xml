@@ -9,6 +9,7 @@
     <color name="colorDisable">#D8D8D8</color>
     <color name="colorError">#FF4843</color>
     <color name="colorSuccessYes">#00CFA6</color>
+    <color name="colorSuccessYesDark">#006e58</color>
     <color name="colorRating">#FFDC6D</color>
     <color name="colorAccent">#FF4843</color>
 

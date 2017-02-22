@@ -5,14 +5,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
+import com.jakewharton.rxbinding.view.RxView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.friendlydonations.R;
-import br.com.friendlydonations.application.donate.DonateFragment;
+import br.com.friendlydonations.shared.ImageHelper;
 import br.com.friendlydonations.shared.models.ImageModel;
 import br.com.friendlydonations.shared.models.category.CategoryAnswerModel;
 import butterknife.BindView;
@@ -25,6 +26,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryHolder> {
 
+    private int clickedIndex = -1;
     private Context context;
     private List<CategoryAnswerModel.CategoryModel> categoryModels;
 
@@ -42,7 +44,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     public void onBindViewHolder(CategoryHolder holder, int position) {
         CategoryAnswerModel.CategoryModel categoryModel = categoryModels.get(position);
         ImageModel imageModel = categoryModel.getImageModel();
-        Picasso.with(context).load(imageModel.getLarge()).into(holder.categoryImage);
+        ImageHelper.loadImageWithPlaceholder(holder.categoryImage, context, imageModel.getLoader(), imageModel.getLarge());
+        holder.categoryText.setText(categoryModel.getName());
+        holder.checkView.setVisibility(clickedIndex == position ? View.VISIBLE: View.GONE);
     }
 
     @Override
@@ -60,9 +64,27 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         @BindView(R.id.category_image)
         CircleImageView categoryImage;
 
+        @BindView(R.id.category_text)
+        TextView categoryText;
+
+        @BindView(R.id.check_marker)
+        View checkView;
+
         public CategoryHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+
+            RxView.clicks(itemView).subscribe(aVoid -> {
+                if (clickedIndex == -1) {
+                    clickedIndex = getAdapterPosition();
+                    notifyItemChanged(clickedIndex);
+                } else if (clickedIndex != -1 && clickedIndex != getAdapterPosition()) {
+                    int oldPosition = clickedIndex;
+                    notifyItemChanged(oldPosition);
+                    clickedIndex = getAdapterPosition();
+                    notifyItemChanged(clickedIndex);
+                }
+            });
         }
     }
 }

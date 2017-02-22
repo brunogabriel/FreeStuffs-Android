@@ -31,6 +31,7 @@ import br.com.friendlydonations.shared.adapter.PictureUpdaterAdapter;
 import br.com.friendlydonations.shared.views.ApplicationDialogFragment;
 import br.com.friendlydonations.shared.views.DynamicBoxHelper;
 import br.com.friendlydonations.shared.views.PictureUpdaterDialogFragment;
+import br.com.friendlydonations.shared.views.decorations.RightOffsetItemDecoration;
 import butterknife.BindArray;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -172,8 +173,8 @@ public class DonateFragment extends BaseFragment implements DonateView {
 
         AlertDialog.Builder deliveryDialog = new AlertDialog.Builder(getContext());
         deliveryDialog.setAdapter(arrayAdapter, (dialogInterface, position) -> {
-            dialogInterface.dismiss();
             deliveryText.setText(arrayAdapter.getItem(position));
+            dialogInterface.dismiss();
         });
         deliveryDialog.show();
     };
@@ -189,7 +190,9 @@ public class DonateFragment extends BaseFragment implements DonateView {
     private void initialize() {
         RxView.clicks(locationText).subscribe(onPlaceIntentAction, throwableLocation);
         RxView.clicks(deliveryText).subscribe(onDeliveryAction);
-        recyclerViewCategories.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        recyclerViewCategories.setLayoutManager(linearLayoutManager);
+        recyclerViewCategories.addItemDecoration(new RightOffsetItemDecoration(getContext(), R.dimen.horizontal_space));
         recyclerViewCategories.setAdapter(categoryAdapter);
     }
 

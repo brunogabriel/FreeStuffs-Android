@@ -113,4 +113,6 @@ public class DonatePresenter {
             view.requestWriteExternalPermission(permission);
         }
     }
+
+
 }

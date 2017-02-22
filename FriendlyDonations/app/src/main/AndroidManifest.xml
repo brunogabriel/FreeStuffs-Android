@@ -79,6 +79,7 @@
         <!-- Application Components -->
         <activity android:name=".application.main.MainActivity"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"
             android:theme="@style/FriendlyDonationsTheme.NotTranslucent">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
