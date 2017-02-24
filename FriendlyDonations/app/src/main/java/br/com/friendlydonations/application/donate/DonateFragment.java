@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatEditText;
@@ -70,6 +71,8 @@ public class DonateFragment extends BaseFragment implements DonateView {
     TextInputLayout deliveryLayout;
     @BindArray(R.array.array_spinner_delivery)
     String[] deliveryOptionsArray;
+    @BindView(R.id.coordinator_layout)
+    CoordinatorLayout coordinatorLayout;
 
     @Inject
     protected Retrofit retrofit;
@@ -150,6 +153,16 @@ public class DonateFragment extends BaseFragment implements DonateView {
     @Override
     public void onCategoryError() {
 
+    }
+
+    @Override
+    public void showPlace(String address) {
+        locationText.setText(address);
+    }
+
+    @Override
+    public void showGenericMessage(int unknown_result_error) {
+        showSimpleSnackbar(coordinatorLayout, getString(unknown_result_error));
     }
 
     private Action1<Throwable> throwableLocation = throwable -> presenter.createGooglePlayServicesDialogError(throwable);

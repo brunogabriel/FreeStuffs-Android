@@ -20,6 +20,7 @@
     <string name="google_play_services_error_title">Fail during use Google Play Services</string>
     <string name="google_play_services_not_installed">Sorry, but you do not have Google Play Services installed. Go to Store and update/install it.</string>
     <string name="google_play_services_not_available">Sorry, Google Play Services is not responding, try later or verify in Store.</string>
+    <string name="unknown_result_error">Unknown result, try again or verify your connection</string>
 
     <!-- General Arrays -->
     <array name="array_tab_main">
@@ -28,11 +29,13 @@
         <item>Your Profile</item>
         <item>Notifications</item>
     </array>
+
+    <!-- Deliveries form -->
     <array name="array_spinner_delivery">
         <item>by hands</item>
         <item>combine</item>
     </array>
-    
+
     <!-- Dialog Texts -->
     <string name="dialog_title_choose_updater">Choose to change or update</string>
 
@@ -47,7 +50,7 @@
     <string name="login_with_facebook_error">An error has occurred during login. Please try again or later.</string>
 
     <!-- Home Fragment -->
-    
+
     <!-- Donate Fragment -->
     <string name="donate_upload_your_photos">Upload your item photos</string>
     <string name="donate_select_a_category">Select a Category</string>
@@ -61,6 +64,5 @@
     <string name="profile_donations_done">donations\ndone</string>
     <string name="profile_donations_received">donations\nreceived</string>
     <string name="profile_my_activated_publications">My activated publications</string>
-
 
 </resources>

@@ -320,6 +320,6 @@
         android:textAllCaps="false"
         android:textAlignment="center"
         android:layout_width="match_parent"
-        android:layout_height="80dp" />
+        android:layout_height="60dp" />
 
 </LinearLayout>

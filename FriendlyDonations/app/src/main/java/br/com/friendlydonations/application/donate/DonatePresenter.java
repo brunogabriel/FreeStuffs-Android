@@ -32,8 +32,12 @@ public class DonatePresenter {
     private NetworkCategory networkCategory;
     private Subscription subscription;
     private CategoryAdapter categoryAdapter;
+    private Place selectedPlace;
 
-    public DonatePresenter (DonateView view, PictureUpdaterAdapter adapter, NetworkCategory networkCategory, CategoryAdapter categoryAdapter) {
+    public DonatePresenter (DonateView view,
+                            PictureUpdaterAdapter adapter,
+                            NetworkCategory networkCategory,
+                            CategoryAdapter categoryAdapter) {
         this.view = view;
         this.adapter = adapter;
         this.networkCategory = networkCategory;
@@ -41,7 +45,8 @@ public class DonatePresenter {
     }
 
     public void onPlaceApiAnswer(Place place) {
-
+        selectedPlace = place;
+        view.showPlace(selectedPlace.getAddress().toString());
     }
 
     public void onPlaceApiAnswerError(Status status) {
@@ -49,10 +54,11 @@ public class DonatePresenter {
     }
 
     public void onPlaceApiAnswerCanceled() {
+
     }
 
     public void onPlaceApiAnswerUnknown() {
-
+        view.showGenericMessage(R.string.unknown_result_error);
     }
 
     public void createGooglePlayServicesDialogError(Throwable throwable) {
@@ -83,10 +89,10 @@ public class DonatePresenter {
     public void startRequests() {
         subscription = networkCategory.findCategories()
                 .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .lift(UnknownHostOperator.getUnknownHostOperator(() -> {
                     // TODO: Verify
                 }))
-                .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(() -> view.showLoader())
                 .doAfterTerminate(() -> view.dismissLoader())
                 .subscribe(result -> {

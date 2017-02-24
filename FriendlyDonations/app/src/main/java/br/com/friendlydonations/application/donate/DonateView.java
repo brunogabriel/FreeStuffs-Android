@@ -19,4 +19,8 @@ public interface DonateView {
     void dismissLoader();
 
     void onCategoryError();
+
+    void showPlace(String address);
+
+    void showGenericMessage(int unknown_result_error);
 }
