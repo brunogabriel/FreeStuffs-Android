@@ -3,16 +3,25 @@ package br.com.friendlydonations.application.donate;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.location.places.Place;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.friendlydonations.R;
+import br.com.friendlydonations.helpers.RxHelperTest;
 import br.com.friendlydonations.network.NetworkCategory;
 import br.com.friendlydonations.shared.adapter.CategoryAdapter;
 import br.com.friendlydonations.shared.adapter.PictureUpdaterAdapter;
+import br.com.friendlydonations.shared.models.category.CategoryAnswerModel;
+import br.com.friendlydonations.shared.models.category.CategoryModel;
+import retrofit2.Response;
+import rx.Observable;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -40,10 +49,17 @@ public class DonatePresenterTest {
     Place place;
 
     private DonatePresenter presenter;
+    private RxHelperTest rxHelperTest = new RxHelperTest();
 
     @Before
     public void setUp() {
+        rxHelperTest.setUp();
         presenter = new DonatePresenter(view, pictureUpdaterAdapter, networkCategory, categoryAdapter);
+    }
+
+    @After
+    public void tearDown() {
+        rxHelperTest.tearDown();
     }
 
     @Test
@@ -82,5 +98,35 @@ public class DonatePresenterTest {
 
         // then
         verify(view).showPlace("anyAddress");
+    }
+
+    @Test
+    public void shouldAddCategoriesWhenNetworkAnswerIsValid() {
+        CategoryAnswerModel categoryAnswerModel = createCategoryAnswer();
+        when(networkCategory.findCategories()).thenReturn(Observable.just(Response.success(categoryAnswerModel)));
+        presenter.startRequests();
+        verify(view).showLoader();
+        verify(view).dismissLoader();
+        verify(categoryAdapter).addAll(categoryAnswerModel.getCategoryModelList());
+    }
+
+    @Test
+    public void shouldShowErrorWhenStatusIsFalse() {
+        CategoryAnswerModel categoryAnswerModel = createCategoryAnswer();
+        categoryAnswerModel.setStatus(false);
+        when(networkCategory.findCategories()).thenReturn(Observable.just(Response.success(categoryAnswerModel)));
+        presenter.startRequests();
+        verify(view).showLoader();
+        verify(view).dismissLoader();
+        verify(view).showCategoriesError();
+    }
+
+    private CategoryAnswerModel createCategoryAnswer() {
+        CategoryAnswerModel categoryAnswerModel = new CategoryAnswerModel();
+        List<CategoryModel> list = new ArrayList<>();
+        list.add(new CategoryModel());
+        categoryAnswerModel.setStatus(true);
+        categoryAnswerModel.setCategoryModelList(list);
+        return categoryAnswerModel;
     }
 }

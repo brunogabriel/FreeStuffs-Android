@@ -1,5 +1,7 @@
 package br.com.friendlydonations.application.donate;
 
+import rx.functions.Action0;
+
 /**
  * Created by brunogabriel on 16/02/17.
  */
@@ -18,9 +20,9 @@ public interface DonateView {
 
     void dismissLoader();
 
-    void onCategoryError();
-
     void showPlace(String address);
 
     void showGenericMessage(int unknown_result_error);
+
+    void showCategoriesError();
 }

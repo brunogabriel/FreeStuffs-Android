@@ -1,6 +1,7 @@
 package br.com.friendlydonations.network;
 
 import br.com.friendlydonations.shared.models.category.CategoryAnswerModel;
+import retrofit2.Response;
 import retrofit2.http.GET;
 import rx.Observable;
 
@@ -11,6 +12,6 @@ import rx.Observable;
 public interface NetworkCategory {
 
     @GET("product_categories")
-    Observable<CategoryAnswerModel> findCategories();
+    Observable<Response<CategoryAnswerModel>> findCategories();
 
 }

@@ -15,7 +15,7 @@ import java.util.List;
 import br.com.friendlydonations.R;
 import br.com.friendlydonations.shared.ImageHelper;
 import br.com.friendlydonations.shared.models.ImageModel;
-import br.com.friendlydonations.shared.models.category.CategoryAnswerModel;
+import br.com.friendlydonations.shared.models.category.CategoryModel;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -28,7 +28,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
     private int clickedIndex = -1;
     private Context context;
-    private List<CategoryAnswerModel.CategoryModel> categoryModels;
+    private List<CategoryModel> categoryModels;
 
     public CategoryAdapter(Context context) {
         categoryModels = new ArrayList<>();
@@ -42,7 +42,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
     @Override
     public void onBindViewHolder(CategoryHolder holder, int position) {
-        CategoryAnswerModel.CategoryModel categoryModel = categoryModels.get(position);
+        CategoryModel categoryModel = categoryModels.get(position);
         ImageModel imageModel = categoryModel.getImageModel();
         ImageHelper.loadImageWithPlaceholder(holder.categoryImage, context, imageModel.getLoader(), imageModel.getLarge());
         holder.categoryText.setText(categoryModel.getName());
@@ -54,7 +54,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         return categoryModels.size();
     }
 
-    public void addAll(List<CategoryAnswerModel.CategoryModel> categories) {
+    public void addAll(List<CategoryModel> categories) {
         categoryModels.addAll(categories);
         notifyItemRangeInserted(0, categories.size());
     }

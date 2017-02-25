@@ -16,7 +16,7 @@
     <string name="gallery">Gallery</string>
     <string name="camera">Camera</string>
     <string name="ok">Ok</string>
-    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla cursus semper velit, id posuere nisl. Donec vitae vestibulum turpis. Duis scelerisque sapien sit amet nisi condimentum laoreet. Proin eu nisl sodales lacus scelerisque sodales ac vel quam. Etiam gravida euismod mi, vel eleifend erat vehicula a. In bibendum volutpat luctus. Pellentesque non metus ut diam pellentesque maximus. Duis sed tellus nunc. Aliquam sagittis viverra justo ac fringilla. Suspendisse tincidunt egestas justo, vel facilisis velit cursus nec. Vivamus imperdiet rutrum nisi a pellentesque. Praesent sem ipsum, luctus non sodales vitae, pulvinar id mi. Curabitur vitae mi facilisis, ultricies leo vel, bibendum justo. Nullam nec diam aliquet, hendrerit nisi ac, maximus tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lectus velit, vehicula eget aliquet et, interdum quis orci.</string>
+    <string name="tap_to_load">Tap to Load</string>
     <string name="google_play_services_error_title">Fail during use Google Play Services</string>
     <string name="google_play_services_not_installed">Sorry, but you do not have Google Play Services installed. Go to Store and update/install it.</string>
     <string name="google_play_services_not_available">Sorry, Google Play Services is not responding, try later or verify in Store.</string>

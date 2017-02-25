@@ -13,7 +13,7 @@
     </style>
 
     <style name="RobotoLight"
-            parent="@android:style/TextAppearance.Widget.TextView">&gt;<item name="fontPath">fonts/Roboto-Roboto-Light.ttf</item>
+            parent="@android:style/TextAppearance.Widget.TextView">&gt;<item name="fontPath">fonts/Roboto-Light.ttf</item>
     </style>
 
     <style name="RobotoMedium"

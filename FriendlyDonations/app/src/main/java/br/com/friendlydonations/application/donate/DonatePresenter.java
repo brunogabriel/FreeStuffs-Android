@@ -14,6 +14,7 @@ import br.com.friendlydonations.shared.adapter.CategoryAdapter;
 import br.com.friendlydonations.shared.adapter.PictureUpdaterAdapter;
 import br.com.friendlydonations.shared.application.UnknownHostOperator;
 import br.com.friendlydonations.shared.models.PictureDiskModel;
+import br.com.friendlydonations.shared.models.category.CategoryAnswerModel;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
@@ -90,18 +91,17 @@ public class DonatePresenter {
         subscription = networkCategory.findCategories()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .lift(UnknownHostOperator.getUnknownHostOperator(() -> {
-                    // TODO: Verify
-                }))
                 .doOnSubscribe(() -> view.showLoader())
-                .doAfterTerminate(() -> view.dismissLoader())
-                .subscribe(result -> {
+                .doOnTerminate(() -> view.dismissLoader())
+                .lift(UnknownHostOperator.getUnknownHostOperator(() -> view.showCategoriesError()))
+                .subscribe(response -> {
+                    CategoryAnswerModel result = response.body();
                     if (result.isStatus() && result.getCategoryModelList().size() > 0) {
                         categoryAdapter.addAll(result.getCategoryModelList());
                     } else {
-                        view.onCategoryError();
+                        view.showCategoriesError();
                     }
-                }, error -> view.onCategoryError());
+                }, error -> view.showCategoriesError());
     }
 
     public void verifyCameraPermissions(Context context, String[] permissions) {
@@ -119,6 +119,5 @@ public class DonatePresenter {
             view.requestWriteExternalPermission(permission);
         }
     }
-
 
 }

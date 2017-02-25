@@ -37,6 +37,7 @@ import butterknife.BindArray;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Retrofit;
+import rx.functions.Action0;
 import rx.functions.Action1;
 
 /**
@@ -151,11 +152,6 @@ public class DonateFragment extends BaseFragment implements DonateView {
     }
 
     @Override
-    public void onCategoryError() {
-
-    }
-
-    @Override
     public void showPlace(String address) {
         locationText.setText(address);
     }
@@ -163,6 +159,13 @@ public class DonateFragment extends BaseFragment implements DonateView {
     @Override
     public void showGenericMessage(int unknown_result_error) {
         showSimpleSnackbar(coordinatorLayout, getString(unknown_result_error));
+    }
+
+    @Override
+    public void showCategoriesError() {
+        dynamicBoxHelper.showViewTapToload(() -> {
+            presenter.startRequests();
+        });
     }
 
     private Action1<Throwable> throwableLocation = throwable -> presenter.createGooglePlayServicesDialogError(throwable);
