@@ -55,7 +55,7 @@
                 android:text="@string/login_with_facebook"
                 android:textAlignment="center"
                 android:layout_width="match_parent"
-                android:layout_height="60dp" />
+                android:layout_height="@dimen/general_social_button_height" />
 
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/google_button"
@@ -73,7 +73,7 @@
                 android:text="@string/login_with_google"
                 android:textAlignment="center"
                 android:layout_width="match_parent"
-                android:layout_height="60dp" />
+                android:layout_height="@dimen/general_social_button_height" />
 
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/login_custom_button"
@@ -89,7 +89,7 @@
                 android:text="@string/login_with_custom_account"
                 android:textAlignment="center"
                 android:layout_width="match_parent"
-                android:layout_height="40dp" />
+                android:layout_height="@dimen/invisible_button_height" />
 
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/create_account_button"
@@ -105,7 +105,7 @@
                 android:text="@string/login_create_account"
                 android:textAlignment="center"
                 android:layout_width="match_parent"
-                android:layout_height="40dp" />
+                android:layout_height="@dimen/invisible_button_height" />
 
         </LinearLayout>
 

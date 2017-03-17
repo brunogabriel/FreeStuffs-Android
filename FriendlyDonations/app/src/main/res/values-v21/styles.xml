@@ -50,4 +50,10 @@
         <item name="android:colorControlActivated">@color/colorTitle</item>
     </style>
 
+    <style name="FriendlyDonationsTheme.CheckBox" parent="FriendlyDonationsTheme">
+        <item name="android:colorAccent">@color/colorSuccessYes</item>
+        <item name="android:colorControlNormal">@color/colorSuccessYes</item>
+        <item name="android:colorControlActivated">@color/colorSuccessYes</item>
+    </style>
+
 </resources>

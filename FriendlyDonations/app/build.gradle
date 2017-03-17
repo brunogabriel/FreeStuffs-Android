@@ -5,7 +5,7 @@ apply plugin: 'com.neenbedankt.android-apt'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "24.0.3"
+    buildToolsVersion '25.0.0'
 
     defaultConfig {
         applicationId "br.com.friendlydonations"
@@ -22,6 +22,7 @@ android {
             minifyEnabled false
             resValue "string", "facebook_app_id", "1370357039645664"
             resValue "string", "fb_login_protocol_scheme", "fb1370357039645664"
+            buildConfigField "String", "base_url", '"http://192.168.1.33:3000/"'
         }
 
         release {
@@ -29,6 +30,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             resValue "string", "facebook_app_id", ""
             resValue "string", "fb_login_protocol_scheme", ""
+            buildConfigField "String", "base_url", '"http://192.168.1.33:3000/"'
+        }
+    }
+
+    productFlavors {
+        local {
+            minSdkVersion 21
+        }
+        production {
+            minSdkVersion 16
         }
     }
 
@@ -38,27 +49,40 @@ android {
     }
 }
 
-def SUPPORT_LIB_VERSION = "25.1.0"
+def SUPPORT_LIB_VERSION = "25.2.0"
 def GOOGLE_LIB_VERSION = "9.6.1"
 def DAGGER_LIB_VERSION = "2.8"
 def BUTTERKNIFE_LIB_VERSION = "8.5.1"
 def RETROFIT_LIB_VERSION = "2.1.0"
 def RX_LIB_VERSION = "1.2.1"
 def EVENTBUS_VERSION = "3.0.0"
-
-ext {
-    supportLibVersion = "25.0.0" // 24.2.1
-    googleLibVersion = "9.6.1"
-}
+def ESPRESSO_VERSION = "2.2.2"
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
 
+    // Test Compile
     testCompile 'junit:junit:4.12'
     testCompile "org.mockito:mockito-core:2.7.4"
+
+    // Espresso dependencies
+    androidTestCompile("com.android.support.test.espresso:espresso-core:$ESPRESSO_VERSION", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    androidTestCompile("com.android.support.test.espresso:espresso-web:$ESPRESSO_VERSION", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    androidTestCompile("com.android.support.test.espresso:espresso-intents:$ESPRESSO_VERSION", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    androidTestCompile("com.android.support.test.espresso:espresso-contrib:$ESPRESSO_VERSION", {
+        exclude module: 'support-annotations'
+        exclude module: 'support-v4'
+        exclude module: 'support-v13'
+        exclude module: 'recyclerview-v7'
+        exclude module: 'design'
+        exclude module: 'support'
+    })
 
     // Android and Google Dependencies
     compile "com.android.support:appcompat-v7:${SUPPORT_LIB_VERSION}"
@@ -74,6 +98,17 @@ dependencies {
     apt "com.google.dagger:dagger-compiler:${DAGGER_LIB_VERSION}"
     compile "com.google.dagger:dagger:${DAGGER_LIB_VERSION}"
     provided 'javax.annotation:jsr250-api:1.0'
+
+    // Facebook
+    compile ('com.facebook.android:facebook-android-sdk:4.+') {
+        exclude module: 'bolts-android'
+        exclude module: 'support-annotations'
+        exclude module: 'support-v4'
+        exclude module: 'support-v13'
+        exclude module: 'recyclerview-v7'
+        exclude module: 'design'
+        exclude group: 'com.android.support', module: 'customtabs'
+    }
 
     compile "com.jakewharton:butterknife:${BUTTERKNIFE_LIB_VERSION}"
     apt "com.jakewharton:butterknife-compiler:${BUTTERKNIFE_LIB_VERSION}"
@@ -91,7 +126,7 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.karumi:dexter:3.0.2'
     compile 'com.annimon:stream:1.1.5'
-    compile 'com.facebook.android:facebook-android-sdk:[4,5)'
+
     compile 'com.yalantis:ucrop:2.2.0'
     compile "org.greenrobot:eventbus:${EVENTBUS_VERSION}"
     compile 'com.github.medyo:dynamicbox:1.2@aar'

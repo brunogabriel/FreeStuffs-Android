@@ -44,6 +44,10 @@
         <item name="android:textSize">16sp</item>
     </style>
 
+    <style name="RobotoRegular.ColorParagraph.14sp">
+        <item name="android:textSize">16sp</item>
+    </style>
+
     <style name="RobotoRegular.ColorParagraph.16sp">
         <item name="android:textSize">16sp</item>
     </style>

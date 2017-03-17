@@ -4,7 +4,9 @@
     <string name="google_android_apikey" translatable="false">AIzaSyDu3zC4_c1LgXXvYG8x0SCcHYl_z32W3Nk</string>
 
     <!-- General Strings -->
+    <string name="and">and</string>
     <string name="app_name">FriendlyDonations</string>
+    <string name="create">Create</string>
     <string name="content_description">content description</string>
     <string name="network_not_detected">No internet access, please check it</string>
     <string name="settings">Settings</string>
@@ -16,6 +18,8 @@
     <string name="gallery">Gallery</string>
     <string name="camera">Camera</string>
     <string name="ok">Ok</string>
+    <string name="terms">terms</string>
+    <string name="privacy">privacy</string>
     <string name="tap_to_load">Tap to Load</string>
     <string name="google_play_services_error_title">Fail during use Google Play Services</string>
     <string name="google_play_services_not_installed">Sorry, but you do not have Google Play Services installed. Go to Store and update/install it.</string>
@@ -49,6 +53,13 @@
     <string name="login_with_facebook_cancelled">Login With Facebook was cancelled</string>
     <string name="login_with_facebook_error">An error has occurred during login. Please try again or later.</string>
 
+    <!-- Create Account / Account -->
+    <string name="create_account_title">Create an account</string>
+    <string name="account_name">Name</string>
+    <string name="account_email">E-mail</string>
+    <string name="account_who_are_you">Who are you?</string>
+    <string name="account_agree_not_filled">I agree with</string>
+    
     <!-- Home Fragment -->
 
     <!-- Donate Fragment -->

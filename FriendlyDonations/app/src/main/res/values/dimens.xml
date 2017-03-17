@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    
+
     <dimen name="horizontal_space">16dp</dimen>
     <dimen name="vertical_space">16dp</dimen>
     <dimen name="margin_space">32dp</dimen>
@@ -13,6 +13,13 @@
     <dimen name="view_space_horizontal">16dp</dimen>
     <dimen name="status_bar_height">24dp</dimen>
 
+    <!-- Account Screen -->
+    <dimen name="custom_account_header_height">176dp</dimen>
+    <dimen name="custom_account_header_picture_margin">104dp</dimen>
+
+    <!-- Toolbars -->
+    <dimen name="custom_toolbar_account">140dp</dimen>
+
     <!-- TextViews -->
     <dimen name="text_view_floating_label_height">72dp</dimen>
     <dimen name="text_view_height">56dp</dimen>
@@ -23,9 +30,6 @@
     <!-- Cards -->
     <dimen name="card_marker_size">36dp</dimen>
     <dimen name="card_category">116dp</dimen>
-
-
-
     <dimen name="card_home_height">116dp</dimen>
     <dimen name="card_picture_height">90dp</dimen>
     <dimen name="card_padding">24dp</dimen>
@@ -36,12 +40,18 @@
     <!-- Components -->
     <dimen name="touchable_area">48dp</dimen>
     <dimen name="component_element">72dp</dimen>
+    <dimen name="component_element_semi">36dp</dimen>
     <dimen name="grid_lists_padding_big">4dp</dimen>
     <dimen name="loader_list_height">40dp</dimen>
     <dimen name="alert_max_height">512dp</dimen>
 
     <!-- Floating Action Button -->
     <dimen name="floating_action_button_size">56dp</dimen>
+
+    <!-- App Elements -->
+    <dimen name="general_social_button_height">60dp</dimen>
+    <dimen name="invisible_button_height">40dp</dimen>
+    <dimen name="general_button_height">80dp</dimen>
 
     <!-- Component Profile -->
     <dimen name="profile_username">26sp</dimen>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:paddingTop="@dimen/text_view_floating_label_height"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/form_linear_layout"
+            android:paddingLeft="@dimen/horizontal_space"
+            android:paddingRight="@dimen/horizontal_space"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- Name -->
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_person"
+                    android:tint="@color/colorSubtitle"
+                    android:layout_marginRight="@dimen/horizontal_space"
+                    android:layout_width="@dimen/card_padding"
+                    android:layout_height="@dimen/card_padding" />
+
+                <android.support.design.widget.TextInputLayout
+                    app:theme="@style/FriendlyDonationsTheme.FloatingEditText"
+                    app:hintTextAppearance="@style/FriendlyDonationsTheme.FloatingEditText.Hint"
+                    android:id="@+id/name_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/name_text"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:inputType="text|textPersonName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/account_name" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <!-- Email -->
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/margin_space"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_email"
+                    android:tint="@color/colorSubtitle"
+                    android:layout_marginRight="@dimen/horizontal_space"
+                    android:layout_width="@dimen/card_padding"
+                    android:layout_height="@dimen/card_padding" />
+
+                <android.support.design.widget.TextInputLayout
+                    app:theme="@style/FriendlyDonationsTheme.FloatingEditText"
+                    app:hintTextAppearance="@style/FriendlyDonationsTheme.FloatingEditText.Hint"
+                    android:id="@+id/email_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/email_text"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:inputType="text|textEmailAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/account_email" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <!-- Who are you ? -->
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/margin_space"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_group"
+                    android:tint="@color/colorSubtitle"
+                    android:layout_marginRight="@dimen/horizontal_space"
+                    android:layout_width="@dimen/card_padding"
+                    android:layout_height="@dimen/card_padding" />
+
+                <android.support.design.widget.TextInputLayout
+                    app:theme="@style/FriendlyDonationsTheme.FloatingEditText"
+                    app:hintTextAppearance="@style/FriendlyDonationsTheme.FloatingEditText.Hint"
+                    android:id="@+id/who_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/who_text"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:inputType="text|textEmailAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/account_who_are_you" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/margin_space"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.AppCompatCheckBox
+                    android:id="@+id/agree_checkbox"
+                    android:theme="@style/FriendlyDonationsTheme.CheckBox"
+                    android:layout_marginRight="@dimen/horizontal_space"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/terms_text"
+                    style="@style/RobotoRegular.ColorParagraph.14sp"
+                    android:layout_gravity="center"
+                    android:text="@string/account_agree_not_filled"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/create_account_button"
+            android:layout_gravity="center"
+            android:background="@drawable/drawable_green_hover"
+            style="@style/MontserratBold.ColorWhite.22sp"
+            android:layout_marginTop="@dimen/double_view_space_vertical"
+            android:text="@string/create"
+            android:textAllCaps="false"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/general_button_height" />
+
+    </LinearLayout>
+
+    <!-- android:layout_marginTop="@dimen/margin_space" -->
+
+</android.support.v4.widget.NestedScrollView>

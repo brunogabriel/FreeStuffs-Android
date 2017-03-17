@@ -51,4 +51,10 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="FriendlyDonationsTheme.CheckBox" parent="FriendlyDonationsTheme">
+        <item name="colorAccent">@color/colorSuccessYes</item>
+        <item name="colorControlNormal">@color/colorSuccessYes</item>
+        <item name="colorControlActivated">@color/colorSuccessYes</item>
+    </style>
+
 </resources>

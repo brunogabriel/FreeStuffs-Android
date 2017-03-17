@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/coordinatorLayout"
+    android:fitsSystemWindows="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/frame_content"
+        android:layout_marginTop="@dimen/custom_toolbar_account"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/content_create_account"/>
+
+    </FrameLayout>
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:contentScrim="@color/colorPrimary"
+        app:elevation="0dp"
+        app:statusBarScrim="@color/colorPrimaryDark">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/custom_account_header_height">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/custom_toolbar_account"
+                android:background="@color/colorPrimary" />
+
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/toolbar"
+                app:layout_scrollFlags="scroll|enterAlways" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="@dimen/component_element"
+                android:layout_height="@dimen/component_element"
+                android:layout_marginLeft="@dimen/space_between_views"
+                android:layout_marginTop="@dimen/custom_account_header_picture_margin"
+                android:src="@drawable/ic_profile_sample"
+                app:civ_border_color="@color/colorWhite"
+                app:civ_border_width="1dp" />
+        </FrameLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>

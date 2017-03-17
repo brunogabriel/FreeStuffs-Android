@@ -74,6 +74,18 @@
             android:screenOrientation="portrait"
             android:theme="@style/FriendlyDonationsTheme">
 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+
+        </activity>
+
+        <!-- Create Account -->
+        <activity android:name=".application.account.CreateAccountActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/FriendlyDonationsTheme.NotTranslucent">
         </activity>
 
         <!-- Application Components -->
@@ -81,10 +93,12 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize"
             android:theme="@style/FriendlyDonationsTheme.NotTranslucent">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+        </activity>
+        
+        <activity android:name=".application.webview.ActivityWebView"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/FriendlyDonationsTheme.NotTranslucent">
         </activity>
 
     </application>
