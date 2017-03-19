@@ -12,17 +12,25 @@ import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.Toolbar;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
+import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import br.com.friendlydonations.R;
 import br.com.friendlydonations.application.webview.ActivityWebView;
 import br.com.friendlydonations.shared.BaseActivity;
+import br.com.friendlydonations.shared.CameraGalleryHelper;
+import br.com.friendlydonations.shared.PermissionsHelper;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import uk.co.chrisjenx.calligraphy.CalligraphyTypefaceSpan;
 import uk.co.chrisjenx.calligraphy.TypefaceUtils;
+
+import static br.com.friendlydonations.application.webview.ActivityWebView.PATH_EXTRA;
+import static br.com.friendlydonations.application.webview.ActivityWebView.TITLE_EXTRA;
+import static br.com.friendlydonations.shared.CameraGalleryHelper.CAMERA_CODE;
+import static br.com.friendlydonations.shared.CameraGalleryHelper.GALLERY_CODE;
 
 /**
  * Created by brunogabriel on 16/03/17.
@@ -69,6 +77,9 @@ public class CreateAccountActivity extends BaseActivity implements AccountView {
     @BindView(R.id.coordinatorLayout)
     CoordinatorLayout coordinatorLayout;
 
+    private AccountPresenter presenter;
+    private CameraGalleryHelper cameraGalleryHelper;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +87,11 @@ public class CreateAccountActivity extends BaseActivity implements AccountView {
         unbinder = ButterKnife.bind(this);
         setupToolbar(toolbar, getString(R.string.create_account_title), null, true, true);
         initUI();
+        presenter = new AccountPresenter(this);
+        cameraGalleryHelper = new CameraGalleryHelper(this,
+                new PermissionsHelper(this),
+                () -> presenter.openCamera(),
+                () -> presenter.openGallery());
     }
 
     private void initUI() {
@@ -84,11 +100,28 @@ public class CreateAccountActivity extends BaseActivity implements AccountView {
 
     // View Actions
     @OnClick(R.id.terms_text)
-    protected void onClickCheckBoxLayout () {
-        // TODO: Show View
-        startActivity(new Intent(this, ActivityWebView.class));
+    protected void onClickTerms () {
+        startActivity(new Intent(this, ActivityWebView.class)
+                .putExtra(TITLE_EXTRA, getString(R.string.terms_privacy_title))
+                .putExtra(PATH_EXTRA, getString(R.string.terms_privacy_path)));
     }
 
+    @OnClick(R.id.profile_image)
+    protected void onClickProfileImage() {
+        presenter.tryToChangeProfileImage();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    // Custom
     private void setupTerms() {
         SpannableStringBuilder builder = new SpannableStringBuilder();
         builder.append(getString(R.string.account_agree_not_filled))
@@ -97,5 +130,20 @@ public class CreateAccountActivity extends BaseActivity implements AccountView {
                 .append(" " + getString(R.string.privacy), new CalligraphyTypefaceSpan(TypefaceUtils.load(getAssets(), "fonts/Roboto-Bold.ttf")), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         termsText.setText(builder);
+    }
+
+    @Override
+    public void showImageUpdater() {
+        cameraGalleryHelper.showChooseCameraOrGallery();
+    }
+
+    @Override
+    public void openDeviceCamera() {
+        startActivityForResult(cameraGalleryHelper.createCameraIntent(), CAMERA_CODE);
+    }
+
+    @Override
+    public void openDeviceGallery() {
+        startActivityForResult(cameraGalleryHelper.createGalleryIntent(), GALLERY_CODE);
     }
 }

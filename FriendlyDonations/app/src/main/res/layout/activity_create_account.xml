@@ -4,6 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/coordinatorLayout"
     android:fitsSystemWindows="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -42,6 +44,7 @@
                 app:layout_scrollFlags="scroll|enterAlways" />
 
             <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image"
                 android:layout_width="@dimen/component_element"
                 android:layout_height="@dimen/component_element"
                 android:layout_marginLeft="@dimen/space_between_views"

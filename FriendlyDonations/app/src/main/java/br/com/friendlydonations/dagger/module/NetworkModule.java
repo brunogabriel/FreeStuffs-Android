@@ -22,7 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class NetworkModule {
 
-    public static final String BASE_URL = "https://rededoar.thiagosf.net/";
+    /** Old URL: https://rededoar.thiagosf.net/ **/
     public static final String TAG = NetworkModule.class.getSimpleName();
 
     // Constants

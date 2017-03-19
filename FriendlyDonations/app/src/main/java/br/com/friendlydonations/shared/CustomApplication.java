@@ -1,7 +1,11 @@
 package br.com.friendlydonations.shared;
 
 import android.app.Application;
+import android.support.annotation.NonNull;
+
 import com.facebook.appevents.AppEventsLogger;
+
+import br.com.friendlydonations.BuildConfig;
 import br.com.friendlydonations.R;
 import br.com.friendlydonations.dagger.component.DaggerNetworkComponent;
 import br.com.friendlydonations.dagger.component.NetworkComponent;
@@ -32,7 +36,7 @@ public class CustomApplication extends Application {
     private void initializeDaggerComponents() {
         networkComponent = DaggerNetworkComponent.builder()
                 .customApplicationModule(new CustomApplicationModule(this))
-                .networkModule(new NetworkModule(NetworkModule.BASE_URL))
+                .networkModule(new NetworkModule(BuildConfig.base_url))
                 .build();
     }
 
@@ -46,5 +50,16 @@ public class CustomApplication extends Application {
 
     public NetworkComponent getNetworkComponent() {
         return networkComponent;
+    }
+
+    /**
+     * Helper to permit mock tests instrumental context
+     * @param baseUrl A non null url that represents custom environment
+     */
+    public void useCustomBaseURL (@NonNull String baseUrl) {
+        networkComponent = DaggerNetworkComponent.builder()
+                .customApplicationModule(new CustomApplicationModule(this))
+                .networkModule(new NetworkModule(baseUrl))
+                .build();
     }
 }

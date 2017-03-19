@@ -22,6 +22,7 @@ import butterknife.Unbinder;
 
 public class ApplicationDialogFragment extends DialogFragment {
 
+    // TODO: Fix problem when change idiom
     private Unbinder unbider;
     private boolean isScrollable;
     private final String title;

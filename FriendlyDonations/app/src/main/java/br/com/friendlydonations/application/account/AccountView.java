@@ -5,4 +5,9 @@ package br.com.friendlydonations.application.account;
  */
 
 interface AccountView {
+    void openDeviceCamera();
+
+    void openDeviceGallery();
+
+    void showImageUpdater();
 }

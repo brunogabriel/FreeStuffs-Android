@@ -41,7 +41,7 @@
     </array>
 
     <!-- Dialog Texts -->
-    <string name="dialog_title_choose_updater">Choose to change or update</string>
+    <string name="dialog_title_choose_updater">Select update image option</string>
 
     <!-- Login -->
     <string name="login_about_terms">About FriendlyDonation and terms</string>
@@ -59,6 +59,10 @@
     <string name="account_email">E-mail</string>
     <string name="account_who_are_you">Who are you?</string>
     <string name="account_agree_not_filled">I agree with</string>
+
+    <!-- Terms And Privacy -->
+    <string name="terms_privacy_title">Terms and Privacy</string>
+    <string name="terms_privacy_path">/terms_and_policy</string>
     
     <!-- Home Fragment -->
 
