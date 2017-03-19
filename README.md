@@ -16,7 +16,7 @@ This app is structure by using java packages, where:
 
 1. **`managers`** : packages with basic components
 
-2. **`models`**: POJOS e objects with responsability to model project structure like CRUD, API Response and others
+2. **`models`**: POJOS e objects with responsibility to model project structure like CRUD, API Response and others
 
 3. **`network`**: web communication
 
