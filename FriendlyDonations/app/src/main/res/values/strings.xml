@@ -1,30 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <!-- Keys -->
     <string name="google_android_apikey" translatable="false">AIzaSyDu3zC4_c1LgXXvYG8x0SCcHYl_z32W3Nk</string>
 
     <!-- General Strings -->
     <string name="and">and</string>
     <string name="app_name">FriendlyDonations</string>
-    <string name="create">Create</string>
-    <string name="content_description">content description</string>
-    <string name="network_not_detected">No internet access, please check it</string>
-    <string name="settings">Settings</string>
-    <string name="preferences">Preferences</string>
-    <string name="donate">Donate</string>
     <string name="by_mail">by mail</string>
     <string name="by_phone">by phone</string>
-    <string name="loading">Loading</string>
-    <string name="gallery">Gallery</string>
+    <string name="cancel">Cancel</string>
     <string name="camera">Camera</string>
+    <string name="create">Create</string>
+    <string name="content_description">content description</string>
+    <string name="donate">Donate</string>
+    <string name="gallery">Gallery</string>
+    <string name="loading">Loading</string>
+    <string name="network_not_detected">No internet access, please check it</string>
     <string name="ok">Ok</string>
-    <string name="terms">terms</string>
+    <string name="preferences">Preferences</string>
     <string name="privacy">privacy</string>
+    <string name="settings">Settings</string>
     <string name="tap_to_load">Tap to Load</string>
-    <string name="google_play_services_error_title">Fail during use Google Play Services</string>
-    <string name="google_play_services_not_installed">Sorry, but you do not have Google Play Services installed. Go to Store and update/install it.</string>
-    <string name="google_play_services_not_available">Sorry, Google Play Services is not responding, try later or verify in Store.</string>
+    <string name="terms">terms</string>
     <string name="unknown_result_error">Unknown result, try again or verify your connection</string>
+
+    <!-- Google Play Services -->
+    <string name="google_play_services_error_title">Fail during use Google Play Services</string>
+    <string name="google_play_services_not_available">Sorry, Google Play Services is not responding, try later or verify in Store.</string>
+    <string name="google_play_services_not_installed">Sorry, but you do not have Google Play Services installed. Go to Store and update/install it.</string>
 
     <!-- General Arrays -->
     <array name="array_tab_main">
@@ -42,37 +46,39 @@
 
     <!-- Dialog Texts -->
     <string name="dialog_title_choose_updater">Select update image option</string>
+    <string name="dialog_permissions_settings">Sorry, but you need to allow required permissions to this application in settings.</string>
+    <string name="dialog_permissions_settings_title">Required permissions</string>
 
     <!-- Login -->
-    <string name="login_about_terms">About FriendlyDonation and terms</string>
-    <string name="login_with_facebook">Login With Facebook</string>
-    <string name="login_with_google">Login With Google</string>
-    <string name="login_with_custom_account">Login With My Account</string>
-    <string name="login_create_account">Create An Account</string>
     <string name="login_about_and_use_terms">About and User Terms</string>
+    <string name="login_about_terms">About FriendlyDonation and terms</string>
+    <string name="login_create_account">Create An Account</string>
+    <string name="login_with_custom_account">Login With My Account</string>
+    <string name="login_with_facebook">Login With Facebook</string>
     <string name="login_with_facebook_cancelled">Login With Facebook was cancelled</string>
     <string name="login_with_facebook_error">An error has occurred during login. Please try again or later.</string>
+    <string name="login_with_google">Login With Google</string>
 
     <!-- Create Account / Account -->
-    <string name="create_account_title">Create an account</string>
-    <string name="account_name">Name</string>
-    <string name="account_email">E-mail</string>
-    <string name="account_who_are_you">Who are you?</string>
     <string name="account_agree_not_filled">I agree with</string>
+    <string name="account_email">E-mail</string>
+    <string name="account_name">Name</string>
+    <string name="account_who_are_you">Who are you?</string>
+    <string name="create_account_title">Create an account</string>
 
     <!-- Terms And Privacy -->
-    <string name="terms_privacy_title">Terms and Privacy</string>
     <string name="terms_privacy_path">/terms_and_policy</string>
-    
+    <string name="terms_privacy_title">Terms and Privacy</string>
+
     <!-- Home Fragment -->
 
     <!-- Donate Fragment -->
-    <string name="donate_upload_your_photos">Upload your item photos</string>
-    <string name="donate_select_a_category">Select a Category</string>
     <string name="donate_hint_item_title">Item Title</string>
     <string name="donate_hint_description">Description</string>
     <string name="donate_hint_location">Location</string>
     <string name="donate_hint_delivery">Delivery</string>
+    <string name="donate_upload_your_photos">Upload your item photos</string>
+    <string name="donate_select_a_category">Select a Category</string>
     <string name="donate_would_get_by">I would like get in touch by</string>
 
     <!-- Profile Fragment -->

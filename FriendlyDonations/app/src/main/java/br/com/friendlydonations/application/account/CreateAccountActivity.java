@@ -1,11 +1,14 @@
 package br.com.friendlydonations.application.account;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.AppCompatEditText;
@@ -16,7 +19,12 @@ import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.yalantis.ucrop.UCrop;
+
+import java.io.File;
+
 import br.com.friendlydonations.R;
+import br.com.friendlydonations.application.donate.DonateFragment;
 import br.com.friendlydonations.application.webview.ActivityWebView;
 import br.com.friendlydonations.shared.BaseActivity;
 import br.com.friendlydonations.shared.CameraGalleryHelper;
@@ -145,5 +153,29 @@ public class CreateAccountActivity extends BaseActivity implements AccountView {
     @Override
     public void openDeviceGallery() {
         startActivityForResult(cameraGalleryHelper.createGalleryIntent(), GALLERY_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == Activity.RESULT_OK) {
+            switch (requestCode) {
+                case CAMERA_CODE:
+                    File cameraFile = cameraGalleryHelper.createMediaFile();
+                    break;
+                case GALLERY_CODE:
+                    int y = 10;
+                    break;
+            }
+        }
+    }
+
+    private void callCrop(Uri sourceUri, Uri destinyUri) {
+        UCrop.Options options = new UCrop.Options();
+        options.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
+        options.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
+        UCrop.of(sourceUri, destinyUri)
+                .withAspectRatio(4, 3)
+                .withOptions(options)
+                .start(this);
     }
 }

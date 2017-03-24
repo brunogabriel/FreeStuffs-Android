@@ -1,6 +1,5 @@
 package br.com.friendlydonations.shared;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.MediaStore;
@@ -37,12 +36,12 @@ public class CameraGalleryHelper {
     public static final int CAMERA_CODE = 1000;
     public static final int GALLERY_CODE = 1001;
 
-    private Activity activity;
+    private BaseActivity activity;
     private PermissionsHelper permissionsHelper;
     private Action0 openCameraAction;
     private Action0 openGalleryAction;
 
-    public CameraGalleryHelper(@NonNull Activity activity,
+    public CameraGalleryHelper(@NonNull BaseActivity activity,
                                @NonNull PermissionsHelper permissionsHelper,
                                @NonNull Action0 openCameraAction,
                                @NonNull Action0 openGalleryAction) {
@@ -69,13 +68,15 @@ public class CameraGalleryHelper {
                             @Override
                             public void onPermissionsChecked(MultiplePermissionsReport report) {
                                 if (report.areAllPermissionsGranted()) {
-
+                                    openCameraAction.call();
+                                } else if (report.isAnyPermissionPermanentlyDenied()) {
+                                    activity.showPermissionsSettings();
                                 }
                             }
 
                             @Override
                             public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
-                                // token.continuePermissionRequest();
+                                token.continuePermissionRequest();
                             }
                         }).check();
             }
@@ -101,7 +102,7 @@ public class CameraGalleryHelper {
 
                             @Override
                             public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
-                                // token.continuePermissionRequest();
+                                token.continuePermissionRequest();
                             }
                         }).check();
             }

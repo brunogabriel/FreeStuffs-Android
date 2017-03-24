@@ -78,7 +78,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                 if (clickedIndex == -1) {
                     clickedIndex = getAdapterPosition();
                     notifyItemChanged(clickedIndex);
-                } else if (clickedIndex != -1 && clickedIndex != getAdapterPosition()) {
+                } else if (clickedIndex != getAdapterPosition()) {
                     int oldPosition = clickedIndex;
                     notifyItemChanged(oldPosition);
                     clickedIndex = getAdapterPosition();

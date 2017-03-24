@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import br.com.friendlydonations.R;
 import br.com.friendlydonations.dagger.component.NetworkComponent;
+import br.com.friendlydonations.shared.views.alert.AlertPermissionsSettingsDialog;
 import butterknife.Unbinder;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -113,6 +114,11 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
+
+    public void showPermissionsSettings() {
+        AlertPermissionsSettingsDialog alertPermissionsSettingsDialog = new AlertPermissionsSettingsDialog();
+        alertPermissionsSettingsDialog.show(getFragmentManager(), "");
     }
 
     @Override

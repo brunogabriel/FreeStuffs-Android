@@ -202,6 +202,7 @@
 
             <!-- by mail -->
             <LinearLayout
+                android:baselineAligned="false"
                 android:orientation="horizontal"
                 android:layout_marginBottom="@dimen/margin_space"
                 android:layout_width="match_parent"

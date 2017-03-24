@@ -132,11 +132,13 @@
 
                 <TextView
                     android:id="@+id/terms_text"
+                    android:clickable="true"
+                    android:background="?android:attr/selectableItemBackground"
                     style="@style/RobotoRegular.ColorParagraph.14sp"
-                    android:layout_gravity="center"
+                    android:gravity="center_vertical"
                     android:text="@string/account_agree_not_filled"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="match_parent" />
 
             </LinearLayout>
 

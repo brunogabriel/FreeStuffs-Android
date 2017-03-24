@@ -66,9 +66,7 @@ public class DynamicBoxHelper {
     public void showViewTapToload(Action0 action) {
         View customView = layoutInflater.inflate(TAP_TO_LOAD_BOX.getLayoutResource(), view instanceof ViewGroup ? (ViewGroup) view: null, false);
 
-        RxView.clicks(customView.findViewById(R.id.button_load)).subscribe(result -> {
-            action.call();
-        });
+        RxView.clicks(customView.findViewById(R.id.button_load)).subscribe(result -> action.call());
         dynamicBox.addCustomView(customView, TAP_TO_LOAD_BOX.name());
         dynamicBox.showCustomView(TAP_TO_LOAD_BOX.name());
     }
