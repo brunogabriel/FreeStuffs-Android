@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
@@ -21,6 +22,8 @@ import br.com.friendlydonations.dagger.component.NetworkComponent;
 import br.com.friendlydonations.shared.views.alert.AlertPermissionsSettingsDialog;
 import butterknife.Unbinder;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
+import static android.R.id.message;
 
 /**
  * Created by brunogabriel on 05/02/17.
@@ -109,6 +112,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (!TextUtils.isEmpty(message)) {
             Toast.makeText(this, message, duration).show();
         }
+    }
+
+    public void showMessageSnackBar(@NonNull View view, @NonNull String message) {
+        Snackbar.make(view, message, Snackbar.LENGTH_LONG).show();
     }
 
     @Override

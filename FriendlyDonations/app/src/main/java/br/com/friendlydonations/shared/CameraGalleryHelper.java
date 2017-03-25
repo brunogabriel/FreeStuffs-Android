@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +20,6 @@ import com.karumi.dexter.listener.single.PermissionListener;
 
 import java.io.File;
 import java.util.List;
-import java.util.UUID;
 
 import br.com.friendlydonations.R;
 import rx.functions.Action0;
@@ -33,6 +33,7 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class CameraGalleryHelper {
 
+    public static final String TEMPORARY_IMAGE_FILENAME = "temporary-image";
     public static final int CAMERA_CODE = 1000;
     public static final int GALLERY_CODE = 1001;
 
@@ -109,15 +110,13 @@ public class CameraGalleryHelper {
         });
     }
 
-    public File createMediaFile() {
-        return new File(activity.getExternalFilesDir("AppImages").getPath(),
-                UUID.randomUUID().toString());
+    public File createOrGetMediaFile(@Nullable String fileName) {
+        return new File(activity.getExternalFilesDir("AppImages").getPath(), fileName);
     }
 
     public Intent createCameraIntent() {
         return new Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                .putExtra(MediaStore.EXTRA_OUTPUT,
-                        Uri.fromFile(createMediaFile()));
+                .putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(createOrGetMediaFile(TEMPORARY_IMAGE_FILENAME)));
     }
 
     public Intent createGalleryIntent() {

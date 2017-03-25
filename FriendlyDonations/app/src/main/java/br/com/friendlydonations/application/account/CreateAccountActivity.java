@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
@@ -19,12 +20,10 @@ import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
 import com.yalantis.ucrop.UCrop;
 
-import java.io.File;
-
 import br.com.friendlydonations.R;
-import br.com.friendlydonations.application.donate.DonateFragment;
 import br.com.friendlydonations.application.webview.ActivityWebView;
 import br.com.friendlydonations.shared.BaseActivity;
 import br.com.friendlydonations.shared.CameraGalleryHelper;
@@ -32,6 +31,7 @@ import br.com.friendlydonations.shared.PermissionsHelper;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import de.hdodenhof.circleimageview.CircleImageView;
 import uk.co.chrisjenx.calligraphy.CalligraphyTypefaceSpan;
 import uk.co.chrisjenx.calligraphy.TypefaceUtils;
 
@@ -39,6 +39,8 @@ import static br.com.friendlydonations.application.webview.ActivityWebView.PATH_
 import static br.com.friendlydonations.application.webview.ActivityWebView.TITLE_EXTRA;
 import static br.com.friendlydonations.shared.CameraGalleryHelper.CAMERA_CODE;
 import static br.com.friendlydonations.shared.CameraGalleryHelper.GALLERY_CODE;
+import static br.com.friendlydonations.shared.CameraGalleryHelper.TEMPORARY_IMAGE_FILENAME;
+import static com.yalantis.ucrop.UCrop.RESULT_ERROR;
 
 /**
  * Created by brunogabriel on 16/03/17.
@@ -81,9 +83,11 @@ public class CreateAccountActivity extends BaseActivity implements AccountView {
     @BindView(R.id.create_account_button)
     AppCompatButton createAccountButton;
 
-
     @BindView(R.id.coordinatorLayout)
     CoordinatorLayout coordinatorLayout;
+
+    @BindView(R.id.profile_image)
+    CircleImageView profileImage;
 
     private AccountPresenter presenter;
     private CameraGalleryHelper cameraGalleryHelper;
@@ -109,9 +113,7 @@ public class CreateAccountActivity extends BaseActivity implements AccountView {
     // View Actions
     @OnClick(R.id.terms_text)
     protected void onClickTerms () {
-        startActivity(new Intent(this, ActivityWebView.class)
-                .putExtra(TITLE_EXTRA, getString(R.string.terms_privacy_title))
-                .putExtra(PATH_EXTRA, getString(R.string.terms_privacy_path)));
+        presenter.openPrivacyTerms();
     }
 
     @OnClick(R.id.profile_image)
@@ -146,6 +148,12 @@ public class CreateAccountActivity extends BaseActivity implements AccountView {
     }
 
     @Override
+    public void cropImage(@NonNull Uri cameraFile,
+                          @NonNull String cropImageFileName) {
+        callToCrop(cameraFile, Uri.fromFile(cameraGalleryHelper.createOrGetMediaFile(cropImageFileName)));
+    }
+
+    @Override
     public void openDeviceCamera() {
         startActivityForResult(cameraGalleryHelper.createCameraIntent(), CAMERA_CODE);
     }
@@ -156,20 +164,46 @@ public class CreateAccountActivity extends BaseActivity implements AccountView {
     }
 
     @Override
+    public void updateProfile(@NonNull Uri profileUri) {
+        Picasso.with(this)
+                .load(profileUri).into(profileImage);
+    }
+
+    @Override
+    public void openWebView() {
+        startActivity(new Intent(this, ActivityWebView.class)
+                .putExtra(TITLE_EXTRA, getString(R.string.terms_privacy_title))
+                .putExtra(PATH_EXTRA, getString(R.string.terms_privacy_path)));
+    }
+
+    @Override
+    public void showCropError() {
+        showMessageSnackBar(coordinatorLayout, getString(R.string.ucrop_result_error));
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK) {
             switch (requestCode) {
                 case CAMERA_CODE:
-                    File cameraFile = cameraGalleryHelper.createMediaFile();
+                    Uri cameraFile = Uri.fromFile(cameraGalleryHelper.createOrGetMediaFile(TEMPORARY_IMAGE_FILENAME));
+                    presenter.tryToCrop(cameraFile);
                     break;
                 case GALLERY_CODE:
-                    int y = 10;
+                    presenter.tryToCrop(data.getData());
                     break;
+                case UCrop.REQUEST_CROP:
+                    presenter.updateProfileImage(UCrop.getOutput(data));
+                    break;
+
             }
+        } else if (resultCode == RESULT_ERROR) {
+            presenter.showErrorOnCrop();
         }
     }
 
-    private void callCrop(Uri sourceUri, Uri destinyUri) {
+    private void callToCrop(Uri sourceUri, Uri destinyUri) {
         UCrop.Options options = new UCrop.Options();
         options.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
         options.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
