@@ -8,15 +8,17 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatCheckBox;
-import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.Toolbar;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -28,10 +30,17 @@ import br.com.friendlydonations.application.webview.ActivityWebView;
 import br.com.friendlydonations.shared.BaseActivity;
 import br.com.friendlydonations.shared.CameraGalleryHelper;
 import br.com.friendlydonations.shared.PermissionsHelper;
+import br.com.friendlydonations.shared.form.EmailValidator;
+import br.com.friendlydonations.shared.form.FormHelper;
+import br.com.friendlydonations.shared.form.NameValidator;
+import br.com.friendlydonations.shared.form.NotEmptyValidator;
+import br.com.friendlydonations.shared.form.PasswordValidator;
+import butterknife.BindArray;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
+import rx.Observable;
 import uk.co.chrisjenx.calligraphy.CalligraphyTypefaceSpan;
 import uk.co.chrisjenx.calligraphy.TypefaceUtils;
 
@@ -54,22 +63,34 @@ public class CreateAccountActivity extends BaseActivity implements AccountView {
     AppBarLayout appBarLayout;
 
     @BindView(R.id.name_text)
-    AppCompatEditText nameText;
+    TextInputEditText nameText;
 
     @BindView(R.id.name_layout)
     TextInputLayout nameLayout;
 
     @BindView(R.id.email_text)
-    AppCompatEditText emailText;
+    TextInputEditText emailText;
 
     @BindView(R.id.email_layout)
     TextInputLayout emailLayout;
 
     @BindView(R.id.who_text)
-    AppCompatEditText whoText;
+    TextInputEditText whoText;
 
     @BindView(R.id.who_layout)
     TextInputLayout whoLayout;
+
+    @BindView(R.id.password_text)
+    TextInputEditText passwordText;
+
+    @BindView(R.id.password_layout)
+    TextInputLayout passwordLayout;
+
+    @BindView(R.id.password_confirm_text)
+    TextInputEditText passwordConfirmText;
+
+    @BindView(R.id.password_confirm_layout)
+    TextInputLayout passwordConfirmLayout;
 
     @BindView(R.id.agree_checkbox)
     AppCompatCheckBox agreeCheckbox;
@@ -89,6 +110,9 @@ public class CreateAccountActivity extends BaseActivity implements AccountView {
     @BindView(R.id.profile_image)
     CircleImageView profileImage;
 
+    @BindArray(R.array.array_spinner_who_are_you)
+    String[] whoAreYouArray;
+
     private AccountPresenter presenter;
     private CameraGalleryHelper cameraGalleryHelper;
 
@@ -107,12 +131,58 @@ public class CreateAccountActivity extends BaseActivity implements AccountView {
     }
 
     private void initUI() {
-        setupTerms();
+        setUpTerms();
+        setUpWhoAreYou();
+        setUpForm();
+    }
+
+    private void setUpForm() {
+        Observable<Boolean> nameObservable = FormHelper.fieldObservable(nameLayout, nameText, getString(R.string.form_error_name), new NameValidator());
+        Observable<Boolean> emailObservable = FormHelper.fieldObservable(emailLayout, emailText, getString(R.string.form_error_name), new EmailValidator());
+        Observable<Boolean> whoAreObservable = FormHelper.fieldObservable(whoLayout, whoText, getString(R.string.form_field_cannot_be_empty), new NotEmptyValidator());
+        Observable<Boolean> passwordObservable = FormHelper.fieldObservable(passwordLayout, passwordText, getString(R.string.form_field_password), new PasswordValidator());
+        Observable<Boolean> compositeObservable = FormHelper.compositeObservable(passwordConfirmLayout, passwordConfirmText, passwordText, getString(R.string.form_field_password_confirmation), new PasswordValidator());
+        Observable<Boolean> checkObservable = FormHelper.checkBoxObservable(agreeCheckbox);
+
+        Observable.combineLatest(nameObservable, emailObservable, whoAreObservable, passwordObservable, compositeObservable, checkObservable,
+                (isNameValid, isEmailValid, isWhoValid, isPasswordValid, isCompositeValid, isChecked)
+                        -> isNameValid && isEmailValid && isWhoValid && isPasswordValid && isCompositeValid && isChecked)
+                .distinctUntilChanged().subscribe(isValid -> createAccountButton.setEnabled(isValid));
+    }
+
+    private void setUpWhoAreYou() {
+        whoText.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                dismissKeyboard();
+                showWhoAreDialog();
+            }
+        });
+
+        whoText.setOnClickListener(v -> {
+            if (whoText.hasFocus()) {
+                dismissKeyboard();
+                showWhoAreDialog();
+            }
+        });
+        whoText.setKeyListener(null);
+    }
+
+    private void showWhoAreDialog() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setAdapter(
+                new ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, whoAreYouArray),
+                (dialog, position) -> {
+                    whoText.setText(whoAreYouArray[position]);
+                    dialog.dismiss();
+                    passwordText.requestFocus();
+                    openKeyboard(passwordText);
+                });
+        alertDialog.show();
     }
 
     // View Actions
     @OnClick(R.id.terms_text)
-    protected void onClickTerms () {
+    protected void onClickTerms() {
         presenter.openPrivacyTerms();
     }
 
@@ -132,12 +202,15 @@ public class CreateAccountActivity extends BaseActivity implements AccountView {
     }
 
     // Custom
-    private void setupTerms() {
+    private void setUpTerms() {
         SpannableStringBuilder builder = new SpannableStringBuilder();
         builder.append(getString(R.string.account_agree_not_filled))
-                .append(" " + getString(R.string.terms), new CalligraphyTypefaceSpan(TypefaceUtils.load(getAssets(), "fonts/Roboto-Bold.ttf")), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-                .append(" " + getString(R.string.and))
-                .append(" " + getString(R.string.privacy), new CalligraphyTypefaceSpan(TypefaceUtils.load(getAssets(), "fonts/Roboto-Bold.ttf")), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                .append(" ")
+                .append(getString(R.string.terms), new CalligraphyTypefaceSpan(TypefaceUtils.load(getAssets(), "fonts/Roboto-Bold.ttf")), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                .append(" ")
+                .append(getString(R.string.and))
+                .append(" ")
+                .append(getString(R.string.privacy), new CalligraphyTypefaceSpan(TypefaceUtils.load(getAssets(), "fonts/Roboto-Bold.ttf")), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         termsText.setText(builder);
     }

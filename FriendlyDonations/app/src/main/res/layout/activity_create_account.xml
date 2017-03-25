@@ -49,7 +49,7 @@
                 android:layout_height="@dimen/component_element"
                 android:layout_marginLeft="@dimen/space_between_views"
                 android:layout_marginTop="@dimen/custom_account_header_picture_margin"
-                android:src="@drawable/ic_profile_sample"
+                android:src="@drawable/ic_profile_updater"
                 app:civ_border_color="@color/colorWhite"
                 app:civ_border_width="1dp" />
         </FrameLayout>

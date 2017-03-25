@@ -2,6 +2,7 @@
 <android.support.v4.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nested_scrollview"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -38,10 +39,11 @@
                     app:theme="@style/FriendlyDonationsTheme.FloatingEditText"
                     app:hintTextAppearance="@style/FriendlyDonationsTheme.FloatingEditText.Hint"
                     android:id="@+id/name_layout"
+                    app:errorEnabled="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/name_text"
                         android:maxLines="1"
                         android:singleLine="true"
@@ -55,7 +57,7 @@
             <!-- Email -->
             <LinearLayout
                 android:orientation="horizontal"
-                android:layout_marginTop="@dimen/margin_space"
+                android:layout_marginTop="@dimen/vertical_space"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -71,10 +73,11 @@
                     app:theme="@style/FriendlyDonationsTheme.FloatingEditText"
                     app:hintTextAppearance="@style/FriendlyDonationsTheme.FloatingEditText.Hint"
                     android:id="@+id/email_layout"
+                    app:errorEnabled="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/email_text"
                         android:maxLines="1"
                         android:singleLine="true"
@@ -88,7 +91,7 @@
             <!-- Who are you ? -->
             <LinearLayout
                 android:orientation="horizontal"
-                android:layout_marginTop="@dimen/margin_space"
+                android:layout_marginTop="@dimen/vertical_space"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -107,14 +110,84 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/who_text"
+                        android:drawableRight="@drawable/ic_arrow_popup"
                         android:maxLines="1"
+                        app:errorEnabled="true"
                         android:singleLine="true"
-                        android:inputType="text|textEmailAddress"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/account_who_are_you" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <!-- Password -->
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/vertical_space"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_lock"
+                    android:tint="@color/colorSubtitle"
+                    android:layout_marginRight="@dimen/horizontal_space"
+                    android:layout_width="@dimen/card_padding"
+                    android:layout_height="@dimen/card_padding" />
+
+                <android.support.design.widget.TextInputLayout
+                    app:theme="@style/FriendlyDonationsTheme.FloatingEditText"
+                    app:hintTextAppearance="@style/FriendlyDonationsTheme.FloatingEditText.Hint"
+                    android:id="@+id/password_layout"
+                    app:errorEnabled="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/password_text"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:inputType="textPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/password" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <!-- Confirm Password -->
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/vertical_space"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_lock"
+                    android:tint="@color/colorSubtitle"
+                    android:layout_marginRight="@dimen/horizontal_space"
+                    android:layout_width="@dimen/card_padding"
+                    android:layout_height="@dimen/card_padding" />
+
+
+                <android.support.design.widget.TextInputLayout
+                    app:theme="@style/FriendlyDonationsTheme.FloatingEditText"
+                    app:hintTextAppearance="@style/FriendlyDonationsTheme.FloatingEditText.Hint"
+                    android:id="@+id/password_confirm_layout"
+                    app:errorEnabled="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/password_confirm_text"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:inputType="textPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/password_confirmation" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
@@ -148,6 +221,7 @@
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/create_account_button"
             android:layout_gravity="center"
+            android:enabled="false"
             android:background="@drawable/drawable_green_hover"
             style="@style/MontserratBold.ColorWhite.22sp"
             android:layout_marginTop="@dimen/double_view_space_vertical"

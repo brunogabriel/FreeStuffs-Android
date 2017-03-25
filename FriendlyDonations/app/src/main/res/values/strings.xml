@@ -18,6 +18,8 @@
     <string name="loading">Loading</string>
     <string name="network_not_detected">No internet access, please check it</string>
     <string name="ok">Ok</string>
+    <string name="password">Password</string>
+    <string name="password_confirmation">Confirm Password</string>
     <string name="preferences">Preferences</string>
     <string name="privacy">privacy</string>
     <string name="settings">Settings</string>
@@ -49,6 +51,14 @@
         <item>ONG</item>
         <item>Other</item>
     </array>
+    
+    <!-- Form Messages -->
+    <string name="form_error_name">Invalid Name</string>
+    <string name="form_error_email">Invalid E-mail</string>
+    <string name="form_field_cannot_be_empty">Field cannot be empty</string>
+    <string name="form_field_password">Invalid Password</string>
+    <string name="form_field_password_confirmation">Invalid Password Confirmation</string>
+    <string name="form_terms">Terms need to be accepted</string>
 
     <!-- Dialog Texts -->
     <string name="dialog_title_choose_updater">Select update image option</string>
