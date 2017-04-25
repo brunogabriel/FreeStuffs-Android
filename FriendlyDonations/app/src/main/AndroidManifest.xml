@@ -13,7 +13,6 @@
 
 
     <application
-        android:name=".shared.CustomApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -48,58 +47,5 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-
-        <!-- Firebase Components -->
-        <service
-            android:name=".shared.firebase.FirebaseMessaging">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
-            </intent-filter>
-        </service>
-
-        <service
-            android:name=".shared.firebase.FirebaseServiceID">
-            <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
-            </intent-filter>
-        </service>
-
-        <!-- Ucrop Components -->
-        <activity
-            android:name="com.yalantis.ucrop.UCropActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-
-        <activity android:name=".application.login.LoginActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/FriendlyDonationsTheme">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-
-        </activity>
-
-        <!-- Create Account -->
-        <activity android:name=".application.account.CreateAccountActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize"
-            android:theme="@style/FriendlyDonationsTheme.NotTranslucent">
-        </activity>
-
-        <!-- Application Components -->
-        <activity android:name=".application.main.MainActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize"
-            android:theme="@style/FriendlyDonationsTheme.NotTranslucent">
-        </activity>
-        
-        <activity android:name=".application.webview.ActivityWebView"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize"
-            android:theme="@style/FriendlyDonationsTheme.NotTranslucent">
-        </activity>
-
     </application>
 </manifest>
