@@ -1,3 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="material_space">16dp</dimen>
+    <dimen name="material_semi_space">8dp</dimen>
+    <dimen name="material_touch_area">48dp</dimen>
 </resources>

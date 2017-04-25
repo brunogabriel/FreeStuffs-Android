@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="MontserratBold" parent="@android:style/TextAppearance.Widget.TextView">
+        <item name="fontPath">fonts/Montserrat-Bold.ttf</item>
+    </style>
+
+    <style name="MontserratRegular" parent="@android:style/TextAppearance.Widget.TextView">
+        <item name="fontPath">fonts/Montserrat-Regular.ttf</item>
+    </style>
+
+    <style name="RobotoBold" parent="@android:style/TextAppearance.Widget.TextView">
+        <item name="fontPath">fonts/Roboto-Bold.ttf</item>
+    </style>
+
+    <style name="RobotoLight" parent="@android:style/TextAppearance.Widget.TextView">
+        <item name="fontPath">fonts/Roboto-Light.ttf</item>
+    </style>
+
+    <style name="RobotoMedium" parent="@android:style/TextAppearance.Widget.TextView">
+        <item name="fontPath">fonts/Roboto-Medium.ttf</item>
+    </style>
+
+    <style name="RobotoRegular" parent="@android:style/TextAppearance.Widget.TextView">
+        <item name="fontPath">fonts/Roboto-Regular.ttf</item>
+    </style>
+
+    <style name="RobotoThin" parent="@android:style/TextAppearance.Widget.TextView">
+        <item name="fontPath">fonts/Roboto-Thin.ttf</item>
+    </style>
+
+
+</resources>

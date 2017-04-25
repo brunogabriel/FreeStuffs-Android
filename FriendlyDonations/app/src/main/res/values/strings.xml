@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Keys -->
-    <string name="google_android_apikey" translatable="false">AIzaSyDu3zC4_c1LgXXvYG8x0SCcHYl_z32W3Nk</string>
+    <!-- TODO Apply in build -->
+    <!--<string name="google_android_apikey" translatable="false">AIzaSyDu3zC4_c1LgXXvYG8x0SCcHYl_z32W3Nk</string>-->
+
+    <!-- Common name -->
+    <string name="application_name">Friendly Donations</string>
+
+    <!-- Login -->
+    <string name="login_about_and_use_terms">About and User Terms</string>
+    <string name="login_about_terms">About FriendlyDonation and terms</string>
+    <string name="login_create_account">Create An Account</string>
+    <string name="login_with_custom_account">Login With My Account</string>
+    <string name="login_with_facebook">Login With Facebook</string>
+    <string name="login_with_facebook_cancelled">Login With Facebook was cancelled</string>
+    <string name="login_with_facebook_error">An error has occurred during login. Please try again or later.</string>
+    <string name="login_with_google">Login With Google</string>
+
+
 </resources>

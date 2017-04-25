@@ -1,4 +1,5 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.com.friendlydonations">
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -14,11 +15,12 @@
 
     <application
         android:allowBackup="true"
+        android:name=".shared.CustomApplication"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="@string/application_name"
         android:supportsRtl="true"
         android:hardwareAccelerated="true"
-        android:theme="@style/FriendlyDonationsTheme">
+        android:theme="@style/FriendlyDonationsTheme.NotTranslucent">
 
         <!-- Meta Data -->
 
@@ -28,14 +30,14 @@
 
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
 
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_android_apikey"/>
+        <!--<meta-data-->
+            <!--android:name="com.google.android.geo.API_KEY"-->
+            <!--android:value="@string/google_android_apikey"/>-->
 
         <!-- Facebook Components -->
         <activity android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="@string/app_name" />
+            android:label="@string/application_name" />
 
         <activity
             android:name="com.facebook.CustomTabActivity"
@@ -47,5 +49,22 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".application.login.LoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/FriendlyDonationsTheme">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+
+        </activity>
+
+        <activity android:name=".application.main.MainActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+
     </application>
 </manifest>
