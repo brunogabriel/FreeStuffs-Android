@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/material_tab_height">
+
+    <!-- TODO: Add icon to identify notifications -->
+    
+    <ImageView
+        android:id="@+id/image_tab"
+        android:layout_gravity="center"
+        android:layout_width="@dimen/material_default_icon_dimen"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

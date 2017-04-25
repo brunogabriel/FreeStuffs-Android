@@ -3,4 +3,6 @@
     <dimen name="material_space">16dp</dimen>
     <dimen name="material_semi_space">8dp</dimen>
     <dimen name="material_touch_area">48dp</dimen>
+    <dimen name="material_default_icon_dimen">24dp</dimen>
+    <dimen name="material_tab_height">48dp</dimen>
 </resources>

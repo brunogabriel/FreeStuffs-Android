@@ -21,12 +21,12 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+        super.onDestroy();
         // Try to unbind Butterknife
         if (unbinder != null) {
             try {
                 unbinder.unbind();
             } catch (Exception exception) {}
         }
-        super.onDestroy();
     }
 }
