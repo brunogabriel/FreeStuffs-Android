@@ -65,6 +65,9 @@
             android:screenOrientation="portrait">
         </activity>
 
+        <activity android:name=".application.web.WebLoadActivity"
+            android:screenOrientation="portrait">
+        </activity>
 
     </application>
 </manifest>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="ButtonWhiteStyle" parent="RobotoMedium">
+    <style name="ButtonWhiteStyle" parent="MontserratRegular">
         <item name="android:textColor">@color/colorWhite</item>
         <item name="android:textSize">14sp</item>
     </style>

@@ -45,7 +45,8 @@
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/facebook_button"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/material_touch_area"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/material_touch_area"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:background="@drawable/drawable_facebook_hover"
@@ -62,7 +63,8 @@
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/google_button"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/material_touch_area"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/material_touch_area"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:background="@drawable/drawable_google_hover"
@@ -88,7 +90,8 @@
                 android:text="@string/login_with_custom_account"
                 android:textAlignment="center"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/material_touch_area" />
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/material_touch_area" />
 
             <Space
                 android:layout_width="match_parent"
@@ -105,7 +108,8 @@
                 android:text="@string/login_create_account"
                 android:textAlignment="center"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/material_touch_area" />
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/material_touch_area" />
 
         </LinearLayout>
     </RelativeLayout>
