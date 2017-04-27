@@ -17,5 +17,10 @@
     <string name="login_with_facebook_error">An error has occurred during login. Please try again or later.</string>
     <string name="login_with_google">Login With Google</string>
 
+    <!-- Main Fragment -->
+    <string name="fragment_title_home">Home</string>
+    <string name="fragment_title_donate">Donate</string>
+    <string name="fragment_title_profile">Profile</string>
+    <string name="fragment_title_notifications">Notifications</string>
 
 </resources>

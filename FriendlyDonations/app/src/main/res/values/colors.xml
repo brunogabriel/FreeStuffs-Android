@@ -17,9 +17,11 @@
     <color name="colorWhite">#fff</color>
     <color name="colorBlack">#000</color>
     <color name="colorLegacyLight">#ffe6e6e6</color>
+    <color name="colorAboutLogin">#1A1A1A64</color>
 
     <!-- Facebook Colors -->
     <color name="colorFacebookPrimaryDark">#1b2946</color>
     <color name="colorFacebookPrimary">#3B5998</color>
+
 
 </resources>

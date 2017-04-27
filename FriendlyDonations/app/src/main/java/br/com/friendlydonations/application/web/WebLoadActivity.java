@@ -60,10 +60,14 @@ public class WebLoadActivity extends BaseActivity implements WebLoadView {
         // Extras
         String titleExtra = getIntent().getExtras().getString(TITLE_EXTRA, null);
         String urlPathExtra = getIntent().getExtras().getString(URL_PATH_EXTRA, null);
-
         setupToolbar(toolbar, titleExtra, null, true, true);
+
         presenter = new WebLoadPresenter(this);
         presenter.refreshUrl(urlPathExtra);
+        initializeUI();
+    }
+
+    private void initializeUI() {
         onSetSwipeToRefreshColor(swipeRefreshLayout);
         swipeRefreshLayout.setOnRefreshListener(() -> webView.reload());
         webView.getSettings().setJavaScriptEnabled(true);

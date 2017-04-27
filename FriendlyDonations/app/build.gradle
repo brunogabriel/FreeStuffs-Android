@@ -82,6 +82,7 @@ def EVENTBUS_VERSION = "3.0.0"
 def ESPRESSO_VERSION = "2.2.2"
 def DEXTER_VERSION = "4.0.0"
 def WIREMOCK_VERSION = "2.6.0"
+def CHUCK_VERSION = "1.0.4"
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -118,6 +119,9 @@ dependencies {
         exclude module: 'design'
         exclude module: 'support'
     })
+
+    debugCompile "com.readystatesoftware.chuck:library:${CHUCK_VERSION}"
+    releaseCompile "com.readystatesoftware.chuck:library-no-op:${CHUCK_VERSION}"
 
     // Android and Google Dependencies
     compile "com.android.support:appcompat-v7:${SUPPORT_LIB_VERSION}"

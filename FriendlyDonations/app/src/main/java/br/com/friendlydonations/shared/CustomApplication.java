@@ -5,6 +5,7 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 
 import br.com.friendlydonations.R;
+import br.com.friendlydonations.shared.network.RetrofitHelper;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 /**
@@ -12,10 +13,12 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
  */
 
 public class CustomApplication extends Application {
+
     @Override
     public void onCreate() {
         super.onCreate();
         initializeCalligraphy();
+        RetrofitHelper.injectContext(getApplicationContext());
     }
 
     @Override

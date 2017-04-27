@@ -1,6 +1,8 @@
 package br.com.friendlydonations.shared;
 
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 
 import butterknife.Unbinder;
 
@@ -9,7 +11,8 @@ import butterknife.Unbinder;
  */
 
 public class BaseFragment extends Fragment {
-    protected Unbinder unbinder;
+    protected String TAG = BaseActivity.class.getSimpleName();    protected Unbinder unbinder;
+    protected String fragmentTitle;
 
     @Override
     public void onDestroy() {
@@ -18,7 +21,17 @@ public class BaseFragment extends Fragment {
         if (unbinder != null) {
             try {
                 unbinder.unbind();
-            } catch (Exception exception) {}
+            } catch (Exception exception) {
+                Log.e(TAG, "Fail to unbind Butterknife");
+            }
         }
+    }
+
+    public void setFragmentTitle(String fragmentTitle) {
+        this.fragmentTitle = fragmentTitle;
+    }
+
+    public String getFragmentTitle() {
+        return fragmentTitle;
     }
 }

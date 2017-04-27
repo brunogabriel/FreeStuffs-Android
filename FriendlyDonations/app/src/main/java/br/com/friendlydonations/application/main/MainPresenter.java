@@ -5,4 +5,10 @@ package br.com.friendlydonations.application.main;
  */
 
 public class MainPresenter {
+
+    private MainView view;
+
+    public MainPresenter(MainView view) {
+        this.view = view;
+    }
 }
