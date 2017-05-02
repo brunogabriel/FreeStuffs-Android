@@ -100,6 +100,7 @@ public class MainActivity extends BaseActivity implements MainView {
 
     private void startTabs() {
         tabLayout.setupWithViewPager(viewPager);
+
         for (int i = 0; i < tabIcons.length; i++) {
             tabLayout.getTabAt(i).setCustomView(createCustomView(tabIcons[i]));
         }

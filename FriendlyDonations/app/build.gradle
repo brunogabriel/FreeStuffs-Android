@@ -69,6 +69,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    sourceSets { main { assets.srcDirs = ['src/main/assets', 'src/androidTest/assets'] } }
 }
 
 def JUNIT_VERSION = "4.12"
@@ -139,7 +140,7 @@ dependencies {
     provided 'javax.annotation:jsr250-api:1.0'
 
     // Facebook
-    compile ('com.facebook.android:facebook-android-sdk:4.+') {
+    compile('com.facebook.android:facebook-android-sdk:4.+') {
         exclude module: 'bolts-android'
         exclude module: 'support-annotations'
         exclude module: 'support-v4'

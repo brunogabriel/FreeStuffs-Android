@@ -6,4 +6,9 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <style name="CardCategoryStyle" parent="RobotoMedium">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
 </resources>

@@ -10,6 +10,6 @@ import rx.Observable;
  */
 
 public interface CategoryService {
-    @GET(value = "product_categories")
+    @GET(value = "/product_categories")
     Observable<Response<CategoryData>> getCategories();
 }

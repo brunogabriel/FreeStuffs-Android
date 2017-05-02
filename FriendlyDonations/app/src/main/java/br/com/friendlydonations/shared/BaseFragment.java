@@ -1,6 +1,5 @@
 package br.com.friendlydonations.shared;
 
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 
