@@ -2,10 +2,7 @@ package br.com.friendlydonations.application.main.home;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SnapHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,12 +42,7 @@ public class HomeFragment extends BaseFragment implements HomeView {
         for (int i = 0; i < 10; i++) {
             categories.add(new Category());
         }
-
         HomeCategoryAdapter categoryAdapter = new HomeCategoryAdapter(categories);
         categoryRecyclerView.setAdapter(categoryAdapter);
-
-        SnapHelper snapHelper = new LinearSnapHelper();
-        snapHelper.attachToRecyclerView(categoryRecyclerView);
     }
-
 }

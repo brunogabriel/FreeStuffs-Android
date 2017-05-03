@@ -7,5 +7,5 @@
     <dimen name="custom_button_height">60dp</dimen>
     <dimen name="material_default_icon_dimen">24dp</dimen>
     <dimen name="material_tab_height">48dp</dimen>
-    <dimen name="category_height">74dp</dimen>
+    <dimen name="category_height">76dp</dimen>
 </resources>
