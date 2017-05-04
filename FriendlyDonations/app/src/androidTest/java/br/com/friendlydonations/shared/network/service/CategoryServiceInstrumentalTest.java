@@ -59,7 +59,7 @@ public class CategoryServiceInstrumentalTest {
         Response<CategoryData> categoryDataResponse = onNextEvents.get(0);
         assertEquals(200, categoryDataResponse.code());
         CategoryData categoryData = categoryDataResponse.body();
-        assertTrue(categoryData.isStatus());
+        assertTrue(categoryData.getStatus());
         assertEquals(3, categoryData.getData().size());
     }
 

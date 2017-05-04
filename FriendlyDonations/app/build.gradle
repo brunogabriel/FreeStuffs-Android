@@ -37,7 +37,7 @@ android {
             resValue "string", "fb_login_protocol_scheme", "fb1370357039645664"
 
             productFlavors.local {
-                buildConfigField "String", "base_url", '"http://192.168.1.40:3000/"'
+                buildConfigField "String", "base_url", '"http://192.168.1.49:3000/"'
             }
 
             productFlavors.instrumental {
@@ -45,7 +45,7 @@ android {
             }
 
             productFlavors.production {
-                buildConfigField "String", "base_url", '"http://192.168.1.40:3000/"'
+                buildConfigField "String", "base_url", '"http://192.168.1.49:3000/"'
             }
         }
 

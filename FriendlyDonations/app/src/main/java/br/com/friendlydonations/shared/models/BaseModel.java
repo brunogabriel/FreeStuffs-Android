@@ -11,7 +11,7 @@ public abstract class BaseModel implements Serializable {
     private boolean status;
     private String message;
 
-    public boolean isStatus() {
+    public boolean getStatus() {
         return status;
     }
 
