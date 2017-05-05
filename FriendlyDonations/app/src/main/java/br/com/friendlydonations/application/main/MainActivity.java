@@ -96,6 +96,7 @@ public class MainActivity extends BaseActivity implements MainView {
         customFragmentPagerAdapter.addFragment(profileFragment);
         customFragmentPagerAdapter.addFragment(notificationFragment);
         viewPager.setAdapter(customFragmentPagerAdapter);
+        viewPager.setOffscreenPageLimit(viewPager.getAdapter().getCount());
     }
 
     private void startTabs() {
