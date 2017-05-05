@@ -4,6 +4,13 @@
     <style name="ButtonWhiteStyle" parent="MontserratRegular">
         <item name="android:textColor">@color/colorWhite</item>
         <item name="android:textSize">14sp</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="ButtonPrimaryStyle" parent="MontserratRegular">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textAllCaps">true</item>
     </style>
 
     <style name="CardCategoryStyle" parent="RobotoMedium">
@@ -19,6 +26,10 @@
     <style name="CardDonationSubtitle" parent="RobotoMedium">
         <item name="android:textColor">@color/colorSubtitle</item>
         <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="SimpleParagraph" parent="RobotoRegular">
+        <item name="android:textColor">@color/colorParagraph</item>
     </style>
 
 </resources>

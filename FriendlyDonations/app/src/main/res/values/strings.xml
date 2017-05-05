@@ -6,6 +6,10 @@
 
     <!-- Common name -->
     <string name="application_name">Friendly Donations</string>
+    <string name="all">All</string>
+    <string name="unable_load_data">Unable to load data</string>
+    <string name="unable_load_categories">Unable to load categories</string>
+    <string name="try_again">Try Again</string>
 
     <!-- Login -->
     <string name="login_about_and_use_terms">About and User Terms</string>

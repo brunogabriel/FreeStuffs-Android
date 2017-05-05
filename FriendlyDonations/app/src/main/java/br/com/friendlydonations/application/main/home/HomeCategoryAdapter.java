@@ -6,8 +6,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.annimon.stream.Stream;
 
 import java.util.List;
 
@@ -26,10 +29,20 @@ public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapte
 
     private Context context;
     private List<Category> items;
+    private Category selectedCategory;
 
-    public HomeCategoryAdapter(@NonNull Context context, @NonNull List<Category> items) {
+    public HomeCategoryAdapter(@NonNull Context context,
+                               @NonNull List<Category> items) {
         this.context = context;
         this.items = items;
+        this.selectedCategory = filterSelectedCategory();
+    }
+
+    private Category filterSelectedCategory() {
+        return Stream.of(items)
+                .filter(Category::isSelect)
+                .findFirst()
+                .orElse(null);
     }
 
     @Override
@@ -41,7 +54,17 @@ public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapte
     public void onBindViewHolder(CategoryViewHolder holder, int position) {
         Category category = items.get(position);
         holder.categoryName.setText(category.getName());
-        ViewHelper.loadImageWithPlaceholder(context, holder.circleImageView, category.getImage().getLoader(), category.getImage().getLarge());
+        holder.checkMarker.setVisibility(category.isSelect() ? View.VISIBLE: View.GONE);
+        holder.rootLayout.setOnClickListener(v -> {
+            Category nextCategory = items.get(holder.getAdapterPosition());
+            if (!nextCategory.getId().equalsIgnoreCase(selectedCategory.getId())) {
+                nextCategory.setSelect(true);
+                selectedCategory.setSelect(false);
+                selectedCategory = nextCategory;
+                notifyDataSetChanged();
+            }
+        });
+        ViewHelper.loadImageWithPlaceholder(context, holder.circleImageView, category.getImage());
     }
 
     @Override
@@ -59,6 +82,9 @@ public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapte
 
         @BindView(R.id.category_name)
         TextView categoryName;
+
+        @BindView(R.id.root_layout)
+        FrameLayout rootLayout;
 
         public CategoryViewHolder(View itemView) {
             super(itemView);

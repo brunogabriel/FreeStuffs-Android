@@ -19,8 +19,24 @@
             android:layout_marginLeft="@dimen/material_space"
             android:layout_marginRight="@dimen/material_space" >
 
-            <ProgressBar
-                android:id="@+id/progress_bar"
+            <TextView
+                android:id="@+id/try_again_text"
+                android:text="@string/unable_load_data"
+                style="@style/SimpleParagraph"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/material_space" />
+
+            <Button
+                android:id="@+id/try_again_button"
+                style="@style/ButtonPrimaryStyle"
+                android:paddingLeft="@dimen/material_space"
+                android:paddingRight="@dimen/material_space"
+                android:background="@drawable/drawable_ripple_hover"
+                android:text="@string/try_again"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 

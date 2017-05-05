@@ -16,6 +16,8 @@ import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
+import br.com.friendlydonations.shared.models.Image;
+
 /**
  * Created by brunogabriel on 26/04/17.
  */
@@ -24,11 +26,10 @@ public class ViewHelper {
     private static final String TAG = "IMG_UTIL";
     private static final int BLUR_LEVEL = 4;
 
-    public static void loadImageWithPlaceholder(@NonNull  Context context, @NonNull ImageView imageView,
-                                                @NonNull String urlPlaceholder, @NonNull String urlFinal) {
+    public static void loadImageWithPlaceholder(@NonNull  Context context, @NonNull ImageView imageView, Image imageModel) {
         try {
             Picasso.with(context)
-                    .load(urlPlaceholder)
+                    .load(imageModel.getLoader())
                     .transform(new Transformation() {
                         @Override
                         public Bitmap transform(Bitmap source) {
@@ -43,7 +44,7 @@ public class ViewHelper {
                     }).into(imageView, new Callback() {
                 @Override
                 public void onSuccess() {
-                    Picasso.with(context).load(urlFinal).placeholder(imageView.getDrawable()).into(imageView);
+                    Picasso.with(context).load(imageModel.getThumb()).placeholder(imageView.getDrawable()).into(imageView);
                 }
 
                 @Override

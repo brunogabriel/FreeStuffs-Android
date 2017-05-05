@@ -17,7 +17,8 @@ import mehdi.sakout.dynamicbox.DynamicBox;
 public class DynamicBoxHelper {
 
     public enum DynamicBoxView {
-        LOADING_HORIZONTAL("loading.horizontal", R.layout.holder_loading_horizontal);
+        LOADING_HORIZONTAL("loading.horizontal", R.layout.holder_loading_horizontal),
+        TRY_AGAIN("try.again", R.layout.holder_try_again);
 
         private String name;
         private int layoutId;
@@ -59,7 +60,7 @@ public class DynamicBoxHelper {
     }
 
     private void showView(@NonNull String tag) {
-        hideAll(); // hide previously views
+        hideAll();
         dynamicBox.showCustomView(tag);
     }
 

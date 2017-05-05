@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -20,6 +21,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static br.com.friendlydonations.shared.ui.DynamicBoxHelper.DynamicBoxView.LOADING_HORIZONTAL;
+import static br.com.friendlydonations.shared.ui.DynamicBoxHelper.DynamicBoxView.TRY_AGAIN;
 
 /**
  * Created by brunogabriel on 24/04/17.
@@ -31,7 +33,7 @@ public class HomeFragment extends BaseFragment implements HomeView {
     protected RecyclerView categoryRecyclerView;
 
     protected HomePresenter presenter;
-    private DynamicBoxHelper categoryLoadingBox;
+    private DynamicBoxHelper categoryDinamicBox;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -48,29 +50,42 @@ public class HomeFragment extends BaseFragment implements HomeView {
     }
 
     private void initUI() {
-        categoryLoadingBox = new DynamicBoxHelper(getActivity(), categoryRecyclerView);
+        categoryDinamicBox = new DynamicBoxHelper(getActivity(), categoryRecyclerView);
+    }
+
+    private void enableSwipeToRefresh() {
     }
 
     @Override
     public void showCategoriesLoading() {
-        categoryLoadingBox.showCachedView(LOADING_HORIZONTAL);
+        categoryDinamicBox.showCachedView(LOADING_HORIZONTAL);
     }
 
     @Override
     public void dismissCategoriesLoading() {
-        categoryLoadingBox.hideAll();
+        categoryDinamicBox.hideAll();
     }
 
     @Override
     public void showCategories(@NonNull List<Category> data) {
+        // Create a helper category to filter by all
+        Category category = new Category();
+        category.setName(getString(R.string.all));
+        category.setId(getString(R.string.all));
+        category.setSelect(true);
+        data.add(0, category);
+
         HomeCategoryAdapter categoryAdapter = new HomeCategoryAdapter(getContext(), data);
         categoryRecyclerView.setAdapter(categoryAdapter);
         categoryRecyclerView.setHasFixedSize(true);
+        enableSwipeToRefresh();
     }
 
     @Override
     public void tryAgainCategories() {
-        // TODO: Show
+        View view = categoryDinamicBox.showCachedView(TRY_AGAIN);
+        view.findViewById(R.id.try_again_button).setOnClickListener(v -> presenter.loadCategories());
+        ((TextView) view.findViewById(R.id.try_again_text)).setText(getString(R.string.unable_load_categories));
     }
 
     @Override

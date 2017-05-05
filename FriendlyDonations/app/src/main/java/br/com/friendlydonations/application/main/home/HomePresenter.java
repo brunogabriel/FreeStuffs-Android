@@ -33,7 +33,7 @@ public class HomePresenter {
                 .compose(RxHelper.applyIOToMainThreadSchedulers())
                 .lift(UnknownHostOperator.getUnknownHostOperator(view::tryAgainCategories))
                 .doOnSubscribe(view::showCategoriesLoading)
-                .doAfterTerminate(view::dismissCategoriesLoading)
+                .doOnTerminate(view::dismissCategoriesLoading)
                 .subscribe(response -> {
                     if (response.isSuccessful() && response.body().getStatus()) {
                         view.showCategories(response.body().getData());

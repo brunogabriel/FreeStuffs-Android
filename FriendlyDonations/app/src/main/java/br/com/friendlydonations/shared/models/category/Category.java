@@ -17,6 +17,8 @@ public class Category {
 
     private Image image;
 
+    private transient boolean select;
+
     public String getId() {
         return id;
     }
@@ -39,5 +41,13 @@ public class Category {
 
     public void setImage(Image image) {
         this.image = image;
+    }
+
+    public boolean isSelect() {
+        return select;
+    }
+
+    public void setSelect(boolean select) {
+        this.select = select;
     }
 }
