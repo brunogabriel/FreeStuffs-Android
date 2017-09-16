@@ -48,7 +48,7 @@ dependencies {
         exclude module: 'support-annotations'
         exclude module: 'recyclerview-v7'
     }
-    implementation 'com.android.support:multidex:1.0.1'
+    implementation 'com.android.support:multidex:1.0.2'
     implementation "org.jetbrains.anko:anko:$versions.anko"
     implementation "com.android.support:appcompat-v7:$versions.support_library"
     implementation "com.android.support:design:$versions.support_library"
