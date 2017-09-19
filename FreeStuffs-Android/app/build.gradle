@@ -60,4 +60,5 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:$versions.glide"
     annotationProcessor "com.github.bumptech.glide:compiler:$versions.glide"
     implementation "io.reactivex.rxjava2:rxkotlin:$versions.rx_kotlin"
+    implementation "com.android.support.constraint:constraint-layout:$versions.constraint_layout"
 }

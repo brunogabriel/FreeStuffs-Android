@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- TODO: Refactor to use a ConstraintLayout -->
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/material_space" />
+
+    <include layout="@layout/freestufs_logo"/>
+
+    <android.support.v7.widget.AppCompatButton
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/drawable_facebook_button"
+        android:paddingLeft="@dimen/material_semi_space"
+        android:paddingRight="@dimen/material_semi_space"
+        android:text="@string/enter_with_facebook"
+        style="@style/AppTheme.ButtonLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/material_space" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/drawable_google_button"
+        android:paddingLeft="@dimen/material_semi_space"
+        android:paddingRight="@dimen/material_semi_space"
+        android:textColor="@color/colorParagraph"
+        android:text="@string/enter_with_google"
+        style="@style/AppTheme.ButtonLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/material_space" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:layout_gravity="center_horizontal"
+        android:paddingLeft="@dimen/material_semi_space"
+        android:paddingRight="@dimen/material_semi_space"
+        android:text="@string/enter_with_account"
+        android:textColor="@android:color/white"
+        style="@style/AppTheme.ButtonLogin.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/material_space" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:layout_gravity="center_horizontal"
+        android:paddingLeft="@dimen/material_semi_space"
+        android:paddingRight="@dimen/material_semi_space"
+        android:text="@string/create_account"
+        android:textColor="@android:color/white"
+        style="@style/AppTheme.ButtonLogin.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>

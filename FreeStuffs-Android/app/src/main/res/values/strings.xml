@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">FreeStuffs</string>
+    <string name="app_phrase">Make yourself better. Donate</string>
+    <string name="create_account">Create an Account</string>
+    <string name="enter_with_account">Enter with my account</string>
+    <string name="enter_with_facebook">Enter with Facebook</string>
+    <string name="enter_with_google">Enter with Google</string>
 </resources>

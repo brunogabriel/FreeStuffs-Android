@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <!-- Application Colors -->
+    <color name="colorPrimary">#6D65E6</color>
+    <color name="colorPrimaryDark">#4c47a1</color>
+    <color name="colorAccent">#FF4843</color>
+    <!-- Other Colors -->
+    <color name="colorAppGreen">#00CFA6</color>
+    <!-- Facebook Colors -->
+    <color name="colorFacebook">#3B5998</color>
+    <color name="colorFacebookHover">#4F6AA3</color>
+    <!-- Google Colors -->
+    <color name="colorGoogle">#FFF</color>
+    <color name="colorGoogleHover">#FAFAFA</color>
+    <!-- Text Colors -->
+    <color name="colorParagraph">#5E5353</color>
+    <color name="colorTitle">#686779</color>
+    <color name="colorSubtitle">#ADADB6</color>
+    <color name="colorDisabled">#D8D8D8</color>
 </resources>

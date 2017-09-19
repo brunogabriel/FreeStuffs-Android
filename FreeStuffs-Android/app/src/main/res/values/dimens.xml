@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="material_space">16dp</dimen>
+    <dimen name="material_semi_space">8dp</dimen>
+
+    <!-- Text size -->
+    <dimen name="micro_text">12sp</dimen>
+    <dimen name="small_text">14sp</dimen>
+    <dimen name="medium_text">18sp</dimen>
+    <dimen name="large_text">22sp</dimen>
+    <dimen name="logo_text">30sp</dimen>
+</resources>

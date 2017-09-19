@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Buttons -->
+    <style name="AppTheme.ButtonLogin" parent="Base.Widget.AppCompat.Button.Colored">
+        <item name="fontFamily">@font/montserrat_regular</item>
+    </style>
+    <style name="AppTheme.ButtonLogin.Borderless" parent="Base.Widget.AppCompat.Button.Borderless">
+        <item name="fontFamily">@font/montserrat_regular</item>
+    </style>
+</resources>
